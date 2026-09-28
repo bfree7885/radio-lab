@@ -1,0 +1,35 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Runtime data and logs
+data/*.sqlite
+data/*.sqlite3
+data/*.db
+logs/
+*.log
+
+# Temporary files
+tmp/
+.tmp/
+*.tmp
+*.swp
+*~
+
+# Editor and OS junk
+.idea/
+.vscode/
+.DS_Store
+
+# Secrets
+.env
+.env.*
+*.pem
+credentials.json

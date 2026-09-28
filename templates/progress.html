@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Progress · Waypoint Radio Lab{% endblock %}
+{% block content %}
+  <header class="page-head">
+    <p class="eyebrow">TECHNICIAN FOUNDATIONS // V0.1</p>
+    <h1>Progress</h1>
+    <p class="lede">Counts come from labs you have finished. Empty areas stay empty until there is something to record.</p>
+  </header>
+
+  <section class="panel" aria-labelledby="foundations-heading">
+    <h2 id="foundations-heading">Technician Foundations</h2>
+    <dl class="stat-grid">
+      <div>
+        <dt>Labs complete</dt>
+        <dd>{{ summary.completed }}</dd>
+      </div>
+      <div>
+        <dt>Labs remaining</dt>
+        <dd>{{ summary.remaining }}</dd>
+      </div>
+      <div>
+        <dt>In progress</dt>
+        <dd>{{ summary.in_progress }}</dd>
+      </div>
+      <div>
+        <dt>In this track</dt>
+        <dd>{{ summary.total }}</dd>
+      </div>
+    </dl>
+    <div
+      class="meter"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="{{ summary.total }}"
+      aria-valuenow="{{ summary.completed }}"
+      aria-valuetext="{{ summary.completed }} of {{ summary.total }} labs complete"
+    >
+      <span class="meter-fill" style="width: {{ summary.percent }}%;"></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="lab-status-heading">
+    <h2 id="lab-status-heading">Lab status</h2>
+    <ol class="status-list">
+      {% for lab in labs %}
+        <li>
+          <span class="lab-number">{{ lab.number }}</span>
+          <span class="status-title">{{ lab.title }}</span>
+          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+          {% if not lab.available %}
+            <span class="coming-soon">COMING SOON</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="panel" aria-labelledby="weak-heading">
+    <h2 id="weak-heading">Weak topics</h2>
+    {% if topics %}
+      <ul>
+        {% for topic in topics %}
+          <li>{{ topic.topic_id }} — missed {{ topic.misses }}, correct {{ topic.hits }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>None recorded yet. This list fills in from exam-question results, after those labs exist. It is not a guess.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="exam-heading">
+    <h2 id="exam-heading">Exam readiness</h2>
+    {% if exam.has_evidence %}
+      <p>{{ exam.correct }} correct out of {{ exam.recorded }} recorded exam items.</p>
+    {% else %}
+      <p>Not enough evidence yet. Readiness will be based on exam connections you actually answer. No readiness score is shown until then.</p>
+    {% endif %}
+  </section>
+{% endblock %}

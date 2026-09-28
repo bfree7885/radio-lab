@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Waypoint Radio Lab{% endblock %}
+{% block content %}
+  <header class="page-head">
+    <p class="eyebrow">TECHNICIAN FOUNDATIONS // V0.1</p>
+    <h1>WAYPOINT RADIO LAB</h1>
+    <p class="lede">Hands-on amateur radio practice on this computer. No radio is required.</p>
+  </header>
+
+  <section class="panel" aria-labelledby="progress-heading">
+    <div class="panel-row">
+      <div>
+        <h2 id="progress-heading">Overall progress</h2>
+        <p class="stat-line">
+          <strong>{{ summary.completed }}</strong> of {{ summary.total }} labs complete
+          · {{ summary.remaining }} remaining
+        </p>
+      </div>
+      {% if continue_lab %}
+        <a class="button" href="{{ url_for('lab_workspace', lab_id=continue_lab.id) }}">Continue Learning</a>
+      {% else %}
+        <p class="stat-line">Technician Foundations labs are complete.</p>
+      {% endif %}
+    </div>
+    <div
+      class="meter"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="{{ summary.total }}"
+      aria-valuenow="{{ summary.completed }}"
+      aria-valuetext="{{ summary.completed }} of {{ summary.total }} labs complete"
+    >
+      <span class="meter-fill" style="width: {{ summary.percent }}%;"></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="labs-heading">
+    <h2 id="labs-heading">Labs</h2>
+    <ol class="lab-grid">
+      {% for lab in labs %}
+        <li class="card">
+          <p class="lab-number">Lab {{ lab.number }}</p>
+          <h3>{{ lab.title }}</h3>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          {% if not lab.available %}
+            <p class="coming-soon">COMING SOON</p>
+          {% endif %}
+          {% if lab.available %}
+            <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+{% endblock %}

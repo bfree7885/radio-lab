@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Not found · Waypoint Radio Lab{% endblock %}
+{% block content %}
+  <header class="page-head">
+    <h1>That page is not in Radio Lab</h1>
+    <p class="lede">The address does not match a dashboard, lab, or progress page.</p>
+    <p><a class="button" href="{{ url_for('dashboard') }}">Back to dashboard</a></p>
+  </header>
+{% endblock %}

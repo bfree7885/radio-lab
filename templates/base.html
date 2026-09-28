@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-lab-mode="{{ lab_mode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Waypoint Radio Lab{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/lab.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="site-brand">
+      <p class="brand-kicker">Waypoint</p>
+      <p class="brand-name">Radio Lab</p>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}" {% if request.endpoint == 'dashboard' %}aria-current="page"{% endif %}>DASHBOARD</a></li>
+        <li><a href="{{ url_for('labs_index') }}" {% if request.endpoint == 'labs_index' %}aria-current="page"{% endif %}>LABS</a></li>
+        <li><a href="{{ url_for('progress_page') }}" {% if request.endpoint == 'progress_page' %}aria-current="page"{% endif %}>PROGRESS</a></li>
+        <li><a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}aria-current="page"{% endif %}>ABOUT</a></li>
+      </ul>
+    </nav>
+    <p class="mode-flag">
+      {% if live_lab %}
+        <span class="mode-dot mode-dot-live" aria-hidden="true"></span>
+        Live lab available
+      {% else %}
+        <span class="mode-dot" aria-hidden="true"></span>
+        Simulation · no radio required
+      {% endif %}
+    </p>
+  </header>
+  <main id="content" class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <p>{{ curriculum.name }} // {{ curriculum.version_label }} · local only</p>
+  </footer>
+  <script src="{{ url_for('static', filename='js/lab.js') }}" defer></script>
+</body>
+</html>

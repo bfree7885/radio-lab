@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Lab {{ lab.number }} · Waypoint Radio Lab{% endblock %}
+{% block content %}
+  <header class="page-head">
+    <p class="eyebrow"><a href="{{ url_for('labs_index') }}">Labs</a> · Lab {{ lab.number }}</p>
+    <h1>{{ lab.title }}</h1>
+    <p class="lede">{{ lab.summary }}</p>
+    <p class="status status-{{ status }}">{{ status_label }}</p>
+    {% if not lab.available %}
+      <p class="coming-soon">COMING SOON</p>
+    {% endif %}
+  </header>
+
+  {% if lab.available %}
+    <section class="panel" aria-labelledby="workspace-heading">
+      <h2 id="workspace-heading">Lab workspace</h2>
+      <p>This workspace is a placeholder. The six stages below are reserved. Lesson material is not in this version.</p>
+      <ol class="stage-rail">
+        {% for stage in stages %}
+          <li><a href="#stage-{{ stage.id }}">{{ stage.label }}</a></li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <div class="stage-list">
+      {% for stage in stages %}
+        <article class="stage" id="stage-{{ stage.id }}" aria-labelledby="stage-heading-{{ stage.id }}">
+          <p class="stage-index">Stage {{ loop.index }} of {{ stages|length }}</p>
+          <h2 id="stage-heading-{{ stage.id }}">{{ stage.label }}</h2>
+          <p>{{ stage.placeholder }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <section class="panel" aria-labelledby="closed-heading">
+      <h2 id="closed-heading">This lab is not open yet</h2>
+      <p>The workspace will use the same six stages as the other labs: Learn, See it, Do it, Explain it, Exam connection, and Field task.</p>
+      <p><a class="text-action" href="{{ url_for('labs_index') }}">Back to labs</a></p>
+    </section>
+  {% endif %}
+{% endblock %}
