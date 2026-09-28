@@ -1,8 +1,11 @@
-"""SQLite progress store.
+"""SQLite progress store — the local progress adapter.
 
-Tracks lab status now. The same database is ready for stage completion,
-exam-question results, derived weak topics, and field tasks. Those tables
-stay empty until later labs write to them.
+Hosted mode uses browser localStorage instead (web/progress-browser.js).
+The two stores are not synchronized. Accounts and cloud sync are out of scope.
+
+Tracks lab status now. The same database can record stage completion,
+exam-question results, derived weak topics, and field tasks. Weak topics
+are calculated from exam misses. They are not stored as a second list.
 
 The database path is inside this project. Override it with RADIO_LAB_DB
 when a test needs an isolated file. No home directory or machine name is used.
@@ -183,3 +186,77 @@ def exam_readiness() -> dict:
         "correct": correct,
         "has_evidence": recorded > 0,
     }
+
+
+def stage_completed(lab_id: str, stage_id: str) -> bool:
+    with connect() as conn:
+        row = conn.execute(
+            "SELECT completed FROM stage_progress WHERE lab_id = ? AND stage_id = ?",
+            (lab_id, stage_id),
+        ).fetchone()
+    if row is None:
+        return False
+    return bool(row["completed"])
+
+
+def set_stage_completed(lab_id: str, stage_id: str, completed: bool) -> None:
+    with connect() as conn:
+        conn.execute(
+            """
+            INSERT INTO stage_progress (lab_id, stage_id, completed, updated_at)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(lab_id, stage_id) DO UPDATE SET
+                completed = excluded.completed,
+                updated_at = excluded.updated_at
+            """,
+            (lab_id, stage_id, 1 if completed else 0, _now()),
+        )
+
+
+def record_exam(
+    question_id: str,
+    correct: bool,
+    lab_id: str | None = None,
+    topic_id: str | None = None,
+) -> None:
+    with connect() as conn:
+        conn.execute(
+            """
+            INSERT INTO exam_results (lab_id, question_id, topic_id, correct, recorded_at)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (lab_id, question_id, topic_id, 1 if correct else 0, _now()),
+        )
+
+
+def get_field_task(task_id: str) -> dict | None:
+    with connect() as conn:
+        row = conn.execute(
+            "SELECT task_id, lab_id, status, updated_at FROM field_tasks WHERE task_id = ?",
+            (task_id,),
+        ).fetchone()
+    if row is None:
+        return None
+    return {
+        "task_id": row["task_id"],
+        "lab_id": row["lab_id"],
+        "status": row["status"],
+        "updated_at": row["updated_at"],
+    }
+
+
+def set_field_task(task_id: str, status: str, lab_id: str | None = None) -> None:
+    if status not in STATUSES:
+        raise ValueError(f"Unknown field-task status: {status}")
+    with connect() as conn:
+        conn.execute(
+            """
+            INSERT INTO field_tasks (task_id, lab_id, status, updated_at)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(task_id) DO UPDATE SET
+                lab_id = excluded.lab_id,
+                status = excluded.status,
+                updated_at = excluded.updated_at
+            """,
+            (task_id, lab_id, status, _now()),
+        )

@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Waypoint Radio Lab — local learning application.
+"""Waypoint Radio Lab — local learning server.
 
-Binds to loopback only. Start it with ./run.sh.
+This process is the local adapter. It reads the shared curriculum in
+content/ and serves the browser core from web/. It binds to loopback only.
+Start it with ./run.sh.
 """
 
 from __future__ import annotations
 
-from flask import Flask, abort, render_template
+from pathlib import Path
 
-from hardware.capabilities import lab_mode, live_lab_available
-from labs.catalog import CURRICULUM, LABS, STAGES, get_lab, lab_ids
+from flask import Flask, abort, render_template, send_from_directory, url_for
+
+from hardware.capabilities import capability_snapshot, lab_mode, live_lab_available
+from labs.catalog import curriculum_meta, get_lab, get_labs, lab_ids, stages_for_lab
 from progress.store import (
     exam_readiness,
     init_db,
@@ -17,6 +21,10 @@ from progress.store import (
     status_label,
     weak_topics,
 )
+
+ROOT = Path(__file__).resolve().parent
+CONTENT = ROOT / "content"
+WEB = ROOT / "web"
 
 HOST = "127.0.0.1"
 PORT = 5070
@@ -35,17 +43,20 @@ def _ensure_db() -> None:
 
 @app.context_processor
 def _inject_globals() -> dict:
+    content_url = url_for("content_file", filename="curriculum.json")
     return {
-        "curriculum": CURRICULUM,
+        "curriculum": curriculum_meta(),
         "lab_mode": lab_mode(),
         "live_lab": live_lab_available(),
+        "content_base": content_url[: -len("curriculum.json")],
+        "capability_snapshot": capability_snapshot(),
     }
 
 
 def _labs_view() -> tuple[list[dict], dict]:
     summary = progress_summary(lab_ids())
     rows = []
-    for lab in LABS:
+    for lab in get_labs():
         status = summary["statuses"][lab["id"]]
         rows.append(
             {
@@ -67,6 +78,20 @@ def _continue_lab(labs: list[dict]) -> dict | None:
 @app.route("/favicon.ico")
 def favicon():
     return ("", 204)
+
+
+@app.route("/content/<path:filename>")
+def content_file(filename: str):
+    if not filename.endswith(".json"):
+        abort(404)
+    return send_from_directory(CONTENT, filename)
+
+
+@app.route("/web/<path:filename>")
+def web_file(filename: str):
+    if not filename.endswith(".js"):
+        abort(404)
+    return send_from_directory(WEB, filename)
 
 
 @app.route("/")
@@ -96,7 +121,7 @@ def lab_workspace(lab_id: str):
     return render_template(
         "lab.html",
         lab=lab,
-        stages=STAGES,
+        stages=stages_for_lab(lab["id"]),
         status=status,
         status_label=status_label(status),
     )

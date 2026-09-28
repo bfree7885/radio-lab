@@ -1,0 +1,90 @@
+{
+  "id": "technician-foundations",
+  "title": "Technician Foundations",
+  "version": "V0.1",
+  "licenseTarget": "FCC Technician",
+  "laterTarget": "FCC General",
+  "audience": "Beginners, including people with no amateur-radio experience.",
+  "stages": [
+    {"id": "learn", "label": "LEARN", "order": 1},
+    {"id": "see", "label": "SEE IT", "order": 2},
+    {"id": "do", "label": "DO IT", "order": 3},
+    {"id": "explain", "label": "EXPLAIN IT", "order": 4},
+    {"id": "exam", "label": "EXAM CONNECTION", "order": 5},
+    {"id": "field", "label": "FIELD TASK", "order": 6}
+  ],
+  "labs": [
+    {
+      "id": "01",
+      "number": "01",
+      "title": "What Is Radio?",
+      "description": "Explore frequency, wavelength, signals, noise, Hz/kHz/MHz, and basic receiver behavior.",
+      "available": true,
+      "lesson": "labs/01/lesson.json",
+      "topics": ["frequency", "wavelength", "signal", "noise"]
+    },
+    {
+      "id": "02",
+      "number": "02",
+      "title": "Your First Radio",
+      "description": "Frequency selection, volume, squelch, simplex operation, memories, and basic radio controls.",
+      "available": false,
+      "lesson": null,
+      "topics": ["tuning", "volume", "squelch", "simplex"]
+    },
+    {
+      "id": "03",
+      "number": "03",
+      "title": "Repeaters",
+      "description": "Repeater input/output frequencies, offsets, tones, range, and basic repeater operation.",
+      "available": false,
+      "lesson": null,
+      "topics": ["repeater", "offset", "tone", "range"]
+    },
+    {
+      "id": "04",
+      "number": "04",
+      "title": "Bands & Privileges",
+      "description": "Amateur bands, Technician privileges, operating scenarios, and choosing an appropriate frequency.",
+      "available": false,
+      "lesson": null,
+      "topics": ["bands", "privileges", "frequency-choice"]
+    },
+    {
+      "id": "05",
+      "number": "05",
+      "title": "Electricity Without the Textbook",
+      "description": "Voltage, current, resistance, power, and an interactive introduction to Ohm's law.",
+      "available": false,
+      "lesson": null,
+      "topics": ["voltage", "current", "resistance", "power"]
+    },
+    {
+      "id": "06",
+      "number": "06",
+      "title": "Antennas & SWR",
+      "description": "Frequency, wavelength, antenna length, resonance, SWR, and troubleshooting.",
+      "available": false,
+      "lesson": null,
+      "topics": ["antenna", "wavelength", "resonance", "swr"]
+    },
+    {
+      "id": "07",
+      "number": "07",
+      "title": "Propagation & Range",
+      "description": "Line of sight, terrain, antenna height, VHF/UHF behavior, introductory HF propagation, and repeaters.",
+      "available": false,
+      "lesson": null,
+      "topics": ["line-of-sight", "terrain", "vhf-uhf", "propagation"]
+    },
+    {
+      "id": "08",
+      "number": "08",
+      "title": "First Field Operation",
+      "description": "An integrated scenario: choose equipment, frequency and band, antenna, operating method, and proper procedure.",
+      "available": false,
+      "lesson": null,
+      "topics": ["field-operation", "procedure", "equipment"]
+    }
+  ]
+}

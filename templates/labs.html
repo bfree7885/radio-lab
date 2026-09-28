@@ -2,7 +2,7 @@
 {% block title %}Labs · Waypoint Radio Lab{% endblock %}
 {% block content %}
   <header class="page-head">
-    <p class="eyebrow">TECHNICIAN FOUNDATIONS // V0.1</p>
+    <p class="eyebrow">{{ curriculum.title | upper }} // {{ curriculum.version }}</p>
     <h1>Labs</h1>
     <p class="lede">Eight foundation labs. Open a lab to work through it. Later labs stay closed until their workspaces exist.</p>
   </header>
@@ -13,7 +13,7 @@
         <p class="lab-number">{{ lab.number }}</p>
         <div class="lab-copy">
           <h2>{{ lab.title }}</h2>
-          <p>{{ lab.summary }}</p>
+          <p>{{ lab.description }}</p>
           <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
           {% if not lab.available %}
             <p class="coming-soon">COMING SOON</p>

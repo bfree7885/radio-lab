@@ -1,38 +1,52 @@
-"""Hardware capability gate.
+"""Local capability adapter.
 
-Lesson and lab code must ask here before offering a live lab. A missing
-radio, SDR, scanner, audio interface, GNSS receiver, or Waypoint Deck is
-the normal case. Simulation continues.
+Lesson code asks whether a capability is available. It does not look for
+devices itself. Names live in content/capabilities.json so the browser
+adapter can use the same ids.
 
-V0.1 does not detect hardware. Every capability reports unavailable.
-Future detectors belong in this package and must stay optional imports.
+Simulation capabilities are available. Hardware capabilities stay unavailable
+until a detector is added here. Detection is not implemented.
 """
 
 from __future__ import annotations
 
-# Reserved names for later optional modules. Presence in this tuple is not
-# detection and does not mean a device is attached.
-KNOWN_CAPABILITIES = (
-    "rtl_sdr",
-    "scanner",
-    "amateur_radio",
-    "digirig",
-    "audio_interface",
-    "gnss",
-    "waypoint_deck",
-)
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+MANIFEST_PATH = ROOT / "content" / "capabilities.json"
+
+_manifest: dict | None = None
+
+
+def manifest() -> dict:
+    global _manifest
+    if _manifest is None:
+        with MANIFEST_PATH.open(encoding="utf-8") as handle:
+            _manifest = json.load(handle)
+    return _manifest
+
+
+def _canonical(name: str) -> str:
+    if name.startswith("simulation.") or name.startswith("hardware."):
+        return name
+    return f"hardware.{name}"
 
 
 def capability_available(name: str) -> bool:
-    """Return whether an optional hardware capability can be used."""
-    if name not in KNOWN_CAPABILITIES:
+    """Return whether a simulation or hardware capability can be used."""
+    data = manifest()
+    canonical = _canonical(name)
+    if canonical in data.get("simulation", []):
+        return True
+    if canonical in data.get("hardware", []):
         return False
     return False
 
 
 def live_lab_available() -> bool:
-    """True only when a radio-side device can drive a live lab."""
-    return any(capability_available(name) for name in KNOWN_CAPABILITIES)
+    """True only when a hardware capability can drive a live lab."""
+    return any(capability_available(name) for name in manifest().get("hardware", []))
 
 
 def lab_mode() -> str:
@@ -40,3 +54,10 @@ def lab_mode() -> str:
     if live_lab_available():
         return "live"
     return "simulation"
+
+
+def capability_snapshot() -> dict[str, bool]:
+    """Flat map the local page gives to the browser core."""
+    data = manifest()
+    names = list(data.get("simulation", [])) + list(data.get("hardware", []))
+    return {name: capability_available(name) for name in names}

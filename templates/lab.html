@@ -4,7 +4,7 @@
   <header class="page-head">
     <p class="eyebrow"><a href="{{ url_for('labs_index') }}">Labs</a> · Lab {{ lab.number }}</p>
     <h1>{{ lab.title }}</h1>
-    <p class="lede">{{ lab.summary }}</p>
+    <p class="lede">{{ lab.description }}</p>
     <p class="status status-{{ status }}">{{ status_label }}</p>
     {% if not lab.available %}
       <p class="coming-soon">COMING SOON</p>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-lab-mode="{{ lab_mode }}">
+<html lang="en" data-delivery="local" data-lab-mode="{{ lab_mode }}" data-content-base="{{ content_base }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Waypoint Radio Lab{% endblock %}</title>
   <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/lab.css') }}">
+  <script type="application/json" id="radio-lab-capabilities">{{ capability_snapshot | tojson }}</script>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -36,8 +37,10 @@
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
-    <p>{{ curriculum.name }} // {{ curriculum.version_label }} · local only</p>
+    <p>{{ curriculum.title }} // {{ curriculum.version }} · local mode</p>
   </footer>
+  <script src="{{ url_for('web_file', filename='radiollab.js') }}" defer></script>
+  <script src="{{ url_for('web_file', filename='capabilities-local.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/lab.js') }}" defer></script>
 </body>
 </html>

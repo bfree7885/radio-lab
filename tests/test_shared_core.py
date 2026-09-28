@@ -1,0 +1,167 @@
+"""Shared curriculum, adapters, and local routes."""
+
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+class SharedCoreTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        os.environ["RADIO_LAB_DB"] = str(Path(self._tmp.name) / "progress.sqlite")
+        import app as app_module
+
+        app_module._db_ready = False
+        self.client = app_module.app.test_client()
+
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def test_curriculum_file_is_authoritative(self) -> None:
+        data = json.loads((ROOT / "content" / "curriculum.json").read_text(encoding="utf-8"))
+        from labs.catalog import get_lab, get_labs, get_stages
+
+        self.assertEqual(data["id"], "technician-foundations")
+        self.assertEqual(data["title"], "Technician Foundations")
+        self.assertEqual(data["version"], "V0.1")
+        self.assertEqual(len(data["labs"]), 8)
+        self.assertEqual(len(data["stages"]), 6)
+        self.assertEqual(
+            [stage["id"] for stage in data["stages"]],
+            ["learn", "see", "do", "explain", "exam", "field"],
+        )
+        self.assertEqual([lab["id"] for lab in get_labs()], [lab["id"] for lab in data["labs"]])
+        self.assertEqual(get_lab("01")["title"], data["labs"][0]["title"])
+        self.assertEqual(get_lab("01")["description"], data["labs"][0]["description"])
+        self.assertEqual([stage["id"] for stage in get_stages()], [stage["id"] for stage in data["stages"]])
+        for lab in data["labs"]:
+            self.assertTrue(lab["topics"])
+
+    def test_lab_one_lesson_is_a_shell(self) -> None:
+        from labs.catalog import display_text, load_lesson
+
+        lesson = load_lesson("01")
+        self.assertIsNotNone(lesson)
+        assert lesson is not None
+        self.assertEqual(
+            [stage["id"] for stage in lesson["stages"]],
+            ["learn", "see", "do", "explain", "exam", "field"],
+        )
+        texts = []
+        for stage in lesson["stages"]:
+            for block in stage["blocks"]:
+                for key in ("body", "prompt", "component", "taskId"):
+                    if key in block:
+                        texts.append(block[key])
+                if "questionIds" in block:
+                    self.assertEqual(block["questionIds"], [])
+        self.assertTrue(texts)
+        self.assertTrue(all(value == "" for value in texts))
+        self.assertIn("added here", display_text("learn", lesson))
+        self.assertEqual(
+            display_text("learn", {"stages": [{"id": "learn", "blocks": [{"body": "A wave repeats."}]}]}),
+            "A wave repeats.",
+        )
+        self.assertIsNone(load_lesson("02"))
+
+    def test_flask_serves_the_shared_files(self) -> None:
+        curriculum = self.client.get("/content/curriculum.json")
+        self.assertEqual(curriculum.status_code, 200)
+        payload = curriculum.get_json()
+        self.assertEqual(payload["id"], "technician-foundations")
+        self.assertEqual(len(payload["labs"]), 8)
+
+        lesson = self.client.get("/content/labs/01/lesson.json")
+        self.assertEqual(lesson.status_code, 200)
+        self.assertEqual(lesson.get_json()["labId"], "01")
+
+        script = self.client.get("/web/radiollab.js")
+        self.assertEqual(script.status_code, 200)
+        self.assertIn(b"RadioLab", script.data)
+        script.close()
+        for path in (
+            "/web/progress-browser.js",
+            "/web/capabilities-public.js",
+        ):
+            extra = self.client.get(path)
+            self.assertEqual(extra.status_code, 200, path)
+            extra.close()
+        missing = self.client.get("/content/notes.txt")
+        self.assertEqual(missing.status_code, 404)
+        missing.close()
+        curriculum.close()
+        lesson.close()
+
+        home = self.client.get("/")
+        self.assertIn(b'data-delivery="local"', home.data)
+        self.assertNotIn(b"boot-hosted.js", home.data)
+        self.assertNotIn(b"localStorage", home.data)
+        home.close()
+
+    def test_local_page_embeds_capability_snapshot(self) -> None:
+        from hardware.capabilities import capability_snapshot, live_lab_available
+
+        page = self.client.get("/labs/01")
+        start = page.data.index(b'id="radio-lab-capabilities">') + len(b'id="radio-lab-capabilities">')
+        end = page.data.index(b"</script>", start)
+        embedded = json.loads(page.data[start:end])
+        self.assertEqual(embedded, capability_snapshot())
+        self.assertTrue(embedded["simulation.frequency"])
+        self.assertTrue(embedded["simulation.swr"])
+        self.assertFalse(embedded["hardware.rtl_sdr"])
+        self.assertFalse(embedded["hardware.gnss"])
+        self.assertFalse(live_lab_available())
+        page.close()
+
+    def test_browser_adapters(self) -> None:
+        result = subprocess.run(
+            ["node", "tests/browser-core.test.js"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        boot = (ROOT / "web" / "boot-hosted.js").read_text(encoding="utf-8")
+        local_boot = (ROOT / "static" / "js" / "lab.js").read_text(encoding="utf-8")
+        self.assertIn("RadioLabBrowserProgress.create", boot)
+        self.assertIn('data-delivery") !== "hosted"', boot)
+        self.assertNotIn("useProgress", local_boot)
+        self.assertNotIn("localStorage", local_boot)
+
+    def test_sqlite_adapter_records_stages_exams_and_field_tasks(self) -> None:
+        from progress.store import (
+            get_field_task,
+            init_db,
+            record_exam,
+            set_field_task,
+            set_stage_completed,
+            stage_completed,
+            weak_topics,
+        )
+
+        init_db()
+        self.assertFalse(stage_completed("01", "learn"))
+        set_stage_completed("01", "learn", True)
+        self.assertTrue(stage_completed("01", "learn"))
+        record_exam("Q1", False, lab_id="01", topic_id="frequency")
+        record_exam("Q2", False, lab_id="01", topic_id="frequency")
+        topics = weak_topics()
+        self.assertEqual(topics[0]["topic_id"], "frequency")
+        self.assertEqual(topics[0]["misses"], 2)
+        set_field_task("field-01", "complete", "01")
+        saved = get_field_task("field-01")
+        self.assertIsNotNone(saved)
+        assert saved is not None
+        self.assertEqual(saved["status"], "complete")
+
+
+if __name__ == "__main__":
+    unittest.main()

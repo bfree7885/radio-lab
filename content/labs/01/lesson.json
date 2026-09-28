@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "labId": "01",
+  "curriculumId": "technician-foundations",
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {"type": "text", "body": ""}
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {"type": "simulation", "component": "", "config": {}}
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {"type": "interaction", "component": "", "config": {}}
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {"type": "explain", "prompt": ""}
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {"type": "exam", "questionIds": [], "topics": []}
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {"type": "fieldTask", "taskId": "", "prompt": ""}
+      ]
+    }
+  ]
+}

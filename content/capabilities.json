@@ -1,0 +1,21 @@
+{
+  "simulation": [
+    "simulation.frequency",
+    "simulation.receiver",
+    "simulation.repeater",
+    "simulation.bands",
+    "simulation.electricity",
+    "simulation.swr",
+    "simulation.propagation",
+    "simulation.field"
+  ],
+  "hardware": [
+    "hardware.rtl_sdr",
+    "hardware.scanner",
+    "hardware.amateur_radio",
+    "hardware.digirig",
+    "hardware.audio_interface",
+    "hardware.gnss",
+    "hardware.waypoint_deck"
+  ]
+}

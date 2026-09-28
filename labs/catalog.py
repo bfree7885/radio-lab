@@ -1,142 +1,115 @@
-"""Technician Foundations catalog.
+"""Load the shared curriculum.
 
-V0.1 defines lab identity only. Lesson content and simulations are later work.
+content/curriculum.json is the only lab and stage list. This module does not
+keep a second copy. Flask and the browser both read that file.
+
+Empty lesson blocks fall back to short shell lines so the local workspace
+can stay readable before a lesson is written. Those lines are not a second
+curriculum.
 """
 
 from __future__ import annotations
 
-CURRICULUM = {
-    "id": "technician-foundations",
-    "name": "Technician Foundations",
-    "version_label": "V0.1",
-    "license_target": "FCC Technician",
-    "later_target": "FCC General",
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+CONTENT = ROOT / "content"
+CURRICULUM_PATH = CONTENT / "curriculum.json"
+
+SHELL_TEXT = {
+    "learn": "A short orientation for this lab will be added here.",
+    "see": "A diagram or signal view will be added here.",
+    "do": "Hands-on controls will be added here.",
+    "explain": "A prompt to explain the idea in your own words will be added here.",
+    "exam": "The license-exam link for this lab will be added here.",
+    "field": "A field task for this lab will be added here.",
 }
 
-# Shared learning model. Every lab uses these stages when it opens.
-STAGES = (
-    {
-        "id": "learn",
-        "label": "LEARN",
-        "placeholder": "A short orientation for this lab will be added here.",
-    },
-    {
-        "id": "see",
-        "label": "SEE IT",
-        "placeholder": "A diagram or signal view will be added here.",
-    },
-    {
-        "id": "do",
-        "label": "DO IT",
-        "placeholder": "Hands-on controls will be added here.",
-    },
-    {
-        "id": "explain",
-        "label": "EXPLAIN IT",
-        "placeholder": "A prompt to explain the idea in your own words will be added here.",
-    },
-    {
-        "id": "exam",
-        "label": "EXAM CONNECTION",
-        "placeholder": "The license-exam link for this lab will be added here.",
-    },
-    {
-        "id": "field",
-        "label": "FIELD TASK",
-        "placeholder": "A field task for this lab will be added here.",
-    },
-)
+_curriculum: dict | None = None
 
-LABS = (
-    {
-        "id": "01",
-        "number": "01",
-        "title": "What Is Radio?",
-        "summary": (
-            "Explore frequency, wavelength, signals, noise, Hz/kHz/MHz, "
-            "and basic receiver behavior."
-        ),
-        "available": True,
-    },
-    {
-        "id": "02",
-        "number": "02",
-        "title": "Your First Radio",
-        "summary": (
-            "Frequency selection, volume, squelch, simplex operation, "
-            "memories, and basic radio controls."
-        ),
-        "available": False,
-    },
-    {
-        "id": "03",
-        "number": "03",
-        "title": "Repeaters",
-        "summary": (
-            "Repeater input/output frequencies, offsets, tones, range, "
-            "and basic repeater operation."
-        ),
-        "available": False,
-    },
-    {
-        "id": "04",
-        "number": "04",
-        "title": "Bands & Privileges",
-        "summary": (
-            "Amateur bands, Technician privileges, operating scenarios, "
-            "and choosing an appropriate frequency."
-        ),
-        "available": False,
-    },
-    {
-        "id": "05",
-        "number": "05",
-        "title": "Electricity Without the Textbook",
-        "summary": (
-            "Voltage, current, resistance, power, and an interactive "
-            "introduction to Ohm's law."
-        ),
-        "available": False,
-    },
-    {
-        "id": "06",
-        "number": "06",
-        "title": "Antennas & SWR",
-        "summary": (
-            "Frequency, wavelength, antenna length, resonance, SWR, "
-            "and troubleshooting."
-        ),
-        "available": False,
-    },
-    {
-        "id": "07",
-        "number": "07",
-        "title": "Propagation & Range",
-        "summary": (
-            "Line of sight, terrain, antenna height, VHF/UHF behavior, "
-            "introductory HF propagation, and repeaters."
-        ),
-        "available": False,
-    },
-    {
-        "id": "08",
-        "number": "08",
-        "title": "First Field Operation",
-        "summary": (
-            "An integrated scenario: choose equipment, frequency and band, "
-            "antenna, operating method, and proper procedure."
-        ),
-        "available": False,
-    },
-)
+
+def _read_json(path: Path) -> dict:
+    with path.open(encoding="utf-8") as handle:
+        data = json.load(handle)
+    if not isinstance(data, dict):
+        raise ValueError(f"Expected an object in {path.name}")
+    return data
+
+
+def load_curriculum() -> dict:
+    global _curriculum
+    if _curriculum is None:
+        _curriculum = _read_json(CURRICULUM_PATH)
+    return _curriculum
+
+
+def curriculum_meta() -> dict:
+    data = load_curriculum()
+    return {
+        "id": data["id"],
+        "title": data["title"],
+        "version": data["version"],
+        "license_target": data.get("licenseTarget", ""),
+        "later_target": data.get("laterTarget", ""),
+        "audience": data.get("audience", ""),
+    }
+
+
+def get_labs() -> list[dict]:
+    return list(load_curriculum()["labs"])
 
 
 def get_lab(lab_id: str) -> dict | None:
-    for lab in LABS:
+    for lab in get_labs():
         if lab["id"] == lab_id:
             return lab
     return None
 
 
 def lab_ids() -> list[str]:
-    return [lab["id"] for lab in LABS]
+    return [lab["id"] for lab in get_labs()]
+
+
+def get_stages() -> list[dict]:
+    return list(load_curriculum()["stages"])
+
+
+def load_lesson(lab_id: str) -> dict | None:
+    lab = get_lab(lab_id)
+    if lab is None:
+        return None
+    relative = lab.get("lesson")
+    if not relative:
+        return None
+    path = CONTENT / relative
+    if not path.is_file():
+        return None
+    return _read_json(path)
+
+
+def display_text(stage_id: str, lesson: dict | None) -> str:
+    """Lesson text when a block has some, otherwise the empty-stage shell line."""
+    if lesson:
+        for stage in lesson.get("stages", []):
+            if stage.get("id") != stage_id:
+                continue
+            for block in stage.get("blocks", []):
+                body = block.get("body") or block.get("prompt") or ""
+                if isinstance(body, str) and body.strip():
+                    return body.strip()
+    return SHELL_TEXT.get(stage_id, "This stage will be added here.")
+
+
+def stages_for_lab(lab_id: str) -> list[dict]:
+    lesson = load_lesson(lab_id)
+    rows = []
+    for stage in get_stages():
+        rows.append(
+            {
+                "id": stage["id"],
+                "label": stage["label"],
+                "placeholder": display_text(stage["id"], lesson),
+            }
+        )
+    return rows
