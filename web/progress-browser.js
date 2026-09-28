@@ -126,6 +126,11 @@
         };
         write(data);
       },
+      examLog: function (labId, curriculumId) {
+        return bucket(read(), curriculumId).exams.filter(function (row) {
+          return row.labId === labId;
+        });
+      },
       recordExam: function (entry) {
         var data = read();
         bucket(data, entry.curriculumId).exams.push({

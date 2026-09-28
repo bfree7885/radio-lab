@@ -42,5 +42,6 @@
   <script src="{{ url_for('web_file', filename='radiollab.js') }}" defer></script>
   <script src="{{ url_for('web_file', filename='capabilities-local.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/lab.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

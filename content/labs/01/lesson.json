@@ -2,41 +2,282 @@
   "schemaVersion": 1,
   "labId": "01",
   "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "What Is Radio?",
+  "requires": ["simulation.frequency", "simulation.receiver"],
+  "hardware": [],
+  "signals": [
+    {
+      "id": "fm-broadcast",
+      "name": "FM broadcast",
+      "khz": 98100,
+      "halfKhz": 100,
+      "range": "VHF",
+      "blurb": "An FM broadcast example. A real station would be one specific broadcaster. This one stands in for that whole service."
+    },
+    {
+      "id": "two-meter",
+      "name": "2-meter amateur",
+      "khz": 146520,
+      "halfKhz": 15,
+      "range": "VHF",
+      "blurb": "A 2-meter amateur example. 146.520 MHz is a common U.S. simplex calling frequency: radios talk on this same frequency, with no repeater in between."
+    },
+    {
+      "id": "weather",
+      "name": "Weather radio",
+      "khz": 162550,
+      "halfKhz": 15,
+      "range": "VHF",
+      "blurb": "A weather-radio channel. Many receivers include these channels so you can hear a continuous weather broadcast."
+    },
+    {
+      "id": "seventy-cm",
+      "name": "70-centimeter amateur",
+      "khz": 446000,
+      "halfKhz": 15,
+      "range": "UHF",
+      "blurb": "A 70-centimeter amateur example. 446.000 MHz is a common U.S. simplex calling frequency on that band."
+    }
+  ],
   "stages": [
     {
       "id": "learn",
       "blocks": [
-        {"type": "text", "body": ""}
+        {
+          "type": "text",
+          "body": "A radio is already surrounded by many signals. They are all there at the same time. Turning the tuning control does not make a station start transmitting. It chooses which frequency this receiver listens to."
+        },
+        {
+          "type": "text",
+          "body": "The picture below is a simplified teaching sketch, not a live reception. Four examples are present together: an FM broadcast, weather radio, a 2-meter amateur signal, and a 70-centimeter amateur signal. Real spectrum use is much more crowded than this."
+        },
+        {
+          "type": "interaction",
+          "component": "unit-converter",
+          "config": {
+            "start": "146.520",
+            "unit": "MHz",
+            "presets": [
+              {"label": "146.520 MHz", "value": "146.520", "unit": "MHz"},
+              {"label": "162.550 MHz", "value": "162.550", "unit": "MHz"},
+              {"label": "446.000 MHz", "value": "446.000", "unit": "MHz"}
+            ],
+            "hint": "Change the number. The same frequency should stay equal in Hz, kHz, and MHz."
+          }
+        }
       ]
     },
     {
       "id": "see",
       "blocks": [
-        {"type": "simulation", "component": "", "config": {}}
+        {
+          "type": "simulation",
+          "body": "Tune the simulated receiver. The signals stay in place. You are choosing which frequency it listens to. This is a simulation, not a live reception.",
+          "component": "spectrum-receiver",
+          "config": {
+            "startKhz": 120000,
+            "showWavelength": true,
+            "caption": "SIMULATION. This is a teaching receiver, not a live spectrum. The app is not receiving radio signals. The humps are drawn wider than many real signals so a beginner can land on them."
+          }
+        }
       ]
     },
     {
       "id": "do",
       "blocks": [
-        {"type": "interaction", "component": "", "config": {}}
+        {
+          "type": "interaction",
+          "body": "Tune the receiver to finish each challenge. Resetting the dial does not erase your lab progress.",
+          "component": "tuning-challenges",
+          "config": {
+            "startKhz": 120000,
+            "challenges": [
+              {
+                "id": "find-two-meter",
+                "prompt": "Find the simulated 2-meter amateur signal.",
+                "kind": "center-signal",
+                "signalId": "two-meter",
+                "feedback": {
+                  "centered": "The receiver is centered on the 2-meter example. The other signals did not go away. You selected this frequency.",
+                  "wrong-signal": "That is the {name} example. The 2-meter amateur signal is at 146.520 MHz.",
+                  "close": "A signal is nearby. Keep moving until the readout says centered.",
+                  "high": "The tuned frequency is above the 2-meter example. Move down toward 146.520 MHz.",
+                  "low": "The tuned frequency is below the 2-meter example. Move up toward 146.520 MHz."
+                }
+              },
+              {
+                "id": "down-500",
+                "prompt": "Move 500 kHz below that 2-meter signal.",
+                "kind": "target-khz",
+                "targetKhz": 146020,
+                "toleranceKhz": 10,
+                "feedback": {
+                  "centered": "146.020 MHz is 500 kHz below 146.520 MHz. 500 kHz is the same as 0.500 MHz.",
+                  "close": "Close. Half a megahertz below 146.520 is 146.020.",
+                  "high": "The frequency still needs to come down. Below means a smaller number.",
+                  "low": "That went more than 500 kHz below. Come back up a little."
+                }
+              },
+              {
+                "id": "highest",
+                "prompt": "Find the highest-frequency signal shown.",
+                "kind": "center-signal",
+                "signalId": "seventy-cm",
+                "feedback": {
+                  "centered": "446.000 MHz is the highest example on this dial.",
+                  "wrong-signal": "The {name} example is lower than 446.000 MHz.",
+                  "close": "You are near the top of the dial. Center the signal.",
+                  "high": "You went past 446 MHz. Come back down onto the signal.",
+                  "low": "A higher-frequency signal is still above you."
+                }
+              },
+              {
+                "id": "shortest-wave",
+                "prompt": "Tune to the displayed signal with the shortest wavelength. If you are already on it, move at least 1 MHz away, then come back.",
+                "kind": "center-signal",
+                "signalId": "seventy-cm",
+                "requireLeaveKhz": 1000,
+                "feedback": {
+                  "centered": "The 70-centimeter example is the highest frequency here, so its wavelength is the shortest.",
+                  "leave": "Move at least 1 MHz off this signal, then tune back to the one with the shortest wavelength.",
+                  "wrong-signal": "The {name} signal has a longer wavelength. Higher frequency means a shorter wavelength.",
+                  "close": "Frequency increased, so the wavelength should be getting shorter. Center the nearby signal.",
+                  "high": "Frequency increased, so think about what should happen to wavelength. The shortest one is the signal at the high end.",
+                  "low": "This frequency is lower, so the wavelength is longer. Move up the dial."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "wavelength",
+          "config": {
+            "startKhz": 146000,
+            "goalMeters": 1,
+            "examples": [
+              {"label": "About 146 MHz", "khz": 146000},
+              {"label": "About 440 MHz", "khz": 440000}
+            ],
+            "success": "The wavelength dropped below 1 meter. That took a higher frequency. The waves on the display packed closer together.",
+            "longer": "Frequency went down, so the waves spread apart. Wavelength got longer.",
+            "stillLong": "The wavelength is still longer than 1 meter. Raise the frequency and watch the number fall.",
+            "shortcut": "A useful open-air shortcut: wavelength in meters is about 300 divided by the frequency in MHz. At 146 MHz that is about 2 meters. At 440 MHz it is under 1 meter. The 300 is a rounded speed of light. A real antenna also depends on the wire, the feed line, and what is around it. Frequency does not decide all of that. A later lab takes up antennas."
+          }
+        }
       ]
     },
     {
       "id": "explain",
       "blocks": [
-        {"type": "explain", "prompt": ""}
+        {
+          "type": "explain",
+          "prompt": "When you turn the tuning control on a radio, what are you actually changing?",
+          "conceptId": "tuning-selects-frequency",
+          "reference": "You are choosing the frequency this receiver listens to. The other signals are still there. The control does not start them, stop them, or change their wavelength. It selects a place on the spectrum.",
+          "unsure": "Go back to the receiver and move the tuning control. Watch the frequency number change. The signals on the map stay where they are."
+        }
       ]
     },
     {
       "id": "exam",
       "blocks": [
-        {"type": "exam", "questionIds": [], "topics": [], "licenseLevel": "technician", "poolId": null, "subelement": null}
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions are about the receiver you just used. They are not official FCC exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab01-frequency", "lab01-hertz", "lab01-units", "lab01-tuning", "lab01-wavelength"],
+          "topics": ["frequency", "hertz", "units", "tuning", "wavelength"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about what you just did. They are not official FCC exam questions.",
+          "questions": [
+            {
+              "id": "lab01-frequency",
+              "topicId": "frequency",
+              "stem": "The receiver display reads 146.520 MHz. What is that number describing?",
+              "choices": [
+                "How rapidly the radio wave repeats",
+                "How loud the signal is",
+                "How many miles away the station is",
+                "The height of the antenna"
+              ],
+              "correctIndex": 0,
+              "why": "146.520 MHz is the frequency. The converter wrote that same wave as 146,520 kHz and as 146,520,000 Hz. Loudness, distance, and antenna height are different things. Tuning did not change those."
+            },
+            {
+              "id": "lab01-hertz",
+              "topicId": "hertz",
+              "stem": "What does one hertz mean?",
+              "choices": [
+                "One wave cycle each second",
+                "One meter of wavelength",
+                "One watt of transmitter power",
+                "One channel on a radio"
+              ],
+              "correctIndex": 0,
+              "why": "Hertz counts cycles each second. 146,520,000 Hz means that many cycles each second. It is not a distance or a power level. Kilohertz and megahertz count the same cycles in larger steps."
+            },
+            {
+              "id": "lab01-units",
+              "topicId": "units",
+              "stem": "Which value is equal to 146.520 MHz?",
+              "choices": [
+                "146,520 kHz",
+                "146.520 kHz",
+                "146,520 Hz",
+                "14,652 kHz"
+              ],
+              "correctIndex": 0,
+              "why": "One megahertz is 1,000 kilohertz. 146.520 × 1,000 is 146,520 kHz, which is also 146,520,000 Hz. The converter kept those three writings equal because they are one frequency."
+            },
+            {
+              "id": "lab01-tuning",
+              "topicId": "tuning",
+              "stem": "The display moves from 162.550 MHz to 146.520 MHz while you turn the tuning control. What changed?",
+              "choices": [
+                "The frequency this receiver is listening for",
+                "A station began transmitting because you tuned to it",
+                "The wavelength of every other signal in the air",
+                "The power of another person's radio"
+              ],
+              "correctIndex": 0,
+              "why": "Tuning selects. On the spectrum the marker moved and the example signals stayed in place. Leaving 162.550 MHz did not turn the weather-radio example off."
+            },
+            {
+              "id": "lab01-wavelength",
+              "topicId": "wavelength",
+              "stem": "The wave display starts near 146 MHz. You raise the frequency toward 440 MHz. What happens to the wavelength?",
+              "choices": [
+                "It gets shorter",
+                "It gets longer",
+                "It stays the same",
+                "It becomes the signal strength"
+              ],
+              "correctIndex": 0,
+              "why": "The waves packed closer together and the wavelength number fell. In open air, wavelength in meters is about 300 divided by frequency in MHz. That is a shortcut. It does not describe a whole antenna."
+            }
+          ]
+        }
       ]
     },
     {
       "id": "field",
       "blocks": [
-        {"type": "fieldTask", "taskId": "", "prompt": ""}
+        {
+          "type": "fieldTask",
+          "taskId": "lab01-simplex-146520",
+          "prompt": "You are getting ready for a hilltop outing with a friend. This is not a full Summits on the Air lesson. It is the same tuning idea, with a reason to use it. Your friend says the group will talk on 146.520 MHz, everyone on that same frequency. The radio in front of you currently shows 162.550 MHz.",
+          "config": {
+            "startKhz": 162550,
+            "targetKhz": 146520,
+            "toleranceKhz": 10,
+            "targetSignalId": "two-meter"
+          }
+        }
       ]
     }
   ]

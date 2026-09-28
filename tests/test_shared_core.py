@@ -45,36 +45,39 @@ class SharedCoreTests(unittest.TestCase):
         for lab in data["labs"]:
             self.assertTrue(lab["topics"])
 
-    def test_lab_one_lesson_is_a_shell(self) -> None:
+    def test_lab_one_lesson_teaches_tuning(self) -> None:
         from labs.catalog import display_text, load_lesson
 
         lesson = load_lesson("01")
         self.assertIsNotNone(lesson)
         assert lesson is not None
+        self.assertEqual(lesson["curriculumId"], "technician-foundations")
+        self.assertEqual(lesson["hardware"], [])
         self.assertEqual(
             [stage["id"] for stage in lesson["stages"]],
             ["learn", "see", "do", "explain", "exam", "field"],
         )
-        texts = []
-        for stage in lesson["stages"]:
-            for block in stage["blocks"]:
-                for key in ("body", "prompt", "component", "taskId"):
-                    if key in block:
-                        texts.append(block[key])
-                if "questionIds" in block:
-                    self.assertEqual(block["questionIds"], [])
-        self.assertTrue(texts)
-        self.assertTrue(all(value == "" for value in texts))
-        self.assertIn("added here", display_text("learn", lesson))
+        self.assertEqual(lesson["stages"][1]["blocks"][0]["type"], "simulation")
+        self.assertEqual(lesson["stages"][1]["blocks"][0]["component"], "spectrum-receiver")
+        self.assertIn("simulation", display_text("see", lesson).lower())
+        self.assertIn("tuning control", display_text("explain", lesson).lower())
         self.assertEqual(
             display_text("learn", {"stages": [{"id": "learn", "blocks": [{"body": "A wave repeats."}]}]}),
             "A wave repeats.",
         )
         self.assertIsNone(load_lesson("02"))
         exam = lesson["stages"][4]["blocks"][0]
-        self.assertEqual(exam["questionIds"], [])
+        self.assertEqual(exam["label"], "RADIO LAB PRACTICE")
+        self.assertEqual(len(exam["questions"]), 5)
+        self.assertEqual(exam["questionIds"], [question["id"] for question in exam["questions"]])
         self.assertEqual(exam["licenseLevel"], "technician")
         self.assertIsNone(exam["poolId"])
+        self.assertEqual(exam["practicePoolId"], "radio-lab-practice")
+        for question in exam["questions"]:
+            self.assertNotIn("FCC", question["stem"])
+            self.assertGreaterEqual(len(question["choices"]), 2)
+        ids = [signal["id"] for signal in lesson["signals"]]
+        self.assertEqual(ids, ["fm-broadcast", "two-meter", "weather", "seventy-cm"])
 
     def test_flask_serves_the_shared_files(self) -> None:
         curriculum = self.client.get("/content/curriculum.json")
@@ -126,14 +129,15 @@ class SharedCoreTests(unittest.TestCase):
         page.close()
 
     def test_browser_adapters(self) -> None:
-        result = subprocess.run(
-            ["node", "tests/browser-core.test.js"],
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        for script in ("tests/browser-core.test.js", "tests/lab01.test.js"):
+            result = subprocess.run(
+                ["node", script],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, script + "\n" + result.stdout + result.stderr)
         boot = (ROOT / "web" / "boot-hosted.js").read_text(encoding="utf-8")
         local_boot = (ROOT / "static" / "js" / "lab.js").read_text(encoding="utf-8")
         self.assertIn("RadioLabBrowserProgress.create", boot)
@@ -268,6 +272,103 @@ class SharedCoreTests(unittest.TestCase):
         check.close()
         self.assertEqual(version, "2")
         self.assertEqual(kept, "complete")
+
+    def test_lab01_progress_api_and_pages(self) -> None:
+        from progress.store import get_lab_status, init_db, stage_completed, weak_topics
+
+        init_db()
+        page = self.client.get("/labs/01")
+        self.assertEqual(page.status_code, 200)
+        self.assertIn(b"lab01.js", page.data)
+        self.assertIn(b"radio-sim.js", page.data)
+        self.assertIn(b"progress-local.js", page.data)
+        for label in (b"LEARN", b"SEE IT", b"DO IT", b"EXPLAIN IT", b"EXAM CONNECTION", b"FIELD TASK"):
+            self.assertIn(label, page.data)
+        self.assertIn(b"RADIO LAB PRACTICE", page.data)
+        self.assertNotIn(b"localStorage", page.data)
+        page.close()
+
+        closed = self.client.get("/labs/02")
+        self.assertIn(b"not open yet", closed.data)
+        self.assertNotIn(b"lab01.js", closed.data)
+        closed.close()
+
+        started = self.client.post(
+            "/api/progress/01",
+            json={"op": "stage", "stageId": "learn", "completed": True},
+        )
+        self.assertEqual(started.status_code, 200)
+        self.assertEqual(started.get_json()["status"], "in_progress")
+        self.assertTrue(started.get_json()["stages"]["learn"])
+        self.assertFalse(started.get_json()["stages"]["see"])
+
+        for stage_id in ("see", "do", "explain", "exam", "field"):
+            done = self.client.post(
+                "/api/progress/01",
+                json={"op": "stage", "stageId": stage_id, "completed": True},
+            )
+            self.assertEqual(done.status_code, 200, stage_id)
+            done.close()
+        finished = self.client.get("/api/progress/01")
+        self.assertEqual(finished.get_json()["status"], "complete")
+        finished.close()
+        self.assertEqual(get_lab_status("01"), "complete")
+        self.assertTrue(stage_completed("01", "field"))
+
+        miss = self.client.post(
+            "/api/progress/01",
+            json={
+                "op": "exam",
+                "questionId": "lab01-frequency",
+                "topicId": "frequency",
+                "correct": False,
+                "kind": "pool",
+                "poolId": "radio-lab-practice",
+                "licenseLevel": "technician",
+            },
+        )
+        self.assertEqual(miss.status_code, 200)
+        miss.close()
+        hit = self.client.post(
+            "/api/progress/01",
+            json={
+                "op": "exam",
+                "questionId": "lab01-frequency",
+                "topicId": "frequency",
+                "correct": True,
+                "kind": "pool",
+                "poolId": "radio-lab-practice",
+            },
+        )
+        self.assertEqual(hit.status_code, 200)
+        hit.close()
+        self.assertEqual(weak_topics(), [])
+
+        concept = self.client.post(
+            "/api/progress/01",
+            json={
+                "op": "concept",
+                "conceptId": "tuning-selects-frequency",
+                "status": "complete",
+                "licenseLevel": "technician",
+            },
+        )
+        self.assertEqual(concept.get_json()["concepts"]["tuning-selects-frequency"], "complete")
+        concept.close()
+
+        rejected = self.client.post("/api/progress/01", json={"op": "nope"})
+        self.assertEqual(rejected.status_code, 400)
+        rejected.close()
+        missing = self.client.get("/api/progress/99")
+        self.assertEqual(missing.status_code, 404)
+        missing.close()
+
+        home = self.client.get("/")
+        self.assertIn(b"COMPLETE", home.data)
+        self.assertIn(b"GENERAL", home.data)
+        self.assertIn(b"What Is Radio?", home.data)
+        self.assertIn(b"First Field Operation", home.data)
+        home.close()
 
 
 if __name__ == "__main__":

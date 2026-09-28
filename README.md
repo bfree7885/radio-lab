@@ -4,7 +4,7 @@ Hands-on amateur radio training for someone who may know nothing about radio.
 
 A learner can begin at Lab 01 with no amateur-radio background, no electronics background, and no radio or SDR of their own. That includes someone who wants to try Summits on the Air later and is starting from zero.
 
-This repository is the application foundation. Lab 01 is a workspace shell. Lesson text and simulations are not written yet.
+Lab 01, What Is Radio?, is the first interactive lesson. Labs 02–08 are still closed.
 
 ## Beginner-first
 
@@ -27,7 +27,7 @@ RADIO LAB CORE
     |
     +-- curriculum          content/curriculum.json
     +-- lessons             content/labs/<id>/lesson.json
-    +-- simulations         described in lesson blocks; built later
+    +-- simulations         browser-side, described in the lesson file
     +-- exam connections    lesson blocks
     +-- field tasks         lesson blocks
     |
@@ -54,9 +54,12 @@ content/curriculum.json     Technician Foundations labs and the six stages
 content/roadmap.json        Technician, General, Field Radio, and SOTA status
 content/exam/model.json     versioned question-pool shape; no questions yet
 content/capabilities.json   shared capability ids
-content/labs/01/lesson.json lesson shell for Lab 01
+content/labs/01/lesson.json Lab 01 lesson, shared by both modes
 web/radiollab.js            browser core (curriculum, lesson, adapters)
+web/radio-sim.js            Lab 01 frequency and wavelength math
+web/lab01.js                Lab 01 receiver, challenges, and stage flow
 web/progress-browser.js     hosted progress adapter
+web/progress-local.js       local progress adapter; posts to Flask
 web/capabilities-public.js  hosted capabilities: simulation on, hardware off
 web/capabilities-local.js   reads the local capability snapshot
 web/boot-hosted.js          future hosted page boot; ignored unless data-delivery="hosted"
@@ -71,7 +74,7 @@ Python does not keep its own lab list. JavaScript does not keep its own lab list
 
 ## Lesson files
 
-A future lesson is one JSON file. Lab 01 establishes the shape and is otherwise empty. Each stage holds blocks:
+A lesson is one JSON file. Lab 01 is that file plus the shared browser simulation. Each stage holds blocks:
 
 | Stage | Block type | What it will hold |
 | --- | --- | --- |
@@ -118,7 +121,7 @@ Weak topics are derived from exam misses in both adapters. They are not a second
 
 There is no account, no cloud service, and no sync between hosted and local progress. That stays out of scope.
 
-The local pages still render progress from SQLite. They do not write localStorage. When a later lesson records progress from the browser inside local mode, add a local progress adapter that calls the server. Do not point that lesson at the hosted store.
+The local pages still render progress from SQLite. They do not write localStorage. Lab 01 records activity through `web/progress-local.js`, which posts to `/api/progress/<lab_id>` and stores it in SQLite. Hosted mode keeps using the browser store. Do not point a local lesson at the hosted store.
 
 ## Capabilities
 
@@ -195,7 +198,7 @@ The launcher activates `.venv` and starts the app at [http://127.0.0.1:5070/](ht
 | --- | --- |
 | `/` | Dashboard |
 | `/labs` | Lab index |
-| `/labs/01` | Lab 01 placeholder workspace |
+| `/labs/01` | Lab 01, What Is Radio? |
 | `/labs/02` … `/labs/08` | Closed labs |
 | `/progress` | Foundations progress from SQLite |
 | `/about` | What Radio Lab is |

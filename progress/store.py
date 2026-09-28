@@ -484,3 +484,70 @@ def concept_count(curriculum_id: str = FOUNDATIONS_ID) -> int:
             (curriculum_id,),
         ).fetchone()
     return int(row["n"])
+
+
+def note_activity(lab_id: str, curriculum_id: str = FOUNDATIONS_ID) -> str:
+    """Mark a lab in progress the first time the learner does something."""
+    current = get_lab_status(lab_id, curriculum_id)
+    if current == NOT_STARTED:
+        set_lab_status(lab_id, IN_PROGRESS, curriculum_id)
+        return IN_PROGRESS
+    return current
+
+
+def sync_lab_status(lab_id: str, stage_ids: list[str], curriculum_id: str = FOUNDATIONS_ID) -> str:
+    """Derive lab status from stage completion. Does not erase other curricula."""
+    done = [stage_completed(lab_id, stage_id, curriculum_id) for stage_id in stage_ids]
+    if done and all(done):
+        status = COMPLETE
+    elif any(done):
+        status = IN_PROGRESS
+    else:
+        current = get_lab_status(lab_id, curriculum_id)
+        status = IN_PROGRESS if current == IN_PROGRESS else NOT_STARTED
+    set_lab_status(lab_id, status, curriculum_id)
+    return status
+
+
+def progress_snapshot(lab_id: str, stage_ids: list[str], curriculum_id: str = FOUNDATIONS_ID) -> dict:
+    with connect() as conn:
+        exams = conn.execute(
+            """
+            SELECT question_id, topic_id, correct, kind
+            FROM exam_results
+            WHERE curriculum_id = ? AND lab_id = ?
+            ORDER BY id ASC
+            """,
+            (curriculum_id, lab_id),
+        ).fetchall()
+        concepts = conn.execute(
+            """
+            SELECT concept_id, status FROM concept_progress
+            WHERE curriculum_id = ?
+            """,
+            (curriculum_id,),
+        ).fetchall()
+        fields = conn.execute(
+            """
+            SELECT task_id, status FROM field_tasks
+            WHERE curriculum_id = ? AND lab_id = ?
+            """,
+            (curriculum_id, lab_id),
+        ).fetchall()
+    return {
+        "curriculumId": curriculum_id,
+        "labId": lab_id,
+        "status": get_lab_status(lab_id, curriculum_id),
+        "stages": {stage_id: stage_completed(lab_id, stage_id, curriculum_id) for stage_id in stage_ids},
+        "concepts": {row["concept_id"]: row["status"] for row in concepts},
+        "fieldTasks": {row["task_id"]: row["status"] for row in fields},
+        "exams": [
+            {
+                "questionId": row["question_id"],
+                "topicId": row["topic_id"],
+                "correct": bool(row["correct"]),
+                "kind": row["kind"],
+            }
+            for row in exams
+        ],
+    }

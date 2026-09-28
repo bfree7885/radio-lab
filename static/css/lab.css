@@ -489,6 +489,184 @@ section > h2 {
   }
 }
 
+.instrument label,
+.tune-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.85rem 0;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+}
+
+.instrument input[type="text"],
+.instrument select,
+.stage textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+}
+
+.stage textarea {
+  min-height: 8rem;
+}
+
+.instrument input[type="range"] {
+  width: 100%;
+  height: 2.75rem;
+  margin: 0.35rem 0 0.6rem;
+  accent-color: var(--amber);
+}
+
+.tune-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 1rem;
+  align-items: end;
+}
+
+.tune-pad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.tune-pad button,
+.instrument > button,
+.practice-question > button,
+.stage button {
+  min-height: 3rem;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+}
+
+.sim-flag {
+  margin: 0;
+  color: var(--amber);
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.freq-readout {
+  margin: 0.15rem 0;
+  font-family: var(--mono);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.freq-units,
+.freq-equal {
+  margin-top: 0;
+  font-family: var(--mono);
+}
+
+.band-map {
+  position: relative;
+  height: 2.75rem;
+  margin: 1rem 0 0.4rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+}
+
+.band-marker,
+.band-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+
+.band-marker {
+  z-index: 1;
+  background: var(--amber);
+}
+
+.band-tick {
+  background: var(--teal);
+}
+
+.spectrum-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+}
+
+.strength {
+  height: 0.9rem;
+  margin-top: 0.8rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+}
+
+.signal-legend {
+  margin: 0.8rem 0;
+  padding-left: 1.2rem;
+}
+
+.signal-legend li {
+  margin: 0.35rem 0;
+}
+
+.feedback {
+  color: var(--teal);
+}
+
+.challenge-prompt {
+  font-size: 1.15rem;
+}
+
+.practice-question {
+  margin: 1rem 0;
+  padding: 0.9rem 0 0.2rem;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.choice {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  margin: 0.45rem 0;
+  min-height: 2.75rem;
+}
+
+.stage-rail a.stage-done {
+  border-color: var(--complete);
+}
+
+.stage-complete {
+  border-left-color: var(--complete);
+}
+
+@media (min-width: 48rem) {
+  .tune-form {
+    grid-template-columns: 1fr auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

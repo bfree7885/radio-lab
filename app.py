@@ -10,7 +10,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from flask import Flask, abort, render_template, send_from_directory, url_for
+import re
+
+from flask import Flask, abort, jsonify, render_template, request, send_from_directory, url_for
 
 from hardware.capabilities import capability_snapshot, lab_mode, live_lab_available
 from labs.catalog import (
@@ -18,6 +20,7 @@ from labs.catalog import (
     curriculum_meta,
     get_lab,
     get_labs,
+    get_stages,
     lab_ids,
     load_roadmap,
     stages_for_lab,
@@ -26,8 +29,15 @@ from progress.store import (
     concept_count,
     exam_readiness,
     init_db,
+    note_activity,
+    progress_snapshot,
     progress_summary,
+    record_exam,
+    set_concept_status,
+    set_field_task,
+    set_stage_completed,
     status_label,
+    sync_lab_status,
     weak_topics,
 )
 
@@ -37,6 +47,7 @@ WEB = ROOT / "web"
 
 HOST = "127.0.0.1"
 PORT = 5070
+_CURRICULUM_ID = re.compile(r"^[a-z0-9-]{1,80}$")
 
 app = Flask(__name__)
 _db_ready = False
@@ -119,6 +130,89 @@ def dashboard():
 def labs_index():
     labs, summary = _labs_view()
     return render_template("labs.html", labs=labs, summary=summary)
+
+
+def _curriculum_id(value: str | None) -> str:
+    if value and _CURRICULUM_ID.fullmatch(value):
+        return value
+    return FOUNDATIONS_ID
+
+
+def _apply_progress(lab_id: str, curriculum_id: str, stage_ids: list[str], payload: dict) -> None:
+    op = payload.get("op")
+    if op == "stage":
+        stage_id = payload.get("stageId")
+        if stage_id not in stage_ids or not isinstance(payload.get("completed"), bool):
+            raise ValueError("stage")
+        set_stage_completed(lab_id, stage_id, payload["completed"], curriculum_id)
+        sync_lab_status(lab_id, stage_ids, curriculum_id)
+        return
+    if op == "activity":
+        note_activity(lab_id, curriculum_id)
+        return
+    if op == "exam":
+        question_id = payload.get("questionId")
+        if not isinstance(question_id, str) or not question_id or len(question_id) > 80:
+            raise ValueError("exam")
+        topic_id = payload.get("topicId")
+        if topic_id is not None and (not isinstance(topic_id, str) or len(topic_id) > 80):
+            raise ValueError("topic")
+        kind = payload.get("kind") or "pool"
+        pool_id = payload.get("poolId")
+        license_level = payload.get("licenseLevel")
+        record_exam(
+            question_id,
+            bool(payload.get("correct")),
+            lab_id=lab_id,
+            topic_id=topic_id,
+            curriculum_id=curriculum_id,
+            license_level=license_level if isinstance(license_level, str) else None,
+            pool_id=pool_id if isinstance(pool_id, str) else None,
+            kind=kind,
+        )
+        note_activity(lab_id, curriculum_id)
+        return
+    if op == "concept":
+        concept_id = payload.get("conceptId")
+        status = payload.get("status")
+        if not isinstance(concept_id, str) or not concept_id or len(concept_id) > 80:
+            raise ValueError("concept")
+        license_level = payload.get("licenseLevel")
+        set_concept_status(
+            concept_id,
+            status,
+            curriculum_id,
+            license_level if isinstance(license_level, str) else None,
+        )
+        note_activity(lab_id, curriculum_id)
+        return
+    if op == "field":
+        task_id = payload.get("taskId")
+        if not isinstance(task_id, str) or not task_id or len(task_id) > 80:
+            raise ValueError("field")
+        set_field_task(task_id, payload.get("status"), lab_id, curriculum_id)
+        note_activity(lab_id, curriculum_id)
+        return
+    raise ValueError("op")
+
+
+@app.route("/api/progress/<lab_id>", methods=["GET", "POST"])
+def progress_api(lab_id: str):
+    if get_lab(lab_id) is None:
+        abort(404)
+    stage_ids = [stage["id"] for stage in get_stages()]
+    if request.method == "GET":
+        curriculum_id = _curriculum_id(request.args.get("curriculumId"))
+        return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id))
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        abort(400)
+    curriculum_id = _curriculum_id(payload.get("curriculumId") or request.args.get("curriculumId"))
+    try:
+        _apply_progress(lab_id, curriculum_id, stage_ids, payload)
+    except ValueError:
+        abort(400)
+    return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id))
 
 
 @app.route("/labs/<lab_id>")

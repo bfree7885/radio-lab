@@ -5,7 +5,7 @@
     <p class="eyebrow"><a href="{{ url_for('labs_index') }}">Labs</a> · Lab {{ lab.number }}</p>
     <h1>{{ lab.title }}</h1>
     <p class="lede">{{ lab.description }}</p>
-    <p class="status status-{{ status }}">{{ status_label }}</p>
+    <p id="lab-status" class="status status-{{ status }}">{{ status_label }}</p>
     {% if not lab.available %}
       <p class="coming-soon">COMING SOON</p>
     {% endif %}
@@ -14,20 +14,22 @@
   {% if lab.available %}
     <section class="panel" aria-labelledby="workspace-heading">
       <h2 id="workspace-heading">Lab workspace</h2>
-      <p>This workspace is a placeholder. The six stages below are reserved. Lesson material is not in this version.</p>
+      <p>Start with the short explanation, then tune the simulated receiver. The six stages are one investigation. Nothing here receives a real radio signal.</p>
       <ol class="stage-rail">
         {% for stage in stages %}
-          <li><a href="#stage-{{ stage.id }}">{{ stage.label }}</a></li>
+          <li><a href="#stage-{{ stage.id }}" data-stage-link="{{ stage.id }}">{{ stage.label }}</a></li>
         {% endfor %}
       </ol>
     </section>
 
-    <div class="stage-list">
+    <div class="stage-list" id="lab-session" data-lab-id="{{ lab.id }}">
       {% for stage in stages %}
         <article class="stage" id="stage-{{ stage.id }}" aria-labelledby="stage-heading-{{ stage.id }}">
           <p class="stage-index">Stage {{ loop.index }} of {{ stages|length }}</p>
           <h2 id="stage-heading-{{ stage.id }}">{{ stage.label }}</h2>
-          <p>{{ stage.placeholder }}</p>
+          <div class="stage-mount" data-stage-mount="{{ stage.id }}">
+            <p>{{ stage.placeholder }}</p>
+          </div>
         </article>
       {% endfor %}
     </div>
@@ -37,5 +39,12 @@
       <p>The workspace will use the same six stages as the other labs: Learn, See it, Do it, Explain it, Exam connection, and Field task.</p>
       <p><a class="text-action" href="{{ url_for('labs_index') }}">Back to labs</a></p>
     </section>
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+  {% if lab.available and lab.id == "01" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab01.js') }}" defer></script>
   {% endif %}
 {% endblock %}

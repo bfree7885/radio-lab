@@ -63,6 +63,8 @@
           <li>{{ topic.topic_id }} — missed {{ topic.misses }}, correct {{ topic.hits }}</li>
         {% endfor %}
       </ul>
+    {% elif exam.has_evidence %}
+      <p>No topic is behind right now. A topic shows up here only when misses outnumber correct answers. One miss does not stay on the list after a later correct answer catches up. This is question performance, not concept mastery.</p>
     {% else %}
       <p>None recorded yet. This list fills in from question-pool results for this track, after those labs exist. It is not a guess, and it is not a concept-mastery score.</p>
     {% endif %}
@@ -71,10 +73,10 @@
   <section class="panel" aria-labelledby="exam-heading">
     <h2 id="exam-heading">Exam readiness</h2>
     {% if exam.has_evidence %}
-      <p>{{ exam.correct }} correct out of {{ exam.recorded }} recorded exam items.</p>
+      <p>{{ exam.correct }} correct out of {{ exam.recorded }} recorded practice items. This is question performance for Technician Foundations, not concept mastery, and it is not an official exam score.</p>
     {% else %}
       <p>Not enough evidence yet. Readiness here is question-pool performance for Technician Foundations. It is not a concept-mastery score, and it does not include General. No readiness score is shown until then.</p>
-      <p>{% if concepts %}{{ concepts }} concept checks recorded for this track.{% else %}No concept checks recorded yet.{% endif %}</p>
     {% endif %}
+    <p>{% if concepts == 1 %}1 concept check recorded for this track.{% elif concepts %}{{ concepts }} concept checks recorded for this track.{% else %}No concept checks recorded yet.{% endif %}</p>
   </section>
 {% endblock %}
