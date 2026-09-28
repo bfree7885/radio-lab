@@ -13,8 +13,17 @@ from pathlib import Path
 from flask import Flask, abort, render_template, send_from_directory, url_for
 
 from hardware.capabilities import capability_snapshot, lab_mode, live_lab_available
-from labs.catalog import curriculum_meta, get_lab, get_labs, lab_ids, stages_for_lab
+from labs.catalog import (
+    FOUNDATIONS_ID,
+    curriculum_meta,
+    get_lab,
+    get_labs,
+    lab_ids,
+    load_roadmap,
+    stages_for_lab,
+)
 from progress.store import (
+    concept_count,
     exam_readiness,
     init_db,
     progress_summary,
@@ -102,6 +111,7 @@ def dashboard():
         labs=labs,
         summary=summary,
         continue_lab=_continue_lab(labs),
+        roadmap=load_roadmap(),
     )
 
 
@@ -134,8 +144,9 @@ def progress_page():
         "progress.html",
         labs=labs,
         summary=summary,
-        topics=weak_topics(),
-        exam=exam_readiness(),
+        topics=weak_topics(curriculum_id=FOUNDATIONS_ID),
+        exam=exam_readiness(curriculum_id=FOUNDATIONS_ID),
+        concepts=concept_count(FOUNDATIONS_ID),
     )
 
 

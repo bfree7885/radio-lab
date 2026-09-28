@@ -440,6 +440,55 @@ section > h2 {
   }
 }
 
+.roadmap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 1.5rem;
+}
+
+.roadmap h3 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.roadmap ul {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+}
+
+.roadmap li,
+.roadmap-compact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.phase-status {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.phase-available {
+  color: var(--teal);
+}
+
+.phase-planned {
+  color: var(--muted);
+}
+
+@media (min-width: 48rem) {
+  .roadmap {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

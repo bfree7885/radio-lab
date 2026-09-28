@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "licenseLevels": ["technician", "general"],
+  "conceptMastery": "Recorded on its own. A correct practice question does not by itself mark a concept mastered.",
+  "poolPerformance": "Results belong to one versioned question pool. Pools change, so each result keeps a pool id and that pool's date range.",
+  "pools": [],
+  "poolShape": {
+    "id": null,
+    "licenseLevel": null,
+    "versionLabel": null,
+    "effectiveFrom": null,
+    "effectiveThrough": null,
+    "questions": []
+  },
+  "refShape": {
+    "poolId": null,
+    "licenseLevel": null,
+    "questionId": null,
+    "subelement": null,
+    "topicId": null
+  }
+}

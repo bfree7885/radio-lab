@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "teachingModel": ["learn", "see", "do", "explain", "exam", "field"],
+  "licenseLevels": ["technician", "general"],
+  "assumption": "A learner may begin with no radio background. General may rely on the Radio Lab Technician curriculum. It does not rely on ideas Radio Lab has never taught.",
+  "tracks": [
+    {
+      "id": "technician",
+      "title": "Technician",
+      "licenseLevel": "technician",
+      "kind": "license",
+      "compact": false,
+      "phases": [
+        {
+          "id": "technician-foundations",
+          "title": "Foundations",
+          "status": "available",
+          "statusLabel": "AVAILABLE",
+          "content": "curriculum.json"
+        },
+        {
+          "id": "technician-core",
+          "title": "Core",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        },
+        {
+          "id": "technician-exam",
+          "title": "Exam Readiness",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "title": "General",
+      "licenseLevel": "general",
+      "kind": "license",
+      "compact": false,
+      "phases": [
+        {
+          "id": "general-bridge",
+          "title": "Bridge",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        },
+        {
+          "id": "general-core",
+          "title": "Core",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        },
+        {
+          "id": "general-exam",
+          "title": "Exam Readiness",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        }
+      ]
+    },
+    {
+      "id": "field-radio",
+      "title": "Field Radio",
+      "licenseLevel": null,
+      "kind": "field",
+      "compact": true,
+      "phases": [
+        {
+          "id": "field-radio",
+          "title": "Field Radio",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        }
+      ]
+    },
+    {
+      "id": "sota",
+      "title": "SOTA",
+      "licenseLevel": null,
+      "kind": "field",
+      "compact": true,
+      "phases": [
+        {
+          "id": "sota",
+          "title": "SOTA",
+          "status": "planned",
+          "statusLabel": "PLANNED",
+          "content": null
+        }
+      ]
+    }
+  ]
+}

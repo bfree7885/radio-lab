@@ -4,13 +4,39 @@
   <header class="page-head">
     <p class="eyebrow">{{ curriculum.title | upper }} // {{ curriculum.version }}</p>
     <h1>WAYPOINT RADIO LAB</h1>
-    <p class="lede">Hands-on amateur radio practice on this computer. No radio is required.</p>
+    <p class="lede">Hands-on practice for Technician and General, starting from zero. No radio is required.</p>
   </header>
+
+  <section class="panel" aria-labelledby="path-heading">
+    <h2 id="path-heading">License path</h2>
+    <div class="roadmap">
+      {% for track in roadmap.tracks %}
+        <section aria-labelledby="track-{{ track.id }}">
+          {% if track.compact %}
+            <div class="roadmap-compact">
+              <h3 id="track-{{ track.id }}">{{ track.title | upper }}</h3>
+              <span class="phase-status phase-{{ track.phases[0].status }}">{{ track.phases[0].statusLabel }}</span>
+            </div>
+          {% else %}
+            <h3 id="track-{{ track.id }}">{{ track.title | upper }}</h3>
+            <ul>
+              {% for phase in track.phases %}
+                <li>
+                  <span>{{ phase.title }}</span>
+                  <span class="phase-status phase-{{ phase.status }}">{{ phase.statusLabel }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </section>
+      {% endfor %}
+    </div>
+  </section>
 
   <section class="panel" aria-labelledby="progress-heading">
     <div class="panel-row">
       <div>
-        <h2 id="progress-heading">Overall progress</h2>
+        <h2 id="progress-heading">Technician Foundations</h2>
         <p class="stat-line">
           <strong>{{ summary.completed }}</strong> of {{ summary.total }} labs complete
           · {{ summary.remaining }} remaining

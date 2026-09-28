@@ -2,8 +2,9 @@
   "id": "technician-foundations",
   "title": "Technician Foundations",
   "version": "V0.1",
+  "licenseLevel": "technician",
+  "phaseId": "technician-foundations",
   "licenseTarget": "FCC Technician",
-  "laterTarget": "FCC General",
   "audience": "Beginners, including people with no amateur-radio experience.",
   "stages": [
     {"id": "learn", "label": "LEARN", "order": 1},

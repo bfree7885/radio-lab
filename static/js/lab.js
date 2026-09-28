@@ -25,5 +25,9 @@
       RadioLab.useCapabilities(RadioLabLocalCapabilities.create({}));
     }
   }
-  RadioLab.curriculum.load().catch(function () {});
+  RadioLab.curriculum.load()
+    .then(function () {
+      return RadioLab.roadmap.load();
+    })
+    .catch(function () {});
 })();

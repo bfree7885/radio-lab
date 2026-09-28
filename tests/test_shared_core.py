@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import html
 import json
 import os
 import subprocess
@@ -70,6 +71,10 @@ class SharedCoreTests(unittest.TestCase):
             "A wave repeats.",
         )
         self.assertIsNone(load_lesson("02"))
+        exam = lesson["stages"][4]["blocks"][0]
+        self.assertEqual(exam["questionIds"], [])
+        self.assertEqual(exam["licenseLevel"], "technician")
+        self.assertIsNone(exam["poolId"])
 
     def test_flask_serves_the_shared_files(self) -> None:
         curriculum = self.client.get("/content/curriculum.json")
@@ -161,6 +166,108 @@ class SharedCoreTests(unittest.TestCase):
         self.assertIsNotNone(saved)
         assert saved is not None
         self.assertEqual(saved["status"], "complete")
+
+    def test_roadmap_covers_technician_and_general(self) -> None:
+        from labs.catalog import load_exam_model, load_roadmap, phase_by_id
+
+        roadmap = load_roadmap()
+        self.assertEqual(roadmap["licenseLevels"], ["technician", "general"])
+        self.assertEqual(
+            roadmap["teachingModel"],
+            ["learn", "see", "do", "explain", "exam", "field"],
+        )
+        ids = [track["id"] for track in roadmap["tracks"]]
+        self.assertEqual(ids, ["technician", "general", "field-radio", "sota"])
+        foundations = phase_by_id("technician-foundations")
+        self.assertIsNotNone(foundations)
+        assert foundations is not None
+        self.assertEqual(foundations["status"], "available")
+        self.assertEqual(foundations["content"], "curriculum.json")
+        self.assertEqual(phase_by_id("technician-core")["status"], "planned")
+        self.assertEqual(phase_by_id("technician-exam")["status"], "planned")
+        self.assertEqual(phase_by_id("general-bridge")["status"], "planned")
+        self.assertEqual(phase_by_id("general-core")["status"], "planned")
+        self.assertEqual(phase_by_id("general-exam")["status"], "planned")
+        self.assertIsNone(phase_by_id("general-core")["content"])
+
+        model = load_exam_model()
+        self.assertEqual(model["pools"], [])
+        self.assertEqual(model["poolShape"]["questions"], [])
+        self.assertEqual(model["licenseLevels"], ["technician", "general"])
+
+        page = self.client.get("/")
+        self.assertEqual(page.status_code, 200)
+        self.assertIn(b"TECHNICIAN", page.data)
+        self.assertIn(b"GENERAL", page.data)
+        self.assertIn(b"AVAILABLE", page.data)
+        self.assertIn(b"PLANNED", page.data)
+        self.assertIn(b"FIELD RADIO", page.data)
+        self.assertIn(b"SOTA", page.data)
+        foundations_file = json.loads(
+            (ROOT / "content" / "curriculum.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(len(foundations_file["labs"]), 8)
+        for lab in foundations_file["labs"]:
+            self.assertIn(html.escape(lab["title"]).encode(), page.data)
+        page.close()
+
+        served = self.client.get("/content/roadmap.json")
+        self.assertEqual(served.status_code, 200)
+        self.assertEqual(served.get_json()["tracks"][1]["id"], "general")
+        served.close()
+
+    def test_progress_keeps_foundations_when_general_is_added(self) -> None:
+        import sqlite3
+
+        from progress.store import (
+            FOUNDATIONS_ID,
+            get_lab_status,
+            init_db,
+            set_concept_status,
+            set_lab_status,
+        )
+
+        path = os.environ["RADIO_LAB_DB"]
+        legacy = sqlite3.connect(path)
+        legacy.executescript(
+            """
+            CREATE TABLE schema_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+            CREATE TABLE lab_progress (
+                lab_id TEXT PRIMARY KEY,
+                status TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
+            INSERT INTO schema_meta VALUES ('schema_version', '1');
+            INSERT INTO lab_progress VALUES ('01', 'complete', '2026-01-01T00:00:00+00:00');
+            """
+        )
+        legacy.commit()
+        legacy.close()
+
+        init_db()
+        self.assertEqual(get_lab_status("01"), "complete")
+        self.assertEqual(get_lab_status("01", "general-core"), "not_started")
+        set_lab_status("01", "in_progress", "general-core")
+        self.assertEqual(get_lab_status("01", FOUNDATIONS_ID), "complete")
+        self.assertEqual(get_lab_status("01", "general-core"), "in_progress")
+        set_concept_status("frequency", "complete", FOUNDATIONS_ID, "technician")
+        set_concept_status("frequency", "in_progress", "general-core", "general")
+        from progress.store import get_concept_status
+
+        self.assertEqual(get_concept_status("frequency", FOUNDATIONS_ID), "complete")
+        self.assertEqual(get_concept_status("frequency", "general-core"), "in_progress")
+
+        check = sqlite3.connect(path)
+        version = check.execute(
+            "SELECT value FROM schema_meta WHERE key = 'schema_version'"
+        ).fetchone()[0]
+        kept = check.execute(
+            "SELECT status FROM lab_progress WHERE curriculum_id = ? AND lab_id = '01'",
+            (FOUNDATIONS_ID,),
+        ).fetchone()[0]
+        check.close()
+        self.assertEqual(version, "2")
+        self.assertEqual(kept, "complete")
 
 
 if __name__ == "__main__":

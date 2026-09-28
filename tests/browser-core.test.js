@@ -7,6 +7,7 @@ const publicCaps = require("../web/capabilities-public.js");
 const curriculum = require("../content/curriculum.json");
 const capabilities = require("../content/capabilities.json");
 const lesson = require("../content/labs/01/lesson.json");
+const roadmap = require("../content/roadmap.json");
 
 async function main() {
   RadioLab.curriculum.use(curriculum);
@@ -65,6 +66,20 @@ async function main() {
   assert.equal(summary.inProgress, 1);
   assert.equal(summary.remaining, 2);
   assert.equal(summary.total, 2);
+  progress.setLabStatus("01", "complete", "general-core");
+  assert.equal(progress.getLabStatus("01"), "in_progress");
+  assert.equal(progress.getLabStatus("01", "general-core"), "complete");
+  progress.setConceptStatus("wavelength", "complete", "technician-foundations", "technician");
+  assert.equal(progress.getConceptStatus("wavelength"), "complete");
+  assert.equal(progress.getConceptStatus("wavelength", "general-core"), "not_started");
+
+  RadioLab.roadmap.use(roadmap);
+  assert.equal(RadioLab.roadmap.track("technician").licenseLevel, "technician");
+  assert.equal(RadioLab.roadmap.track("general").licenseLevel, "general");
+  assert.equal(RadioLab.roadmap.phase("technician-foundations").status, "available");
+  assert.equal(RadioLab.roadmap.phase("general-core").status, "planned");
+  assert.equal(RadioLab.roadmap.phase("general-exam").status, "planned");
+  assert.equal(RadioLab.roadmap.phase("sota").status, "planned");
 
   const caps = publicCaps.create(capabilities);
   assert.equal(caps.available("simulation.frequency"), true);

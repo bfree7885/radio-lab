@@ -50,7 +50,9 @@ RADIO LAB CORE
 ## Layout
 
 ```
-content/curriculum.json     authoritative lab list and six stages
+content/curriculum.json     Technician Foundations labs and the six stages
+content/roadmap.json        Technician, General, Field Radio, and SOTA status
+content/exam/model.json     versioned question-pool shape; no questions yet
 content/capabilities.json   shared capability ids
 content/labs/01/lesson.json lesson shell for Lab 01
 web/radiollab.js            browser core (curriculum, lesson, adapters)
@@ -159,13 +161,17 @@ Leave on the local machine:
 
 Set `data-delivery="hosted"` and `data-content-base` to the URL where Studio serves `content/`. Simulations, when they exist, should be scripts or components named by lesson blocks, shared by both modes, not copied into a second lesson tree.
 
-## Future pathway
+## Technician and General
 
-Not built. Documented so later lessons have a direction:
+Radio Lab teaches both FCC Amateur Radio licenses: Technician and General. Technician Foundations is the beginning of the Technician journey, not the whole license. The same six-stage path is used for both licenses. General is not a question bank or a reading appendix.
 
-Technician Foundations → Technician License Preparation → Field Radio → SOTA Foundations → First Summit
+The learner may start with no radio background. General may build on the Radio Lab Technician curriculum. It does not assume ideas Radio Lab has never taught.
 
-SOTA can later give a practical reason to learn portable radios, antennas, propagation, power, operating procedures, logging, terrain, safety, and field setup. Do not add those lessons until Technician Foundations has real labs. A SOTA-curious beginner should still start at Lab 01.
+License learning and field application are different. Technician and General teach the ideas and operating skills. Field Radio and SOTA apply them. The full progression is in `docs/CURRICULUM_ROADMAP.md`. Machine-readable status is `content/roadmap.json`.
+
+Question pools are not stored in this repository yet. `content/exam/model.json` is the shape for a versioned pool and for a question reference. Concept mastery and question-pool performance are stored separately. A passing practice set does not mark a concept mastered.
+
+Progress records include a curriculum id, so Technician and General do not share one lab list. Hosted storage still uses `waypoint-radio-lab.progress.v1`. An older flat browser store is read as Technician Foundations.
 
 ## Setup
 

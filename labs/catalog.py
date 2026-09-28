@@ -16,6 +16,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 CURRICULUM_PATH = CONTENT / "curriculum.json"
+ROADMAP_PATH = CONTENT / "roadmap.json"
+EXAM_MODEL_PATH = CONTENT / "exam" / "model.json"
+FOUNDATIONS_ID = "technician-foundations"
 
 SHELL_TEXT = {
     "learn": "A short orientation for this lab will be added here.",
@@ -27,6 +30,7 @@ SHELL_TEXT = {
 }
 
 _curriculum: dict | None = None
+_roadmap: dict | None = None
 
 
 def _read_json(path: Path) -> dict:
@@ -50,10 +54,34 @@ def curriculum_meta() -> dict:
         "id": data["id"],
         "title": data["title"],
         "version": data["version"],
+        "license_level": data.get("licenseLevel", ""),
+        "phase_id": data.get("phaseId", ""),
         "license_target": data.get("licenseTarget", ""),
-        "later_target": data.get("laterTarget", ""),
         "audience": data.get("audience", ""),
     }
+
+
+def load_roadmap() -> dict:
+    global _roadmap
+    if _roadmap is None:
+        _roadmap = _read_json(ROADMAP_PATH)
+    return _roadmap
+
+
+def roadmap_tracks() -> list[dict]:
+    return list(load_roadmap()["tracks"])
+
+
+def load_exam_model() -> dict:
+    return _read_json(EXAM_MODEL_PATH)
+
+
+def phase_by_id(phase_id: str) -> dict | None:
+    for track in roadmap_tracks():
+        for phase in track.get("phases", []):
+            if phase.get("id") == phase_id:
+                return {**phase, "trackId": track["id"], "licenseLevel": track.get("licenseLevel")}
+    return None
 
 
 def get_labs() -> list[dict]:

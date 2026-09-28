@@ -33,7 +33,9 @@
       })
       .then(function (manifest) {
         RadioLab.useCapabilities(RadioLabPublicCapabilities.create(manifest));
-        return RadioLab.curriculum.load();
+        return RadioLab.curriculum.load().then(function () {
+          return RadioLab.roadmap.load();
+        });
       })
       .catch(function () {
         /* The page can still explain that shared content did not load. */

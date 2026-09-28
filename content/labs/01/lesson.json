@@ -30,7 +30,7 @@
     {
       "id": "exam",
       "blocks": [
-        {"type": "exam", "questionIds": [], "topics": []}
+        {"type": "exam", "questionIds": [], "topics": [], "licenseLevel": "technician", "poolId": null, "subelement": null}
       ]
     },
     {

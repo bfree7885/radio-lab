@@ -13,6 +13,7 @@
     contentBase: "/content/",
     fetchImpl: null,
     curriculum: null,
+    roadmap: null,
     lessons: {},
   };
 
@@ -82,6 +83,42 @@
       },
       stage: function (id) {
         return findById(state.curriculum && state.curriculum.stages, id);
+      },
+    },
+    roadmap: {
+      use: function (data) {
+        state.roadmap = data;
+        return data;
+      },
+      load: function () {
+        var get = fetcher();
+        if (!get) {
+          return Promise.reject(new Error("No fetch available"));
+        }
+        return Promise.resolve(get(join(state.contentBase, "roadmap.json")))
+          .then(readJson)
+          .then(function (data) {
+            state.roadmap = data;
+            return data;
+          });
+      },
+      get: function () {
+        return state.roadmap;
+      },
+      track: function (id) {
+        return findById(state.roadmap && state.roadmap.tracks, id);
+      },
+      phase: function (id) {
+        var tracks = state.roadmap ? state.roadmap.tracks : [];
+        for (var i = 0; i < tracks.length; i += 1) {
+          var phases = tracks[i].phases || [];
+          for (var j = 0; j < phases.length; j += 1) {
+            if (phases[j].id === id) {
+              return phases[j];
+            }
+          }
+        }
+        return null;
       },
     },
     lesson: {
