@@ -4,6 +4,11 @@
   "curriculumId": "technician-foundations",
   "licenseLevel": "technician",
   "title": "Propagation & Range",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "topics": ["T3A", "T3C"]
+  },
   "requires": ["simulation.propagation"],
   "hardware": [],
   "stages": [

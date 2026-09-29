@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-07",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Measure, Test & Troubleshoot",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T7", "T4", "T5"],
+    "topics": ["T7B", "T7C", "T7D", "T4A", "T4B", "T5A"]
+  },
+  "requires": ["simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "When a station fails, the job is to find out why. Observe, check the simple things, measure, isolate one part, then confirm. A multimeter does not do voltage, current, and resistance with the same connections. This bench will refuse an unsafe setup instead of inventing a reading."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-core.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "workbench",
+          "config": {
+            "intro": "The supply is live. Try a voltage measurement, a resistance measurement, and a current measurement.",
+            "circuitLive": true,
+            "doneText": "Voltage across a live supply, resistance only on an unpowered part, and current in series are three different jobs.",
+            "actions": [
+              {"mode": "voltage", "label": "Measure voltage across the supply", "reading": "The voltmeter reads the supply. That is a voltage measurement across the source."},
+              {"mode": "resistance", "label": "Measure resistance while the supply is connected", "reading": ""},
+              {"mode": "current", "label": "Measure current across the supply", "reading": ""}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "An SWR meter and an RF power meter answer different questions. A dummy load lets you test the transmitter without using the antenna as the load. The readings below are the lab's cases, not a calibration certificate."
+        },
+        {
+          "type": "interaction",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "You kept the dummy load for the power test and the SWR meter for the antenna match.",
+            "scenes": [
+              {
+                "prompt": "You want to know whether the transmitter is producing RF, without radiating from the antenna.",
+                "choices": [
+                  {"label": "Use a dummy load and an RF power meter", "correct": true, "why": "The dummy load stands in for the antenna. The power meter then has a proper load to measure."},
+                  {"label": "Put an ohmmeter across the live antenna connector", "correct": false, "why": "Resistance is not an RF power measurement, and the circuit is not a place for a live ohms check."}
+                ]
+              },
+              {
+                "prompt": "You want to know whether the antenna and feed line are a poor match.",
+                "choices": [
+                  {"label": "Read SWR in the feed line with the antenna connected", "correct": true, "why": "SWR is about reflected power in that path. A dummy load would hide the antenna's match."},
+                  {"label": "Turn the volume up and listen for SWR", "correct": false, "why": "Volume is a receiver control. It does not measure reflected power."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Four stations are broken. You get the symptom only. Measure before you decide. Change one thing, the thing the evidence points at."
+        },
+        {
+          "type": "interaction",
+          "component": "fault-case",
+          "config": {
+            "intro": "OBSERVE, then check a simple thing, then measure, then isolate, then confirm.",
+            "doneText": "Each case had one cause, and the measurement named it.",
+            "cases": [
+              {
+                "id": "dead-supply",
+                "cause": "low-supply-voltage",
+                "symptom": "The radio does not power on. The display stays dark.",
+                "requires": ["battery-voltage"],
+                "evidence": [
+                  {"id": "battery-voltage", "label": "Measure the battery voltage", "reading": "The battery reads 0.4 V. This radio needs a full pack."},
+                  {"id": "squelch", "label": "Open the squelch", "reading": "There is no display to adjust. Squelch does not feed the radio."},
+                  {"id": "fuse", "label": "Check the fuse", "reading": "The fuse is intact. The battery is the weak point so far."}
+                ],
+                "conclusions": [
+                  {"label": "The supply voltage is too low", "correct": true, "cause": "low-supply-voltage", "why": "The voltmeter showed a dead pack. The fuse was not the open part."},
+                  {"label": "Replace the antenna", "correct": false, "cause": "antenna", "why": "An antenna cannot light a dark display."}
+                ]
+              },
+              {
+                "id": "repeater-silent",
+                "cause": "wrong-repeater-tone",
+                "symptom": "You hear the repeater. It does not reply when you call.",
+                "requires": ["tone"],
+                "evidence": [
+                  {"id": "listen", "label": "Keep listening", "reading": "The repeater output is clear. The receiver works."},
+                  {"id": "tone", "label": "Check the repeater tone", "reading": "The tone in the radio is not the tone this repeater expects."},
+                  {"id": "squelch", "label": "Check the squelch", "reading": "Squelch is open. You would not hear the output if it were shut."}
+                ],
+                "conclusions": [
+                  {"label": "Set the tone this repeater uses", "correct": true, "cause": "wrong-repeater-tone", "why": "You can hear the machine. The access tone is the setting that does not match."},
+                  {"label": "Replace the battery", "correct": false, "cause": "battery", "why": "The receiver is already working. The battery is not the evidence."}
+                ]
+              },
+              {
+                "id": "high-swr",
+                "cause": "antenna-mismatch",
+                "symptom": "The SWR reading is much higher than it was yesterday.",
+                "requires": ["dummy"],
+                "evidence": [
+                  {"id": "swr", "label": "Read SWR at the antenna", "reading": "SWR is high with the antenna connected."},
+                  {"id": "dummy", "label": "Swap in a dummy load", "reading": "With the dummy load, the SWR reading falls. The transmitter can make RF into a proper load."},
+                  {"id": "cable", "label": "Check the unpowered cable", "reading": "The cable is continuous. It is not an open line."}
+                ],
+                "conclusions": [
+                  {"label": "The antenna match is the fault", "correct": true, "cause": "antenna-mismatch", "why": "The dummy load cleared the reading and the cable was intact. Isolate the antenna."},
+                  {"label": "Change several knobs and the antenna together", "correct": false, "cause": "several", "why": "If you change several things, you will not know which one matched the evidence."}
+                ]
+              },
+              {
+                "id": "weak-signal",
+                "cause": "feed-line-loss",
+                "symptom": "Stations that were readable this morning are much weaker. The power setting is unchanged.",
+                "requires": ["cable"],
+                "evidence": [
+                  {"id": "power", "label": "Check the power setting", "reading": "The power setting matches this morning."},
+                  {"id": "cable", "label": "Inspect the feed line", "reading": "A long extra coil of poor cable was added between the radio and the antenna."},
+                  {"id": "squelch", "label": "Open the squelch", "reading": "Squelch is already open. The stations are present and weak, not hidden."}
+                ],
+                "conclusions": [
+                  {"label": "The added feed line is the loss", "correct": true, "cause": "feed-line-loss", "why": "Power did not change. The new cable is the part that can eat the signal."},
+                  {"label": "Assume an internal part failed", "correct": false, "cause": "internal", "why": "The outside path changed. Check that before opening the radio."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why is changing several things at once a poor troubleshooting strategy?",
+          "conceptId": "one-change-at-a-time",
+          "reference": "Each case had one cause, and a measurement pointed at it. If you change the battery, the tone, the antenna, and a knob together, a station that starts working does not tell you which change mattered. You also cannot put the station back to the last known state. Observe, measure, change one thing, and confirm.",
+          "unsure": "Remember the high SWR case. The dummy load separated the antenna from the radio. Two changes at once would have blurred that."
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the measurements you just chose. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about meters, faults, and one-change troubleshooting. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc07-voltage",
+              "topicId": "T5A",
+              "stem": "The supply is connected and you want to know its voltage. Which setup fits?",
+              "choices": [
+                "A voltmeter across the supply",
+                "An ohmmeter across the live supply",
+                "An ammeter connected the same way as a voltmeter"
+              ],
+              "correctIndex": 0,
+              "why": "Voltage is measured across the source. Resistance waits until the part is unpowered. Current is a series measurement."
+            },
+            {
+              "id": "tc07-ohms",
+              "topicId": "T7D",
+              "stem": "Why did the bench refuse a resistance measurement on the live supply?",
+              "choices": [
+                "Resistance is measured on an unpowered, isolated part",
+                "An ohmmeter is the same instrument setup as a voltmeter",
+                "Resistance can only be measured with an SWR meter"
+              ],
+              "correctIndex": 0,
+              "why": "The tools share a case sometimes. They do not share a procedure."
+            },
+            {
+              "id": "tc07-current",
+              "topicId": "T7D",
+              "stem": "How is current measurement different from a voltage check in this lab?",
+              "choices": [
+                "Current is measured in series, as part of the path",
+                "Current is measured by listening to the speaker",
+                "Current uses the same across-the-supply connection as voltage"
+              ],
+              "correctIndex": 0,
+              "why": "The bench rejected an across-the-supply current connection and described a series measurement."
+            },
+            {
+              "id": "tc07-dummy",
+              "topicId": "T7C",
+              "stem": "You want a transmitter power check without radiating. What do you substitute for the antenna?",
+              "choices": [
+                "A dummy load",
+                "A higher squelch setting",
+                "A longer microphone cable"
+              ],
+              "correctIndex": 0,
+              "why": "The dummy load is the non-radiating load. Squelch and the microphone do not replace the antenna for that test."
+            },
+            {
+              "id": "tc07-dark",
+              "topicId": "T7B",
+              "stem": "A dark radio shows 0.4 V at the battery and an intact fuse. What is the cause in that case?",
+              "choices": [
+                "The supply voltage is too low",
+                "The repeater tone is wrong",
+                "The antenna polarization is horizontal"
+              ],
+              "correctIndex": 0,
+              "why": "The voltage measurement named the dead supply. The fuse check ruled the fuse out."
+            },
+            {
+              "id": "tc07-tone",
+              "topicId": "T4B",
+              "stem": "You hear a repeater and it does not answer. The tone in the radio is not the one it expects. What do you change?",
+              "choices": [
+                "The repeater tone",
+                "The antenna, the battery, and the tone together",
+                "The call sign"
+              ],
+              "correctIndex": 0,
+              "why": "Hearing the output shows the receiver path. One wrong setting, the tone, matches the evidence."
+            },
+            {
+              "id": "tc07-strategy",
+              "topicId": "T7B",
+              "stem": "Why measure before changing several parts?",
+              "choices": [
+                "So the result can be tied to one change",
+                "Because meters repair the fault by themselves",
+                "Because the first part you touch is always the cause"
+              ],
+              "correctIndex": 0,
+              "why": "The sequence is observe, check, measure, isolate, confirm. A pile of changes hides the cause."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Halfway through a portable outing the station goes dark. Diagnose it on the bench and restore the one failed part. Do not swap everything in the pack."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc07-outing-fault",
+          "component": "fault-case",
+          "config": {
+            "intro": "One outing, one failure. Measure, then restore.",
+            "doneText": "The open fuse was replaced with the correct one. The battery was left alone because it still measured fine.",
+            "cases": [
+              {
+                "id": "open-fuse",
+                "cause": "open-fuse",
+                "symptom": "The portable radio was working and is now dark.",
+                "requires": ["fuse", "battery"],
+                "evidence": [
+                  {"id": "battery", "label": "Measure the battery", "reading": "The battery still reads a normal pack voltage."},
+                  {"id": "fuse", "label": "Check the fuse", "reading": "The fuse is open. The path through it is broken."},
+                  {"id": "antenna", "label": "Inspect the antenna", "reading": "The antenna is still attached. A dark radio is not an antenna symptom."}
+                ],
+                "conclusions": [
+                  {"label": "Replace the fuse with the correct rating", "correct": true, "cause": "open-fuse", "why": "The battery is fine and the fuse is open. A replacement of the right rating restores the path. Do not bypass it."},
+                  {"label": "Replace the battery, the antenna, and the microphone", "correct": false, "cause": "everything", "why": "Those parts were not the open measurement. Changing them together would hide the fuse."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

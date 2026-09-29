@@ -25,6 +25,7 @@ from labs.catalog import (
     get_stages,
     load_roadmap,
     stages_for_lab,
+    syllabus_coverage,
 )
 from progress.store import (
     concept_count,
@@ -267,6 +268,7 @@ def progress_page():
         core_summary=core_summary,
         core_topics=weak_topics(curriculum_id=CORE_ID),
         core_concepts=concept_count(CORE_ID),
+        coverage=syllabus_coverage(),
     )
 
 

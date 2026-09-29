@@ -4,7 +4,7 @@ Hands-on amateur radio training for someone who may know nothing about radio.
 
 A learner can begin at Lab 01 with no amateur-radio background, no electronics background, and no radio or SDR of their own. That includes someone who wants to try Summits on the Air later and is starting from zero.
 
-Labs 01–08 are the Technician Foundations sequence. TC-01 through TC-04 start Technician Core. Finishing either set is not Technician exam readiness.
+Labs 01–08 are the Technician Foundations sequence. TC-01 through TC-08 are the current Technician Core labs. Finishing either set is not a syllabus audit and not Technician exam readiness.
 
 ## Beginner-first
 
@@ -206,7 +206,7 @@ The launcher activates `.venv` and starts the app at [http://127.0.0.1:5070/](ht
 | `/labs/06` | Lab 06, Antennas & SWR |
 | `/labs/07` | Lab 07, Propagation & Range |
 | `/labs/08` | Lab 08, First Field Operation |
-| `/labs/tc-01` … `/labs/tc-04` | Technician Core labs |
+| `/labs/tc-01` … `/labs/tc-08` | Technician Core labs |
 | `/progress` | Foundations progress from SQLite |
 | `/about` | What Radio Lab is |
 | `/content/...` | Shared JSON |

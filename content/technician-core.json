@@ -6,7 +6,7 @@
   "phaseId": "technician-core",
   "licenseTarget": "FCC Technician",
   "audience": "Learners who have finished Technician Foundations and are still beginners.",
-  "note": "These four labs start Technician Core. They are not the rest of the core, and they are not Technician exam readiness.",
+  "note": "These eight labs are the current Technician Core sequence. Finishing them is not a syllabus audit and not Technician exam readiness.",
   "stages": [
     {"id": "learn", "label": "LEARN", "order": 1},
     {"id": "see", "label": "SEE IT", "order": 2},
@@ -95,6 +95,86 @@
         "lesson-kit.js",
         "reference-kit.js",
         "core-labs.js"
+      ]
+    },
+    {
+      "id": "tc-05",
+      "number": "TC-05",
+      "title": "Modes, Digital & Radio Activities",
+      "description": "Receiver modes, occupied bandwidth, a digital path, and a simple satellite pass.",
+      "available": true,
+      "lesson": "labs/tc-05/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T8A", "T8B", "T8C", "T8D", "T2A"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "core-more.js"
+      ]
+    },
+    {
+      "id": "tc-06",
+      "number": "TC-06",
+      "title": "Antenna Systems & Feed Lines",
+      "description": "The path from the radio to the antenna, loss, polarization, and pattern.",
+      "available": true,
+      "lesson": "labs/tc-06/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T9A", "T9B", "T7C", "T4A"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "core-more.js"
+      ]
+    },
+    {
+      "id": "tc-07",
+      "number": "TC-07",
+      "title": "Measure, Test & Troubleshoot",
+      "description": "Meters, a dummy load, and faults you isolate one measurement at a time.",
+      "available": true,
+      "lesson": "labs/tc-07/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T7B", "T7C", "T7D", "T4A", "T4B", "T5A"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "core-more.js"
+      ]
+    },
+    {
+      "id": "tc-08",
+      "number": "TC-08",
+      "title": "Safety, Emergencies & Responsible Operation",
+      "description": "Site hazards, an educational exposure model, and emergency priority.",
+      "available": true,
+      "lesson": "labs/tc-08/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T0A", "T0B", "T0C", "T2C"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "core-more.js"
       ]
     }
   ]

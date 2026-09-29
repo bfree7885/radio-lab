@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "technician-core-reference",
   "title": "Technician Core reference",
-  "note": "Looking this up is part of operating. It is a teaching card for TC-01 through TC-04, not a license manual and not the question pool. Ohm's law, the radio controls, repeaters, and SWR stay on the foundations card.",
+  "note": "Looking this up is part of operating. It is a teaching card for the current Technician Core labs, not a license manual and not the question pool. Ohm's law, the radio controls, repeaters, and the simple SWR model stay on the foundations card.",
   "sections": [
     {
       "id": "license",
@@ -53,6 +53,61 @@
       "id": "troubleshoot",
       "title": "What to check next",
       "body": "Power, then connections, then settings, then the signal path, then a measurement. A dark radio points at the battery, fuse, and switch. Silence with the display on points at volume and squelch. High SWR points at the antenna and feed line. A quiet repeater points at offset and tone. Weak transmitted audio points at the microphone and its gain. A dummy load lets a bench test avoid radiating."
+    },
+    {
+      "id": "mode-overview",
+      "title": "Modes",
+      "body": "FM voice, SSB voice, CW, and digital data put information on RF in different ways. The receiver generally has to be set for the kind of signal it is hearing. A correct frequency is not the same as a correct mode."
+    },
+    {
+      "id": "bandwidth",
+      "title": "Bandwidth",
+      "body": "A signal occupies spectrum. It is not an infinitely thin line. Different emissions can occupy different widths. The lab bars are an educational comparison, not a universal bandwidth number and not a band plan."
+    },
+    {
+      "id": "digital-path",
+      "title": "Digital path",
+      "body": "Device, audio or data interface, radio, RF, receiving radio, decoder. The radio is still in the path. This is the idea behind later DigiRig or Waypoint Deck work. No hardware is required here."
+    },
+    {
+      "id": "aprs",
+      "title": "APRS, beginner",
+      "body": "APRS in this course is packets of station, location, or status data carried by radio. It is not ordinary internet messaging, and this card does not teach the packet internals."
+    },
+    {
+      "id": "satellite",
+      "title": "Satellite words",
+      "body": "Uplink goes up to the satellite. Downlink comes down. A pass is the time it is in line of sight. Frequency can shift during the pass. The lab picture is not an orbit calculator."
+    },
+    {
+      "id": "feed-line",
+      "title": "Feed line",
+      "body": "The path is radio, connector, feed line, a matching check, antenna, then the RF path. Longer cable generally loses more. Loss also changes with frequency and cable type. The lab loss figure is a relative model, not a datasheet. A poor connector or a mismatched antenna can show up as a bad reading. A dummy load replaces the antenna for a bench test."
+    },
+    {
+      "id": "polarization",
+      "title": "Polarization",
+      "body": "Vertical and horizontal are orientations. Matching them improves coupling in the lab model. Polarization is not the only thing that sets signal strength."
+    },
+    {
+      "id": "patterns",
+      "title": "Patterns",
+      "body": "An omnidirectional pattern is similar all around. A directional pattern aims more energy one way and less another way. That is redistribution, not new transmitter power."
+    },
+    {
+      "id": "instruments",
+      "title": "Test instruments",
+      "body": "A voltmeter reads across a source. An ohmmeter is for an unpowered, isolated part. An ammeter is placed in series. An SWR meter looks at the match in the feed line. An RF power meter with a dummy load checks the transmitter without using the antenna as the load."
+    },
+    {
+      "id": "troubleshooting",
+      "title": "Troubleshooting sequence",
+      "body": "Observe, check the simple things, measure, isolate, confirm. Change one thing. The cause stays hidden until the measurement names it. Changing several parts at once hides which change mattered."
+    },
+    {
+      "id": "safety",
+      "title": "Safety",
+      "body": "Shock, damaged cords, and a defeated fuse are electrical hazards. Also look for overhead lines, storms, trip hazards, batteries, and people crowded against an antenna. The RF exposure tool is an educational model, not a compliance calculator. Real evaluation uses the current rules and methods. Emergency traffic takes priority. Listen, keep it short, follow the net, and do not self-deploy."
     }
   ]
 }

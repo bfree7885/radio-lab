@@ -148,6 +148,95 @@ def display_text(stage_id: str, lesson: dict | None) -> str:
     return SHELL_TEXT.get(stage_id, "This stage will be added here.")
 
 
+def syllabus_coverage() -> dict:
+    """Map current syllabus groups from lesson metadata.
+
+    Taught, practiced, and assessed stay separate. A group listed in a
+    lesson's alignment.partial stays partial even when all three are present.
+    This is not a coverage audit and it is not exam readiness.
+    """
+    groups = []
+    for subelement in load_technician_syllabus().get("subelements", []):
+        for group in subelement.get("groups", []):
+            groups.append(
+                {
+                    "id": group["id"],
+                    "title": group.get("title", ""),
+                    "subelement": subelement["id"],
+                }
+            )
+
+    taught: set[str] = set()
+    practiced: set[str] = set()
+    assessed: set[str] = set()
+    partial_ids: set[str] = set()
+    for lab in list(get_labs()) + list(get_core_labs()):
+        lesson = load_lesson(lab["id"])
+        if not lesson:
+            continue
+        alignment = lesson.get("alignment") or {}
+        topics = [topic for topic in alignment.get("topics") or [] if isinstance(topic, str)]
+        partial_ids.update(topic for topic in alignment.get("partial") or [] if isinstance(topic, str))
+        has_interaction = False
+        for stage in lesson.get("stages", []):
+            if stage.get("id") not in ("learn", "see", "do", "field"):
+                continue
+            for block in stage.get("blocks") or []:
+                if block.get("type") in ("interaction", "fieldTask") or block.get("component"):
+                    has_interaction = True
+        for topic in topics:
+            taught.add(topic)
+            if has_interaction:
+                practiced.add(topic)
+        for stage in lesson.get("stages", []):
+            if stage.get("id") != "exam":
+                continue
+            for block in stage.get("blocks") or []:
+                for question in block.get("questions") or []:
+                    topic_id = question.get("topicId")
+                    if isinstance(topic_id, str) and topic_id:
+                        assessed.add(topic_id)
+
+    rows = []
+    for group in groups:
+        group_id = group["id"]
+        flags = []
+        if group_id in taught:
+            flags.append("taught")
+        if group_id in practiced:
+            flags.append("practiced")
+        if group_id in assessed:
+            flags.append("assessed")
+        if not flags:
+            status = "not-covered"
+        elif group_id in partial_ids or len(flags) < 3:
+            status = "partial"
+        else:
+            status = "recorded"
+        rows.append(
+            {
+                **group,
+                "status": status,
+                "taught": "taught" in flags,
+                "practiced": "practiced" in flags,
+                "assessed": "assessed" in flags,
+            }
+        )
+    counts = {
+        "groups": len(rows),
+        "recorded": sum(1 for row in rows if row["status"] == "recorded"),
+        "partial": sum(1 for row in rows if row["status"] == "partial"),
+        "notCovered": sum(1 for row in rows if row["status"] == "not-covered"),
+    }
+    return {
+        "rows": rows,
+        "counts": counts,
+        "partial": [row for row in rows if row["status"] == "partial"],
+        "notCovered": [row for row in rows if row["status"] == "not-covered"],
+        "note": "Derived from lesson alignment and practice questions. This is not a coverage audit and not exam readiness.",
+    }
+
+
 def stages_for_lab(lab_id: str) -> list[dict]:
     lesson = load_lesson(lab_id)
     labels = {}

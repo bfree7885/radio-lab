@@ -27,8 +27,8 @@ function examOf(lesson) {
 function main() {
   assert.equal(foundations.labs.length, 8);
   assert.equal(core.id, "technician-core");
-  assert.equal(core.labs.length, 4);
-  assert.deepEqual(core.labs.map(function (lab) { return lab.id; }), ["tc-01", "tc-02", "tc-03", "tc-04"]);
+  assert.ok(core.labs.length >= 4);
+  assert.deepEqual(core.labs.slice(0, 4).map(function (lab) { return lab.id; }), ["tc-01", "tc-02", "tc-03", "tc-04"]);
   core.labs.forEach(function (lab) {
     assert.equal(lab.available, true);
     assert.equal(lab.curriculumId, "technician-core");

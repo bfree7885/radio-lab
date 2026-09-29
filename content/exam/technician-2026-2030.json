@@ -32,6 +32,15 @@
       ]
     },
     {
+      "id": "T3",
+      "title": "Radio wave propagation",
+      "groups": [
+        {"id": "T3A", "title": "Radio-wave behavior, fading, and multipath"},
+        {"id": "T3B", "title": "Wavelength, frequency, and identifying the radio spectrum"},
+        {"id": "T3C", "title": "Propagation, line of sight, and the radio horizon"}
+      ]
+    },
+    {
       "id": "T4",
       "title": "Amateur radio practices",
       "groups": [
@@ -44,6 +53,7 @@
       "title": "Electrical principles",
       "groups": [
         {"id": "T5A", "title": "Current, voltage, conductors, insulators, and AC versus DC"},
+        {"id": "T5B", "title": "Unit prefixes and decibels"},
         {"id": "T5C", "title": "Capacitance, inductance, and impedance"},
         {"id": "T5D", "title": "Ohm's law and series versus parallel"}
       ]
@@ -73,7 +83,26 @@
       "title": "Signals and emissions",
       "groups": [
         {"id": "T8A", "title": "AM, FM, SSB, CW, and bandwidth"},
-        {"id": "T8D", "title": "Basic digital signaling"}
+        {"id": "T8B", "title": "Amateur satellites: uplink, downlink, and a pass"},
+        {"id": "T8C", "title": "Direction finding and other operating activities"},
+        {"id": "T8D", "title": "Basic digital signaling, packet, and APRS ideas"}
+      ]
+    },
+    {
+      "id": "T9",
+      "title": "Antennas and feed lines",
+      "groups": [
+        {"id": "T9A", "title": "Polarization, patterns, gain, and antenna placement"},
+        {"id": "T9B", "title": "Feed lines, loss, SWR, and connectors"}
+      ]
+    },
+    {
+      "id": "T0",
+      "title": "Safety",
+      "groups": [
+        {"id": "T0A", "title": "Electrical hazards, fuses, grounding, and batteries"},
+        {"id": "T0B", "title": "Antenna installation, overhead lines, and weather"},
+        {"id": "T0C", "title": "RF exposure, distance, and duty cycle"}
       ]
     }
   ]

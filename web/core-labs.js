@@ -1,6 +1,7 @@
-/* Technician Core labs TC-01 through TC-04. One script, lesson JSON picks the activity. */
-(function () {
+/* Technician Core labs. Lesson JSON picks the activity. Later labs register more components. */
+(function (root) {
   var gates = {};
+  var extra = {};
 
   function boot() {
     if (!window.LessonKit || !window.CoreSim) {
@@ -71,6 +72,9 @@
     if (block.component === "power-path") {
       return powerPath(ctx, block, stageId);
     }
+    if (extra[block.component]) {
+      return extra[block.component](ctx, block, stageId);
+    }
     return ctx.paragraph("");
   }
 
@@ -80,15 +84,15 @@
       gates[block.gate] = true;
     }
     if (block.recordsStage === false) {
-      return;
+      return true;
     }
     var waiting = (block.requiresGates || []).filter(function (id) { return !gates[id]; });
     if (waiting.length) {
       note.textContent = message + " Finish the earlier part of this stage first.";
-      return;
+      return false;
     }
     if (ctx.saved.stages && ctx.saved.stages[stageId] && !block.taskId) {
-      return;
+      return true;
     }
     if (block.taskId) {
       ctx.setField(block.taskId, "complete").then(function () {
@@ -98,6 +102,7 @@
       return;
     }
     ctx.complete(stageId);
+    return true;
   }
 
   function reference(ctx, block) {
@@ -129,7 +134,15 @@
       choices.textContent = "";
       if (!scene) {
         prompt.textContent = config.doneText || "Those decisions are recorded.";
-        finish(ctx, block, stageId, note, config.doneText || "Those decisions are recorded.");
+        if (finish(ctx, block, stageId, note, config.doneText || "Those decisions are recorded.") === false) {
+          var again = document.createElement("button");
+          again.type = "button";
+          again.textContent = "Record these decisions";
+          again.addEventListener("click", function () {
+            show();
+          });
+          choices.appendChild(again);
+        }
         return;
       }
       prompt.textContent = "Situation " + (index + 1) + " of " + config.scenes.length + ". " + scene.prompt;
@@ -837,9 +850,16 @@
     return wrap;
   }
 
+  root.RadioLabCore = {
+    register: function (name, factory) {
+      extra[name] = factory;
+    },
+    finish: finish,
+  };
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
   } else {
     boot();
   }
-})();
+})(typeof window !== "undefined" ? window : globalThis);

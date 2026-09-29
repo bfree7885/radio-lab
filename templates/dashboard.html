@@ -86,7 +86,12 @@
 
   <section aria-labelledby="core-heading">
     <h2 id="core-heading">Technician Core</h2>
-    <p class="lede">{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. These four labs start Technician Core. They are not the rest of the core, and they are not Technician exam readiness.</p>
+    <p class="lede">{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. These eight labs are the current Technician Core sequence. Finishing them is not a syllabus audit and not Technician exam readiness.</p>
+    {% if core_summary.completed == core_summary.total and core_summary.total %}
+      <p class="stat-line">TECHNICIAN CORE — CURRENT LABS COMPLETE</p>
+      <p class="stat-line">NEXT: TECHNICIAN COVERAGE AUDIT</p>
+      <p>These labs are not Technician exam readiness. The teaching phase is not finished until the current 2026–2030 syllabus is compared with what the labs actually teach.</p>
+    {% endif %}
     <ol class="lab-grid">
       {% for lab in core_labs %}
         <li class="card">

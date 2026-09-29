@@ -4,6 +4,11 @@
   "curriculumId": "technician-foundations",
   "licenseLevel": "technician",
   "title": "What Is Radio?",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "topics": ["T3B"]
+  },
   "requires": ["simulation.frequency", "simulation.receiver"],
   "hardware": [],
   "signals": [

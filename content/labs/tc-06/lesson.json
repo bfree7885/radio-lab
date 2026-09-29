@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-06",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Antenna Systems & Feed Lines",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T9", "T7", "T4"],
+    "topics": ["T9A", "T9B", "T7C", "T4A"]
+  },
+  "requires": ["simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RF has to leave the radio, pass a connector and a feed line, and reach an antenna before it is a radio wave. Foundations Lab 06 matched a length and watched SWR. This lab is the path around that antenna. A bad reading here is a teaching case, not a diagnosis of every real station."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-core.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "ordered-path",
+          "config": {
+            "intro": "Assemble the station RF path from the radio outward.",
+            "wrong": "Start at the radio. The antenna is the far end of this path.",
+            "doneText": "The path is radio, connector, feed line, a matching check, antenna, then the RF path into space.",
+            "steps": [
+              {"label": "RADIO", "note": "The transmitter creates the RF."},
+              {"label": "CONNECTOR", "note": "A connector joins the radio to the cable. A poor one can waste power or make a bad match."},
+              {"label": "FEED LINE", "note": "Coaxial cable is the usual feed line here. It carries RF. It also loses some of it."},
+              {"label": "MATCHING / MEASUREMENT", "note": "An SWR or power check belongs in the path before you blame the whole radio."},
+              {"label": "ANTENNA", "note": "The antenna couples RF to space. Polarization, placement, and aim matter."},
+              {"label": "RF PATH", "note": "After the antenna, the energy is in the radio path toward other stations."}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Feed-line loss in this lab is a relative educational model. Longer cable generally loses more. Loss also changes with frequency and with the kind of cable. The number is not manufacturer data."
+        },
+        {
+          "type": "interaction",
+          "component": "feed-loss",
+          "recordsStage": false,
+          "gate": "tc06-loss"
+        },
+        {
+          "type": "interaction",
+          "component": "polarization",
+          "recordsStage": false,
+          "gate": "tc06-pol",
+          "requiresGates": ["tc06-loss"]
+        },
+        {
+          "type": "interaction",
+          "component": "pattern-aim",
+          "requiresGates": ["tc06-loss", "tc06-pol"]
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Each case is one fault in the path. Fix that fault. Do not treat the case as a complete repair manual."
+        },
+        {
+          "type": "interaction",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "You separated connector, loss, match, polarization, aim, and placement.",
+            "scenes": [
+              {
+                "prompt": "The SWR was fine yesterday. Today the connector at the radio is loose and corroded. What is the first path problem?",
+                "choices": [
+                  {"label": "A poor connector", "correct": true, "why": "The connector is part of the RF path. A bad one can look like a bad antenna."},
+                  {"label": "The transmitter power supply", "correct": false, "why": "Nothing in the case points at the supply. The new fault is the connector."}
+                ]
+              },
+              {
+                "prompt": "Someone replaced a short feed line with a long run of poor cable, and the distant station got weaker. Power is unchanged.",
+                "choices": [
+                  {"label": "Excessive feed-line loss", "correct": true, "why": "Length and cable quality changed the loss. The transmitter setting did not."},
+                  {"label": "The station changed frequency by accident", "correct": false, "why": "The case changed the cable, not the dial."}
+                ]
+              },
+              {
+                "prompt": "SWR is high. A dummy load in place of the antenna brings the reading down. The cable checks out.",
+                "choices": [
+                  {"label": "The antenna is a poor match", "correct": true, "why": "Replacing the antenna with a dummy load changed the reading, so the mismatch is at the antenna."},
+                  {"label": "The radio cannot transmit", "correct": false, "why": "The dummy-load reading says the radio can still deliver RF into a proper load."}
+                ]
+              },
+              {
+                "prompt": "A local FM station is strong for other people. Your antenna is horizontal and theirs is vertical.",
+                "choices": [
+                  {"label": "Correct the polarization", "correct": true, "why": "Matching vertical to vertical improves coupling in the model. It is not the only cause of a weak signal."},
+                  {"label": "Raise transmitter power until polarization stops mattering", "correct": false, "why": "Power does not rotate the antenna."}
+                ]
+              },
+              {
+                "prompt": "A directional antenna is pointed away from the station you want.",
+                "choices": [
+                  {"label": "Aim it toward that station", "correct": true, "why": "Gain in this lab is energy pointed one way. Aim uses that redistribution."},
+                  {"label": "Swap it for a longer feed line", "correct": false, "why": "More cable does not aim the antenna."}
+                ]
+              },
+              {
+                "prompt": "You are choosing a portable VHF setup in a valley parking lot beside a metal building.",
+                "choices": [
+                  {"label": "A short feed line, a vertical antenna, and a clearer spot if you can get one", "correct": true, "why": "Less loss, matching polarization for local FM, and a less blocked location are the sensible combination."},
+                  {"label": "The longest cable you own, laid through the building", "correct": false, "why": "That adds loss and keeps the antenna in a poor place."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why can changing the antenna system improve a signal even when transmitter power stays exactly the same?",
+          "conceptId": "antenna-moves-energy",
+          "reference": "The transmitter power is what leaves the radio. The connector, feed line, match, polarization, aim, and placement decide how much of that energy arrives usefully. A shorter or better feed line loses less. A matched antenna reflects less. A directional antenna aims more of the same energy toward the station. None of that requires a bigger transmitter.",
+          "unsure": "Look at the loss model and the directional antenna. The power setting never moved. The path and the aim did."
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the path you assembled. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about feed lines, SWR, polarization, and patterns. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc06-path",
+              "topicId": "T4A",
+              "stem": "Which order matches the station path in this lab?",
+              "choices": [
+                "Radio, connector, feed line, matching check, antenna",
+                "Antenna, then the radio, then the connector",
+                "Battery, microphone, speaker"
+              ],
+              "correctIndex": 0,
+              "why": "RF leaves the radio through the connector and feed line, is checked, and reaches the antenna."
+            },
+            {
+              "id": "tc06-loss",
+              "topicId": "T9B",
+              "stem": "In the educational loss model, what generally increases feed-line loss?",
+              "choices": [
+                "A longer run, a higher frequency, or a poorer cable",
+                "A shorter run of better cable at a lower frequency",
+                "Leaving the transmitter power setting alone"
+              ],
+              "correctIndex": 0,
+              "why": "Those three changes raised the relative loss. The number was a comparison, not a datasheet."
+            },
+            {
+              "id": "tc06-swr",
+              "topicId": "T7C",
+              "stem": "SWR is high into the antenna and drops when a dummy load replaces the antenna. Where is the problem?",
+              "choices": [
+                "The antenna match",
+                "The receiver volume",
+                "The call sign"
+              ],
+              "correctIndex": 0,
+              "why": "The dummy load is a proper load for a test. The antenna was the piece that changed the reading."
+            },
+            {
+              "id": "tc06-pol",
+              "topicId": "T9A",
+              "stem": "A local FM signal is vertical and your antenna is horizontal. What does this lab expect?",
+              "choices": [
+                "Weaker relative coupling until the orientations match",
+                "No effect, because polarization is the only thing that sets signal strength",
+                "The feed line reverses polarization by itself"
+              ],
+              "correctIndex": 0,
+              "why": "Matching orientation improves coupling in the model. Power, distance, and placement still matter."
+            },
+            {
+              "id": "tc06-gain",
+              "topicId": "T9A",
+              "stem": "What does antenna gain mean in this lab?",
+              "choices": [
+                "Energy is aimed more in some directions and less in others",
+                "The transmitter creates extra watts because the antenna is directional",
+                "A longer feed line adds gain"
+              ],
+              "correctIndex": 0,
+              "why": "The directional pattern redistributed the same transmitter power. Aiming toward the station used that pattern."
+            },
+            {
+              "id": "tc06-connector",
+              "topicId": "T9B",
+              "stem": "A connector that was solid yesterday is loose today, and the match looks bad. What failed in the path?",
+              "choices": [
+                "The connector",
+                "The operator's call sign",
+                "The squelch setting"
+              ],
+              "correctIndex": 0,
+              "why": "The connector is a stage in the RF path. Squelch does not create SWR."
+            },
+            {
+              "id": "tc06-place",
+              "topicId": "T9A",
+              "stem": "Which portable arrangement fits the valley case?",
+              "choices": [
+                "A short feed line, vertical polarization, and a clearer location if you can reach one",
+                "The longest poor cable, routed through a metal building",
+                "A horizontal antenna aimed at the ground"
+              ],
+              "correctIndex": 0,
+              "why": "That choice cuts loss, matches typical local FM polarization, and avoids the blocked location."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Configure a portable VHF station for a simulated summit. Choose the feed line, orientation, placement, and the SWR check. Do not pick a product brand."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc06-summit",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "The summit plan uses a short feed line, a vertical antenna in the clear, and an SWR check. Transmitter power was not the fix.",
+            "scenes": [
+              {
+                "prompt": "You can carry either a short run of reasonable cable or a long coil of poor cable.",
+                "choices": [
+                  {"label": "Use the short run", "correct": true, "why": "Less length means less loss in the model, which matters when the station is small."},
+                  {"label": "Use the long poor coil because it looks like more antenna", "correct": false, "why": "Feed line is not antenna gain. Extra poor cable loses more."}
+                ]
+              },
+              {
+                "prompt": "The summit plan is local FM, which you have been treating as vertical.",
+                "choices": [
+                  {"label": "Orient the antenna vertical", "correct": true, "why": "Match the polarization you expect. It is still not the only factor in the contact."},
+                  {"label": "Lay the antenna flat because the summit is high", "correct": false, "why": "Height does not replace orientation."}
+                ]
+              },
+              {
+                "prompt": "One spot is beside a rock face. Another is the open side of the summit.",
+                "choices": [
+                  {"label": "Place the antenna on the open side", "correct": true, "why": "Placement changes the path. The rock face is the poorer of the two sites."},
+                  {"label": "Put the antenna inside a metal case to protect it", "correct": false, "why": "The antenna has to couple to space. A metal box is a poor location."}
+                ]
+              },
+              {
+                "prompt": "Before you call, the SWR reading is high.",
+                "choices": [
+                  {"label": "Check the connector, feed line, and antenna match before raising power", "correct": true, "why": "High SWR means reflected power. More transmitter power does not repair the path."},
+                  {"label": "Ignore it and double the power", "correct": false, "why": "The power setting was never the measurement that failed."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

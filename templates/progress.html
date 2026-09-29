@@ -67,6 +67,33 @@
       <p>No core practice topic is behind. A topic appears here only when misses outnumber correct answers. That list is practice performance, not concept mastery.</p>
     {% endif %}
     <p>{% if core_concepts %}{{ core_concepts }} concept checks recorded for Technician Core.{% else %}No Technician Core concept checks recorded yet.{% endif %}</p>
+    {% if core_summary.completed == core_summary.total and core_summary.total %}
+      <p class="stat-line">TECHNICIAN CORE — CURRENT LABS COMPLETE</p>
+      <p class="stat-line">NEXT: TECHNICIAN COVERAGE AUDIT</p>
+      <p>These labs are not Technician exam readiness. Lesson completion is not syllabus coverage.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="coverage-heading">
+    <h2 id="coverage-heading">Syllabus metadata</h2>
+    <p>{{ coverage.note }}</p>
+    <p>{{ coverage.counts.recorded }} of {{ coverage.counts.groups }} groups are taught, practiced, and assessed in current lessons. Partial: {{ coverage.counts.partial }}. Not covered: {{ coverage.counts.notCovered }}.</p>
+    {% if coverage.notCovered %}
+      <p>Not covered:</p>
+      <ul>
+        {% for group in coverage.notCovered %}
+          <li>{{ group.id }} — {{ group.title }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if coverage.partial %}
+      <p>Partial:</p>
+      <ul>
+        {% for group in coverage.partial %}
+          <li>{{ group.id }} — {{ group.title }}{% if group.taught %}; taught{% endif %}{% if group.practiced %}; practiced{% endif %}{% if group.assessed %}; assessed{% endif %}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </section>
 
   <section aria-labelledby="lab-status-heading">

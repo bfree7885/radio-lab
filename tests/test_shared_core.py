@@ -149,6 +149,7 @@ class SharedCoreTests(unittest.TestCase):
             "tests/labs-02-04.test.js",
             "tests/labs-05-08.test.js",
             "tests/core-01-04.test.js",
+            "tests/core-05-08.test.js",
         ):
             result = subprocess.run(
                 ["node", script],
@@ -423,7 +424,10 @@ class SharedCoreTests(unittest.TestCase):
         )
 
         self.assertEqual([lab["id"] for lab in get_labs()], ["01", "02", "03", "04", "05", "06", "07", "08"])
-        self.assertEqual([lab["id"] for lab in get_core_labs()], ["tc-01", "tc-02", "tc-03", "tc-04"])
+        self.assertEqual(
+            [lab["id"] for lab in get_core_labs()],
+            ["tc-01", "tc-02", "tc-03", "tc-04", "tc-05", "tc-06", "tc-07", "tc-08"],
+        )
         lesson = load_lesson("tc-01")
         self.assertIsNotNone(lesson)
         assert lesson is not None
@@ -446,7 +450,7 @@ class SharedCoreTests(unittest.TestCase):
         self.assertIn(b"not Technician exam readiness", page.data)
         self.assertNotIn(b"not open yet", page.data)
         page.close()
-        for lab_id in ("tc-02", "tc-03", "tc-04"):
+        for lab_id in ("tc-02", "tc-03", "tc-04", "tc-05", "tc-06", "tc-07", "tc-08"):
             opened = self.client.get(f"/labs/{lab_id}")
             self.assertEqual(opened.status_code, 200)
             self.assertIn(b"core-labs.js", opened.data)
@@ -477,6 +481,44 @@ class SharedCoreTests(unittest.TestCase):
         set_lab_status("01", "complete", FOUNDATIONS_ID)
         self.assertEqual(get_lab_status("tc-01", CORE_ID), "complete")
         self.assertEqual(get_concept_status("license-is-responsibility", CORE_ID), "not_started")
+
+    def test_current_core_completion_is_not_exam_readiness(self) -> None:
+        from labs.catalog import get_labs, load_roadmap, syllabus_coverage
+        from progress.store import init_db, set_stage_completed, sync_lab_status
+
+        coverage = syllabus_coverage()
+        self.assertGreater(coverage["counts"]["notCovered"], 0)
+        self.assertGreater(coverage["counts"]["partial"], 0)
+        self.assertLess(coverage["counts"]["recorded"], coverage["counts"]["groups"])
+        self.assertIn("T5B", [row["id"] for row in coverage["notCovered"]])
+        self.assertIn("not a coverage audit", coverage["note"])
+        self.assertEqual(len(get_labs()), 8)
+
+        roadmap = load_roadmap()
+        general = next(track for track in roadmap["tracks"] if track["id"] == "general")
+        self.assertTrue(all(phase["status"] == "planned" for phase in general["phases"]))
+        technician = next(track for track in roadmap["tracks"] if track["id"] == "technician")
+        exam_phase = next(phase for phase in technician["phases"] if phase["id"] == "technician-exam")
+        self.assertEqual(exam_phase["status"], "planned")
+
+        progress = self.client.get("/progress")
+        self.assertIn(b"T5B", progress.data)
+        self.assertIn(b"not a coverage audit", progress.data)
+        self.assertNotIn(b"TECHNICIAN READY", progress.data)
+        progress.close()
+
+        init_db()
+        stage_ids = ["learn", "see", "do", "explain", "exam", "field"]
+        for lab_id in ("tc-01", "tc-02", "tc-03", "tc-04", "tc-05", "tc-06", "tc-07", "tc-08"):
+            for stage_id in stage_ids:
+                set_stage_completed(lab_id, stage_id, True, "technician-core")
+            sync_lab_status(lab_id, stage_ids, "technician-core")
+        home = self.client.get("/")
+        self.assertIn("TECHNICIAN CORE — CURRENT LABS COMPLETE".encode(), home.data)
+        self.assertIn(b"NEXT: TECHNICIAN COVERAGE AUDIT", home.data)
+        self.assertIn(b"not Technician exam readiness", home.data)
+        self.assertNotIn(b"TECHNICIAN READY", home.data)
+        home.close()
 
 
 if __name__ == "__main__":

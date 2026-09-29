@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-08",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Safety, Emergencies & Responsible Operation",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T0", "T2"],
+    "topics": ["T0A", "T0B", "T0C", "T2C"],
+    "partial": ["T0C"]
+  },
+  "requires": ["simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Safe operating is how you set up and use the station so people and equipment stay intact. Electrical shock is one hazard. Overhead lines, weather, batteries, RF exposure, and emergency traffic are others. Walk this site and select every condition that should be corrected."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-core.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "site-inspection",
+          "config": {
+            "intro": "Select each condition that needs a change. Leave the acceptable ones.",
+            "doneText": "The site hazards are identified. The dry radio on the table can stay.",
+            "spots": [
+              {"id": "line", "hazard": true, "label": "Antenna wire running near an overhead power line", "why": "Keep antennas and their supports away from overhead lines. You do not judge the clearance by eye and then proceed."},
+              {"id": "cord", "hazard": true, "label": "A power cord with cracked insulation", "why": "Damaged insulation is a shock and fire hazard. Take that cord out of service."},
+              {"id": "fuse", "hazard": true, "label": "A fuse holder jumpered with a piece of wire", "why": "The fuse is there to open. A jumper removes that protection."},
+              {"id": "battery", "hazard": true, "label": "A battery sitting in a puddle under a hot cover", "why": "Batteries need a dry, sensible place. Water and trapped heat are a poor combination."},
+              {"id": "people", "hazard": true, "label": "The antenna is an arm's length from people at a picnic table", "why": "People who are not part of the station should not be crowded against an antenna. Distance is part of exposure awareness."},
+              {"id": "storm", "hazard": true, "label": "A thunderstorm is building over the site", "why": "Stop outdoor antenna work when a storm is approaching. Lightning safety is avoidance, not a procedure to try."},
+              {"id": "trip", "hazard": true, "label": "Coax stretched across the walking path", "why": "A trip hazard hurts people and can tear the connector. Route the cable out of the path."},
+              {"id": "table", "hazard": false, "label": "The radio sitting on a dry table with the cord unplugged", "why": "That part of the site is acceptable. Keep looking for the conditions that are not."}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "EDUCATIONAL MODEL — NOT A COMPLIANCE CALCULATOR. RF exposure depends on more than one factor, including power, distance, and duty cycle. The index you are about to change is a comparison inside this lab. Actual FCC compliance should use the applicable current rules and evaluation methods. The model will not tell you that a station is legal or illegal."
+        },
+        {
+          "type": "interaction",
+          "component": "exposure-model"
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Choose an action. These scenes do not walk through a dangerous job. A real distress call is different from a drill or a casual request."
+        },
+        {
+          "type": "interaction",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "You stopped for the storm, stayed clear of the line, and gave the emergency traffic the frequency.",
+            "scenes": [
+              {
+                "prompt": "You are operating outdoors and a thunderstorm is approaching.",
+                "choices": [
+                  {"label": "Stop, disconnect what you safely can from the ground, and get away from the antenna", "correct": true, "why": "Lightning safety is to stop outdoor antenna work and leave the exposed setup. This is not a climbing or grounding procedure."},
+                  {"label": "Finish the contact and lower the antenna during the rain", "correct": false, "why": "Waiting for the storm to arrive is the hazard. Stop before it."}
+                ]
+              },
+              {
+                "prompt": "The only convenient support for a wire antenna is close to an overhead utility line.",
+                "choices": [
+                  {"label": "Choose a different support, away from the line", "correct": true, "why": "Plan the antenna so it cannot reach the line. Do not estimate a risky clearance and continue."},
+                  {"label": "Throw the wire and pull it tight if it misses", "correct": false, "why": "That is the dangerous procedure this lab will not practice."}
+                ]
+              },
+              {
+                "prompt": "A station breaks in and says they have a real emergency. A casual conversation is in progress.",
+                "choices": [
+                  {"label": "Stop the casual contact, listen, and keep the frequency clear", "correct": true, "why": "Emergency and distress traffic takes priority. Concise, useful replies help. A drill or a routine request does not get that same claim."},
+                  {"label": "Tell them to wait until the round finishes", "correct": false, "why": "A real emergency does not wait on a casual contact."}
+                ]
+              },
+              {
+                "prompt": "You hear a public-service net handling a weather problem. You are nearby and want to help.",
+                "choices": [
+                  {"label": "Listen, follow net control, and do not self-deploy", "correct": true, "why": "Help that is not coordinated gets in the way. Wait until the net asks, and keep transmissions short."},
+                  {"label": "Drive to the scene and start calling on the net frequency", "correct": false, "why": "Showing up unasked is not the communication plan. It adds interference."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why does safe amateur-radio operation involve more than just avoiding electrical shock?",
+          "conceptId": "safety-is-broader",
+          "reference": "Shock, a bad cord, and a defeated fuse are electrical hazards. The same station can also put an antenna near a power line, create a trip hazard, crowd people against an antenna, ignore a building storm, or mishandle a battery. RF exposure depends on power, distance, and how long the transmitter stays on. In an emergency, safety includes keeping the frequency clear and not self-deploying. Avoiding a shock is necessary and it is not the whole job.",
+          "unsure": "Count the site conditions you marked. Only some of them were the power cord."
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the site, the exposure model, and the emergency choices. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about station safety and emergency operating. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc08-cord",
+              "topicId": "T0A",
+              "stem": "The power cord's insulation is cracked. What should happen to that cord?",
+              "choices": [
+                "Take it out of service",
+                "Tape a note on the radio and keep using it",
+                "Hide it under the table so no one trips, and leave it plugged in"
+              ],
+              "correctIndex": 0,
+              "why": "Damaged insulation is a shock hazard. Covering it up does not repair it."
+            },
+            {
+              "id": "tc08-fuse",
+              "topicId": "T0A",
+              "stem": "Someone has replaced a fuse with a wire jumper. Why is that a problem?",
+              "choices": [
+                "The fuse can no longer open when current is too high",
+                "A jumper improves grounding",
+                "A jumper is the normal way to measure voltage"
+              ],
+              "correctIndex": 0,
+              "why": "The fuse is protective. Bypassing it removes that protection."
+            },
+            {
+              "id": "tc08-line",
+              "topicId": "T0B",
+              "stem": "A handy support for the antenna is next to an overhead utility line. What is the plan?",
+              "choices": [
+                "Use a different support well clear of the line",
+                "Throw the wire and hope for clearance",
+                "Climb the pole if the antenna is light"
+              ],
+              "correctIndex": 0,
+              "why": "The safe plan is avoidance. This lab does not practice installing near lines or climbing."
+            },
+            {
+              "id": "tc08-storm",
+              "topicId": "T0B",
+              "stem": "A thunderstorm is building while you are operating outdoors. What do you do?",
+              "choices": [
+                "Stop the outdoor antenna work and get clear",
+                "Keep the contact and drop the mast in the rain",
+                "Ground yourself by holding the coax"
+              ],
+              "correctIndex": 0,
+              "why": "Lightning safety here is to stop and leave the exposed antenna. It is not a stunt with the feed line."
+            },
+            {
+              "id": "tc08-exposure",
+              "topicId": "T0C",
+              "stem": "What did the exposure tool claim to be?",
+              "choices": [
+                "An educational comparison of power, distance, and duty cycle, not a compliance calculator",
+                "A certified FCC compliance result",
+                "A medical diagnosis"
+              ],
+              "correctIndex": 0,
+              "why": "The screen said EDUCATIONAL MODEL — NOT A COMPLIANCE CALCULATOR. Real evaluation uses the current rules and methods."
+            },
+            {
+              "id": "tc08-duty",
+              "topicId": "T0C",
+              "stem": "In the educational model, which change raised the index when the other two stayed put?",
+              "choices": [
+                "More power, less distance, or a higher duty cycle",
+                "Only the color of the radio",
+                "Moving people farther away while lowering power"
+              ],
+              "correctIndex": 0,
+              "why": "Each of those three factors moved the index. Moving people away and lowering power moved it down."
+            },
+            {
+              "id": "tc08-priority",
+              "topicId": "T2C",
+              "stem": "A station declares a real emergency during a casual contact. What has priority?",
+              "choices": [
+                "The emergency traffic",
+                "The casual conversation, until the round ends",
+                "Whoever has the stronger signal"
+              ],
+              "correctIndex": 0,
+              "why": "Distress and emergency traffic take the frequency. A drill or a routine request is not the same claim."
+            },
+            {
+              "id": "tc08-deploy",
+              "topicId": "T2C",
+              "stem": "A weather net is already working an incident near you. How do you help by radio?",
+              "choices": [
+                "Listen and follow net control instead of self-deploying",
+                "Arrive on scene and transmit over the net",
+                "Call the net continuously so they know you are available"
+              ],
+              "correctIndex": 0,
+              "why": "Unasked transmissions and an uncoordinated arrival add interference. The useful plan is to listen and wait to be asked."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Before a simulated summit outing, make the safety decisions. This is preparation, not a form."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc08-outing-prep",
+          "component": "outing-prep",
+          "config": {
+            "intro": "Six checks before you leave. Pick the action you will actually take.",
+            "doneText": "The outing plan covers the radio, the site, the power, the weather, exposure awareness, and who you will talk to.",
+            "steps": [
+              {
+                "title": "Radio safety check",
+                "prompt": "The power cord you packed has a nick in the insulation.",
+                "choices": [
+                  {"label": "Leave that cord at home and use an intact one", "correct": true, "why": "A damaged cord does not go to the summit."},
+                  {"label": "Pack it anyway because the nick is small", "correct": false, "why": "Small damage is still damaged insulation."}
+                ]
+              },
+              {
+                "title": "Antenna site check",
+                "prompt": "The scenic spot is directly under a utility line.",
+                "choices": [
+                  {"label": "Move the operating spot clear of the line", "correct": true, "why": "Site selection is the antenna safety step. Do not use the line as a landmark to build under."},
+                  {"label": "Use the line as the antenna support", "correct": false, "why": "The line is the hazard, not a mast."}
+                ]
+              },
+              {
+                "title": "Power check",
+                "prompt": "The pack has a spare fuse of the correct rating and a battery that you can measure.",
+                "choices": [
+                  {"label": "Confirm the battery voltage and pack the spare fuse", "correct": true, "why": "You already saw a dark radio come from a dead pack or an open fuse. Check them before the hike."},
+                  {"label": "Jumper the fuse holder so a blown fuse cannot stop you", "correct": false, "why": "A jumper removes the protection."}
+                ]
+              },
+              {
+                "title": "Weather and lightning decision",
+                "prompt": "The forecast shows thunderstorms during the time you planned to be on the summit.",
+                "choices": [
+                  {"label": "Change the plan so you are not raising an antenna in that storm", "correct": true, "why": "The decision is to avoid the exposure. It is not a technique for operating through lightning."},
+                  {"label": "Go anyway and drop the mast if you hear thunder", "correct": false, "why": "Thunder means the storm is already there. The decision belongs before you leave."}
+                ]
+              },
+              {
+                "title": "RF exposure awareness",
+                "prompt": "Friends who are not operating want to sit beside the antenna while you run FM voice.",
+                "choices": [
+                  {"label": "Seat them farther away and use the lowest power that works", "correct": true, "why": "Distance and power are the factors you moved in the educational model. This is awareness, not a compliance certificate."},
+                  {"label": "Sit them at the base of the antenna because the model is not a calculator", "correct": false, "why": "The model not being a calculator is a reason to be careful, not a reason to ignore distance."}
+                ]
+              },
+              {
+                "title": "Communication plan",
+                "prompt": "A local net is the way off-summit help would be coordinated.",
+                "choices": [
+                  {"label": "Know the net frequency, listen first, and do not self-deploy if something happens", "correct": true, "why": "The plan is who you listen to and how you stay out of the way."},
+                  {"label": "Pick any frequency and transmit until someone answers", "correct": false, "why": "A plan names the net. Spraying calls is not coordination."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

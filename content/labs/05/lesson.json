@@ -4,6 +4,11 @@
   "curriculumId": "technician-foundations",
   "licenseLevel": "technician",
   "title": "Electricity Without the Textbook",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "topics": ["T5D"]
+  },
   "requires": ["simulation.electricity"],
   "hardware": [],
   "stages": [

@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-05",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Modes, Digital & Radio Activities",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T8", "T2"],
+    "topics": ["T8A", "T8B", "T8C", "T8D", "T2A"],
+    "partial": ["T8B", "T8C", "T8D"]
+  },
+  "requires": ["simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A frequency is where you listen. A mode is how the information rides on the radio signal. Voice, CW, and data can share the same idea of a tuned frequency and still be different signals. This bench is an educational model, not a waveform from a real radio."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-core.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "mode-bench",
+          "config": {
+            "intro": "EDUCATIONAL MODEL. Set the receiver for the signal you are given. The tuned frequency stays the same.",
+            "doneText": "Each signal needed its own receiver mode. Tuning to the frequency was not enough.",
+            "signals": [
+              {"mode": "fm", "kind": "voice", "info": "Someone is speaking. The RF frequency is shifting with the voice."},
+              {"mode": "ssb", "kind": "voice", "info": "Someone is speaking on a single sideband. It will not sound like FM."},
+              {"mode": "cw", "kind": "on-off keying", "info": "A carrier is being keyed on and off. There is no voice."},
+              {"mode": "digital", "kind": "data", "info": "A device is sending data tones. A speaker will not turn them into a conversation."}
+            ],
+            "receivers": [
+              {"id": "fm", "label": "FM VOICE"},
+              {"id": "ssb", "label": "SSB VOICE"},
+              {"id": "cw", "label": "CW"},
+              {"id": "digital", "label": "DIGITAL/DATA"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A signal is not an infinitely thin line on a chart. Different emissions occupy different amounts of spectrum. The bars below are a comparison inside an educational model. They are not universal bandwidth numbers and they are not a band plan."
+        },
+        {
+          "type": "interaction",
+          "component": "bandwidth-compare",
+          "recordsStage": false,
+          "gate": "tc05-width",
+          "config": {
+            "intro": "EDUCATIONAL MODEL. Which of these two signals occupies more spectrum in the model?",
+            "doneText": "In this model the FM voice is wider than the CW signal. Real emissions vary.",
+            "left": {"mode": "fm", "label": "FM voice"},
+            "right": {"mode": "cw", "label": "CW"},
+            "choices": [
+              {"mode": "fm", "label": "FM voice occupies more", "why": "The FM voice bar is wider. Occupied bandwidth is the slice of spectrum the emission uses."},
+              {"mode": "cw", "label": "CW occupies more", "why": "CW is the narrower of these two in the model. A signal still has some width. It is just less."}
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "body": "Digital activity still uses a radio. A computer or other device does not replace the RF path. APRS, at this level, is station, location, or status data in packets carried by radio. It is not the same thing as an ordinary internet message."
+        },
+        {
+          "type": "interaction",
+          "component": "ordered-path",
+          "requiresGates": ["tc05-width"],
+          "config": {
+            "intro": "Build the digital path in order. This is the idea behind a future DigiRig or Waypoint Deck. No hardware is connected.",
+            "wrong": "Keep the information moving toward RF, then back out at the far end.",
+            "doneText": "The packet rode a radio path. It was not an internet message.",
+            "steps": [
+              {"label": "COMPUTER / DEVICE", "note": "The information starts in a device."},
+              {"label": "AUDIO OR DATA INTERFACE", "note": "The interface hands that information to the radio."},
+              {"label": "RADIO", "note": "The radio puts it on an RF signal."},
+              {"label": "RF", "note": "The signal travels as radio, not as a network cable."},
+              {"label": "RECEIVING RADIO", "note": "Another station's radio recovers the RF."},
+              {"label": "DECODER / DEVICE", "note": "A decoder turns it back into data the operator can use."}
+            ],
+            "followUp": {
+              "prompt": "An APRS packet on this path says a station's location and a short status. What is it?",
+              "choices": [
+                {"label": "Station data carried by radio", "correct": true, "why": "APRS here is a packet of station, location, or status data. The radio is the transport."},
+                {"label": "A normal internet text message", "correct": false, "why": "The path you built never left the radio chain. Internet messaging is a different system."}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Use the same ideas on a new signal, a satellite pass, and a direction-finding check. The satellite picture is a pass between two ground stations. It is not an orbit calculator."
+        },
+        {
+          "type": "interaction",
+          "component": "satellite-pass",
+          "recordsStage": false,
+          "gate": "tc05-sat",
+          "config": {
+            "intro": "Ground station A transmits up. The satellite repeats. Ground station B listens. Line of sight has to exist during the pass.",
+            "doneText": "Uplink, downlink, and the pass are three different ideas.",
+            "scenes": [
+              {
+                "prompt": "Which name is the signal going from your radio up to the satellite?",
+                "choices": [
+                  {"label": "Uplink", "correct": true, "why": "Uplink is the transmission the satellite receives."},
+                  {"label": "Downlink", "correct": false, "why": "Downlink is the signal coming back down from the satellite."}
+                ]
+              },
+              {
+                "prompt": "Which name is the signal your radio hears from the satellite?",
+                "choices": [
+                  {"label": "Downlink", "correct": true, "why": "Downlink is what the ground station receives."},
+                  {"label": "Uplink", "correct": false, "why": "Uplink already left the ground. You are listening to the return signal."}
+                ]
+              },
+              {
+                "prompt": "The satellite is only usable for a few minutes, and the tone seems to creep. What is a fair beginner statement?",
+                "choices": [
+                  {"label": "It is a pass, in line of sight, and the frequency can shift", "correct": true, "why": "A pass is the usable window. Line of sight matters. Doppler is the idea that the frequency can change during that window."},
+                  {"label": "The satellite stays on one fixed frequency for the whole day", "correct": false, "why": "This lab does not treat the frequency as locked for the pass."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "decision-deck",
+          "requiresGates": ["tc05-sat"],
+          "config": {
+            "doneText": "You matched the mode, compared width, and treated direction finding as aiming a receiver.",
+            "scenes": [
+              {
+                "prompt": "You hear keyed tones, not a voice, on a frequency you know is in use. The radio is set to FM voice. What is wrong?",
+                "choices": [
+                  {"label": "The receiver mode does not match the signal", "correct": true, "why": "Frequency selection found the signal. The mode still has to fit it."},
+                  {"label": "The frequency must be wrong because you cannot understand it", "correct": false, "why": "A wrong mode can make a correctly tuned signal unreadable."}
+                ]
+              },
+              {
+                "prompt": "Three activities are offered: a voice net, a CW practice contact, and a data exchange. Which one is the data activity?",
+                "choices": [
+                  {"label": "The data exchange", "correct": true, "why": "Data is information for a device. Voice and CW are different activities."},
+                  {"label": "The voice net, because the microphone is digital inside the radio", "correct": false, "why": "A voice net is still voice, even if the radio has digital parts."}
+                ]
+              },
+              {
+                "prompt": "You are asked which way a hidden transmitter is. You rotate a directional antenna until the signal peaks.",
+                "choices": [
+                  {"label": "That is a simple direction-finding check", "correct": true, "why": "Radio direction finding uses the signal itself to estimate a bearing. This is the beginner version, not a contest."},
+                  {"label": "That is an APRS packet", "correct": false, "why": "Turning an antenna to peak a signal is not the same as sending a location packet."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why isn't selecting the correct frequency always enough to understand a radio signal?",
+          "conceptId": "mode-matches-signal",
+          "reference": "The receiver has to be set for the kind of signal. FM voice, SSB voice, CW, and digital data put information on RF in different ways, and they can occupy different amounts of spectrum. A satellite downlink can also shift during a pass. Frequency finds where to listen. Mode and the receiver setup decide whether the information comes back out.",
+          "unsure": "Think about the bench. The frequency stayed put while the signal changed from voice to CW to data. Only the matching receiver mode recovered it."
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the signals you just configured. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about modes, bandwidth, data, and a satellite pass. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc05-mode",
+              "topicId": "T8A",
+              "stem": "You are tuned to the right frequency and still cannot understand the signal. What else does this lab require?",
+              "choices": [
+                "A receiver mode that matches the emission",
+                "A louder volume setting only",
+                "A different call sign"
+              ],
+              "correctIndex": 0,
+              "why": "Volume can make a matched signal easier to hear. It does not turn CW or data into the mode the receiver is set for."
+            },
+            {
+              "id": "tc05-width",
+              "topicId": "T8A",
+              "stem": "In this lab's educational model, how should you think about occupied bandwidth?",
+              "choices": [
+                "Every emission is an infinitely thin line at the center frequency",
+                "Different emissions can occupy different amounts of spectrum",
+                "Bandwidth is the same number for every mode"
+              ],
+              "correctIndex": 1,
+              "why": "The bars compared width. They were not a universal specification, and they were not zero-width lines."
+            },
+            {
+              "id": "tc05-cw",
+              "topicId": "T8A",
+              "stem": "Which activity in the bench was on-off keying rather than voice?",
+              "choices": [
+                "CW",
+                "FM voice",
+                "SSB voice"
+              ],
+              "correctIndex": 0,
+              "why": "CW keyed the carrier. FM and SSB were voice signals with different receiver settings."
+            },
+            {
+              "id": "tc05-path",
+              "topicId": "T8D",
+              "stem": "Where does a beginner's digital message go between the two devices?",
+              "choices": [
+                "Computer, interface, radio, RF, receiving radio, decoder",
+                "Computer, internet router, website, other computer",
+                "Microphone, speaker, battery"
+              ],
+              "correctIndex": 0,
+              "why": "The path you assembled stays on radio. The interface and the radios are required."
+            },
+            {
+              "id": "tc05-aprs",
+              "topicId": "T8D",
+              "stem": "What is APRS in this lab?",
+              "choices": [
+                "Packets of station, location, or status data carried by radio",
+                "Ordinary internet messaging",
+                "A voice net on a repeater"
+              ],
+              "correctIndex": 0,
+              "why": "APRS was introduced as radio transport for station data, not as a chat app and not as voice."
+            },
+            {
+              "id": "tc05-sat",
+              "topicId": "T8B",
+              "stem": "During a simple satellite contact, which signal does your radio transmit?",
+              "choices": [
+                "The uplink",
+                "The downlink",
+                "The other station's feed line"
+              ],
+              "correctIndex": 0,
+              "why": "Uplink goes to the satellite. Downlink is what you receive. The picture was one pass, not an orbit model."
+            },
+            {
+              "id": "tc05-rdf",
+              "topicId": "T8C",
+              "stem": "You rotate a directional antenna until a signal peaks. What activity is that closest to?",
+              "choices": [
+                "A beginner direction-finding check",
+                "Sending an APRS status packet",
+                "Choosing an FM voice receiver mode"
+              ],
+              "correctIndex": 0,
+              "why": "Direction finding uses the received signal to estimate where it is coming from. This lab does not turn that into a contest or a grid exchange."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Plan a portable outing that includes voice, an APRS or data check, and a simplified satellite pass. No radio is required. Choose the setup that matches each activity."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc05-portable-modes",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "The plan has a voice mode, a radio data path, and a satellite uplink and downlink. That is a plan, not a contact.",
+            "scenes": [
+              {
+                "prompt": "The voice plan is a local FM net.",
+                "choices": [
+                  {"label": "Set the radio for FM voice and listen before calling", "correct": true, "why": "The activity is voice, and the receiver mode has to match."},
+                  {"label": "Leave the radio in CW because the frequency is correct", "correct": false, "why": "A correct frequency with the wrong mode will not produce the net."}
+                ]
+              },
+              {
+                "prompt": "You want a location and status packet to leave the station.",
+                "choices": [
+                  {"label": "Use a device, an interface, and the radio to send the packet", "correct": true, "why": "APRS or other data still follows the radio path."},
+                  {"label": "Send a phone text and call it APRS", "correct": false, "why": "A phone text is not the radio packet from this lab."}
+                ]
+              },
+              {
+                "prompt": "A satellite will be in view for a few minutes.",
+                "choices": [
+                  {"label": "Plan an uplink, a downlink, and a short pass while it is in line of sight", "correct": true, "why": "You need both directions and the usable window. Expect the frequency idea to shift."},
+                  {"label": "Leave the antenna indoors and use yesterday's FM net frequency all afternoon", "correct": false, "why": "A satellite pass is line of sight and uses its own uplink and downlink."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
