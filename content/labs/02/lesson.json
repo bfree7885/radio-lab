@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "labId": "02",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "Your First Radio",
+  "requires": ["simulation.frequency", "simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The controls on a handheld are jobs, not decorations. Power runs the radio. Volume is how loud the speaker is. The big number is the frequency it is set to."
+        },
+        {
+          "type": "interaction",
+          "component": "handheld-intro",
+          "config": {
+            "startKhz": 145000,
+            "power": false,
+            "volume": 0,
+            "squelch": 0,
+            "noise": 2,
+            "signals": [
+              {"khz": 146520, "strength": 8, "halfKhz": 10, "name": "simulated signal"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Squelch closes the speaker when nothing is stronger than its setting. It does not make a weak signal clearer. A VFO is the frequency you are tuning freely. A memory is a saved frequency you can recall."
+        },
+        {
+          "type": "interaction",
+          "component": "squelch-memory",
+          "config": {
+            "startKhz": 145000,
+            "power": true,
+            "volume": 5,
+            "squelch": 0,
+            "noise": 2,
+            "signalKhz": 146520,
+            "signals": [
+              {"khz": 146520, "strength": 8, "halfKhz": 10, "name": "simulated signal"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Operate the radio for each step. The checklist counts only what the controls actually do."
+        },
+        {
+          "type": "interaction",
+          "component": "radio-tasks",
+          "config": {
+            "startKhz": 145000,
+            "power": false,
+            "volume": 0,
+            "squelch": 0,
+            "noise": 2,
+            "signals": [
+              {"khz": 146520, "strength": 8, "halfKhz": 10, "name": "simulated signal"}
+            ],
+            "tasks": [
+              {"check": "power", "prompt": "Turn the radio on."},
+              {"check": "volume", "minimum": 3, "prompt": "Raise the volume until it is at least 3 of 9."},
+              {"check": "squelch-closed", "prompt": "Stay off the strong signal and raise squelch until the background noise closes."},
+              {"check": "frequency", "khz": 146520, "label": "146.520 MHz", "prompt": "Tune the VFO to 146.520 MHz."},
+              {"check": "up-from", "fromKhz": 146520, "toKhz": 146620, "fromLabel": "146.520 MHz", "prompt": "From 146.520 MHz, move the VFO up by 100 kHz."},
+              {"check": "store", "khz": 146520, "label": "146.520 MHz", "prompt": "Return the VFO to 146.520 MHz and store it in a memory channel."},
+              {"check": "leave", "khz": 146520, "deltaKhz": 50, "label": "146.520 MHz", "prompt": "Switch to the VFO and tune at least 50 kHz away from the stored frequency."},
+              {"check": "recall", "khz": 146520, "label": "146.520 MHz", "prompt": "Recall the memory so the display shows 146.520 MHz again."},
+              {
+                "kind": "choice",
+                "prompt": "Two handhelds are both set to 146.520 MHz, and neither is using a relay. What kind of contact is that?",
+                "success": "That is simplex. Both radios use the same frequency.",
+                "hint": "Simplex means the radios share one frequency. A relay is not part of this picture.",
+                "choices": [
+                  {"label": "Simplex", "correct": true},
+                  {"label": "A contact that needs a different transmit frequency", "correct": false}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "What is the difference between changing volume and changing squelch?",
+          "conceptId": "volume-vs-squelch",
+          "reference": "Volume sets how loud the speaker is when the receiver is passing sound. Squelch sets how strong a signal must be before any sound is passed. Raising squelch does not make a weak signal clearer. It can hide the signal and the noise until something stronger arrives.",
+          "unsure": "Go back to the squelch experiment. Open the noise, close it, then tune onto the simulated signal and watch the strength number stay independent of the squelch setting.",
+          "returnHref": "#stage-see",
+          "returnLabel": "Return to the squelch experiment"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions are about the handheld you just used. They are not official exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab02-squelch", "lab02-simplex", "lab02-frequency", "lab02-vfo", "lab02-memory"],
+          "topics": ["squelch", "simplex", "frequency-selection", "vfo", "memory"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about what you just did. They are not official exam questions.",
+          "questions": [
+            {
+              "id": "lab02-squelch",
+              "topicId": "squelch",
+              "stem": "Raising the squelch until the rushing noise stops changes which of these?",
+              "choices": [
+                "How strong a signal must be before the speaker opens",
+                "How sharp the received audio becomes",
+                "The frequency the radio is tuned to",
+                "The distance a transmission will travel"
+              ],
+              "correctIndex": 0,
+              "why": "Squelch is a gate. It does not make a weak signal clearer, and it does not change the frequency. It holds the speaker closed until something meets the setting."
+            },
+            {
+              "id": "lab02-simplex",
+              "topicId": "simplex",
+              "stem": "Two radios are both set to 146.520 MHz. Neither uses a relay. What is that contact?",
+              "choices": [
+                "Each radio transmits on a different frequency than it receives",
+                "A contact that requires a hilltop station in the middle",
+                "Simplex",
+                "A memory channel with nothing stored"
+              ],
+              "correctIndex": 2,
+              "why": "Simplex means the radios listen and talk on the same frequency. A different transmit frequency, or a station in the middle, is a different arrangement."
+            },
+            {
+              "id": "lab02-frequency",
+              "topicId": "frequency-selection",
+              "stem": "The display changes from 145.000 MHz to 146.520 MHz. Volume and squelch stay where they were. What changed?",
+              "choices": [
+                "How loud the speaker is",
+                "The frequency the radio is set to",
+                "Whether the squelch gate is open",
+                "The stored contents of every memory"
+              ],
+              "correctIndex": 1,
+              "why": "The display is the frequency the radio is set to. Volume and squelch were not the controls you moved."
+            },
+            {
+              "id": "lab02-vfo",
+              "topicId": "vfo",
+              "stem": "The radio is in VFO mode and you press a tune button. What are you changing?",
+              "choices": [
+                "The frequency you are tuning freely",
+                "A frequency already stored in memory",
+                "The squelch threshold",
+                "Which license you hold"
+              ],
+              "correctIndex": 0,
+              "why": "VFO is the free dial. Tuning it does not rewrite a memory, move the squelch, or change a license. Memory recall is a different control."
+            },
+            {
+              "id": "lab02-memory",
+              "topicId": "memory",
+              "stem": "You store 146.520 MHz, tune the VFO to 146.620 MHz, then recall that memory. What does the display show?",
+              "choices": [
+                "146.620 MHz, because the last tune always wins",
+                "A blank display, because tuning erases memories",
+                "The squelch setting, instead of a frequency",
+                "146.520 MHz"
+              ],
+              "correctIndex": 3,
+              "why": "A memory keeps the frequency you stored. Tuning the VFO away does not erase it. Recall brings the stored frequency back."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab02-trailhead-146520",
+          "prompt": "You are at a trailhead for a later hilltop outing. Your friend says, \"We're using 146.520 MHz simplex.\" Set this handheld so you could listen on that frequency. No relay is involved.",
+          "config": {
+            "startKhz": 145000,
+            "power": false,
+            "volume": 0,
+            "squelch": 0,
+            "noise": 2,
+            "signalKhz": 146520,
+            "minVolume": 3,
+            "signals": [
+              {"khz": 146520, "strength": 8, "halfKhz": 10, "name": "simulated signal"}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -667,6 +667,52 @@ section > h2 {
   }
 }
 
+.handheld {
+  max-width: 26rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+}
+
+.handheld-note {
+  margin: 0.4rem 0 0.8rem;
+  color: var(--muted);
+}
+
+.handheld-display {
+  padding: 0.85rem 0.9rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+}
+
+.noise-strip {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  margin-top: 0.6rem;
+}
+
+.repeater-scene {
+  margin: 0.5rem 0 1rem;
+}
+
+.band-strip,
+.band-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.band-strip button.is-selected,
+.instrument button[aria-pressed="true"] {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

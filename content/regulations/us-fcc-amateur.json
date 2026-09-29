@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "id": "us-fcc-amateur-foundations",
+  "jurisdiction": "US",
+  "regulator": "FCC",
+  "source": {
+    "name": "Educational summary of long-standing FCC Part 97.301 amateur allocations, prepared for Radio Lab",
+    "versionLabel": "foundations-2026-09",
+    "reviewedThrough": "2026-09-28",
+    "notes": [
+      "This is not an official FCC publication.",
+      "It is not guaranteed current.",
+      "It is a simplified teaching set.",
+      "Confirm Part 97 before transmitting."
+    ]
+  },
+  "educationalSimplification": true,
+  "licenseLevels": ["technician", "general"],
+  "notInThisLab": "Other Technician high-frequency privileges exist. Their edges are not listed in this lab.",
+  "services": [
+    {
+      "id": "fm-broadcast",
+      "name": "FM broadcast",
+      "service": "broadcast",
+      "khzLow": 88000,
+      "khzHigh": 108000,
+      "showOnMap": true,
+      "mapLabel": "FM broadcast",
+      "note": "A receiver may tune here. That does not authorize an amateur station to transmit here."
+    },
+    {
+      "id": "weather-radio",
+      "name": "Weather radio",
+      "service": "weather",
+      "khzLow": 162400,
+      "khzHigh": 162550,
+      "showOnMap": true,
+      "mapLabel": "Weather",
+      "note": "Listening to a weather broadcast is not permission to transmit on that frequency."
+    }
+  ],
+  "bands": [
+    {
+      "id": "10m",
+      "name": "10 meters",
+      "service": "amateur",
+      "khzLow": 28000,
+      "khzHigh": 29700,
+      "focus": true,
+      "showOnMap": true,
+      "mapLabel": "10 m",
+      "order": 1,
+      "generalNote": "Other General high-frequency privileges are not listed in this foundations file yet.",
+      "note": "Technician phone in this summary is 28.300 through 28.500 MHz. The rest of the band is not the same privilege. Power limits and other rules exist and are not listed here.",
+      "segments": [
+        {
+          "id": "10m-data",
+          "name": "Data and CW",
+          "khzLow": 28000,
+          "khzHigh": 28300,
+          "modes": ["cw", "data"],
+          "licenseLevels": ["technician", "general"],
+          "note": "Voice is not the use shown for this slice. 28.200 MHz voice is not shown as allowed here."
+        },
+        {
+          "id": "10m-phone",
+          "name": "Phone",
+          "khzLow": 28300,
+          "khzHigh": 28501,
+          "modes": ["phone"],
+          "licenseLevels": ["technician", "general"],
+          "note": "28.300 through 28.500 MHz in this summary. 28.400 MHz is inside this phone slice."
+        },
+        {
+          "id": "10m-upper",
+          "name": "Upper 10 meters",
+          "khzLow": 28501,
+          "khzHigh": 29700,
+          "modes": ["phone"],
+          "licenseLevels": ["general"],
+          "note": "This foundations summary shows this portion for General. Technician phone is not shown here. 29.600 MHz is in this portion."
+        }
+      ]
+    },
+    {
+      "id": "2m",
+      "name": "2 meters",
+      "service": "amateur",
+      "khzLow": 144000,
+      "khzHigh": 148000,
+      "focus": true,
+      "showOnMap": true,
+      "mapLabel": "2 m",
+      "order": 2,
+      "generalNote": "General licensees also have amateur privileges on this band in this summary. Other General high-frequency privileges are not listed in this foundations file yet.",
+      "bandPlanNote": "146.520 MHz is a common voluntary U.S. FM simplex calling custom. It is not a special legal privilege, and it is not the same thing as the allocation. Customs differ by region.",
+      "note": "This summary shows the 144 through 148 MHz amateur allocation for Technician and General. A band plan is a shared custom inside that allocation.",
+      "segments": [
+        {
+          "id": "2m-all",
+          "name": "2-meter amateur allocation",
+          "khzLow": 144000,
+          "khzHigh": 148000,
+          "modes": ["all"],
+          "licenseLevels": ["technician", "general"],
+          "note": "One segment in this introductory file. Real operating customs divide voice, digital, and satellite use more finely."
+        }
+      ]
+    },
+    {
+      "id": "70cm",
+      "name": "70 centimeters",
+      "service": "amateur",
+      "khzLow": 420000,
+      "khzHigh": 450000,
+      "focus": true,
+      "showOnMap": true,
+      "mapLabel": "70 cm",
+      "order": 3,
+      "generalNote": "General licensees also have amateur privileges on this band in this summary. Other General high-frequency privileges are not listed in this foundations file yet.",
+      "note": "This summary shows 420 through 450 MHz for Technician and General. Real rules include geographic restrictions that are not listed here.",
+      "segments": [
+        {
+          "id": "70cm-all",
+          "name": "70-centimeter amateur allocation",
+          "khzLow": 420000,
+          "khzHigh": 450000,
+          "modes": ["all"],
+          "licenseLevels": ["technician", "general"],
+          "note": "446.000 MHz sits inside this allocation in this summary. Geographic limits exist in the real rules and are not shown."
+        }
+      ]
+    }
+  ]
+}

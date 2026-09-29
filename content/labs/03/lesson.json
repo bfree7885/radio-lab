@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "labId": "03",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "Repeaters",
+  "requires": ["simulation.repeater", "simulation.frequency"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Simplex, from the last lab, is two radios on one frequency. A ridge can block that path. A repeater is a station on higher ground that hears one radio and sends the signal on."
+        },
+        {
+          "type": "interaction",
+          "component": "path-toggle",
+          "config": {}
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The repeater listens on one frequency and transmits on another. Your radio listens where the repeater transmits. The difference is the offset. A tone may be required before the repeater responds. The tone is not privacy."
+        },
+        {
+          "type": "interaction",
+          "component": "offset-tone",
+          "config": {
+            "outputKhz": 146940,
+            "offsetKhz": -600,
+            "toneHz": 100,
+            "tones": [
+              {"label": "No tone", "hz": null},
+              {"label": "88.5 Hz", "hz": 88.5},
+              {"label": "100.0 Hz", "hz": 100}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Use this listing: output 146.940 MHz, offset minus 600 kHz, access tone 100.0 Hz. The sign comes from the listing. A 600 kHz step is common on 2 meters. It is not a rule for every band."
+        },
+        {
+          "type": "interaction",
+          "component": "repeater-tasks",
+          "config": {
+            "intro": "This is a teaching repeater, not a coverage prediction.",
+            "wrongToneHz": 88.5,
+            "listing": {
+              "outputKhz": 146940,
+              "offsetKhz": -600,
+              "toneHz": 100
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why does a repeater use two frequencies instead of simply having everyone transmit and receive on exactly the same frequency at the same time?",
+          "conceptId": "repeater-two-frequencies",
+          "reference": "The repeater has to listen and talk at the same time. One shared frequency would mean it is trying to hear you on the same channel it is using to talk. It listens on the input and retransmits on the output. Your radio does the opposite while you use it: it listens on the output and transmits on the input. You still take turns talking with the other person.",
+          "unsure": "Go back to the offset experiment. Change the output and watch the receive frequency and the transmit frequency move apart.",
+          "returnHref": "#stage-see",
+          "returnLabel": "Return to the offset experiment"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions are about the repeater picture and the listing you just used. They are not official exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab03-purpose", "lab03-output", "lab03-offset", "lab03-tone", "lab03-simplex"],
+          "topics": ["repeater-purpose", "input-output", "offset", "access-tone", "simplex-vs-repeater"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about what you just did. They are not official exam questions.",
+          "questions": [
+            {
+              "id": "lab03-purpose",
+              "topicId": "repeater-purpose",
+              "stem": "In this lab's simplified drawing, what can a repeater do when a ridge blocks the direct path?",
+              "choices": [
+                "Make the conversation private",
+                "Relay a signal that the two handhelds cannot pass directly",
+                "Remove the need for a frequency",
+                "Turn simplex into a longer wavelength"
+              ],
+              "correctIndex": 1,
+              "why": "The drawing shows the higher station hearing one radio and sending the signal onward. It is a teaching model, not a promise of range, and it does not hide the conversation."
+            },
+            {
+              "id": "lab03-output",
+              "topicId": "input-output",
+              "stem": "A listing says the repeater output is 146.940 MHz. While you use that repeater, which frequency does your radio receive?",
+              "choices": [
+                "146.940 MHz, the output",
+                "Whatever frequency is 600 kHz away, with no listing required",
+                "The frequency the other handheld is tuned to in simplex",
+                "The tone frequency"
+              ],
+              "correctIndex": 0,
+              "why": "The repeater transmits on its output. Your radio listens there. The other number, the input, is where your radio transmits when you use the repeater."
+            },
+            {
+              "id": "lab03-offset",
+              "topicId": "offset",
+              "stem": "The output is 146.940 MHz and the listing says minus 600 kHz. Where does your radio transmit?",
+              "choices": [
+                "147.540 MHz",
+                "146.940 MHz",
+                "146.340 MHz",
+                "145.340 MHz"
+              ],
+              "correctIndex": 2,
+              "why": "Minus 600 kHz puts the transmit frequency 600 kHz below 146.940 MHz, at 146.340 MHz. Plus would be the other direction. The listing gives the sign. The same step is not the rule on every band."
+            },
+            {
+              "id": "lab03-tone",
+              "topicId": "access-tone",
+              "stem": "The frequency relationship is correct, and the repeater expects an access tone. You send no tone. What happens in this lab's model?",
+              "choices": [
+                "The conversation becomes private",
+                "The repeater does not respond",
+                "The offset reverses by itself",
+                "Anyone listening on the output is blocked"
+              ],
+              "correctIndex": 1,
+              "why": "The tone is how the repeater decides to accept the transmission. It is not privacy. People who can hear the output can still hear what is said when the repeater does respond."
+            },
+            {
+              "id": "lab03-simplex",
+              "topicId": "simplex-vs-repeater",
+              "stem": "Which description is simplex, and which is repeater operation?",
+              "choices": [
+                "Simplex uses a tone so the other radio cannot hear you. A repeater does not.",
+                "They are the same thing with two different names.",
+                "Simplex is one frequency both ways. Repeater operation uses two frequencies through a relay.",
+                "Simplex always needs a hilltop station."
+              ],
+              "correctIndex": 2,
+              "why": "Simplex is the same frequency for both radios, with no relay. Repeater operation listens on the output and transmits on the input so the hilltop station can hear and retransmit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab03-ridge-repeater",
+          "prompt": "You are on one side of a ridge. Another operator is beyond it, and simplex is unreliable. A nearby repeater listing says output 147.060 MHz, offset plus 600 kHz, access tone 123.0 Hz. Use the repeater path and set the radio side of that listing.",
+          "config": {
+            "listing": {
+              "outputKhz": 147060,
+              "offsetKhz": 600,
+              "toneHz": 123
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

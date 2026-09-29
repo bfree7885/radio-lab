@@ -14,7 +14,10 @@ async function main() {
   assert.equal(RadioLab.curriculum.labs().length, 8);
   assert.equal(RadioLab.curriculum.stages().length, 6);
   assert.equal(RadioLab.curriculum.lab("01").title, "What Is Radio?");
-  assert.equal(RadioLab.curriculum.lab("02").lesson, null);
+  assert.equal(RadioLab.curriculum.lab("02").lesson, "labs/02/lesson.json");
+  assert.equal(RadioLab.curriculum.lab("02").available, true);
+  assert.equal(RadioLab.curriculum.lab("05").lesson, null);
+  assert.equal(RadioLab.curriculum.lab("05").available, false);
   assert.equal(RadioLab.curriculum.stage("learn").label, "LEARN");
   assert.equal(RadioLab.curriculum.stage("field").label, "FIELD TASK");
   assert.equal(RadioLab.curriculum.lab("99"), null);
@@ -123,8 +126,11 @@ async function main() {
     "/content/curriculum.json",
     "/content/labs/01/lesson.json",
   ]);
+  const second = await RadioLab.lesson.load("02");
+  assert.equal(second.labId, "01");
+  assert.ok(requested.includes("/content/labs/02/lesson.json"));
   await assert.rejects(function () {
-    return RadioLab.lesson.load("02");
+    return RadioLab.lesson.load("05");
   });
 }
 

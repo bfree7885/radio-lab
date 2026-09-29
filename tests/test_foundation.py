@@ -53,7 +53,7 @@ class FoundationTests(unittest.TestCase):
         ):
             self.assertIn(label, lab.data)
 
-        closed = self.client.get("/labs/02")
+        closed = self.client.get("/labs/05")
         self.assertEqual(closed.status_code, 200)
         self.assertIn(b"not open yet", closed.data)
         self.assertNotIn(b"Hands-on controls will be added here.", closed.data)

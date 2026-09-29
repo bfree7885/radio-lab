@@ -14,7 +14,7 @@
   {% if lab.available %}
     <section class="panel" aria-labelledby="workspace-heading">
       <h2 id="workspace-heading">Lab workspace</h2>
-      <p>Start with the short explanation, then tune the simulated receiver. The six stages are one investigation. Nothing here receives a real radio signal.</p>
+      <p>Work through the six stages. Try the controls. Nothing here receives or transmits a real radio signal.</p>
       <ol class="stage-rail">
         {% for stage in stages %}
           <li><a href="#stage-{{ stage.id }}" data-stage-link="{{ stage.id }}">{{ stage.label }}</a></li>
@@ -46,5 +46,24 @@
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab01.js') }}" defer></script>
+  {% elif lab.available and lab.id == "02" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='handheld.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab02.js') }}" defer></script>
+  {% elif lab.available and lab.id == "03" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab03.js') }}" defer></script>
+  {% elif lab.available and lab.id == "04" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab04.js') }}" defer></script>
   {% endif %}
 {% endblock %}

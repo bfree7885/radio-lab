@@ -65,7 +65,8 @@ class SharedCoreTests(unittest.TestCase):
             display_text("learn", {"stages": [{"id": "learn", "blocks": [{"body": "A wave repeats."}]}]}),
             "A wave repeats.",
         )
-        self.assertIsNone(load_lesson("02"))
+        self.assertIsNotNone(load_lesson("02"))
+        self.assertIsNone(load_lesson("05"))
         exam = lesson["stages"][4]["blocks"][0]
         self.assertEqual(exam["label"], "RADIO LAB PRACTICE")
         self.assertEqual(len(exam["questions"]), 5)
@@ -89,6 +90,17 @@ class SharedCoreTests(unittest.TestCase):
         lesson = self.client.get("/content/labs/01/lesson.json")
         self.assertEqual(lesson.status_code, 200)
         self.assertEqual(lesson.get_json()["labId"], "01")
+
+        rules = self.client.get("/content/regulations/us-fcc-amateur.json")
+        self.assertEqual(rules.status_code, 200)
+        catalog = rules.get_json()
+        self.assertEqual(catalog["jurisdiction"], "US")
+        self.assertEqual(catalog["regulator"], "FCC")
+        self.assertIn("versionLabel", catalog["source"])
+        self.assertIn("reviewedThrough", catalog["source"])
+        two_meter = next(band for band in catalog["bands"] if band["id"] == "2m")
+        self.assertIn("general", two_meter["segments"][0]["licenseLevels"])
+        rules.close()
 
         script = self.client.get("/web/radiollab.js")
         self.assertEqual(script.status_code, 200)
@@ -129,7 +141,7 @@ class SharedCoreTests(unittest.TestCase):
         page.close()
 
     def test_browser_adapters(self) -> None:
-        for script in ("tests/browser-core.test.js", "tests/lab01.test.js"):
+        for script in ("tests/browser-core.test.js", "tests/lab01.test.js", "tests/labs-02-04.test.js"):
             result = subprocess.run(
                 ["node", script],
                 cwd=ROOT,
@@ -288,10 +300,19 @@ class SharedCoreTests(unittest.TestCase):
         self.assertNotIn(b"localStorage", page.data)
         page.close()
 
-        closed = self.client.get("/labs/02")
+        closed = self.client.get("/labs/05")
         self.assertIn(b"not open yet", closed.data)
         self.assertNotIn(b"lab01.js", closed.data)
         closed.close()
+
+        for lab_id, script in (("02", b"lab02.js"), ("03", b"lab03.js"), ("04", b"lab04.js")):
+            opened = self.client.get(f"/labs/{lab_id}")
+            self.assertEqual(opened.status_code, 200)
+            self.assertIn(script, opened.data)
+            self.assertIn(b"lesson-kit.js", opened.data)
+            self.assertNotIn(b"not open yet", opened.data)
+            self.assertNotIn(b"lab01.js", opened.data)
+            opened.close()
 
         started = self.client.post(
             "/api/progress/01",

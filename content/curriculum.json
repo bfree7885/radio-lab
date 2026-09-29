@@ -29,8 +29,8 @@
       "number": "02",
       "title": "Your First Radio",
       "description": "Frequency selection, volume, squelch, simplex operation, memories, and basic radio controls.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/02/lesson.json",
       "topics": ["tuning", "volume", "squelch", "simplex"]
     },
     {
@@ -38,8 +38,8 @@
       "number": "03",
       "title": "Repeaters",
       "description": "Repeater input/output frequencies, offsets, tones, range, and basic repeater operation.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/03/lesson.json",
       "topics": ["repeater", "offset", "tone", "range"]
     },
     {
@@ -47,8 +47,8 @@
       "number": "04",
       "title": "Bands & Privileges",
       "description": "Amateur bands, Technician privileges, operating scenarios, and choosing an appropriate frequency.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/04/lesson.json",
       "topics": ["bands", "privileges", "frequency-choice"]
     },
     {

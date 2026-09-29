@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "labId": "04",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "Bands & Privileges",
+  "requires": ["simulation.bands", "simulation.frequency"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A radio's tuning range is what the hardware can do. An amateur allocation is a slice of a much larger spectrum. Being able to hear a frequency is not the same as being allowed to transmit there."
+        },
+        {
+          "type": "interaction",
+          "component": "spectrum-map"
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "License class changes which amateur operations the reference shows. A band plan is a shared custom inside an allocation. It does not replace the allocation, and a radio that can tune somewhere does not authorize transmission there."
+        },
+        {
+          "type": "interaction",
+          "component": "band-tool"
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Decide from the reference on the page. Do not answer from memory of a chart this lab did not show."
+        },
+        {
+          "type": "interaction",
+          "component": "band-decisions",
+          "config": {
+            "intro": "Check each frequency in the reference, then decide.",
+            "tasks": [
+              {
+                "type": "locate",
+                "khz": 146520,
+                "prompt": "Find 146.520 MHz in the reference. Which amateur band contains it?"
+              },
+              {
+                "type": "decide",
+                "khz": 28400,
+                "licenseLevel": "technician",
+                "mode": "phone",
+                "prompt": "A Technician operator wants to transmit voice at 28.400 MHz. Does the reference show that operation?"
+              },
+              {
+                "type": "decide",
+                "khz": 29600,
+                "licenseLevel": "technician",
+                "mode": "phone",
+                "prompt": "A Technician operator wants to transmit voice at 29.600 MHz. Does the reference show that operation?"
+              },
+              {
+                "type": "listen",
+                "khz": 162550,
+                "prompt": "You want to listen to 162.550 MHz weather radio. Does that authorize an amateur transmission there?"
+              },
+              {
+                "type": "consult",
+                "khz": 50000,
+                "prompt": "The radio can be tuned to 50.000 MHz, and this reference has not described that frequency. What should you do before transmitting?"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why doesn't owning a radio that can transmit on a frequency automatically mean you are allowed to transmit there?",
+          "conceptId": "radio-capability-is-not-authorization",
+          "reference": "The radio's tuning range is what the hardware can do. A license, and the allocation, decide where an amateur station may transmit. Listening to a broadcast or weather channel is not the same permission as transmitting there. When the reference does not show the operation as allowed, do not transmit just because the radio can be set there.",
+          "unsure": "Go back to the spectrum strip. Open a non-amateur region, then open an amateur band and read which license the segment lists.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the spectrum strip"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions use the band reference from this lab. They are not official exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab04-allocation", "lab04-capability", "lab04-listen", "lab04-plan", "lab04-consult"],
+          "topics": ["amateur-allocation", "license-privilege", "receive-vs-transmit", "band-plan", "frequency-selection"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about the reference you just used. They are not official exam questions.",
+          "questions": [
+            {
+              "id": "lab04-allocation",
+              "topicId": "amateur-allocation",
+              "stem": "In this lab's reference, 146.520 MHz sits inside 144 through 148 MHz and that range is marked as the 2-meter amateur allocation. What does that tell you?",
+              "choices": [
+                "Every frequency a radio can tune is an amateur allocation",
+                "It is inside an amateur allocation in this reference",
+                "It is a weather broadcast",
+                "Owning a radio authorizes every frequency it can display"
+              ],
+              "correctIndex": 1,
+              "why": "The reference places 146.520 MHz inside the 2-meter amateur allocation. That is one slice of a much larger spectrum. It does not make every tunable frequency amateur, and it does not replace the license line on the segment."
+            },
+            {
+              "id": "lab04-capability",
+              "topicId": "license-privilege",
+              "stem": "A radio can be tuned to 98.100 MHz. This lab's reference calls that FM broadcast. What follows for an amateur transmission?",
+              "choices": [
+                "The ability to tune there authorizes the transmission",
+                "FM broadcast is an amateur phone segment",
+                "Tuning there does not authorize an amateur transmission",
+                "Raising the squelch makes the transmission legal"
+              ],
+              "correctIndex": 2,
+              "why": "What the radio can do and what an amateur station may transmit are different questions. The reference lists 98.100 MHz as broadcast, not as an amateur allocation."
+            },
+            {
+              "id": "lab04-listen",
+              "topicId": "receive-vs-transmit",
+              "stem": "You want to listen to a 162.550 MHz weather broadcast. Which statement fits this lab?",
+              "choices": [
+                "Listening authorizes you to transmit on that frequency",
+                "Listening and transmitting are the same permission",
+                "A weather frequency is an amateur allocation because a handheld can store it",
+                "Listening is not authorization to transmit there"
+              ],
+              "correctIndex": 3,
+              "why": "A receiver may tune outside amateur allocations. Hearing the weather broadcast is not permission to transmit there."
+            },
+            {
+              "id": "lab04-plan",
+              "topicId": "band-plan",
+              "stem": "146.520 MHz is described as a voluntary simplex calling custom. What else do you still use the reference for?",
+              "choices": [
+                "To see that it sits inside an amateur band and fits the privilege shown",
+                "Nothing. A custom replaces the allocation.",
+                "To prove that every custom is a license",
+                "To ignore the license line on the segment"
+              ],
+              "correctIndex": 0,
+              "why": "A calling custom is a shared habit. The reference still has to show the frequency inside an amateur allocation and a privilege that fits the operation. A custom does not replace that."
+            },
+            {
+              "id": "lab04-consult",
+              "topicId": "frequency-selection",
+              "stem": "You are not sure a frequency is one you may transmit on. What does this lab ask you to do?",
+              "choices": [
+                "Transmit and see what happens",
+                "Treat the radio's whole tuning range as the amateur bands",
+                "Consult the reference before transmitting",
+                "Raise the squelch until the question goes away"
+              ],
+              "correctIndex": 2,
+              "why": "The habit is to check the reference. Transmitting because the radio can be set there, or because you are unsure, skips the step this lab practiced."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab04-summit-plan",
+          "prompt": "You are sketching a later summit radio plan. The group wants a 2-meter simplex frequency you already know from the earlier labs: 146.520 MHz voice. Check every option in the reference. Choose only from what this reference shows, and choose the option the group asked for.",
+          "config": {
+            "candidates": [
+              {
+                "id": "simplex-2m",
+                "khz": 146520,
+                "label": "146.520 MHz voice",
+                "role": "requested"
+              },
+              {
+                "id": "weather",
+                "khz": 162550,
+                "label": "162.550 MHz weather",
+                "role": "listen"
+              },
+              {
+                "id": "ten-upper",
+                "khz": 29600,
+                "label": "29.600 MHz voice",
+                "role": "candidate"
+              },
+              {
+                "id": "simplex-70cm",
+                "khz": 446000,
+                "label": "446.000 MHz voice",
+                "role": "candidate"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
