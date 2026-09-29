@@ -2,7 +2,7 @@
 {% block title %}Lab {{ lab.number }} · Waypoint Radio Lab{% endblock %}
 {% block content %}
   <header class="page-head">
-    <p class="eyebrow"><a href="{{ url_for('labs_index') }}">Labs</a> · Lab {{ lab.number }}</p>
+    <p class="eyebrow">{% if lab.phaseTitle %}{{ lab.phaseTitle }} · {% endif %}<a href="{{ url_for('labs_index') }}">Labs</a> · {{ lab.number }}</p>
     <h1>{{ lab.title }}</h1>
     <p class="lede">{{ lab.description }}</p>
     <p id="lab-status" class="status status-{{ status }}">{{ status_label }}</p>
@@ -16,6 +16,8 @@
       <h2 id="workspace-heading">Lab workspace</h2>
       {% if lab.id == "08" %}
         <p>This outing has six mission phases. It uses Labs 01–07. Finishing it does not finish the Technician course.</p>
+      {% elif lab.curriculumId == "technician-core" %}
+        <p>Work through the six stages. This is Technician Core, built on Foundations. Finishing the lab does not mean the idea is mastered, and it is not Technician exam readiness.</p>
       {% else %}
         <p>Work through the six stages. Try the controls. Nothing here receives or transmits a real radio signal.</p>
       {% endif %}
@@ -26,7 +28,7 @@
       </ol>
     </section>
 
-    <div class="stage-list" id="lab-session" data-lab-id="{{ lab.id }}">
+    <div class="stage-list" id="lab-session" data-lab-id="{{ lab.id }}" {% if lab.curriculumFile %}data-curriculum-file="{{ lab.curriculumFile }}"{% endif %}>
       {% for stage in stages %}
         <article class="stage" id="stage-{{ stage.id }}" aria-labelledby="stage-heading-{{ stage.id }}">
           <p class="stage-index">Stage {{ loop.index }} of {{ stages|length }}</p>
@@ -93,5 +95,9 @@
     <script src="{{ url_for('web_file', filename='handheld.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='reference-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab08.js') }}" defer></script>
+  {% elif lab.available and lab.scripts %}
+    {% for name in lab.scripts %}
+      <script src="{{ url_for('web_file', filename=name) }}" defer></script>
+    {% endfor %}
   {% endif %}
 {% endblock %}

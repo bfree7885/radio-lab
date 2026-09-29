@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "technician-core-reference",
+  "title": "Technician Core reference",
+  "note": "Looking this up is part of operating. It is a teaching card for TC-01 through TC-04, not a license manual and not the question pool. Ohm's law, the radio controls, repeaters, and SWR stay on the foundations card.",
+  "sections": [
+    {
+      "id": "license",
+      "title": "License and control",
+      "body": "The amateur license authorizes you to be a control operator. One grant covers the operator and the primary station. The usual term is 10 years. A two-year grace period is for renewal without a new exam, not for transmitting. A new license is issued for Technician, General, and Amateur Extra. The control operator is responsible for the transmissions and works at the control point. Lending the radio does not move that duty."
+    },
+    {
+      "id": "transmissions",
+      "title": "What the station is for",
+      "body": "Amateur communications include personal contacts, training, experiments, and emergency communications. They do not include music broadcasts or communications for hire. A brief third-party hello is possible while you remain the control operator and the content is otherwise permitted. Identify with your call sign so the gap stays within 10 minutes, and identify at the end."
+    },
+    {
+      "id": "power-edge",
+      "title": "Power and band edges",
+      "body": "Use the lowest power that completes the contact. A legal maximum is a ceiling, not a target. A signal has width, so a center frequency near the edge of an allocation can put part of the emission outside. Foundations Lab 04 is the band reference."
+    },
+    {
+      "id": "procedure",
+      "title": "On the air",
+      "body": "Listen before you transmit. If the frequency is busy, wait or move. A call includes your call sign. Phonetics clarify letters; they do not replace the call sign. On a repeater, listen to the output, then call and identify. A test transmission is still identified. QSY means change frequency. In a directed net, follow net control, and stand by when emergency traffic is asked for."
+    },
+    {
+      "id": "controls",
+      "title": "Controls you already met",
+      "body": "Volume, squelch, VFO, and memory are the Lab 02 controls. Squelch hides the speaker; it does not create a signal. Microphone gain sets how strong your voice is. Too much gain distorts it. A wider filter passes more noise. A narrower one can cut the voice if it is too tight."
+    },
+    {
+      "id": "parts",
+      "title": "Parts",
+      "body": "A resistor limits current. A switch opens or closes a path. A fuse opens when current is too high. A diode in this course conducts one way. A capacitor stores charge briefly. An inductor opposes a change in current. A relay uses a small coil to switch another circuit. A transistor model lets a small control affect a larger current. A conductor carries current. An insulator does not. Direct current holds one direction. Alternating current reverses."
+    },
+    {
+      "id": "schematic",
+      "title": "Schematic",
+      "body": "A schematic shows the electrical job of each part. It does not copy the photograph of the case. The battery, fuse, switch, and resistor symbols in TC-03 are the same parts as the physical chain."
+    },
+    {
+      "id": "path",
+      "title": "Signal path",
+      "body": "Transmit: microphone or data, processing, modulation, transmitter, RF output, feed line, antenna. Receive: antenna, feed line, receiver, demodulation, audio or data. A transceiver does both. Modulation places information on an RF signal. Demodulation recovers it."
+    },
+    {
+      "id": "modes",
+      "title": "Modes, as cartoons",
+      "body": "AM changes strength. FM changes frequency. SSB keeps one sideband. CW keys the carrier on and off. A digital signal uses discrete states. The lab pictures are not literal waveforms."
+    },
+    {
+      "id": "troubleshoot",
+      "title": "What to check next",
+      "body": "Power, then connections, then settings, then the signal path, then a measurement. A dark radio points at the battery, fuse, and switch. Silence with the display on points at volume and squelch. High SWR points at the antenna and feed line. A quiet repeater points at offset and tone. Weak transmitted audio points at the microphone and its gain. A dummy load lets a bench test avoid radiating."
+    }
+  ]
+}

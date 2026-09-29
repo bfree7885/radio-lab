@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "technician-2026-2030-syllabus",
+  "licenseLevel": "technician",
+  "element": "2",
+  "pool": "2026-2030",
+  "versionLabel": "2026-2030 Technician Class",
+  "effectiveFrom": "2026-07-01",
+  "effectiveThrough": "2030-06-30",
+  "questionsIncluded": false,
+  "note": "Subelement and group titles for the 2026–2030 Technician syllabus, used to align Radio Lab lessons. This file does not contain the question pool.",
+  "subelements": [
+    {
+      "id": "T1",
+      "title": "Commission's rules",
+      "groups": [
+        {"id": "T1A", "title": "Purpose of the Amateur Radio Service, the operator/primary station license, interference, and basic rule terms"},
+        {"id": "T1B", "title": "Frequency use, band edges, spectrum sharing, and transmitter power"},
+        {"id": "T1C", "title": "License classes, call signs, term, renewal, grace period, and international communications"},
+        {"id": "T1D", "title": "Authorized and prohibited transmissions"},
+        {"id": "T1E", "title": "Control operator and control point"},
+        {"id": "T1F", "title": "Station identification, repeaters, and third-party communications"}
+      ]
+    },
+    {
+      "id": "T2",
+      "title": "Operating procedures",
+      "groups": [
+        {"id": "T2A", "title": "Choosing a frequency, calling, and test transmissions"},
+        {"id": "T2B", "title": "Simplex, repeater, and courteous VHF/UHF operating"},
+        {"id": "T2C", "title": "Public service, nets, and emergency communications"}
+      ]
+    },
+    {
+      "id": "T4",
+      "title": "Amateur radio practices",
+      "groups": [
+        {"id": "T4A", "title": "Station setup and connecting equipment"},
+        {"id": "T4B", "title": "Operating controls, squelch, memories, filters, and microphone gain"}
+      ]
+    },
+    {
+      "id": "T5",
+      "title": "Electrical principles",
+      "groups": [
+        {"id": "T5A", "title": "Current, voltage, conductors, insulators, and AC versus DC"},
+        {"id": "T5C", "title": "Capacitance, inductance, and impedance"},
+        {"id": "T5D", "title": "Ohm's law and series versus parallel"}
+      ]
+    },
+    {
+      "id": "T6",
+      "title": "Components and circuits",
+      "groups": [
+        {"id": "T6A", "title": "Resistors, capacitors, inductors, fuses, switches, and batteries"},
+        {"id": "T6B", "title": "Diodes and transistors"},
+        {"id": "T6C", "title": "Schematics and symbols"},
+        {"id": "T6D", "title": "Relays, regulators, meters, integrated circuits, transformers, and resonant circuits"}
+      ]
+    },
+    {
+      "id": "T7",
+      "title": "Station equipment",
+      "groups": [
+        {"id": "T7A", "title": "Transmitters, receivers, modulation, and basic radio circuits"},
+        {"id": "T7B", "title": "Common transmitter and receiver problems"},
+        {"id": "T7C", "title": "SWR, feed lines, and dummy loads"},
+        {"id": "T7D", "title": "Basic test instruments"}
+      ]
+    },
+    {
+      "id": "T8",
+      "title": "Signals and emissions",
+      "groups": [
+        {"id": "T8A", "title": "AM, FM, SSB, CW, and bandwidth"},
+        {"id": "T8D", "title": "Basic digital signaling"}
+      ]
+    }
+  ]
+}

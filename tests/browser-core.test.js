@@ -81,6 +81,7 @@ async function main() {
   assert.equal(RadioLab.roadmap.track("technician").licenseLevel, "technician");
   assert.equal(RadioLab.roadmap.track("general").licenseLevel, "general");
   assert.equal(RadioLab.roadmap.phase("technician-foundations").status, "available");
+  assert.equal(RadioLab.roadmap.phase("technician-core").status, "available");
   assert.equal(RadioLab.roadmap.phase("general-core").status, "planned");
   assert.equal(RadioLab.roadmap.phase("general-exam").status, "planned");
   assert.equal(RadioLab.roadmap.phase("sota").status, "planned");

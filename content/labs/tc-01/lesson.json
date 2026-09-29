@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-01",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Your License & Responsibilities",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T1"],
+    "topics": ["T1A", "T1B", "T1C", "T1D", "T1E", "T1F"]
+  },
+  "requires": ["simulation.field"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A license is permission to be the control operator of an amateur station, inside the rules. It is not permission to use a transmitter for any purpose you like. Band edges from Foundations Lab 04 still apply. This page is a teaching summary, not the rule book."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "body": "Open the core reference when a situation is unclear. That is normal.",
+          "config": {"file": "reference/technician-core.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "The license makes you responsible for what the station transmits. Access to the radio is not the same thing as permission to transmit.",
+            "scenes": [
+              {
+                "prompt": "A friend who is not licensed wants to borrow your radio for the afternoon and transmit while you are gone.",
+                "choices": [
+                  {"label": "Lend the radio. Your license covers the equipment.", "correct": false, "why": "The license belongs to the operator, not to the radio as a free pass. Someone has to be the control operator, at the control point, for the transmissions."},
+                  {"label": "Do not let the radio transmit unless a licensed control operator is there and responsible.", "correct": true, "why": "You can own the radio and still not be the control operator of a contact that happens while you are away. The friend needs to be licensed, or you need to be the control operator."},
+                  {"label": "Tell the friend to use your call sign so the station is identified.", "correct": false, "why": "Saying your call sign does not make an unlicensed person the control operator."}
+                ]
+              },
+              {
+                "prompt": "Someone asks you to play recorded music over the amateur station for a neighborhood event.",
+                "choices": [
+                  {"label": "Play it. A license means the frequency is yours to program.", "correct": false, "why": "Amateur transmissions are not a broadcast service. Music for an audience is not the purpose of the station."},
+                  {"label": "Decline. Playing music for an audience is not an amateur communication.", "correct": true, "why": "The station is for amateur communications. A music broadcast is a different service. The license does not convert the radio into a broadcast transmitter."},
+                  {"label": "Play it if you identify every 10 minutes.", "correct": false, "why": "Identification makes a transmission attributable. It does not make a prohibited transmission allowed."}
+                ]
+              },
+              {
+                "prompt": "A neighbor offers to pay you to pass messages on the amateur radio for a delivery business.",
+                "choices": [
+                  {"label": "Accept. Emergency and business messages are the same if you identify.", "correct": false, "why": "Getting paid to carry communications is not an amateur transmission. Identification does not change that."},
+                  {"label": "Decline the paid communications.", "correct": true, "why": "Amateur operation is not a hired message service. A real emergency is a different situation from a delivery contract."},
+                  {"label": "Accept if the neighbor is also licensed.", "correct": false, "why": "Two licenses do not turn the contact into a paid communications service."}
+                ]
+              },
+              {
+                "prompt": "A family member wants to say hello, briefly, to a friend on your station.",
+                "choices": [
+                  {"label": "Hand over the radio and leave. They only need a minute.", "correct": false, "why": "An unlicensed person can speak only while a control operator is in charge of the station."},
+                  {"label": "Stay as the control operator, allow the brief hello if the content is otherwise permitted, and identify the station.", "correct": true, "why": "A third party may speak under the control operator. You remain responsible. You identify the station. The hello is not a program and not a paid message."},
+                  {"label": "Refuse every third-party word. Only the licensee may speak.", "correct": false, "why": "A brief permitted message for another person is a normal amateur use when the control operator is present."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "During a contact, identify the station often enough that a listener can tell who is transmitting. This clock uses a 10-minute gap and an identification at the end."
+        },
+        {"type": "interaction", "component": "id-timeline"}
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Two more decisions, then the edge of the 2-meter allocation. A signal has width. The center frequency is not the whole emission."
+        },
+        {
+          "type": "interaction",
+          "component": "decision-deck",
+          "recordsStage": false,
+          "gate": "tc01-more-decisions",
+          "config": {
+            "doneText": "A test is still your transmission. A picnic does not require a new license, and it does not erase the identification rule.",
+            "scenes": [
+              {
+                "prompt": "You want to test the transmitter on the air.",
+                "choices": [
+                  {"label": "Key the radio and say nothing, so you do not clutter the frequency.", "correct": false, "why": "A test is a transmission. Listen first, keep it short, and identify. A silent key-up is still you."},
+                  {"label": "Listen first, keep the test short, identify, and use only enough power to make the test.", "correct": true, "why": "The legal maximum is a ceiling. The operating habit is the lowest power that does the job. A dummy load, in the next labs, keeps a bench test from radiating."},
+                  {"label": "Use the highest power the radio offers so the test is obvious.", "correct": false, "why": "More power is not a better test. It is more likely to bother another station."}
+                ]
+              },
+              {
+                "prompt": "You take the same radio from home to a park in the United States.",
+                "choices": [
+                  {"label": "You need a new license for the new location before you can transmit.", "correct": false, "why": "The operator license travels with you. A change of mailing address is a database duty. It is not a new license for each picnic."},
+                  {"label": "You may operate under the same license, still as the control operator, and you still identify.", "correct": true, "why": "The privilege is yours. The control point is wherever you are actually controlling the station. Identification and the band limits come with you."},
+                  {"label": "Leave the call sign at home because the radio is now portable.", "correct": false, "why": "The call sign identifies the station wherever it is operating."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "edge-meter",
+          "requiresGates": ["tc01-more-decisions"],
+          "config": {
+            "bandLow": 144000,
+            "bandHigh": 148000,
+            "halfKhz": 8,
+            "centers": [147995, 147900, 146520]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why does having access to a transmitter not give you permission to use it however you want?",
+          "conceptId": "license-is-responsibility",
+          "reference": "The license authorizes you to be a control operator inside the amateur service. It does not make the transmitter a broadcast station, a hired circuit, or a radio anyone can use in your absence. You choose the frequency, the power, the content, and the identification. Access to the hardware is only the start of that responsibility.",
+          "unsure": "Go back to the four situations. In each one the radio could physically transmit. The license still said no, or it said yes only with you in control.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the situations"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the decisions you just made. They are not official exam questions, and a miss is not a failed license."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about the decisions you just made. Not official exam questions. A miss is a review topic, not a failed license.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc01-purpose",
+              "topicId": "T1A",
+              "stem": "Which activity fits the amateur service in this lab?",
+              "choices": [
+                "Selling airtime for a neighborhood music show",
+                "A personal contact, including emergency communications, under the control operator",
+                "A paid delivery-message service"
+              ],
+              "correctIndex": 1,
+              "why": "The service is for amateur communications, including emergencies and training. It is not a broadcast or a hired circuit."
+            },
+            {
+              "id": "tc01-term",
+              "topicId": "T1C",
+              "stem": "Your license grant is still inside its term. What is a fair statement from this lab?",
+              "choices": [
+                "The usual term is 10 years, and the two-year grace period is not permission to transmit",
+                "The license expires every year and the radio must stay at the original address",
+                "A grace period is an extra two years of on-air privileges"
+              ],
+              "correctIndex": 0,
+              "why": "The teaching point is a 10-year term. During the grace period you may renew without retesting, and you do not transmit as if the license were still active."
+            },
+            {
+              "id": "tc01-control",
+              "topicId": "T1E",
+              "stem": "Who is responsible for a transmission from your station?",
+              "choices": [
+                "Whoever is holding the microphone, licensed or not",
+                "The control operator",
+                "The manufacturer of the radio"
+              ],
+              "correctIndex": 1,
+              "why": "The control operator is responsible and must be in control. Lending the radio does not move that duty onto an unlicensed friend."
+            },
+            {
+              "id": "tc01-id",
+              "topicId": "T1F",
+              "stem": "During a long contact, when does this lab ask you to identify?",
+              "choices": [
+                "Only the first time you turn the radio on that day",
+                "Often enough to stay inside a 10-minute gap, and again at the end",
+                "Only if another station asks for your name"
+              ],
+              "correctIndex": 1,
+              "why": "The timeline refused a gap longer than 10 minutes and required an identification at the end."
+            },
+            {
+              "id": "tc01-power",
+              "topicId": "T1B",
+              "stem": "You can legally use more power than the contact needs. What should you do?",
+              "choices": [
+                "Use the lowest power that completes the contact",
+                "Use the legal maximum so the signal is as strong as the rules allow",
+                "Sit on the band edge, because the center frequency is all that counts"
+              ],
+              "correctIndex": 0,
+              "why": "The maximum is a ceiling. The habit is the minimum power that works. The emission also has width, so the edge of the signal has to stay inside the allocation."
+            },
+            {
+              "id": "tc01-third",
+              "topicId": "T1D",
+              "stem": "A family member wants to say a brief hello on your station. What keeps that inside this lab's rule?",
+              "choices": [
+                "You leave, and they use your call sign",
+                "You stay as control operator, the hello is otherwise permitted, and you identify",
+                "They pay for the batteries, so the message is authorized"
+              ],
+              "correctIndex": 1,
+              "why": "Third-party speech is possible with the control operator present. Payment and an absent licensee take it outside the permission you practiced."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "First day with the license. You are at a trailhead with your own radio. Make the operating decisions. This does not finish Technician Core or make you exam-ready."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc01-first-day",
+          "component": "decision-deck",
+          "config": {
+            "doneText": "You kept the control operator duty, refused the paid messages, and identified. That is a usable first day, not the whole license.",
+            "scenes": [
+              {
+                "prompt": "Before you call, a hiker offers you cash to send delivery updates on the radio.",
+                "choices": [
+                  {"label": "Decline.", "correct": true, "why": "Paid communications are not the contact you came to make."},
+                  {"label": "Accept if you identify first.", "correct": false, "why": "Identification does not authorize communications for hire."}
+                ]
+              },
+              {
+                "prompt": "You make a contact. It runs long.",
+                "choices": [
+                  {"label": "Identify during the contact and at the end.", "correct": true, "why": "The call sign has to stay attached to the transmission."},
+                  {"label": "Skip the call sign because the other station already knows you.", "correct": false, "why": "Familiarity is not identification."}
+                ]
+              },
+              {
+                "prompt": "Your sibling wants to say hello to the other station.",
+                "choices": [
+                  {"label": "You stay at the radio as control operator and allow the brief hello.", "correct": true, "why": "You remain responsible. The sibling is not the control operator."},
+                  {"label": "You walk to the overlook and leave them the microphone.", "correct": false, "why": "The control operator has to be in control of the station."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

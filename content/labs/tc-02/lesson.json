@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-02",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Operating on the Air",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T2", "T4"],
+    "topics": ["T2A", "T2B", "T2C", "T4B"]
+  },
+  "requires": ["simulation.receiver", "simulation.repeater"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A contact starts with listening. Foundations Lab 02 is the radio. Lab 03 is the repeater. This lab is the order of the actions. No microphone is required."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-core.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "on-air",
+          "config": {
+            "doneText": "You heard the other contact, left that frequency, listened again, called, and identified.",
+            "steps": [
+              {
+                "prompt": "You want to call a friend. The radio is already on a frequency.",
+                "heard": "Two stations are in the middle of a conversation.",
+                "expect": "LISTEN",
+                "success": "You listened first. The frequency is busy.",
+                "hint": "Find out whether anyone is there before you transmit."
+              },
+              {
+                "prompt": "The conversation is still going.",
+                "heard": "The same two stations are still talking.",
+                "expect": "CHANGE FREQUENCY",
+                "success": "You moved. Covering their contact would not get you a clear frequency.",
+                "hints": {
+                  "TRANSMIT": "They are using the frequency. Calling on top of them is interference, not a contact.",
+                  "WAIT": "Waiting is polite if you need this exact frequency. This step is to leave a busy one.",
+                  "IDENTIFY": "Identification does not make it acceptable to transmit over an ongoing contact."
+                }
+              },
+              {
+                "prompt": "The new frequency might be clear. Check.",
+                "heard": "You have not listened on the new frequency yet.",
+                "expect": "LISTEN",
+                "success": "It is quiet. Now you know the frequency is available in this model.",
+                "hint": "A new frequency still gets a listen."
+              },
+              {
+                "prompt": "Call the station.",
+                "heard": "The frequency is quiet.",
+                "expect": "TRANSMIT",
+                "success": "You placed the call on a frequency you had just checked.",
+                "hint": "The frequency is clear. Make the call."
+              },
+              {
+                "prompt": "Finish the call with your call sign.",
+                "heard": "Your carrier is up.",
+                "expect": "IDENTIFY",
+                "success": "The other station can tell who called.",
+                "hint": "A call without your call sign is not a finished identification."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Set the handheld the way Lab 02 taught, spell a call sign with phonetics, then set microphone gain and look at two filter widths."
+        },
+        {
+          "type": "interaction",
+          "component": "control-review",
+          "recordsStage": false,
+          "gate": "tc02-vfo",
+          "config": {"startKhz": 145000, "signalKhz": 146520}
+        },
+        {
+          "type": "interaction",
+          "component": "phonetic",
+          "recordsStage": false,
+          "gate": "tc02-phonetic",
+          "config": {
+            "call": "K5ABC",
+            "words": ["Kilo", "Five", "Alpha", "Bravo", "Charlie"],
+            "decoys": ["Zulu", "Quebec"]
+          }
+        },
+        {"type": "interaction", "component": "gain-filter", "requiresGates": ["tc02-vfo", "tc02-phonetic"]}
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A repeater contact, then a net that asks you to wait, then a test. QSY in the hint means change frequency. You do not need a list of Q-signals."
+        },
+        {
+          "type": "interaction",
+          "component": "on-air",
+          "config": {
+            "doneText": "You listened on the repeater, called, identified, waited for the net, and identified the test.",
+            "steps": [
+              {
+                "prompt": "You want a repeater contact. Check the output first.",
+                "heard": "The repeater output is quiet.",
+                "expect": "LISTEN",
+                "success": "Quiet. A silent key-up would still be a transmission.",
+                "hint": "Listen on the output before you transmit."
+              },
+              {
+                "prompt": "Call. Include who you are calling and your call sign in the next steps.",
+                "heard": "The output is still quiet.",
+                "expect": "TRANSMIT",
+                "success": "The call is going out on the input. The repeater, if it accepts you, will retransmit it.",
+                "hints": {
+                  "ADJUST": "Tone and offset matter, and they are settings from Lab 03. This step is the call itself.",
+                  "IDENTIFY": "Say the call as you transmit. Press TRANSMIT to place the call, then identify before you finish."
+                }
+              },
+              {
+                "prompt": "Put your call sign on the transmission.",
+                "heard": "Your carrier is up on the repeater input.",
+                "expect": "IDENTIFY",
+                "success": "The repeater users hear your call sign, not only the repeater's tail.",
+                "hint": "Identify your station."
+              },
+              {
+                "prompt": "A net control says: stand by, emergency traffic only.",
+                "heard": "Net control: emergency traffic only. Please stand by.",
+                "expect": "WAIT",
+                "success": "You waited. A net is directed. Emergency traffic takes the channel.",
+                "hints": {
+                  "TRANSMIT": "The net control asked stations to stand by. Your routine call can wait.",
+                  "CHANGE FREQUENCY": "Leaving is possible, but the asked action is to wait."
+                }
+              },
+              {
+                "prompt": "The net control says the channel is open for a short radio check.",
+                "heard": "Net control: short radio checks are welcome.",
+                "expect": "IDENTIFY",
+                "success": "The test carries your call sign. A test is not an excuse to transmit without identification.",
+                "hint": "A radio check is still your transmission. Identify it."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why should you listen before transmitting on a frequency?",
+          "conceptId": "listen-before-transmit",
+          "reference": "Someone may already be using the frequency. Listening tells you whether to wait, move, or call. Transmitting first can cover a contact you did not know was there. On a repeater, listening to the output tells you whether the machine is busy before you key the input.",
+          "unsure": "Go back to the first frequency. The conversation was already there. The listen button is what revealed it.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the crowded frequency"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the contacts you just made. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about the contacts you just made. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc02-listen",
+              "topicId": "T2A",
+              "stem": "A frequency might be busy. What did this lab have you do first?",
+              "choices": ["Transmit a short call and apologize if someone answers", "Listen", "Change frequency without listening, because a move is always safe"],
+              "correctIndex": 1,
+              "why": "The first action on the busy frequency was LISTEN. Moving came after you heard the contact."
+            },
+            {
+              "id": "tc02-call",
+              "topicId": "T2A",
+              "stem": "You have listened and the frequency is quiet. What belongs in the call?",
+              "choices": ["Your call sign", "Only the word hello, with the call sign saved for later", "The repeater's call sign instead of yours"],
+              "correctIndex": 0,
+              "why": "The station identification is your call sign. Phonetics can clarify the letters. They do not replace the call sign."
+            },
+            {
+              "id": "tc02-repeater",
+              "topicId": "T2B",
+              "stem": "The repeater output is quiet. Which action matches this lab?",
+              "choices": ["Key the radio in silence to see if the tail beeps", "Listen, then call and identify", "Turn the squelch to zero and transmit over whatever you then hear"],
+              "correctIndex": 1,
+              "why": "A repeater contact is still listen, then transmit, then identify. A silent key-up is a transmission without identification."
+            },
+            {
+              "id": "tc02-net",
+              "topicId": "T2C",
+              "stem": "Net control has asked stations to stand by for emergency traffic. What do you do with a routine call?",
+              "choices": ["Wait", "Transmit anyway if you identify", "Play a long tone so net control knows you are there"],
+              "correctIndex": 0,
+              "why": "A directed net gives the channel to the traffic it named. Your routine call waits."
+            },
+            {
+              "id": "tc02-gain",
+              "topicId": "T4B",
+              "stem": "The other station says your voice is loud and distorted. What did the gain control show?",
+              "choices": ["Turn the microphone gain down from the high setting", "Replace the microphone immediately", "Open the filter wider, because gain and bandwidth are the same knob"],
+              "correctIndex": 0,
+              "why": "High gain distorted the voice. Usable gain was understandable. The filter is a separate control."
+            },
+            {
+              "id": "tc02-qsy",
+              "topicId": "T2B",
+              "stem": "Someone says QSY. What is the beginner meaning used here?",
+              "choices": ["Change frequency", "Increase transmitter power", "Ignore the station"],
+              "correctIndex": 0,
+              "why": "QSY is a short way to say change frequency. You do not need a long list of Q-signals to use that one."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "You are at a trailhead. Make one basic contact. Listen before you call."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc02-trailhead-contact",
+          "component": "on-air",
+          "config": {
+            "doneText": "You left the busy frequency, listened on the clear one, called, and identified.",
+            "steps": [
+              {
+                "prompt": "The radio comes up on a frequency as you reach the trailhead.",
+                "heard": "A net is passing traffic.",
+                "expect": "LISTEN",
+                "success": "The net is using this frequency.",
+                "hint": "Listen before you decide to call."
+              },
+              {
+                "prompt": "You do not need to join that net.",
+                "heard": "The net continues.",
+                "expect": "CHANGE FREQUENCY",
+                "success": "You moved off the net.",
+                "hints": {"TRANSMIT": "The net is busy. Move rather than calling over it."}
+              },
+              {
+                "prompt": "Check the simplex frequency you planned with your friend.",
+                "heard": "Not checked yet.",
+                "expect": "LISTEN",
+                "success": "146.520 MHz is quiet in this model.",
+                "hint": "Listen on the new frequency too."
+              },
+              {
+                "prompt": "Your friend is monitoring. Call.",
+                "heard": "Quiet simplex channel.",
+                "expect": "TRANSMIT",
+                "success": "The call is going out.",
+                "hint": "The channel is clear. Call."
+              },
+              {
+                "prompt": "Close the call so the other station knows who you are.",
+                "heard": "Your carrier is up.",
+                "expect": "IDENTIFY",
+                "success": "The trailhead contact included your call sign.",
+                "hint": "Identify."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

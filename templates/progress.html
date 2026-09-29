@@ -44,6 +44,31 @@
     {% endif %}
   </section>
 
+  <section class="panel" aria-labelledby="core-progress-heading">
+    <h2 id="core-progress-heading">Technician Core</h2>
+    <p>{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. Lesson completion, concept checks, and practice results are separate. None of them is Technician exam readiness.</p>
+    <ol class="status-list">
+      {% for lab in core_labs %}
+        <li>
+          <span class="lab-number">{{ lab.number }}</span>
+          <span class="status-title">{{ lab.title }}</span>
+          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+    {% if core_topics %}
+      <p>Practice topics to review:</p>
+      <ul>
+        {% for topic in core_topics %}
+          <li>{{ topic.topic_id }} — missed {{ topic.misses }}, correct {{ topic.hits }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No core practice topic is behind. A topic appears here only when misses outnumber correct answers. That list is practice performance, not concept mastery.</p>
+    {% endif %}
+    <p>{% if core_concepts %}{{ core_concepts }} concept checks recorded for Technician Core.{% else %}No Technician Core concept checks recorded yet.{% endif %}</p>
+  </section>
+
   <section aria-labelledby="lab-status-heading">
     <h2 id="lab-status-heading">Lab status</h2>
     <ol class="status-list">

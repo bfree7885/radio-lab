@@ -16,12 +16,13 @@ from flask import Flask, abort, jsonify, render_template, request, send_from_dir
 
 from hardware.capabilities import capability_snapshot, lab_mode, live_lab_available
 from labs.catalog import (
+    CORE_ID,
     FOUNDATIONS_ID,
     curriculum_meta,
+    get_core_labs,
     get_lab,
     get_labs,
     get_stages,
-    lab_ids,
     load_roadmap,
     stages_for_lab,
 )
@@ -74,9 +75,24 @@ def _inject_globals() -> dict:
 
 
 def _labs_view() -> tuple[list[dict], dict]:
-    summary = progress_summary(lab_ids())
+    return _labs_for(get_labs(), FOUNDATIONS_ID)
+
+
+def _core_view() -> tuple[list[dict], dict]:
+    return _labs_for(get_core_labs(), CORE_ID)
+
+
+def _continue_lab(labs: list[dict]) -> dict | None:
+    for lab in labs:
+        if lab["available"] and lab["status"] != "complete":
+            return lab
+    return None
+
+
+def _labs_for(labs: list[dict], curriculum_id: str) -> tuple[list[dict], dict]:
+    summary = progress_summary([lab["id"] for lab in labs], curriculum_id)
     rows = []
-    for lab in get_labs():
+    for lab in labs:
         status = summary["statuses"][lab["id"]]
         rows.append(
             {
@@ -86,13 +102,6 @@ def _labs_view() -> tuple[list[dict], dict]:
             }
         )
     return rows, summary
-
-
-def _continue_lab(labs: list[dict]) -> dict | None:
-    for lab in labs:
-        if lab["available"] and lab["status"] != "complete":
-            return lab
-    return None
 
 
 @app.route("/favicon.ico")
@@ -117,11 +126,15 @@ def web_file(filename: str):
 @app.route("/")
 def dashboard():
     labs, summary = _labs_view()
+    core_labs, core_summary = _core_view()
     return render_template(
         "dashboard.html",
         labs=labs,
         summary=summary,
         continue_lab=_continue_lab(labs),
+        core_labs=core_labs,
+        core_summary=core_summary,
+        core_continue=_continue_lab(core_labs),
         roadmap=load_roadmap(),
     )
 
@@ -129,7 +142,14 @@ def dashboard():
 @app.route("/labs")
 def labs_index():
     labs, summary = _labs_view()
-    return render_template("labs.html", labs=labs, summary=summary)
+    core_labs, core_summary = _core_view()
+    return render_template(
+        "labs.html",
+        labs=labs,
+        summary=summary,
+        core_labs=core_labs,
+        core_summary=core_summary,
+    )
 
 
 def _curriculum_id(value: str | None) -> str:
@@ -220,7 +240,8 @@ def lab_workspace(lab_id: str):
     lab = get_lab(lab_id)
     if lab is None:
         abort(404)
-    summary = progress_summary([lab["id"]])
+    curriculum_id = lab.get("curriculumId") or FOUNDATIONS_ID
+    summary = progress_summary([lab["id"]], curriculum_id)
     status = summary["statuses"][lab["id"]]
     return render_template(
         "lab.html",
@@ -234,6 +255,7 @@ def lab_workspace(lab_id: str):
 @app.route("/progress")
 def progress_page():
     labs, summary = _labs_view()
+    core_labs, core_summary = _core_view()
     return render_template(
         "progress.html",
         labs=labs,
@@ -241,6 +263,10 @@ def progress_page():
         topics=weak_topics(curriculum_id=FOUNDATIONS_ID),
         exam=exam_readiness(curriculum_id=FOUNDATIONS_ID),
         concepts=concept_count(FOUNDATIONS_ID),
+        core_labs=core_labs,
+        core_summary=core_summary,
+        core_topics=weak_topics(curriculum_id=CORE_ID),
+        core_concepts=concept_count(CORE_ID),
     )
 
 

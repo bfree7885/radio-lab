@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-03",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Components & Circuits",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T5", "T6"],
+    "topics": ["T5A", "T5C", "T6A", "T6B", "T6C", "T6D"]
+  },
+  "requires": ["simulation.electricity"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Foundations Lab 05 showed voltage, current, and resistance. These parts are the pieces that create those effects. Try each one. The models are simplified."
+        },
+        {
+          "type": "interaction",
+          "component": "component-bench",
+          "config": {
+            "intro": "Start with the resistor, the switch, the fuse, and the diode.",
+            "parts": ["resistor", "switch", "fuse", "diode"],
+            "doneText": "A resistor limits current. A switch opens or closes the path. A fuse opens when current is too high. A diode in this model conducts one way."
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A capacitor stores a charge briefly. An inductor opposes a change in current. A relay uses a small coil to switch another path. A transistor lets a small control affect a larger current. None of these drawings is a full design."
+        },
+        {
+          "type": "interaction",
+          "component": "component-bench",
+          "config": {
+            "intro": "Try the capacitor, the inductor, the relay, and the transistor.",
+            "parts": ["capacitor", "inductor", "relay", "transistor"],
+            "doneText": "You saw charge move, a current change get opposed, a coil move a contact, and a small control affect a larger path."
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A schematic is a map of electrical jobs. It will not look like a photo of the radio. Match the chain to the symbols, then name four of them."
+        },
+        {
+          "type": "interaction",
+          "component": "schematic-lab",
+          "config": {
+            "parts": [
+              {"id": "battery", "physical": "Battery pack", "symbol": "Battery symbol"},
+              {"id": "fuse", "physical": "Fuse in the holder", "symbol": "Fuse symbol"},
+              {"id": "switch", "physical": "Power switch", "symbol": "Switch symbol"},
+              {"id": "resistor", "physical": "Resistor on the board", "symbol": "Resistor symbol"}
+            ],
+            "identify": [
+              {"id": "fuse", "name": "fuse"},
+              {"id": "resistor", "name": "resistor"},
+              {"id": "switch", "name": "switch"},
+              {"id": "battery", "name": "battery"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why is a schematic useful even though it doesn't look like the physical layout of the equipment?",
+          "conceptId": "schematic-shows-function",
+          "reference": "The physical radio is arranged to fit a case. The schematic is arranged to show how current is supposed to move. A fuse can sit far from the battery in the drawing and still be the part that opens the same path. Reading the symbol tells you the job. It does not tell you which screw to remove first.",
+          "unsure": "Go back to the chain. Click the fuse in the holder and find the fuse symbol. The two pictures are the same part.",
+          "returnHref": "#stage-do",
+          "returnLabel": "Return to the schematic"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the parts you just tried. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about the parts you just tried. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc03-resistor",
+              "topicId": "T6A",
+              "stem": "On the bench, what happened when the load resistance went from 25 ohms to 100 ohms at the same voltage?",
+              "choices": ["Current decreased", "Current increased", "The fuse had to open"],
+              "correctIndex": 0,
+              "why": "A larger resistance limited the current more. That is the same relationship as Lab 05."
+            },
+            {
+              "id": "tc03-switch",
+              "topicId": "T6A",
+              "stem": "The supply is connected and the switch is open. What reaches the load?",
+              "choices": ["No current. The path is open.", "Full current, because the supply is on", "Current in both directions, because a switch is a diode"],
+              "correctIndex": 0,
+              "why": "An open switch breaks the path. The supply can still be healthy."
+            },
+            {
+              "id": "tc03-fuse",
+              "topicId": "T6A",
+              "stem": "The model pushed about 6 A through a 2 A fuse. What did the fuse do?",
+              "choices": ["It opened", "It increased the current to protect the supply", "It turned into a capacitor"],
+              "correctIndex": 0,
+              "why": "The fuse opened because the current was above its rating. That is the protective behavior. The drawing cannot hurt you."
+            },
+            {
+              "id": "tc03-diode",
+              "topicId": "T6B",
+              "stem": "In this lab's diode model, which direction conducts?",
+              "choices": ["Both directions equally", "Forward only", "Reverse only"],
+              "correctIndex": 1,
+              "why": "Forward conducted. Reverse was blocked. A real diode has more detail than this one-way model."
+            },
+            {
+              "id": "tc03-schematic",
+              "topicId": "T6C",
+              "stem": "Why did the fuse symbol light when you clicked the fuse holder?",
+              "choices": ["They are the same part in two drawings", "The symbol is a picture of the plastic case", "Schematics only show antennas"],
+              "correctIndex": 0,
+              "why": "The schematic shows the electrical job. The holder shows where you would see the part. Highlighting linked the two."
+            },
+            {
+              "id": "tc03-transistor",
+              "topicId": "T6B",
+              "stem": "What did the transistor model show when the control signal went high?",
+              "choices": ["A small control let the larger path conduct", "The transistor became a fuse", "Current stopped in every path"],
+              "correctIndex": 0,
+              "why": "The teaching model is a small control affecting a larger current. It is not a complete amplifier design."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The portable radio is dark. Use the battery, fuse, and switch before you blame the radio."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc03-power-chain",
+          "component": "power-path"
+        }
+      ]
+    }
+  ]
+}

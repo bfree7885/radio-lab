@@ -48,6 +48,9 @@
         <p class="stat-line">TECHNICIAN FOUNDATIONS COMPLETE</p>
         <p class="stat-line">NEXT: TECHNICIAN CORE</p>
         <p>These eight labs are the foundation. They are not Technician exam readiness.</p>
+        {% if core_continue %}
+          <a class="button" href="{{ url_for('lab_workspace', lab_id=core_continue.id) }}">Open Technician Core</a>
+        {% endif %}
       {% endif %}
     </div>
     <div
@@ -73,6 +76,23 @@
           {% if not lab.available %}
             <p class="coming-soon">COMING SOON</p>
           {% endif %}
+          {% if lab.available %}
+            <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section aria-labelledby="core-heading">
+    <h2 id="core-heading">Technician Core</h2>
+    <p class="lede">{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. These four labs start Technician Core. They are not the rest of the core, and they are not Technician exam readiness.</p>
+    <ol class="lab-grid">
+      {% for lab in core_labs %}
+        <li class="card">
+          <p class="lab-number">{{ lab.number }}</p>
+          <h3>{{ lab.title }}</h3>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
           {% if lab.available %}
             <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
           {% endif %}

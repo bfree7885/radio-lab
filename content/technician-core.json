@@ -1,0 +1,101 @@
+{
+  "id": "technician-core",
+  "title": "Technician Core",
+  "version": "V0.1",
+  "licenseLevel": "technician",
+  "phaseId": "technician-core",
+  "licenseTarget": "FCC Technician",
+  "audience": "Learners who have finished Technician Foundations and are still beginners.",
+  "note": "These four labs start Technician Core. They are not the rest of the core, and they are not Technician exam readiness.",
+  "stages": [
+    {"id": "learn", "label": "LEARN", "order": 1},
+    {"id": "see", "label": "SEE IT", "order": 2},
+    {"id": "do", "label": "DO IT", "order": 3},
+    {"id": "explain", "label": "EXPLAIN IT", "order": 4},
+    {"id": "exam", "label": "EXAM CONNECTION", "order": 5},
+    {"id": "field", "label": "FIELD TASK", "order": 6}
+  ],
+  "labs": [
+    {
+      "id": "tc-01",
+      "number": "TC-01",
+      "title": "Your License & Responsibilities",
+      "description": "What a Technician license allows and requires, practiced as operating decisions.",
+      "available": true,
+      "lesson": "labs/tc-01/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T1A", "T1B", "T1C", "T1D", "T1E", "T1F"],
+      "scripts": [
+        "progress-local.js",
+        "radio-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js"
+      ]
+    },
+    {
+      "id": "tc-02",
+      "number": "TC-02",
+      "title": "Operating on the Air",
+      "description": "Listening, calling, identifying, simplex, repeaters, and a first courteous contact.",
+      "available": true,
+      "lesson": "labs/tc-02/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T2A", "T2B", "T2C", "T4B"],
+      "scripts": [
+        "progress-local.js",
+        "radio-sim.js",
+        "radio-controls.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "handheld.js",
+        "reference-kit.js",
+        "core-labs.js"
+      ]
+    },
+    {
+      "id": "tc-03",
+      "number": "TC-03",
+      "title": "Components & Circuits",
+      "description": "What common parts do, and how to read a basic schematic.",
+      "available": true,
+      "lesson": "labs/tc-03/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T5A", "T5C", "T6A", "T6B", "T6C", "T6D"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js"
+      ]
+    },
+    {
+      "id": "tc-04",
+      "number": "TC-04",
+      "title": "Inside the Radio",
+      "description": "Signal path, modulation, and a first troubleshooting sequence.",
+      "available": true,
+      "lesson": "labs/tc-04/lesson.json",
+      "curriculumId": "technician-core",
+      "phaseTitle": "Technician Core",
+      "curriculumFile": "technician-core.json",
+      "topics": ["T7A", "T7B", "T7C", "T7D", "T8A", "T8D"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js"
+      ]
+    }
+  ]
+}

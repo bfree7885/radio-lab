@@ -16,9 +16,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 CURRICULUM_PATH = CONTENT / "curriculum.json"
+CORE_CURRICULUM_PATH = CONTENT / "technician-core.json"
 ROADMAP_PATH = CONTENT / "roadmap.json"
 EXAM_MODEL_PATH = CONTENT / "exam" / "model.json"
+SYLLABUS_PATH = CONTENT / "exam" / "technician-2026-2030.json"
 FOUNDATIONS_ID = "technician-foundations"
+CORE_ID = "technician-core"
 
 SHELL_TEXT = {
     "learn": "A short orientation for this lab will be added here.",
@@ -30,6 +33,7 @@ SHELL_TEXT = {
 }
 
 _curriculum: dict | None = None
+_core_curriculum: dict | None = None
 _roadmap: dict | None = None
 
 
@@ -46,6 +50,13 @@ def load_curriculum() -> dict:
     if _curriculum is None:
         _curriculum = _read_json(CURRICULUM_PATH)
     return _curriculum
+
+
+def load_core_curriculum() -> dict:
+    global _core_curriculum
+    if _core_curriculum is None:
+        _core_curriculum = _read_json(CORE_CURRICULUM_PATH)
+    return _core_curriculum
 
 
 def curriculum_meta() -> dict:
@@ -76,6 +87,10 @@ def load_exam_model() -> dict:
     return _read_json(EXAM_MODEL_PATH)
 
 
+def load_technician_syllabus() -> dict:
+    return _read_json(SYLLABUS_PATH)
+
+
 def phase_by_id(phase_id: str) -> dict | None:
     for track in roadmap_tracks():
         for phase in track.get("phases", []):
@@ -88,8 +103,12 @@ def get_labs() -> list[dict]:
     return list(load_curriculum()["labs"])
 
 
+def get_core_labs() -> list[dict]:
+    return list(load_core_curriculum()["labs"])
+
+
 def get_lab(lab_id: str) -> dict | None:
-    for lab in get_labs():
+    for lab in list(get_labs()) + list(get_core_labs()):
         if lab["id"] == lab_id:
             return lab
     return None

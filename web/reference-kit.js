@@ -11,7 +11,7 @@
     });
   }
 
-  function mount(container) {
+  function mount(container, relative) {
     var details = document.createElement("details");
     details.className = "field-reference";
     var summary = document.createElement("summary");
@@ -21,7 +21,7 @@
     note.textContent = "Opening this is normal. Field operators look things up.";
     details.appendChild(note);
     container.appendChild(details);
-    return load("reference/foundations.json").then(function (book) {
+    return load(relative || "reference/foundations.json").then(function (book) {
       note.textContent = book.note;
       (book.sections || []).forEach(function (section) {
         var block = document.createElement("section");

@@ -4,6 +4,16 @@
   "conceptMastery": "Recorded on its own. A correct practice question does not by itself mark a concept mastered.",
   "poolPerformance": "Results belong to one versioned question pool. Pools change, so each result keeps a pool id and that pool's date range.",
   "pools": [],
+  "activeTechnician": {
+    "licenseLevel": "technician",
+    "element": "2",
+    "pool": "2026-2030",
+    "versionLabel": "2026-2030 Technician Class",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "syllabus": "exam/technician-2026-2030.json",
+    "questionsImported": false
+  },
   "poolShape": {
     "id": null,
     "licenseLevel": null,

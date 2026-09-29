@@ -57,12 +57,13 @@
         state.curriculum = data;
         return data;
       },
-      load: function () {
+      load: function (filename) {
         var get = fetcher();
         if (!get) {
           return Promise.reject(new Error("No fetch available"));
         }
-        return Promise.resolve(get(join(state.contentBase, "curriculum.json")))
+        var file = filename || "curriculum.json";
+        return Promise.resolve(get(join(state.contentBase, file)))
           .then(readJson)
           .then(function (data) {
             state.curriculum = data;

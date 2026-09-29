@@ -21,9 +21,9 @@
         {
           "id": "technician-core",
           "title": "Core",
-          "status": "planned",
-          "statusLabel": "PLANNED",
-          "content": null
+          "status": "available",
+          "statusLabel": "AVAILABLE",
+          "content": "technician-core.json"
         },
         {
           "id": "technician-exam",

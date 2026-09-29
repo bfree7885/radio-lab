@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "labId": "tc-04",
+  "curriculumId": "technician-core",
+  "licenseLevel": "technician",
+  "title": "Inside the Radio",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T7", "T8"],
+    "topics": ["T7A", "T7B", "T7C", "T7D", "T8A", "T8D"]
+  },
+  "requires": ["simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A transmitter takes information and puts it on a radio-frequency signal. Follow the path from the microphone to the antenna. Foundations Labs 05 and 06 are the power and the antenna. This is the chain between them."
+        },
+        {
+          "type": "interaction",
+          "component": "signal-path",
+          "config": {
+            "intro": "Transmit path. Select every stage.",
+            "doneText": "Voice or data becomes a modulated RF signal, is amplified, and leaves through the feed line and antenna.",
+            "stages": [
+              {"id": "mic", "label": "Microphone or data", "role": "The information starts here. A microphone makes a small audio signal. A data device makes a small digital signal."},
+              {"id": "process", "label": "Audio or data processing", "role": "The radio prepares that information. Microphone gain lives in this part of the story."},
+              {"id": "mod", "label": "Modulation", "role": "The information changes an RF signal. The next stage shows several ways that can happen."},
+              {"id": "tx", "label": "Transmitter", "role": "The transmitter creates the radio-frequency signal at the chosen frequency."},
+              {"id": "amp", "label": "RF output", "role": "A power amplifier raises the RF to the power you selected. That power is still not the same number as the DC power from the supply."},
+              {"id": "feed", "label": "Feed line", "role": "The feed line carries RF to the antenna. It is not a source of information."},
+              {"id": "ant", "label": "Antenna", "role": "The antenna couples the RF to space. Length and placement, from Lab 06, still matter."}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The receive path runs the other way: the antenna delivers a small RF signal, and the radio turns it back into sound or data."
+        },
+        {
+          "type": "interaction",
+          "component": "signal-path",
+          "recordsStage": false,
+          "gate": "tc04-receive",
+          "config": {
+            "intro": "Receive path. Select every stage.",
+            "doneText": "The receiver selects a signal, demodulates it, and sends audio or data out. A transceiver contains both paths.",
+            "stages": [
+              {"id": "ant", "label": "Antenna", "role": "Many signals arrive together. The antenna does not choose the station. Tuning does."},
+              {"id": "feed", "label": "Feed line", "role": "The same line that carried your transmit signal carries received RF back."},
+              {"id": "rx", "label": "Receiver", "role": "The receiver selects a frequency. Sensitivity is about hearing a weak signal. Selectivity is about rejecting the ones next to it."},
+              {"id": "demod", "label": "Demodulation", "role": "Demodulation recovers the information that modulation put on the RF signal."},
+              {"id": "audio", "label": "Audio or data output", "role": "A speaker or a data device gets the recovered information. Volume and squelch decide what you hear. They do not change the signal on the antenna."}
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "modulation-lab",
+          "requiresGates": ["tc04-receive"],
+          "config": {
+            "modes": [
+              {"id": "am", "label": "AM", "picture": "The strength of the carrier rises and falls with the voice.", "note": "Amplitude modulation changes the strength of the RF signal."},
+              {"id": "fm", "label": "FM", "picture": "The carrier strength stays steady. The spacing of the wave tightens and loosens.", "note": "Frequency modulation changes the frequency of the RF signal. Repeaters you already used are usually FM."},
+              {"id": "ssb", "label": "SSB", "picture": "One side of the AM picture remains. The carrier and the other side are not drawn.", "note": "Single sideband sends one sideband. It is a common voice method on HF. This cartoon is not a real spectrum."},
+              {"id": "cw", "label": "CW", "picture": "The signal is on, then off, in a pattern of dits and dahs.", "note": "CW carries information by keying the carrier on and off."},
+              {"id": "digital", "label": "Digital", "picture": "The picture jumps between a few discrete states instead of following a voice wave.", "note": "A digital signal uses agreed states. The drawing is only the idea of discrete steps, not a particular digital mode."}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Each case gives you an observation. Choose the next check. Power, connections, settings, signal path, then a measurement."
+        },
+        {
+          "type": "interaction",
+          "component": "diagnose",
+          "config": {
+            "doneText": "The next check followed the observation. None of these cases started with a new internal part.",
+            "cases": [
+              {
+                "observation": "The radio is dark. No display.",
+                "choices": [
+                  {"label": "Check the power source, fuse, and switch", "correct": true, "why": "A dark radio is a power-path question first. Lab TC-03 already walked that chain."},
+                  {"label": "Replace the RF power amplifier", "correct": false, "why": "You have not shown that the radio is even powered."}
+                ]
+              },
+              {
+                "observation": "The display is on. The speaker is silent on a frequency where you expect a signal.",
+                "choices": [
+                  {"label": "Check volume and squelch", "correct": true, "why": "Those settings can hide a signal that is present. Squelch does not change the signal strength."},
+                  {"label": "Replace the speaker before touching a knob", "correct": false, "why": "A setting can close the speaker. Check it before you open the case."}
+                ]
+              },
+              {
+                "observation": "The SWR meter reads very high when you transmit.",
+                "choices": [
+                  {"label": "Check the antenna, the feed line, and the connections", "correct": true, "why": "High SWR in this course points at the antenna system. Adding transmitter power does not fix a bad match."},
+                  {"label": "Turn the microphone gain up", "correct": false, "why": "Microphone gain changes audio. It does not tune the antenna."}
+                ]
+              },
+              {
+                "observation": "You are on the repeater output, the radio is powered, and the repeater does not respond.",
+                "choices": [
+                  {"label": "Check offset and tone against the listing", "correct": true, "why": "A repeater can be silent when the input, offset, or tone does not match. That is a setting, from Lab 03."},
+                  {"label": "Assume the mixer inside the radio has failed", "correct": false, "why": "An internal stage is the last guess. The listing is the next check."}
+                ]
+              },
+              {
+                "observation": "Stations say your voice is very weak, and the radio is on frequency.",
+                "choices": [
+                  {"label": "Check microphone gain and that the microphone is plugged in", "correct": true, "why": "Weak transmitted audio is often a connection or a gain setting."},
+                  {"label": "Replace the antenna with a longer random wire", "correct": false, "why": "The report is about your voice, not about the RF match. Check the audio path first."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why is checking power and basic connections usually better than immediately assuming an internal component failed?",
+          "conceptId": "check-outside-first",
+          "reference": "A dark radio, a closed squelch, a loose feed line, or a wrong tone all look like a failed radio from the outside. Those checks are fast and they match the observation. An internal part is still possible, and it is the check you earn after the outside path is ruled out. Replacing a part at random does not tell you which observation you explained.",
+          "unsure": "Look at the dark-radio case again. The power chain explains it without opening the radio.",
+          "returnHref": "#stage-do",
+          "returnLabel": "Return to the cases"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RADIO LAB PRACTICE. These questions are about the path and the checks. They are not official exam questions."
+        },
+        {
+          "type": "exam",
+          "label": "RADIO LAB PRACTICE",
+          "notice": "Original practice about the path and the checks. Not official exam questions.",
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "questions": [
+            {
+              "id": "tc04-tx",
+              "topicId": "T7A",
+              "stem": "Where does the voice go in the transmit path you clicked?",
+              "choices": ["Microphone, processing, modulation, transmitter, feed line, antenna", "Antenna first, then the microphone", "Straight from the battery to the speaker"],
+              "correctIndex": 0,
+              "why": "Information starts at the microphone or data device and leaves as RF at the antenna."
+            },
+            {
+              "id": "tc04-rx",
+              "topicId": "T7A",
+              "stem": "What does demodulation do in this lab?",
+              "choices": ["Recover the information that was placed on the RF signal", "Increase SWR", "Replace the need for a license"],
+              "correctIndex": 0,
+              "why": "Modulation puts information on the RF signal. Demodulation takes it back off for the speaker or the data device."
+            },
+            {
+              "id": "tc04-mode",
+              "topicId": "T8A",
+              "stem": "Which description matches the FM picture in this lab?",
+              "choices": ["The drawn wave spacing changes while the strength stays steady", "The carrier is only on and off as Morse", "The picture is a stored charge on a capacitor"],
+              "correctIndex": 0,
+              "why": "The FM cartoon changed frequency spacing. CW was the on-and-off picture. The capacitor was a different lab."
+            },
+            {
+              "id": "tc04-swr",
+              "topicId": "T7C",
+              "stem": "The SWR reading is high. What is the next check from the cases?",
+              "choices": ["Antenna, feed line, and connections", "A new internal mixer", "More microphone gain"],
+              "correctIndex": 0,
+              "why": "High SWR points at the antenna system. Microphone gain is the weak-audio case, not this one."
+            },
+            {
+              "id": "tc04-dummy",
+              "topicId": "T7C",
+              "stem": "Why would a dummy load be the better place for a bench transmitter test?",
+              "choices": ["It lets you test without radiating a signal from an antenna", "It raises the legal power limit", "It identifies the station for you"],
+              "correctIndex": 0,
+              "why": "A dummy load absorbs RF so the test does not depend on an antenna. You still identify if you radiate, and you still use an appropriate power."
+            },
+            {
+              "id": "tc04-order",
+              "topicId": "T7B",
+              "stem": "The radio is dark. Which check comes before an internal repair?",
+              "choices": ["Power source, fuse, and switch", "Replace the demodulator", "Change modulation from FM to CW"],
+              "correctIndex": 0,
+              "why": "Power is the first check for a dark radio. An internal stage is not the first assumption."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The field station is set up and nobody answers. Restore the contact by checking what the observation actually points at."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tc04-restore-contact",
+          "component": "diagnose",
+          "config": {
+            "doneText": "Power was present, the antenna path was intact, and the repeater settings were the miss. The station can call again.",
+            "cases": [
+              {
+                "observation": "The display is on and the supply meter looks normal.",
+                "choices": [
+                  {"label": "Leave power alone and check the next part of the path", "correct": true, "why": "Power is already shown to be present. Do not replace the supply."},
+                  {"label": "Replace the battery even though the meter is normal", "correct": false, "why": "The observation says power is there."}
+                ]
+              },
+              {
+                "observation": "The feed line is seated and the SWR meter is low when you transmit.",
+                "choices": [
+                  {"label": "Treat the antenna path as intact and check settings", "correct": true, "why": "A low SWR reading means this model is not showing an antenna mismatch."},
+                  {"label": "Replace the antenna before reading the repeater listing", "correct": false, "why": "The measurement does not point at the antenna."}
+                ]
+              },
+              {
+                "observation": "You are listening on the repeater output. The listing shows a tone and an offset you have not entered.",
+                "choices": [
+                  {"label": "Enter the listed offset and tone, then call and identify", "correct": true, "why": "The repeater was quiet because the radio was not configured for the listing. That restores the path you already learned."},
+                  {"label": "Open the radio and replace the oscillator", "correct": false, "why": "The listing explains the silence. An internal part is not the next check."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

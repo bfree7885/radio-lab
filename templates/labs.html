@@ -4,7 +4,7 @@
   <header class="page-head">
     <p class="eyebrow">{{ curriculum.title | upper }} // {{ curriculum.version }}</p>
     <h1>Labs</h1>
-    <p class="lede">Eight foundation labs. They can be opened in any order. Finishing them is the foundation, not Technician exam readiness. Technician Core comes next.</p>
+    <p class="lede">Eight foundation labs, then the first four Technician Core labs. Finishing either set is not Technician exam readiness. Later core labs are not in this sequence yet.</p>
   </header>
 
   <ol class="lab-index">
@@ -24,6 +24,26 @@
             <a class="button" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open</a>
           {% else %}
             <span class="action-held">Not open</span>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <h2>Technician Core</h2>
+  <p>TC-01 through TC-04 can be opened. They build on Foundations. Completing a core lab is not concept mastery, and it is not exam readiness.</p>
+  <ol class="lab-index">
+    {% for lab in core_labs %}
+      <li class="card lab-row">
+        <p class="lab-number">{{ lab.number }}</p>
+        <div class="lab-copy">
+          <h2>{{ lab.title }}</h2>
+          <p>{{ lab.description }}</p>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+        </div>
+        <div class="lab-action">
+          {% if lab.available %}
+            <a class="button" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open</a>
           {% endif %}
         </div>
       </li>

@@ -770,6 +770,11 @@ section > h2 {
   font-size: 1rem;
 }
 
+.mod-picture {
+  font-family: var(--mono);
+  min-height: 3rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

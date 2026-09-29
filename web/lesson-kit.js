@@ -84,7 +84,8 @@
       RadioLab.useProgress(RadioLabLocalProgress.create());
     }
     var labId = session.getAttribute("data-lab-id");
-    RadioLab.curriculum.load()
+    var curriculumFile = session.getAttribute("data-curriculum-file") || "curriculum.json";
+    RadioLab.curriculum.load(curriculumFile)
       .then(function () {
         return RadioLab.lesson.load(labId);
       })

@@ -148,6 +148,7 @@ class SharedCoreTests(unittest.TestCase):
             "tests/lab01.test.js",
             "tests/labs-02-04.test.js",
             "tests/labs-05-08.test.js",
+            "tests/core-01-04.test.js",
         ):
             result = subprocess.run(
                 ["node", script],
@@ -206,7 +207,8 @@ class SharedCoreTests(unittest.TestCase):
         assert foundations is not None
         self.assertEqual(foundations["status"], "available")
         self.assertEqual(foundations["content"], "curriculum.json")
-        self.assertEqual(phase_by_id("technician-core")["status"], "planned")
+        self.assertEqual(phase_by_id("technician-core")["status"], "available")
+        self.assertEqual(phase_by_id("technician-core")["content"], "technician-core.json")
         self.assertEqual(phase_by_id("technician-exam")["status"], "planned")
         self.assertEqual(phase_by_id("general-bridge")["status"], "planned")
         self.assertEqual(phase_by_id("general-core")["status"], "planned")
@@ -217,6 +219,11 @@ class SharedCoreTests(unittest.TestCase):
         self.assertEqual(model["pools"], [])
         self.assertEqual(model["poolShape"]["questions"], [])
         self.assertEqual(model["licenseLevels"], ["technician", "general"])
+        active = model["activeTechnician"]
+        self.assertEqual(active["pool"], "2026-2030")
+        self.assertEqual(active["effectiveFrom"], "2026-07-01")
+        self.assertEqual(active["effectiveThrough"], "2030-06-30")
+        self.assertEqual(active["questionsImported"], False)
 
         page = self.client.get("/")
         self.assertEqual(page.status_code, 200)
@@ -400,6 +407,76 @@ class SharedCoreTests(unittest.TestCase):
         self.assertIn(b"What Is Radio?", home.data)
         self.assertIn(b"First Field Operation", home.data)
         home.close()
+
+    def test_technician_core_is_separate_from_foundations(self) -> None:
+        from labs.catalog import CORE_ID, FOUNDATIONS_ID, get_core_labs, get_labs, load_lesson, load_technician_syllabus
+        from progress.store import (
+            concept_count,
+            get_concept_status,
+            get_lab_status,
+            init_db,
+            record_exam,
+            set_lab_status,
+            set_stage_completed,
+            sync_lab_status,
+            weak_topics,
+        )
+
+        self.assertEqual([lab["id"] for lab in get_labs()], ["01", "02", "03", "04", "05", "06", "07", "08"])
+        self.assertEqual([lab["id"] for lab in get_core_labs()], ["tc-01", "tc-02", "tc-03", "tc-04"])
+        lesson = load_lesson("tc-01")
+        self.assertIsNotNone(lesson)
+        assert lesson is not None
+        self.assertEqual(lesson["alignment"]["pool"], "2026-2030")
+        self.assertEqual(lesson["alignment"]["effectiveFrom"], "2026-07-01")
+        self.assertEqual(lesson["alignment"]["effectiveThrough"], "2030-06-30")
+        syllabus = load_technician_syllabus()
+        self.assertFalse(syllabus["questionsIncluded"])
+        group_ids = []
+        for subelement in syllabus["subelements"]:
+            for group in subelement["groups"]:
+                group_ids.append(group["id"])
+        for topic in lesson["alignment"]["topics"]:
+            self.assertIn(topic, group_ids)
+
+        page = self.client.get("/labs/tc-01")
+        self.assertEqual(page.status_code, 200)
+        self.assertIn(b"core-labs.js", page.data)
+        self.assertIn(b"technician-core.json", page.data)
+        self.assertIn(b"not Technician exam readiness", page.data)
+        self.assertNotIn(b"not open yet", page.data)
+        page.close()
+        for lab_id in ("tc-02", "tc-03", "tc-04"):
+            opened = self.client.get(f"/labs/{lab_id}")
+            self.assertEqual(opened.status_code, 200)
+            self.assertIn(b"core-labs.js", opened.data)
+            opened.close()
+
+        init_db()
+        stage_ids = ["learn", "see", "do", "explain", "exam", "field"]
+        for stage_id in stage_ids:
+            set_stage_completed("tc-01", stage_id, True, CORE_ID)
+        sync_lab_status("tc-01", stage_ids, CORE_ID)
+        self.assertEqual(get_lab_status("tc-01", CORE_ID), "complete")
+        self.assertEqual(get_lab_status("tc-01", FOUNDATIONS_ID), "not_started")
+        self.assertEqual(get_lab_status("01", FOUNDATIONS_ID), "not_started")
+        self.assertEqual(get_concept_status("license-is-responsibility", CORE_ID), "not_started")
+        self.assertEqual(concept_count(CORE_ID), 0)
+        record_exam(
+            "tc01-purpose",
+            False,
+            lab_id="tc-01",
+            topic_id="T1A",
+            curriculum_id=CORE_ID,
+            license_level="technician",
+            pool_id="radio-lab-practice",
+            kind="pool",
+        )
+        self.assertEqual(weak_topics(curriculum_id=CORE_ID)[0]["topic_id"], "T1A")
+        self.assertEqual(weak_topics(curriculum_id=FOUNDATIONS_ID), [])
+        set_lab_status("01", "complete", FOUNDATIONS_ID)
+        self.assertEqual(get_lab_status("tc-01", CORE_ID), "complete")
+        self.assertEqual(get_concept_status("license-is-responsibility", CORE_ID), "not_started")
 
 
 if __name__ == "__main__":
