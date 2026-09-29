@@ -40,7 +40,8 @@ class FoundationTests(unittest.TestCase):
         self.assertIn(b"TECHNICIAN FOUNDATIONS // V0.1", home.data)
         self.assertIn(b"Continue Learning", home.data)
         self.assertIn(b"NOT STARTED", home.data)
-        self.assertIn(b"COMING SOON", home.data)
+        self.assertIn(b"Electricity Without the Textbook", home.data)
+        self.assertNotIn(b"COMING SOON", home.data)
 
         lab = self.client.get("/labs/01")
         for label in (
@@ -53,10 +54,27 @@ class FoundationTests(unittest.TestCase):
         ):
             self.assertIn(label, lab.data)
 
-        closed = self.client.get("/labs/05")
-        self.assertEqual(closed.status_code, 200)
-        self.assertIn(b"not open yet", closed.data)
-        self.assertNotIn(b"Hands-on controls will be added here.", closed.data)
+        opened = self.client.get("/labs/05")
+        self.assertEqual(opened.status_code, 200)
+        self.assertIn(b"lab05.js", opened.data)
+        self.assertNotIn(b"not open yet", opened.data)
+        self.assertNotIn(b"Hands-on controls will be added here.", opened.data)
+
+    def test_foundations_completion_is_not_exam_readiness(self) -> None:
+        from progress.store import init_db, set_lab_status
+
+        init_db()
+        for lab_id in ("01", "02", "03", "04", "05", "06", "07", "08"):
+            set_lab_status(lab_id, "complete")
+        home = self.client.get("/")
+        self.assertIn(b"TECHNICIAN FOUNDATIONS COMPLETE", home.data)
+        self.assertIn(b"NEXT: TECHNICIAN CORE", home.data)
+        self.assertIn(b"not Technician exam readiness", home.data)
+        self.assertNotIn(b"LICENSE READY", home.data)
+        self.assertNotIn(b"TECHNICIAN READY", home.data)
+        progress = self.client.get("/progress")
+        self.assertIn(b"TECHNICIAN FOUNDATIONS COMPLETE", progress.data)
+        self.assertIn(b"NEXT: TECHNICIAN CORE", progress.data)
 
     def test_progress_starts_empty_and_honest(self) -> None:
         page = self.client.get("/progress")

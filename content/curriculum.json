@@ -56,8 +56,8 @@
       "number": "05",
       "title": "Electricity Without the Textbook",
       "description": "Voltage, current, resistance, power, and an interactive introduction to Ohm's law.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/05/lesson.json",
       "topics": ["voltage", "current", "resistance", "power"]
     },
     {
@@ -65,8 +65,8 @@
       "number": "06",
       "title": "Antennas & SWR",
       "description": "Frequency, wavelength, antenna length, resonance, SWR, and troubleshooting.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/06/lesson.json",
       "topics": ["antenna", "wavelength", "resonance", "swr"]
     },
     {
@@ -74,8 +74,8 @@
       "number": "07",
       "title": "Propagation & Range",
       "description": "Line of sight, terrain, antenna height, VHF/UHF behavior, introductory HF propagation, and repeaters.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/07/lesson.json",
       "topics": ["line-of-sight", "terrain", "vhf-uhf", "propagation"]
     },
     {
@@ -83,8 +83,8 @@
       "number": "08",
       "title": "First Field Operation",
       "description": "An integrated scenario: choose equipment, frequency and band, antenna, operating method, and proper procedure.",
-      "available": false,
-      "lesson": null,
+      "available": true,
+      "lesson": "labs/08/lesson.json",
       "topics": ["field-operation", "procedure", "equipment"]
     }
   ]

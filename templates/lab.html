@@ -14,7 +14,11 @@
   {% if lab.available %}
     <section class="panel" aria-labelledby="workspace-heading">
       <h2 id="workspace-heading">Lab workspace</h2>
-      <p>Work through the six stages. Try the controls. Nothing here receives or transmits a real radio signal.</p>
+      {% if lab.id == "08" %}
+        <p>This outing has six mission phases. It uses Labs 01–07. Finishing it does not finish the Technician course.</p>
+      {% else %}
+        <p>Work through the six stages. Try the controls. Nothing here receives or transmits a real radio signal.</p>
+      {% endif %}
       <ol class="stage-rail">
         {% for stage in stages %}
           <li><a href="#stage-{{ stage.id }}" data-stage-link="{{ stage.id }}">{{ stage.label }}</a></li>
@@ -65,5 +69,29 @@
     <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab04.js') }}" defer></script>
+  {% elif lab.available and lab.id == "05" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab05.js') }}" defer></script>
+  {% elif lab.available and lab.id == "06" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab06.js') }}" defer></script>
+  {% elif lab.available and lab.id == "07" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab07.js') }}" defer></script>
+  {% elif lab.available and lab.id == "08" %}
+    <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='handheld.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='reference-kit.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='lab08.js') }}" defer></script>
   {% endif %}
 {% endblock %}

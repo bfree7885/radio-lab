@@ -45,7 +45,9 @@
       {% if continue_lab %}
         <a class="button" href="{{ url_for('lab_workspace', lab_id=continue_lab.id) }}">Continue Learning</a>
       {% else %}
-        <p class="stat-line">The open labs are finished. Later foundation labs are not open yet.</p>
+        <p class="stat-line">TECHNICIAN FOUNDATIONS COMPLETE</p>
+        <p class="stat-line">NEXT: TECHNICIAN CORE</p>
+        <p>These eight labs are the foundation. They are not Technician exam readiness.</p>
       {% endif %}
     </div>
     <div

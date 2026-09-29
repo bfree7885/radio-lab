@@ -95,14 +95,6 @@ function main() {
     assert.equal(lab.available, true);
     assert.equal(lab.lesson, "labs/" + id + "/lesson.json");
   });
-  ["05", "06", "07", "08"].forEach(function (id) {
-    const lab = curriculum.labs.find(function (item) {
-      return item.id === id;
-    });
-    assert.equal(lab.available, false);
-    assert.equal(lab.lesson, null);
-  });
-
   assertPractice(lab02);
   assertPractice(lab03);
   assertPractice(lab04);

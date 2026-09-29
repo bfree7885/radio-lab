@@ -66,7 +66,9 @@ class SharedCoreTests(unittest.TestCase):
             "A wave repeats.",
         )
         self.assertIsNotNone(load_lesson("02"))
-        self.assertIsNone(load_lesson("05"))
+        self.assertIsNotNone(load_lesson("05"))
+        self.assertIsNotNone(load_lesson("08"))
+        self.assertIsNone(load_lesson("09"))
         exam = lesson["stages"][4]["blocks"][0]
         self.assertEqual(exam["label"], "RADIO LAB PRACTICE")
         self.assertEqual(len(exam["questions"]), 5)
@@ -141,7 +143,12 @@ class SharedCoreTests(unittest.TestCase):
         page.close()
 
     def test_browser_adapters(self) -> None:
-        for script in ("tests/browser-core.test.js", "tests/lab01.test.js", "tests/labs-02-04.test.js"):
+        for script in (
+            "tests/browser-core.test.js",
+            "tests/lab01.test.js",
+            "tests/labs-02-04.test.js",
+            "tests/labs-05-08.test.js",
+        ):
             result = subprocess.run(
                 ["node", script],
                 cwd=ROOT,
@@ -300,12 +307,15 @@ class SharedCoreTests(unittest.TestCase):
         self.assertNotIn(b"localStorage", page.data)
         page.close()
 
-        closed = self.client.get("/labs/05")
-        self.assertIn(b"not open yet", closed.data)
-        self.assertNotIn(b"lab01.js", closed.data)
-        closed.close()
-
-        for lab_id, script in (("02", b"lab02.js"), ("03", b"lab03.js"), ("04", b"lab04.js")):
+        for lab_id, script in (
+            ("02", b"lab02.js"),
+            ("03", b"lab03.js"),
+            ("04", b"lab04.js"),
+            ("05", b"lab05.js"),
+            ("06", b"lab06.js"),
+            ("07", b"lab07.js"),
+            ("08", b"lab08.js"),
+        ):
             opened = self.client.get(f"/labs/{lab_id}")
             self.assertEqual(opened.status_code, 200)
             self.assertIn(script, opened.data)

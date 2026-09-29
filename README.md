@@ -4,7 +4,7 @@ Hands-on amateur radio training for someone who may know nothing about radio.
 
 A learner can begin at Lab 01 with no amateur-radio background, no electronics background, and no radio or SDR of their own. That includes someone who wants to try Summits on the Air later and is starting from zero.
 
-Labs 01–04 are interactive lessons. Labs 05–08 are still closed.
+Labs 01–08 are the Technician Foundations sequence. Finishing them is not Technician exam readiness. Technician Core is the next planned stage.
 
 ## Beginner-first
 
@@ -202,7 +202,10 @@ The launcher activates `.venv` and starts the app at [http://127.0.0.1:5070/](ht
 | `/labs/02` | Lab 02, Your First Radio |
 | `/labs/03` | Lab 03, Repeaters |
 | `/labs/04` | Lab 04, Bands & Privileges |
-| `/labs/05` … `/labs/08` | Closed labs |
+| `/labs/05` | Lab 05, Electricity Without the Textbook |
+| `/labs/06` | Lab 06, Antennas & SWR |
+| `/labs/07` | Lab 07, Propagation & Range |
+| `/labs/08` | Lab 08, First Field Operation |
 | `/progress` | Foundations progress from SQLite |
 | `/about` | What Radio Lab is |
 | `/content/...` | Shared JSON |

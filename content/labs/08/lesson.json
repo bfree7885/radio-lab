@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "labId": "08",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "First Field Operation",
+  "requires": ["simulation.field"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "label": "PLAN",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "You are setting up on a summit for a short outing. A friend is in the valley on 146.520 MHz simplex. Another station is beyond a ridge. Use the field reference instead of guessing."
+        },
+        {
+          "type": "interaction",
+          "component": "mission-plan",
+          "config": {
+            "volts": 13.8,
+            "receiveAmps": 0.5,
+            "transmitAmps": 5,
+            "repeater": { "outputKhz": 146940, "offsetKhz": -600, "toneHz": 100 },
+            "candidates": [
+              {"khz": 146520, "label": "146.520 MHz"},
+              {"khz": 162550, "label": "162.550 MHz"},
+              {"khz": 29600, "label": "29.600 MHz"}
+            ],
+            "antennas": [
+              {"id": "quarter-2m", "label": "A wire about 0.51 m", "meters": 0.51, "role": "fit"},
+              {"id": "quarter-70cm", "label": "A wire about 0.17 m", "meters": 0.17, "role": "short"},
+              {"id": "long-wire", "label": "A wire about 5 m", "meters": 5, "role": "long"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "label": "SET UP",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Connect the supply, the radio, the feed line, and the antenna. The order of the chain matters more than the order of the clicks."
+        },
+        {
+          "type": "interaction",
+          "component": "mission-setup"
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "label": "CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Check the live radio, the band reference, the antenna choice, and the connections before you call it ready."
+        },
+        {
+          "type": "interaction",
+          "component": "mission-check",
+          "config": { "signalKhz": 146520 }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "label": "OPERATE",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A valley station is on the planned simplex frequency. Hear it, and say whether a repeater is involved."
+        },
+        {
+          "type": "interaction",
+          "component": "mission-operate",
+          "config": { "signalKhz": 146520 }
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "label": "TROUBLESHOOT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The outing now has two known faults: the squelch is hiding the valley signal, then the repeater tone does not match the listing."
+        },
+        {
+          "type": "interaction",
+          "component": "mission-trouble",
+          "config": {
+            "signalKhz": 146520,
+            "wrongToneHz": 88.5,
+            "repeater": { "outputKhz": 146940, "offsetKhz": -600, "toneHz": 100 }
+          }
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "label": "CLEARANCE",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab08-outing",
+          "prompt": "This outing used the foundation labs. Finishing it marks Lab 08 complete. It does not finish the Technician course."
+        }
+      ]
+    }
+  ]
+}

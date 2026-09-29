@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "labId": "07",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "Propagation & Range",
+  "requires": ["simulation.propagation"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Hearing a station is not a simple matter of more power. On VHF and UHF, this course starts with line of sight: terrain and antenna height can open or block the path."
+        },
+        {
+          "type": "interaction",
+          "component": "path-discover",
+          "config": { "band": "vhf", "mode": "simplex", "obstacle": "hill", "height": "low", "position": "same", "power": "low" }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A ridge can stay in the way no matter how much transmitter power you add. A repeater can relay. HF can reach past the horizon when the ionosphere returns a signal, and that return is not guaranteed."
+        },
+        {
+          "type": "interaction",
+          "component": "path-compare",
+          "config": { "band": "vhf", "mode": "simplex", "obstacle": "ridge", "height": "low", "position": "same", "power": "low" }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Use the path drawing. The label is the result of this model, not a coverage prediction."
+        },
+        {
+          "type": "interaction",
+          "component": "path-tasks",
+          "config": {
+            "scene": { "band": "vhf", "mode": "simplex", "obstacle": "hill", "height": "low", "position": "same", "power": "low" },
+            "tasks": [
+              {
+                "prompt": "Make the drawing a VHF/UHF simplex path with a hill and low antennas. Read the label.",
+                "expect": { "band": "vhf", "mode": "simplex", "obstacle": "hill", "height": "low" },
+                "expectCode": "obstructed",
+                "success": "The low path is obstructed. The hill is the reason in this model.",
+                "hint": "Select VHF/UHF, simplex, hill, and low antennas."
+              },
+              {
+                "prompt": "Raise the antennas until the hill path opens.",
+                "expect": { "band": "vhf", "mode": "simplex", "obstacle": "hill", "height": "high" },
+                "expectCode": "clear",
+                "success": "Height opened this simplified line of sight. That does not mean higher always works.",
+                "hint": "Stay on the hill and simplex, and select higher antennas."
+              },
+              {
+                "kind": "choice",
+                "prompt": "On that hill, was antenna height a useful thing to try?",
+                "success": "Yes for this hill. A taller ridge, later, will not give the same result.",
+                "hint": "You just opened the hill path by raising the antennas.",
+                "choices": [
+                  {"label": "Yes. Height can help a path like this, and it is not a rule for every obstacle.", "correct": true},
+                  {"label": "No. Only transmitter power changes a path.", "correct": false}
+                ]
+              },
+              {
+                "prompt": "Change the obstacle to a ridge. Use simplex and high power. Does the path open?",
+                "expect": { "band": "vhf", "mode": "simplex", "obstacle": "ridge", "power": "high" },
+                "expectCode": "obstructed",
+                "success": "The ridge is still blocked. High power did not remove it.",
+                "hint": "Select the ridge, simplex, VHF/UHF, and high power. Read the label before changing anything else."
+              },
+              {
+                "kind": "choice",
+                "prompt": "The ridge is still blocked at high power. What is a fair conclusion in this model?",
+                "success": "Adding power alone did not solve the blocked path. The geometry is the problem here.",
+                "hint": "Look at the label with high power still selected. The ridge did not move.",
+                "choices": [
+                  {"label": "More power is unlikely to fix this blocked path", "correct": true},
+                  {"label": "High power always clears a ridge", "correct": false}
+                ]
+              },
+              {
+                "prompt": "Keep the ridge and switch from simplex to the repeater.",
+                "expect": { "obstacle": "ridge", "mode": "repeater", "band": "vhf" },
+                "expectCode": "repeater",
+                "success": "The repeater path is the one that gets around the ridge in this model.",
+                "hint": "The ridge stays. Change the mode to repeater, and stay on VHF/UHF."
+              },
+              {
+                "prompt": "Open the HF introduction and read how it differs from the VHF/UHF line-of-sight sketch.",
+                "expect": { "band": "hf" },
+                "expectCode": "skywave",
+                "success": "HF skywave can reach past the horizon under the right conditions. Those conditions change. This is only an introduction.",
+                "hint": "Select HF introduction."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why can antenna location sometimes improve communication more than simply increasing transmitter power?",
+          "conceptId": "geometry-can-beat-power",
+          "reference": "On the VHF/UHF drawings, the path was about whether the stations could see past the terrain. Raising the antennas opened the hill. Raising the power did not remove the ridge. Location and height change that geometry. Power makes a signal stronger, but it does not move a hill. A repeater was the other way around the ridge. None of this is a promise that higher is always better or that a repeater always covers you.",
+          "unsure": "Go back to the ridge, set high power, and see that the path stays blocked. Then raise the antennas on the hill and see that path open.",
+          "returnHref": "#stage-see",
+          "returnLabel": "Return to the path drawing"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions are about the path model you just used. They are not official exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab07-power", "lab07-terrain", "lab07-height", "lab07-repeater", "lab07-vhf", "lab07-hf"],
+          "topics": ["line-of-sight", "terrain", "antenna-height", "repeaters", "vhf-uhf", "hf-propagation"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about the path model you just used. They are not official exam questions.",
+          "questions": [
+            {
+              "id": "lab07-power",
+              "topicId": "line-of-sight",
+              "stem": "In this lab's ridge drawing, what did raising transmitter power do to the blocked direct path?",
+              "choices": [
+                "It removed the ridge",
+                "It left the path blocked",
+                "It turned the path into HF skywave",
+                "It made the conversation private"
+              ],
+              "correctIndex": 1,
+              "why": "The ridge stayed in the way. More power did not change the path result. Range in this lab is not just more power."
+            },
+            {
+              "id": "lab07-terrain",
+              "topicId": "terrain",
+              "stem": "Two stations are close on the map and a hill sits between their low antennas. What can this model show?",
+              "choices": [
+                "An obstructed VHF/UHF path",
+                "A guaranteed contact because they are close",
+                "That distance is the only thing that matters",
+                "That terrain never affects VHF"
+              ],
+              "correctIndex": 0,
+              "why": "The hill blocked the low path even though the stations were not far apart in the story. Being nearby does not guarantee a clear line of sight."
+            },
+            {
+              "id": "lab07-height",
+              "topicId": "antenna-height",
+              "stem": "Raising the antennas opened the path over the hill. Which conclusion fits the lab?",
+              "choices": [
+                "Higher antennas always work, at every obstacle",
+                "Height can improve line of sight, and it will not clear every obstacle",
+                "Height replaces the need for a frequency",
+                "Height only matters on HF"
+              ],
+              "correctIndex": 1,
+              "why": "Height opened the hill and did not open the ridge. Higher is worth trying. It is not a promise."
+            },
+            {
+              "id": "lab07-repeater",
+              "topicId": "repeaters",
+              "stem": "The direct path across the ridge stays blocked. What did the repeater setting do in this model?",
+              "choices": [
+                "It provided a relay path that does not need that direct path to be clear",
+                "It increased transmitter power",
+                "It removed the need for a frequency",
+                "It guaranteed coverage for every summit"
+              ],
+              "correctIndex": 0,
+              "why": "The repeater path was the way around the ridge in the drawing. It is the same idea as Lab 03, and it is not a coverage prediction."
+            },
+            {
+              "id": "lab07-vhf",
+              "topicId": "vhf-uhf",
+              "stem": "How does this lab ask you to think about a typical VHF or UHF direct path?",
+              "choices": [
+                "As line of sight, where terrain and antenna height matter",
+                "As a signal that always returns from the ionosphere",
+                "As something only transmitter power controls",
+                "As the same thing as a repeater offset"
+              ],
+              "correctIndex": 0,
+              "why": "The VHF/UHF sketches were line-of-sight pictures. Obstacles and antenna height changed them. That is different from the HF introduction."
+            },
+            {
+              "id": "lab07-hf",
+              "topicId": "hf-propagation",
+              "stem": "What did the HF sketch introduce?",
+              "choices": [
+                "A guaranteed around-the-world circuit",
+                "A signal that can be returned toward Earth by the ionosphere, under conditions that change",
+                "Proof that VHF never goes past the horizon",
+                "A replacement for the repeater lesson"
+              ],
+              "correctIndex": 1,
+              "why": "The curve was an introduction to skywave. The lab said the return is not guaranteed and not static. General study goes further. This was only the first picture."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab07-summit-paths",
+          "prompt": "You are on a summit. A friend is in the valley, with a hill on the direct path. Another station is beyond a ridge. Use the drawing. Open the valley path, then the ridge path. More power is not the strategy.",
+          "config": {
+            "scene": { "band": "vhf", "mode": "simplex", "obstacle": "hill", "height": "low", "position": "same", "power": "low" }
+          }
+        }
+      ]
+    }
+  ]
+}

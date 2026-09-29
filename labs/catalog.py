@@ -131,12 +131,17 @@ def display_text(stage_id: str, lesson: dict | None) -> str:
 
 def stages_for_lab(lab_id: str) -> list[dict]:
     lesson = load_lesson(lab_id)
+    labels = {}
+    if lesson:
+        for stage in lesson.get("stages", []):
+            if stage.get("label"):
+                labels[stage["id"]] = stage["label"]
     rows = []
     for stage in get_stages():
         rows.append(
             {
                 "id": stage["id"],
-                "label": stage["label"],
+                "label": labels.get(stage["id"], stage["label"]),
                 "placeholder": display_text(stage["id"], lesson),
             }
         )

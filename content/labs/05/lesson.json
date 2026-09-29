@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "labId": "05",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "Electricity Without the Textbook",
+  "requires": ["simulation.electricity"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A radio supply pushes current through a load and back. Change the supply and the load before learning the formula."
+        },
+        {
+          "type": "interaction",
+          "component": "circuit-discover",
+          "config": {
+            "volts": 12,
+            "ohms": 50,
+            "voltSteps": [6, 12, 24],
+            "ohmSteps": [25, 50, 100],
+            "loadA": 50,
+            "loadB": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Voltage, current, and resistance describe what you just changed. Watts here are electrical power from the supply, not the radio's RF output."
+        },
+        {
+          "type": "interaction",
+          "component": "circuit-reveal",
+          "config": {
+            "volts": 12,
+            "ohms": 50,
+            "voltSteps": [12],
+            "ohmSteps": [50],
+            "modes": true,
+            "loadA": 50,
+            "loadB": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Use the bench for each step. The readings are the calculation. Keep the units on the meter."
+        },
+        {
+          "type": "interaction",
+          "component": "circuit-tasks",
+          "config": {
+            "bench": {
+              "volts": 12,
+              "ohms": 50,
+              "voltSteps": [6, 12, 13.8, 24],
+              "ohmSteps": [2, 25, 46, 50, 100],
+              "modes": true,
+              "loadA": 50,
+              "loadB": 50,
+              "harshOhms": 2
+            },
+            "tasks": [
+              {
+                "check": "voltage-up",
+                "volts": 24,
+                "prompt": "Predict first: a higher supply, same load, means more current. Then select 24 V with one load."
+              },
+              {
+                "check": "resistance-up",
+                "volts": 12,
+                "ohms": 100,
+                "prompt": "Predict first: more resistance, same supply, means less current. Set 12 V and 100 ohms."
+              },
+              {
+                "check": "reading",
+                "volts": 13.8,
+                "ohms": 46,
+                "amps": 0.3,
+                "prompt": "A 13.8 V supply feeds a 46 ohm load. Set both and read the current. Current = voltage / resistance."
+              },
+              {
+                "kind": "choice",
+                "prompt": "The bench showed about 0.3 A at 13.8 V. About how much electrical power is that, and what kind of power is it?",
+                "success": "13.8 V times 0.3 A is about 4.1 W drawn from the supply. That is not the radio's RF output.",
+                "hint": "Multiply the supply voltage by the current. Keep that result separate from RF output.",
+                "choices": [
+                  {"label": "About 4.1 W from the supply, not RF output", "correct": true},
+                  {"label": "About 4.1 W of RF output, same as the supply power", "correct": false},
+                  {"label": "Power cannot be found from voltage and current", "correct": false}
+                ]
+              },
+              {
+                "check": "harsh",
+                "prompt": "Select the 2 ohm load. Read what the bench says about that current."
+              },
+              {
+                "kind": "choice",
+                "prompt": "Which setup is unsuitable as a radio load on this supply?",
+                "success": "A few ohms across the supply is close to a short. It is not a useful radio load, and a real short can heat wires.",
+                "hint": "Look at the warning on the 2 ohm load. A normal load in this lesson is tens of ohms.",
+                "choices": [
+                  {"label": "A load of only a few ohms across the supply", "correct": true},
+                  {"label": "A 50 ohm load with a complete return path", "correct": false}
+                ]
+              },
+              {
+                "check": "parallel",
+                "prompt": "Set the two 50 ohm loads in parallel. Compare that total with one 50 ohm load."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "If resistance stays the same, why does increasing voltage cause more current to flow?",
+          "conceptId": "voltage-pushes-current",
+          "reference": "Voltage is the push from the supply. Resistance is how strongly the load opposes that push. If the opposition stays the same and the push increases, more current flows. That is why the current reading rose when you raised the supply and left the load alone. In symbols, current = voltage / resistance.",
+          "unsure": "Go back to the first bench. Raise the supply while the load stays at 50 ohms, and watch the current.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the first bench"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions are about the bench you just used. They are not official exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab05-voltage", "lab05-current", "lab05-resistance", "lab05-ohm", "lab05-power", "lab05-parallel"],
+          "topics": ["voltage", "current", "resistance", "ohms-law", "power", "series-parallel"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about the bench you just used. They are not official exam questions.",
+          "questions": [
+            {
+              "id": "lab05-voltage",
+              "topicId": "voltage",
+              "stem": "On the bench, what did raising the supply voltage do when the load stayed the same?",
+              "choices": [
+                "It lowered the current",
+                "It increased the push, so more current flowed",
+                "It changed the load's resistance",
+                "It turned electrical power into RF output"
+              ],
+              "correctIndex": 1,
+              "why": "Voltage is the push. With the same resistance, a higher voltage made more current flow. The load resistance did not change, and the watt reading was still power from the supply."
+            },
+            {
+              "id": "lab05-current",
+              "topicId": "current",
+              "stem": "What does the current reading on this bench describe?",
+              "choices": [
+                "How fast charge is moving through the load, in amperes",
+                "The length of the antenna",
+                "The radio's RF output power",
+                "The frequency on the display"
+              ],
+              "correctIndex": 0,
+              "why": "Current is the flow, measured in amperes. The bench calculated it from the supply and the load. It is not frequency, antenna length, or RF output."
+            },
+            {
+              "id": "lab05-resistance",
+              "topicId": "resistance",
+              "stem": "The supply stays at the same voltage and the load resistance goes up. What happens to current?",
+              "choices": [
+                "It stays exactly the same",
+                "It goes down",
+                "It goes up, because resistance is the push",
+                "It becomes the RF output"
+              ],
+              "correctIndex": 1,
+              "why": "You saw this on the bench. More resistance opposes the same push, so less current flows. Resistance is the opposition, not the push."
+            },
+            {
+              "id": "lab05-ohm",
+              "topicId": "ohms-law",
+              "stem": "A 12 V supply feeds a 6 ohm load. What current does this lab's relationship give?",
+              "choices": [
+                "72 A",
+                "2 A",
+                "0.5 A",
+                "18 A"
+              ],
+              "correctIndex": 1,
+              "why": "Current = voltage / resistance. 12 / 6 = 2 amperes. 12 times 6 is not the current. The bench used the same relationship."
+            },
+            {
+              "id": "lab05-power",
+              "topicId": "power",
+              "stem": "A supply shows 13.8 V and the radio draws 0.3 A while receiving. Which statement fits this lab?",
+              "choices": [
+                "Electrical power from the supply is about 4.1 W, and that is not the RF output",
+                "The radio is producing 4.1 W of RF",
+                "Power is voltage divided by current",
+                "Receive and transmit always draw the same current"
+              ],
+              "correctIndex": 0,
+              "why": "Watts from the supply are about voltage times current. 13.8 times 0.3 is about 4.1 W of electrical input. RF output is a different quantity. Transmit often draws more current than receive."
+            },
+            {
+              "id": "lab05-parallel",
+              "topicId": "series-parallel",
+              "stem": "Two 50 ohm loads are placed side by side across the same supply. How does the total resistance compare with one of them?",
+              "choices": [
+                "The total is 100 ohms, because the loads add",
+                "The total is lower than 50 ohms",
+                "The total stays 50 ohms",
+                "Parallel loads have no current"
+              ],
+              "correctIndex": 1,
+              "why": "Side by side is parallel. Two equal loads in parallel measured about half of one of them, 25 ohms, which is lower than either load alone. Adding them to 100 ohms is the series case."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab05-portable-power",
+          "prompt": "You are planning a portable radio day. The supply is 13.8 V. While receiving, the radio draws 0.5 A. While transmitting, it draws 5 A. Compare the electrical power each condition asks of the supply.",
+          "config": {
+            "volts": 13.8,
+            "receiveAmps": 0.5,
+            "transmitAmps": 5
+          }
+        }
+      ]
+    }
+  ]
+}

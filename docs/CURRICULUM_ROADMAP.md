@@ -32,7 +32,7 @@ Field Radio and SOTA apply that knowledge. They are not extra license courses. S
 
 | Phase | What it is | Status |
 | --- | --- | --- |
-| 1. Technician Foundations | The current eight labs. First ideas: what a radio is, controls, repeaters, bands, electricity, antennas, propagation, and a first field scenario. | Labs 01–04 can be opened. Labs 05–08 are not open yet. |
+| 1. Technician Foundations | The current eight labs. First ideas: what a radio is, controls, repeaters, bands, electricity, antennas, propagation, and a first field scenario. | Labs 01–08 can be opened. Finishing them is not Technician exam readiness. |
 | 2. Technician Core | The rest of Technician-level understanding and operating skill, taught the same way. | Planned. No labs yet. |
 | 3. Technician Exam Readiness | Review, weak-area practice, and the current official Technician question pool. | Planned. No pool loaded. |
 | 4. General Bridge | The step from Technician-level work into the deeper ideas General requires. | Planned. No labs yet. |

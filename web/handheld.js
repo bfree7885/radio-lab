@@ -250,8 +250,31 @@
       return "Speaker closed. Squelch is holding back the background noise. It did not make a signal clearer. " + strength;
     }
 
+    function set(partial) {
+      if (!partial) {
+        return snapshot();
+      }
+      if (partial.power != null) {
+        state.power = !!partial.power;
+      }
+      if (partial.volume != null) {
+        state.volume = partial.volume;
+      }
+      if (partial.squelch != null) {
+        state.squelch = partial.squelch;
+      }
+      if (partial.vfoKhz != null) {
+        state.vfoKhz = partial.vfoKhz;
+      }
+      if (partial.mode) {
+        state.mode = partial.mode;
+      }
+      publish(false);
+      return snapshot();
+    }
+
     publish(false);
-    return { root: face, getState: snapshot, reset: function () {
+    return { root: face, getState: snapshot, set: set, reset: function () {
       reset.click();
     } };
   }

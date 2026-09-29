@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "labId": "06",
+  "curriculumId": "technician-foundations",
+  "licenseLevel": "technician",
+  "title": "Antennas & SWR",
+  "requires": ["simulation.swr", "simulation.frequency"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The antenna is part of the radio system. A wire that fits one frequency is a different fraction of the wave at another frequency."
+        },
+        {
+          "type": "interaction",
+          "component": "antenna-discover",
+          "config": { "mhz": 146, "kind": "quarter", "length": 0.51 }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Forward energy goes toward the antenna. Reflected energy is what this model sends back when the match is poor. SWR is an indicator of that match, not a universal safe limit."
+        },
+        {
+          "type": "interaction",
+          "component": "swr-picture",
+          "config": { "mhz": 146, "kind": "quarter", "length": 1.2 }
+        },
+        {
+          "type": "interaction",
+          "component": "placement"
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Use the antenna bench. The length readout tells you if the wire is long, short, or near the size you selected."
+        },
+        {
+          "type": "interaction",
+          "component": "antenna-tasks",
+          "config": {
+            "bench": { "mhz": 146, "kind": "quarter", "length": 1.2 },
+            "tasks": [
+              {
+                "kind": "choice",
+                "prompt": "The wire is much longer than a quarter of the wavelength at this frequency. In this model, what is it?",
+                "success": "It is too long for that quarter-wave size. Shortening it moves the simplified match closer. Length is still not the whole antenna.",
+                "hint": "Compare the wire with the quarter-wave number on the bench.",
+                "choices": [
+                  {"label": "Too long for that quarter-wave size", "correct": true},
+                  {"label": "Too short, so make it longer", "correct": false},
+                  {"label": "Already a perfect antenna in every location", "correct": false}
+                ]
+              },
+              {
+                "check": "match",
+                "mhz": 146,
+                "kind": "quarter",
+                "prompt": "Set 146 MHz and the quarter-wave size. Change the length until the readout says matched."
+              },
+              {
+                "check": "compare",
+                "prompt": "With the quarter-wave size selected, look at 146 MHz and at 440 MHz. Which physical size is shorter?"
+              },
+              {
+                "kind": "choice",
+                "prompt": "You looked at both frequencies. Which quarter-wave size is shorter, and why?",
+                "success": "440 MHz is a shorter wave, so a quarter of it is a shorter wire. That is the Lab 01 relationship.",
+                "hint": "Higher frequency, shorter wavelength. A quarter of a shorter wave is a shorter wire.",
+                "choices": [
+                  {"label": "440 MHz, because its wavelength is shorter", "correct": true},
+                  {"label": "146 MHz, because VHF antennas are always shorter", "correct": false},
+                  {"label": "They are the same length", "correct": false}
+                ]
+              },
+              {
+                "check": "match",
+                "mhz": 440,
+                "kind": "quarter",
+                "prompt": "The frequency is now 440 MHz and the old 2-meter length no longer fits. Shorten the wire until this model says matched again."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "blocks": [
+        {
+          "type": "explain",
+          "prompt": "Why might an antenna that works well at one frequency perform poorly at a very different frequency?",
+          "conceptId": "antenna-length-follows-wavelength",
+          "reference": "The wavelength changes when the frequency changes. A length that was about a quarter or a half of the wave at the first frequency is a different fraction of the wave at the new frequency. In this model the match gets worse until the length is changed. A real antenna also depends on height, the feed line, and what is around it. Length alone does not decide the whole performance.",
+          "unsure": "Go back to the bench. Leave the length alone, switch between 146 MHz and 440 MHz, and watch the match.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the antenna bench"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "blocks": [
+        {
+          "type": "exam",
+          "body": "RADIO LAB PRACTICE. These questions are about the antenna model you just used. They are not official exam questions.",
+          "label": "RADIO LAB PRACTICE",
+          "questionIds": ["lab06-wave", "lab06-length", "lab06-feed", "lab06-swr", "lab06-match", "lab06-trouble"],
+          "topics": ["wavelength", "antenna-length", "feed-line", "swr", "matching", "antenna-troubleshooting"],
+          "licenseLevel": "technician",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "subelement": null,
+          "notice": "These are original Radio Lab questions about the antenna model you just used. They are not official exam questions.",
+          "questions": [
+            {
+              "id": "lab06-wave",
+              "topicId": "wavelength",
+              "stem": "In this lab's open-air shortcut, what happens to the wavelength when you go from about 146 MHz to about 440 MHz?",
+              "choices": [
+                "It gets longer",
+                "It gets shorter",
+                "It stays the same",
+                "It becomes the SWR"
+              ],
+              "correctIndex": 1,
+              "why": "Wavelength in meters is about 300 divided by the frequency in MHz. 440 is a higher frequency than 146, so the wavelength is shorter. That is the same relationship as Lab 01."
+            },
+            {
+              "id": "lab06-length",
+              "topicId": "antenna-length",
+              "stem": "A wire is cut near a quarter wavelength at one frequency. Which statement fits this lab?",
+              "choices": [
+                "That length guarantees the antenna will work everywhere",
+                "That length is one useful comparison, and it is not the whole antenna",
+                "Length replaces the feed line",
+                "Any wire is the same at every frequency"
+              ],
+              "correctIndex": 1,
+              "why": "The model compares length with a fraction of the wavelength. Height, surroundings, and the feed line still matter. A good length at one frequency is a different fraction of the wave at a very different frequency."
+            },
+            {
+              "id": "lab06-feed",
+              "topicId": "feed-line",
+              "stem": "In the picture transmitter → feed line → antenna, what is the feed line doing?",
+              "choices": [
+                "Connecting the transmitter to the antenna",
+                "Replacing the need for a frequency",
+                "Measuring the license privilege",
+                "Blocking every reflection"
+              ],
+              "correctIndex": 0,
+              "why": "The feed line is the path between the transmitter and the antenna. The simplified SWR picture is about how that system is matched. The feed line does not choose the license or erase reflections by itself."
+            },
+            {
+              "id": "lab06-swr",
+              "topicId": "swr",
+              "stem": "This lab's model shows 1.2:1 and, later, 3:1. What is a fair reading of those numbers here?",
+              "choices": [
+                "3:1 is always safe and 1.2:1 is always unsafe",
+                "1.2:1 means a closer match in this model than 3:1, and no single ratio is a universal rule",
+                "SWR is the transmitter power in watts",
+                "SWR is the frequency"
+              ],
+              "correctIndex": 1,
+              "why": "A ratio nearer 1:1 meant less reflected energy in this model. The lab did not give one safe number for every radio. Specifications and the situation still matter."
+            },
+            {
+              "id": "lab06-match",
+              "topicId": "matching",
+              "stem": "The reflected bar grows while the wire stays much longer than the selected fraction of the wavelength. What is the model showing?",
+              "choices": [
+                "More of the energy being sent back along the feed line",
+                "The signal becoming private",
+                "The supply voltage rising",
+                "A repeater offset"
+              ],
+              "correctIndex": 0,
+              "why": "Reflected energy in this picture is the part that does not stay at the antenna. A poorer length match made that bar larger. It is not privacy, supply voltage, or a repeater offset."
+            },
+            {
+              "id": "lab06-trouble",
+              "topicId": "antenna-troubleshooting",
+              "stem": "A wire was near a quarter wave at 146 MHz. The radio is moved to 440 MHz and the wire is not changed. The simplified match gets worse. What is a useful next step in this model?",
+              "choices": [
+                "Ignore the length, because every wire fits every frequency",
+                "Change the length toward a quarter wave at the new frequency, or return to the frequency the wire was cut for",
+                "Raise the squelch until the match improves",
+                "Treat the SWR number as the license class"
+              ],
+              "correctIndex": 1,
+              "why": "The wavelength changed and the wire did not. You fixed that on the bench by shortening the wire for 440 MHz. Going back to 146 MHz would also fit the original length. Squelch and license class do not retune the wire."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "blocks": [
+        {
+          "type": "fieldTask",
+          "taskId": "lab06-summit-antenna",
+          "prompt": "You are preparing a portable 2-meter station near 146 MHz. No product names. Use the wavelength comparison and the placement sketch. Pick a wire and a place for it.",
+          "config": {
+            "startLength": 1.2,
+            "choices": [
+              {"id": "quarter-2m", "label": "A wire about 0.51 m", "meters": 0.51, "role": "fit"},
+              {"id": "quarter-70cm", "label": "A wire about 0.17 m", "meters": 0.17, "role": "short"},
+              {"id": "long-wire", "label": "A wire about 5 m", "meters": 5, "role": "long"}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

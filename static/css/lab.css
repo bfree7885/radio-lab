@@ -708,9 +708,66 @@ section > h2 {
 }
 
 .band-strip button.is-selected,
-.instrument button[aria-pressed="true"] {
+.instrument button[aria-pressed="true"],
+.terrain-lab button[aria-pressed="true"] {
   border-color: var(--amber);
   color: var(--amber);
+}
+
+.circuit,
+.antenna-bench,
+.terrain-lab {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.circuit-path {
+  font-family: var(--mono);
+}
+
+.swr-bars {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.6rem 0;
+}
+
+.swr-forward,
+.swr-reflected {
+  display: block;
+  height: 0.7rem;
+  border-radius: 999px;
+}
+
+.swr-forward {
+  width: 100%;
+  background: var(--teal);
+}
+
+.swr-reflected {
+  width: 0;
+  background: var(--amber);
+}
+
+.field-reference {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+}
+
+.field-reference summary {
+  cursor: pointer;
+  min-height: 3rem;
+  font-weight: 600;
+}
+
+.field-reference h3 {
+  margin: 0.8rem 0 0.2rem;
+  font-size: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

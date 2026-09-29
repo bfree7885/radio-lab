@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "technician-foundations-reference",
+  "title": "Field reference",
+  "note": "Looking something up is part of operating. This card is the Radio Lab teaching set from Labs 01–07. It is not a complete license manual.",
+  "sections": [
+    {
+      "id": "units",
+      "title": "Frequency units",
+      "body": "1,000 Hz = 1 kHz. 1,000 kHz = 1 MHz. 146.520 MHz is 146,520 kHz. The same wave can be written three ways."
+    },
+    {
+      "id": "wavelength",
+      "title": "Wavelength shortcut",
+      "body": "In open air, wavelength in meters is about 300 divided by frequency in MHz. A quarter of that length and a half of that length are the two sizes this course compares. A real antenna is often a bit different because of the wire and its surroundings. Length is not the whole story of how an antenna works."
+    },
+    {
+      "id": "ohms",
+      "title": "Ohm's law",
+      "body": "Current goes up when voltage goes up and resistance stays the same. Current goes down when resistance goes up and voltage stays the same. In symbols: voltage = current × resistance. Current = voltage / resistance. Resistance = voltage / current. Voltage is in volts, current in amperes, resistance in ohms."
+    },
+    {
+      "id": "power",
+      "title": "Electrical power",
+      "body": "Electrical power in watts is about voltage times current. That is power drawn from the supply. It is not the same number as RF transmitter output power."
+    },
+    {
+      "id": "resistors",
+      "title": "Two loads",
+      "body": "In series, the resistances add. Side by side, in parallel, the combination is lower than either one alone. Two equal loads in parallel measure about half of one of them."
+    },
+    {
+      "id": "controls",
+      "title": "Basic radio controls",
+      "body": "Power runs the radio. Volume is loudness when the speaker is passing sound. The display is the frequency the radio is set to. Squelch holds the speaker closed until a signal meets its setting. Squelch does not make a weak signal clearer. VFO is the free dial. A memory stores a frequency so you can recall it."
+    },
+    {
+      "id": "simplex-repeater",
+      "title": "Simplex and repeater",
+      "body": "Simplex means both radios use one frequency, with no relay. A repeater listens on one frequency and transmits on another. Your radio listens on the repeater output and transmits on the input. The listing gives the offset sign and any access tone. A tone is not privacy."
+    },
+    {
+      "id": "bands",
+      "title": "Band reference",
+      "body": "Use the Radio Lab band file before transmitting. A radio that can tune a frequency is not authorization to transmit there. Listening is not transmitting. The file is a simplified United States teaching set, not a guarantee that the rules are unchanged."
+    },
+    {
+      "id": "swr",
+      "title": "SWR, simplified",
+      "body": "Forward energy goes from the transmitter through the feed line toward the antenna. Reflected energy is the part the model sends back when the match is poor. SWR is an indicator of that match. 1:1 is a close match in this model. Higher ratios mean more reflection here. Equipment specifications and the situation decide what is acceptable. There is no single safe number for every radio."
+    },
+    {
+      "id": "paths",
+      "title": "Paths, simplified",
+      "body": "On VHF and UHF, this course treats the direct path as line of sight. Terrain can block it. Antenna height or a clearer position sometimes opens that path, and sometimes it does not. More transmitter power does not remove a ridge. A repeater can relay when the direct path is blocked. HF skywave can reach past the horizon under the right conditions. Those conditions change. None of these drawings is a coverage prediction."
+    }
+  ]
+}
