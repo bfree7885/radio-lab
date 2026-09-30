@@ -69,9 +69,34 @@
     <p>{% if core_concepts %}{{ core_concepts }} concept checks recorded for Technician Core.{% else %}No Technician Core concept checks recorded yet.{% endif %}</p>
     {% if core_summary.completed == core_summary.total and core_summary.total %}
       <p class="stat-line">TECHNICIAN CORE — CURRENT LABS COMPLETE</p>
-      <p class="stat-line">NEXT: TECHNICIAN COVERAGE AUDIT</p>
+      <p class="stat-line">NEXT: TECHNICIAN REMEDIATION</p>
       <p>These labs are not Technician exam readiness. Lesson completion is not syllabus coverage.</p>
     {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="remediation-progress-heading">
+    <h2 id="remediation-progress-heading">Technician Remediation</h2>
+    <p>{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. Lesson completion, concept checks, practice results, and the historical coverage audit are separate. None of them is Technician exam readiness.</p>
+    <ol class="status-list">
+      {% for lab in remediation_labs %}
+        <li>
+          <span class="lab-number">{{ lab.number }}</span>
+          <span class="status-title">{{ lab.title }}</span>
+          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+    {% if remediation_topics %}
+      <p>Remediation practice topics to review:</p>
+      <ul>
+        {% for topic in remediation_topics %}
+          <li>{{ topic.topic_id }} — missed {{ topic.misses }}, correct {{ topic.hits }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No remediation practice topic is behind. That list is practice performance, not concept mastery, and it is not the historical coverage audit.</p>
+    {% endif %}
+    <p>{% if remediation_concepts %}{{ remediation_concepts }} concept checks recorded for Technician Remediation.{% else %}No Technician Remediation concept checks recorded yet.{% endif %}</p>
   </section>
 
   <section class="panel" aria-labelledby="coverage-heading">

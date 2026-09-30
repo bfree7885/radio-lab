@@ -17,11 +17,13 @@ ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 CURRICULUM_PATH = CONTENT / "curriculum.json"
 CORE_CURRICULUM_PATH = CONTENT / "technician-core.json"
+REMEDIATION_CURRICULUM_PATH = CONTENT / "technician-remediation.json"
 ROADMAP_PATH = CONTENT / "roadmap.json"
 EXAM_MODEL_PATH = CONTENT / "exam" / "model.json"
 SYLLABUS_PATH = CONTENT / "exam" / "technician-2026-2030.json"
 FOUNDATIONS_ID = "technician-foundations"
 CORE_ID = "technician-core"
+REMEDIATION_ID = "technician-remediation"
 
 SHELL_TEXT = {
     "learn": "A short orientation for this lab will be added here.",
@@ -34,6 +36,7 @@ SHELL_TEXT = {
 
 _curriculum: dict | None = None
 _core_curriculum: dict | None = None
+_remediation_curriculum: dict | None = None
 _roadmap: dict | None = None
 
 
@@ -57,6 +60,13 @@ def load_core_curriculum() -> dict:
     if _core_curriculum is None:
         _core_curriculum = _read_json(CORE_CURRICULUM_PATH)
     return _core_curriculum
+
+
+def load_remediation_curriculum() -> dict:
+    global _remediation_curriculum
+    if _remediation_curriculum is None:
+        _remediation_curriculum = _read_json(REMEDIATION_CURRICULUM_PATH)
+    return _remediation_curriculum
 
 
 def curriculum_meta() -> dict:
@@ -107,8 +117,16 @@ def get_core_labs() -> list[dict]:
     return list(load_core_curriculum()["labs"])
 
 
+def get_remediation_labs() -> list[dict]:
+    return list(load_remediation_curriculum()["labs"])
+
+
+def _all_labs() -> list[dict]:
+    return list(get_labs()) + list(get_core_labs()) + list(get_remediation_labs())
+
+
 def get_lab(lab_id: str) -> dict | None:
-    for lab in list(get_labs()) + list(get_core_labs()):
+    for lab in _all_labs():
         if lab["id"] == lab_id:
             return lab
     return None
@@ -170,7 +188,7 @@ def syllabus_coverage() -> dict:
     practiced: set[str] = set()
     assessed: set[str] = set()
     partial_ids: set[str] = set()
-    for lab in list(get_labs()) + list(get_core_labs()):
+    for lab in _all_labs():
         lesson = load_lesson(lab["id"])
         if not lesson:
             continue

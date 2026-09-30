@@ -89,8 +89,8 @@
     <p class="lede">{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. These eight labs are the current Technician Core sequence. Finishing them is not a syllabus audit and not Technician exam readiness.</p>
     {% if core_summary.completed == core_summary.total and core_summary.total %}
       <p class="stat-line">TECHNICIAN CORE — CURRENT LABS COMPLETE</p>
-      <p class="stat-line">NEXT: TECHNICIAN COVERAGE AUDIT</p>
-      <p>These labs are not Technician exam readiness. The teaching phase is not finished until the current 2026–2030 syllabus is compared with what the labs actually teach.</p>
+      <p class="stat-line">NEXT: TECHNICIAN REMEDIATION</p>
+      <p>These labs are not Technician exam readiness. A historical coverage audit already compared the earlier labs with the 2026–2030 syllabus. That audit is not updated by later labs.</p>
     {% endif %}
     <ol class="lab-grid">
       {% for lab in core_labs %}
@@ -98,6 +98,32 @@
           <p class="lab-number">{{ lab.number }}</p>
           <h3>{{ lab.title }}</h3>
           <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          {% if lab.available %}
+            <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section aria-labelledby="remediation-heading">
+    <h2 id="remediation-heading">Technician Remediation</h2>
+    <p class="lede">{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. TR-01 through TR-06 are open. TR-07, TR-08, and TR-09 are coming soon. Finishing the open labs does not finish the Technician syllabus and is not exam readiness.</p>
+    {% if remediation_continue %}
+      <a class="button" href="{{ url_for('lab_workspace', lab_id=remediation_continue.id) }}">Continue remediation</a>
+    {% elif remediation_summary.total and remediation_summary.completed == remediation_summary.total %}
+      <p class="stat-line">OPEN REMEDIATION LABS COMPLETE</p>
+      <p>These labs do not close the syllabus. Exam readiness is still planned.</p>
+    {% endif %}
+    <ol class="lab-grid">
+      {% for lab in remediation_labs %}
+        <li class="card">
+          <p class="lab-number">{{ lab.number }}</p>
+          <h3>{{ lab.title }}</h3>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          {% if not lab.available %}
+            <p class="coming-soon">COMING SOON</p>
+          {% endif %}
           {% if lab.available %}
             <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
           {% endif %}

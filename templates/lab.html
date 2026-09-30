@@ -18,6 +18,8 @@
         <p>This outing has six mission phases. It uses Labs 01–07. Finishing it does not finish the Technician course.</p>
       {% elif lab.curriculumId == "technician-core" %}
         <p>Work through the six stages. This is Technician Core, built on Foundations. Finishing the lab does not mean the idea is mastered, and it is not Technician exam readiness.</p>
+      {% elif lab.curriculumId == "technician-remediation" %}
+        <p>Work through the six stages. This remediation lab fills a gap left by Foundations and Core. Finishing it does not finish the Technician syllabus, and it is not Technician exam readiness.</p>
       {% else %}
         <p>Work through the six stages. Try the controls. Nothing here receives or transmits a real radio signal.</p>
       {% endif %}

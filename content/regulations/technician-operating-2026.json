@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "technician-operating-2026",
+  "role": "educational-summary",
+  "jurisdiction": "US",
+  "regulator": "FCC",
+  "version": "2026-09-30",
+  "notOfficial": true,
+  "note": "A teaching card for TR-03. It is not an FCC publication and not a substitute for Part 97. Confirm the current rules before you transmit. Numbers here are the limits the lab asks you to look up.",
+  "hfPhone": {
+    "band": "10 meters",
+    "mhzLow": 28.3,
+    "mhzHigh": 28.5,
+    "note": "Technician HF phone in this card is 28.300 through 28.500 MHz. A signal has width, so the exact edge is a poor center frequency."
+  },
+  "hfBeaconMhz": {"low": 28.2, "high": 28.3},
+  "hfPepWatts": 200,
+  "above30MhzPepWatts": 1500,
+  "cwOnlyExamples": ["50.0–50.1 MHz", "144.0–144.1 MHz"],
+  "secondary": "Do not cause harmful interference to the primary service, and accept interference from it.",
+  "licenseTermYears": 10,
+  "graceYears": 2,
+  "renewalDaysBefore": 90,
+  "groupD": "Two letters, one digit, three letters. That format is the Group D shape used for a sequential Technician call sign in this card.",
+  "identification": "English, your FCC call sign, at least every 10 minutes and at the end. A tactical name does not replace it."
+}

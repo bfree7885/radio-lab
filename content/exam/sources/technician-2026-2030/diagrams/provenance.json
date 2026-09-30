@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "role": "authoritative-figures",
+  "authoritative": true,
+  "organization": "NCVEC Question Pool Committee",
+  "licenseLevel": "technician",
+  "pool": "2026-2030",
+  "figures": ["T-1", "T-2", "T-3"],
+  "sourcePage": "https://ncvec.org/index.php/2026-2030-technician-question-pool",
+  "retrievalDate": "2026-09-30",
+  "note": "These three images are the Technician diagrams linked from the official NCVEC 2026-2030 Technician question-pool page. They are published in the TECH_2026 download directory, which also holds the superseded December 18, 2025 syllabus. The February 19, 2026 pool still refers to figures T-1, T-2, and T-3. The images were stored unchanged. They are figures, not the answer key.",
+  "files": [
+    {
+      "figure": "T-1",
+      "sourceUrl": "https://ncvec.org/downloads/TECH_2026/Technician%20Diagram%20T1.jpg",
+      "originalFilename": "Technician Diagram T1.jpg",
+      "localFilename": "technician-diagram-t1.jpg",
+      "sha256": "7e5f000404feeae942c625a773f0a02c3ee3b5bafda2218d6b8b0d3653288462"
+    },
+    {
+      "figure": "T-2",
+      "sourceUrl": "https://ncvec.org/downloads/TECH_2026/Technician%20Diagram%20T2.jpg",
+      "originalFilename": "Technician Diagram T2.jpg",
+      "localFilename": "technician-diagram-t2.jpg",
+      "sha256": "36313bc65ea22bd483e9b0ff2cd8e7dbce3784e2b009046879d8e5959cc9ebf7"
+    },
+    {
+      "figure": "T-3",
+      "sourceUrl": "https://ncvec.org/downloads/TECH_2026/Technician%20Diagram%20T3.jpg",
+      "originalFilename": "Technician Diagram T3.jpg",
+      "localFilename": "technician-diagram-t3.jpg",
+      "sha256": "6db1d838f067ecd00a1ee8ad1e396c9e4d4415cfbc75764169a7bc868e44dc52"
+    }
+  ]
+}

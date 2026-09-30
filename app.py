@@ -18,10 +18,12 @@ from hardware.capabilities import capability_snapshot, lab_mode, live_lab_availa
 from labs.catalog import (
     CORE_ID,
     FOUNDATIONS_ID,
+    REMEDIATION_ID,
     curriculum_meta,
     get_core_labs,
     get_lab,
     get_labs,
+    get_remediation_labs,
     get_stages,
     load_roadmap,
     stages_for_lab,
@@ -83,6 +85,10 @@ def _core_view() -> tuple[list[dict], dict]:
     return _labs_for(get_core_labs(), CORE_ID)
 
 
+def _remediation_view() -> tuple[list[dict], dict]:
+    return _labs_for(get_remediation_labs(), REMEDIATION_ID)
+
+
 def _continue_lab(labs: list[dict]) -> dict | None:
     for lab in labs:
         if lab["available"] and lab["status"] != "complete":
@@ -112,7 +118,8 @@ def favicon():
 
 @app.route("/content/<path:filename>")
 def content_file(filename: str):
-    if not filename.endswith(".json"):
+    diagram = filename.startswith("exam/sources/technician-2026-2030/diagrams/") and filename.endswith(".jpg")
+    if not filename.endswith(".json") and not diagram:
         abort(404)
     return send_from_directory(CONTENT, filename)
 
@@ -128,6 +135,7 @@ def web_file(filename: str):
 def dashboard():
     labs, summary = _labs_view()
     core_labs, core_summary = _core_view()
+    remediation_labs, remediation_summary = _remediation_view()
     return render_template(
         "dashboard.html",
         labs=labs,
@@ -136,6 +144,9 @@ def dashboard():
         core_labs=core_labs,
         core_summary=core_summary,
         core_continue=_continue_lab(core_labs),
+        remediation_labs=remediation_labs,
+        remediation_summary=remediation_summary,
+        remediation_continue=_continue_lab(remediation_labs),
         roadmap=load_roadmap(),
     )
 
@@ -144,12 +155,15 @@ def dashboard():
 def labs_index():
     labs, summary = _labs_view()
     core_labs, core_summary = _core_view()
+    remediation_labs, remediation_summary = _remediation_view()
     return render_template(
         "labs.html",
         labs=labs,
         summary=summary,
         core_labs=core_labs,
         core_summary=core_summary,
+        remediation_labs=remediation_labs,
+        remediation_summary=remediation_summary,
     )
 
 
@@ -257,6 +271,7 @@ def lab_workspace(lab_id: str):
 def progress_page():
     labs, summary = _labs_view()
     core_labs, core_summary = _core_view()
+    remediation_labs, remediation_summary = _remediation_view()
     return render_template(
         "progress.html",
         labs=labs,
@@ -268,6 +283,10 @@ def progress_page():
         core_summary=core_summary,
         core_topics=weak_topics(curriculum_id=CORE_ID),
         core_concepts=concept_count(CORE_ID),
+        remediation_labs=remediation_labs,
+        remediation_summary=remediation_summary,
+        remediation_topics=weak_topics(curriculum_id=REMEDIATION_ID),
+        remediation_concepts=concept_count(REMEDIATION_ID),
         coverage=syllabus_coverage(),
     )
 

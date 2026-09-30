@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "technician-remediation",
+  "title": "Technician remediation reference",
+  "note": "Short reminders for the open remediation labs. The labs teach these ideas. This card does not replace them. Offsets and privilege numbers are teaching examples, not an FCC publication.",
+  "sections": [
+    {
+      "id": "cq",
+      "title": "CQ",
+      "body": "CQ asks any station for a contact. Listen first, call with your call sign, then listen for an answer. Answer a CQ with their call sign and then yours."
+    },
+    {
+      "id": "repeater-reverse",
+      "title": "Repeater offset and reverse",
+      "body": "The offset is the split between the repeater output and its input. A common United States example is 600 kHz on 2 meters and 5 MHz on 70 centimeters, plus or minus. Reverse listens on the input."
+    },
+    {
+      "id": "dtmf",
+      "title": "CTCSS and DTMF",
+      "body": "CTCSS is a low tone sent with your voice to open a squelch. DTMF is two tones at once from a keypad, used for a command such as a link control."
+    },
+    {
+      "id": "dmr",
+      "title": "DMR, code plugs, and hotspots",
+      "body": "A talkgroup selects a group of stations. A color code is the digital access code. A code plug stores that configuration. A hotspot is a low-power gateway for nearby radios, not the same station as a hilltop repeater."
+    },
+    {
+      "id": "q-signals",
+      "title": "QRM and QSY",
+      "body": "QRM means interference from other stations. QSY means you are changing frequency."
+    },
+    {
+      "id": "net-control",
+      "title": "Net control and traffic",
+      "body": "Net control runs a directed net. You transmit when you are recognized. Traffic means messages. Pass a formal message as written. The check is the number of words in the text."
+    },
+    {
+      "id": "ares-races",
+      "title": "ARES and RACES",
+      "body": "ARES is a voluntary registration of licensed amateurs for public service. RACES uses amateur stations for civil defense and requires that agency's enrollment. A license is neither membership. Part 97 still applies."
+    },
+    {
+      "id": "wave",
+      "title": "The radio wave",
+      "body": "A radio wave has an electric field and a magnetic field, perpendicular to each other and to the direction of travel. Polarization follows the electric field. In free space every frequency travels at the same speed. HF is 3 to 30 MHz."
+    },
+    {
+      "id": "multipath",
+      "title": "Multipath and picket fencing",
+      "body": "Multipath means more than one path arrives. A moving station can flutter rapidly. That flutter is picket fencing, and the collisions can damage data."
+    },
+    {
+      "id": "radio-horizon",
+      "title": "Radio horizon",
+      "body": "VHF and UHF usually stay near the radio horizon. That horizon is a bit farther than the visual horizon because the atmosphere bends the wave slightly. The lab's numbers are not a survey."
+    },
+    {
+      "id": "sporadic-e",
+      "title": "Sporadic E",
+      "body": "Dense patches in the E region can return strong 10-, 6-, and 2-meter signals from beyond the radio horizon for a while."
+    },
+    {
+      "id": "meteor-scatter",
+      "title": "Meteor scatter",
+      "body": "Ionized meteor trails scatter brief signals. Six meters is a common band for those bursts."
+    },
+    {
+      "id": "aurora",
+      "title": "Aurora",
+      "body": "Signals scattered from an aurora sound raspy or fluttery. CW is easier to copy than voice."
+    },
+    {
+      "id": "tropospheric-ducting",
+      "title": "Tropospheric ducting",
+      "body": "A temperature inversion can duct VHF and UHF for hundreds of miles, past the ordinary radio horizon."
+    },
+    {
+      "id": "agc-rit",
+      "title": "AGC, RIT, scan, and a keyer",
+      "body": "AGC turns receiver gain down for strong signals. RIT moves only the receive frequency. Scanning steps through memories until it hears someone. An electronic keyer turns paddle contacts into timed Morse."
+    },
+    {
+      "id": "sensitivity",
+      "title": "Sensitivity, mixer, and transverter",
+      "body": "Sensitivity is detecting a weak signal. Selectivity is separating signals. A mixer shifts a frequency. A transverter moves the radio to another band. The lab scale is not a bench measurement."
+    },
+    {
+      "id": "coax",
+      "title": "Coax construction",
+      "body": "Center conductor, dielectric, shield, jacket. The shield keeps the signal in and outside energy out. Water, crushing, and sun damage cause failures. Foam dielectric loses less than solid. Lost power in the line becomes heat."
+    },
+    {
+      "id": "swr-reading",
+      "title": "1:1 and 4:1",
+      "body": "1:1 is a perfect match in the model. 4:1 is a large mismatch. Many solid-state radios reduce power as SWR rises. The lab does not set one safe number for every radio."
+    },
+    {
+      "id": "prefixes",
+      "title": "Metric prefixes",
+      "body": "Milli is one thousandth. Micro is one millionth. Pico is one millionth of a micro. Kilo is one thousand. Mega is one million. Giga is one billion. The prefix changes the written number. The quantity stays the same."
+    },
+    {
+      "id": "decibels",
+      "title": "Decibel ratios",
+      "body": "About +3 dB doubles power. About +6 dB is four times. About +10 dB is ten times. The negative steps divide by those amounts. A decibel here is a ratio. A watt is the power."
+    },
+    {
+      "id": "series-parallel",
+      "title": "Series and parallel",
+      "body": "Series resistance adds, and the current is the same through each part. Parallel voltage is the same across each part. Two equal resistors in parallel total half of one. Power in watts is voltage times current. Current in amperes is voltage divided by resistance."
+    },
+    {
+      "id": "stored-energy",
+      "title": "Farad, henry, and impedance",
+      "body": "Capacitance stores energy in an electric field and uses the farad. Inductance stores energy in a magnetic field and uses the henry. Impedance opposes current in an AC circuit and uses the ohm. Frequency is cycles each second, in hertz."
+    },
+    {
+      "id": "electrodes",
+      "title": "Electrodes",
+      "body": "A diode and an LED use an anode and a cathode, and current passes one way. A bipolar transistor uses emitter, base, and collector. A FET uses source, gate, and drain. A potentiometer is a variable resistor."
+    },
+    {
+      "id": "solder",
+      "title": "Solder joints",
+      "body": "A sound joint is smooth and wets both metals. A cold joint looks dull and grainy. Too little solder leaves the lead unjoined. Too much solder bridges neighboring pads. Acid-core solder does not belong on radio circuits."
+    },
+    {
+      "id": "control-types",
+      "title": "Control types",
+      "body": "Local control is at the station. Remote control is a control point somewhere else, over a control link. Automatic control is a device operating the station under the rules. The control operator is the person responsible for the transmissions."
+    },
+    {
+      "id": "identification",
+      "title": "Identification",
+      "body": "Phone identification is your FCC call sign in English, at least every 10 minutes and at the end. A tactical name or a self-assigned indicator may be added. Neither replaces the call sign."
+    },
+    {
+      "id": "hf-power",
+      "title": "Technician HF phone and power",
+      "body": "Use the versioned privilege card, not this sentence, when you decide. That card places Technician HF phone at 28.300 to 28.500 MHz and HF peak envelope power at 200 watts. Above 30 MHz the usual maximum on that card is 1500 watts PEP. A signal has width, so the edge is a poor center frequency."
+    }
+  ]
+}

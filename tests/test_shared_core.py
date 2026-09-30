@@ -150,6 +150,8 @@ class SharedCoreTests(unittest.TestCase):
             "tests/labs-05-08.test.js",
             "tests/core-01-04.test.js",
             "tests/core-05-08.test.js",
+            "tests/remediation-01-03.test.js",
+            "tests/remediation-04-06.test.js",
         ):
             result = subprocess.run(
                 ["node", script],
@@ -482,16 +484,69 @@ class SharedCoreTests(unittest.TestCase):
         self.assertEqual(get_lab_status("tc-01", CORE_ID), "complete")
         self.assertEqual(get_concept_status("license-is-responsibility", CORE_ID), "not_started")
 
+    def test_remediation_labs_load_without_rewriting_the_audit(self) -> None:
+        from labs.catalog import get_core_labs, get_labs, get_remediation_labs, load_roadmap
+
+        self.assertEqual([lab["id"] for lab in get_labs()], ["01", "02", "03", "04", "05", "06", "07", "08"])
+        self.assertEqual([lab["id"] for lab in get_core_labs()], [f"tc-0{number}" for number in range(1, 9)])
+        self.assertEqual(
+            [lab["id"] for lab in get_remediation_labs()],
+            ["tr-01", "tr-02", "tr-03", "tr-04", "tr-05", "tr-06", "tr-07", "tr-08", "tr-09"],
+        )
+        self.assertEqual(
+            [lab["id"] for lab in get_remediation_labs() if lab["available"]],
+            ["tr-01", "tr-02", "tr-03", "tr-04", "tr-05", "tr-06"],
+        )
+        roadmap = load_roadmap()
+        general = next(track for track in roadmap["tracks"] if track["id"] == "general")
+        self.assertTrue(all(phase["status"] == "planned" for phase in general["phases"]))
+        audit = json.loads(
+            (ROOT / "content" / "exam" / "technician-2026-2030-coverage.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(audit["metric"]["complete"], 0)
+        self.assertEqual(audit["metric"]["partial"], 34)
+        self.assertEqual(audit["metric"]["missing"], 1)
+        for lab_id in ("tr-01", "tr-02", "tr-03"):
+            page = self.client.get(f"/labs/{lab_id}")
+            self.assertEqual(page.status_code, 200)
+            self.assertIn(b"core-sim.js", page.data)
+            self.assertIn(b"foundations-sim.js", page.data)
+            self.assertIn(b"remediation-01-03.js", page.data)
+            self.assertIn(b"not Technician exam readiness", page.data)
+            page.close()
+        for lab_id in ("tr-04", "tr-05", "tr-06"):
+            page = self.client.get(f"/labs/{lab_id}")
+            self.assertEqual(page.status_code, 200)
+            self.assertIn(b"core-sim.js", page.data)
+            self.assertIn(b"remediation-labs.js", page.data)
+            self.assertIn(b"not Technician exam readiness", page.data)
+            page.close()
+        soon = self.client.get("/labs/tr-07")
+        self.assertEqual(soon.status_code, 200)
+        self.assertIn(b"COMING SOON", soon.data)
+        soon.close()
+        diagram = self.client.get(
+            "/content/exam/sources/technician-2026-2030/diagrams/technician-diagram-t1.jpg"
+        )
+        self.assertEqual(diagram.status_code, 200)
+        diagram.close()
+
     def test_current_core_completion_is_not_exam_readiness(self) -> None:
         from labs.catalog import get_labs, load_roadmap, syllabus_coverage
         from progress.store import init_db, set_stage_completed, sync_lab_status
 
         coverage = syllabus_coverage()
-        self.assertGreater(coverage["counts"]["notCovered"], 0)
         self.assertGreater(coverage["counts"]["partial"], 0)
         self.assertLess(coverage["counts"]["recorded"], coverage["counts"]["groups"])
-        self.assertIn("T5B", [row["id"] for row in coverage["notCovered"]])
+        t5b = next(row for row in coverage["rows"] if row["id"] == "T5B")
+        self.assertEqual(t5b["status"], "recorded")
+        self.assertNotIn("T5B", [row["id"] for row in coverage["notCovered"]])
         self.assertIn("not a coverage audit", coverage["note"])
+        audit = json.loads(
+            (ROOT / "content" / "exam" / "technician-2026-2030-coverage.json").read_text(encoding="utf-8")
+        )
+        historical = next(row for row in audit["groups"] if row["officialId"] == "T5B")
+        self.assertEqual(historical["classification"], "missing")
         self.assertEqual(len(get_labs()), 8)
 
         roadmap = load_roadmap()
@@ -502,7 +557,7 @@ class SharedCoreTests(unittest.TestCase):
         self.assertEqual(exam_phase["status"], "planned")
 
         progress = self.client.get("/progress")
-        self.assertIn(b"T5B", progress.data)
+        self.assertIn(b"T0C", progress.data)
         self.assertIn(b"not a coverage audit", progress.data)
         self.assertNotIn(b"TECHNICIAN READY", progress.data)
         progress.close()
@@ -515,7 +570,7 @@ class SharedCoreTests(unittest.TestCase):
             sync_lab_status(lab_id, stage_ids, "technician-core")
         home = self.client.get("/")
         self.assertIn("TECHNICIAN CORE — CURRENT LABS COMPLETE".encode(), home.data)
-        self.assertIn(b"NEXT: TECHNICIAN COVERAGE AUDIT", home.data)
+        self.assertIn(b"NEXT: TECHNICIAN REMEDIATION", home.data)
         self.assertIn(b"not Technician exam readiness", home.data)
         self.assertNotIn(b"TECHNICIAN READY", home.data)
         home.close()

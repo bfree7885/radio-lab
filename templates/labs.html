@@ -4,7 +4,7 @@
   <header class="page-head">
     <p class="eyebrow">{{ curriculum.title | upper }} // {{ curriculum.version }}</p>
     <h1>Labs</h1>
-    <p class="lede">Eight foundation labs, then the current eight Technician Core labs. Finishing either set is not Technician exam readiness. A syllabus coverage audit comes after these labs.</p>
+    <p class="lede">Eight foundation labs, eight Technician Core labs, then the remediation labs that are open. Finishing a set is not Technician exam readiness. The coverage audit is a historical record, not a score that later labs rewrite.</p>
   </header>
 
   <ol class="lab-index">
@@ -42,6 +42,29 @@
           <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
         </div>
         <div class="lab-action">
+          {% if lab.available %}
+            <a class="button" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open</a>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <h2>Technician Remediation</h2>
+  <p>TR-01 through TR-06 can be opened. TR-07, TR-08, and TR-09 are coming soon. Completing one is not concept mastery, not full syllabus coverage, and not exam readiness.</p>
+  <ol class="lab-index">
+    {% for lab in remediation_labs %}
+      <li class="card lab-row">
+        <p class="lab-number">{{ lab.number }}</p>
+        <div class="lab-copy">
+          <h2>{{ lab.title }}</h2>
+          <p>{{ lab.description }}</p>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+        </div>
+        <div class="lab-action">
+          {% if not lab.available %}
+            <p class="coming-soon">COMING SOON</p>
+          {% endif %}
           {% if lab.available %}
             <a class="button" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open</a>
           {% endif %}

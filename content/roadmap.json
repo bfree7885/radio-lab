@@ -26,6 +26,13 @@
           "content": "technician-core.json"
         },
         {
+          "id": "technician-remediation",
+          "title": "Remediation",
+          "status": "available",
+          "statusLabel": "AVAILABLE",
+          "content": "technician-remediation.json"
+        },
+        {
           "id": "technician-exam",
           "title": "Exam Readiness",
           "status": "planned",

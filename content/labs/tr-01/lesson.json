@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "labId": "tr-01",
+  "curriculumId": "technician-remediation",
+  "licenseLevel": "technician",
+  "title": "Electrical Quantities & Circuit Math",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T5"],
+    "topics": ["T5A", "T5B", "T5C", "T5D"]
+  },
+  "requires": ["simulation.electricity"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "label": "LEARN",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Lab 05 already moved voltage, current, and resistance. This bench is the rest of the quantities: prefixes, decibels as ratios, capacitance, inductance, and impedance. A prefix changes the written number. It does not change the amount."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-remediation.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "unit-bench",
+          "config": {
+            "doneText": "Milli, micro, pico, kilo, mega, and giga are scales for the same unit.",
+            "tasks": [
+              {
+                "value": 1.5, "from": "none", "to": "milli",
+                "fromLabel": "amperes", "toLabel": "milliamperes",
+                "answerLabel": "1500 milliamperes",
+                "prompt": "Write 1.5 amperes in milliamperes.",
+                "why": "One ampere is 1000 milliamperes, so 1.5 amperes is 1500 milliamperes.",
+                "choices": ["1500 milliamperes", "0.0015 milliamperes", "15 milliamperes"]
+              },
+              {
+                "value": 500, "from": "milli", "to": "none",
+                "fromLabel": "milliamperes", "toLabel": "amperes",
+                "answerLabel": "0.5 amperes",
+                "prompt": "Write 500 milliamperes in amperes.",
+                "why": "500 milliamperes is half of 1000, so it is 0.5 amperes. Same current.",
+                "choices": ["0.5 amperes", "500000 amperes", "5 amperes"]
+              },
+              {
+                "value": 1, "from": "kilo", "to": "none",
+                "fromLabel": "kilovolt", "toLabel": "volts",
+                "answerLabel": "1000 volts",
+                "prompt": "Write 1 kilovolt in volts.",
+                "why": "Kilo means one thousand. One kilovolt is 1000 volts.",
+                "choices": ["1000 volts", "0.001 volts", "1 volt"]
+              },
+              {
+                "value": 1, "from": "micro", "to": "none",
+                "fromLabel": "microvolt", "toLabel": "volts",
+                "answerLabel": "0.000001 volts",
+                "prompt": "Write 1 microvolt in volts.",
+                "why": "Micro means one millionth. One microvolt is 0.000001 volts.",
+                "choices": ["0.000001 volts", "1000000 volts", "0.001 volts"]
+              },
+              {
+                "value": 500, "from": "milli", "to": "none",
+                "fromLabel": "milliwatts", "toLabel": "watts",
+                "answerLabel": "0.5 watts",
+                "prompt": "Write 500 milliwatts in watts.",
+                "why": "500 milliwatts is 0.5 watts. The watt is still power.",
+                "choices": ["0.5 watts", "500 watts", "0.005 watts"]
+              },
+              {
+                "value": 1000000, "from": "pico", "to": "micro",
+                "fromLabel": "picofarads", "toLabel": "microfarads",
+                "answerLabel": "1 microfarads",
+                "prompt": "Write 1,000,000 picofarads in microfarads.",
+                "why": "A million picofarads is one microfarad. Farads are the unit of capacitance either way.",
+                "choices": ["1 microfarads", "1000000 microfarads", "0.001 microfarads"]
+              },
+              {
+                "value": 3.525, "from": "mega", "to": "kilo",
+                "fromLabel": "megahertz", "toLabel": "kilohertz",
+                "answerLabel": "3525 kilohertz",
+                "prompt": "Write 3.525 MHz in kilohertz.",
+                "why": "One megahertz is 1000 kilohertz, so 3.525 MHz is 3525 kHz.",
+                "choices": ["3525 kilohertz", "3.525 kilohertz", "3525000 kilohertz"]
+              },
+              {
+                "value": 2425, "from": "mega", "to": "giga",
+                "fromLabel": "megahertz", "toLabel": "gigahertz",
+                "answerLabel": "2.425 gigahertz",
+                "prompt": "Write 2425 MHz in gigahertz.",
+                "why": "1000 megahertz is 1 gigahertz, so 2425 MHz is 2.425 GHz.",
+                "choices": ["2.425 gigahertz", "2425 gigahertz", "0.2425 gigahertz"]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "label": "SEE IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A decibel here is a ratio between two powers. It is not a watt by itself. Then put the same two resistors in series and in parallel."
+        },
+        {
+          "type": "interaction",
+          "component": "db-bench",
+          "recordsStage": false,
+          "gate": "tr01-db"
+        },
+        {
+          "type": "interaction",
+          "component": "circuit-layout",
+          "requiresGates": ["tr01-db"]
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "label": "DO IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "You already know voltage times current and voltage divided by resistance from Lab 05. This time the bench will not tell you which one fits. Capacitance stores energy in an electric field and is measured in farads. Inductance stores energy in a magnetic field and is measured in henries. Impedance is the opposition to current in an AC circuit, and its unit is the ohm. Frequency is still hertz: cycles each second. Direct current holds one direction. Alternating current reverses. Metals conduct because they have many free electrons. Glass is an insulator in this course."
+        },
+        {
+          "type": "interaction",
+          "component": "quantity-bench",
+          "config": {
+            "doneText": "You chose the relationship from the quantities you were given.",
+            "problems": [
+              {
+                "prompt": "A 12 volt supply feeds 8 ohms.",
+                "known": "12 volts and 8 ohms",
+                "relation": "ohm",
+                "why": "Current is voltage divided by resistance: 12 / 8 = 1.5 amperes. Power needs the current, which you did not have yet.",
+                "relations": [
+                  {"id": "ohm", "label": "Current from voltage and resistance"},
+                  {"id": "power", "label": "Power from voltage and current"}
+                ],
+                "results": [
+                  {"label": "1.5 amperes", "correct": true},
+                  {"label": "96 watts", "correct": false}
+                ]
+              },
+              {
+                "prompt": "A radio draws 10 amperes from 13.8 volts.",
+                "known": "13.8 volts and 10 amperes",
+                "relation": "power",
+                "why": "Power is voltage times current: 13.8 × 10 = 138 watts. Those watts are electrical power, not a decibel.",
+                "relations": [
+                  {"id": "power", "label": "Power from voltage and current"},
+                  {"id": "ohm", "label": "Resistance from a single voltage only"}
+                ],
+                "results": [
+                  {"label": "138 watts", "correct": true},
+                  {"label": "1.38 ohms", "correct": false}
+                ]
+              },
+              {
+                "prompt": "You need 120 watts at 12 volts.",
+                "known": "120 watts and 12 volts",
+                "relation": "power",
+                "why": "Current is power divided by voltage: 120 / 12 = 10 amperes.",
+                "relations": [
+                  {"id": "power", "label": "Current from power and voltage"},
+                  {"id": "ohm", "label": "Current from voltage and resistance"}
+                ],
+                "results": [
+                  {"label": "10 amperes", "correct": true},
+                  {"label": "1440 amperes", "correct": false}
+                ]
+              },
+              {
+                "prompt": "90 volts pushes 3 amperes through a circuit.",
+                "known": "90 volts and 3 amperes",
+                "relation": "ohm",
+                "why": "Resistance is voltage divided by current: 90 / 3 = 30 ohms.",
+                "relations": [
+                  {"id": "ohm", "label": "Resistance from voltage and current"},
+                  {"id": "power", "label": "Resistance from power alone"}
+                ],
+                "results": [
+                  {"label": "30 ohms", "correct": true},
+                  {"label": "270 ohms", "correct": false}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "label": "EXPLAIN IT",
+      "blocks": [
+        {
+          "type": "explain",
+          "conceptId": "prefix-same-amount",
+          "prompt": "Why is 500 milliamps the same current as 0.5 amperes even though the numbers look different?",
+          "reference": "Milli means thousandths. Five hundred thousandths of an ampere is half an ampere. The prefix moves the decimal point so the written number changes. The current in the wire does not. The same idea scales volts, watts, farads, and hertz.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the conversion bench"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "label": "EXAM CONNECTION",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Radio Lab practice from the bench. Not the official pool."
+        },
+        {
+          "type": "exam",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "licenseLevel": "technician",
+          "questions": [
+            {
+              "id": "tr01-milli",
+              "topicId": "T5B",
+              "stem": "On this bench, 1.5 amperes was the same current as which written amount?",
+              "choices": ["1500 milliamperes", "1.5 milliamperes", "0.15 milliamperes"],
+              "correctIndex": 0,
+              "why": "One ampere is 1000 milliamperes. 1.5 amperes is 1500 milliamperes."
+            },
+            {
+              "id": "tr01-db",
+              "topicId": "T5B",
+              "stem": "A step from 5 watts to 10 watts matched which ratio on the decibel bench?",
+              "choices": ["About +3 dB", "About +10 dB", "About −6 dB"],
+              "correctIndex": 0,
+              "why": "Doubling power is about +3 dB. Ten times would be about +10 dB. The decibel is the ratio, and the watt is still the power."
+            },
+            {
+              "id": "tr01-series",
+              "topicId": "T5D",
+              "stem": "Two 50 ohm resistors are placed so the same current goes through both. What did the layout show?",
+              "choices": ["Series, and the total was about 100 ohms", "Parallel, and the total was about 25 ohms", "Series, and the voltage across each was forced to be equal"],
+              "correctIndex": 0,
+              "why": "Series resistance adds, and the current is the same in every part. Parallel keeps the voltage the same and, for two equal resistors, halves the total."
+            },
+            {
+              "id": "tr01-power",
+              "topicId": "T5C",
+              "stem": "You knew 13.8 volts and 10 amperes. Which result did the power relationship give?",
+              "choices": ["138 watts", "1.38 ohms", "3 dB"],
+              "correctIndex": 0,
+              "why": "DC power is voltage times current. 13.8 times 10 is 138 watts. That is not a decibel and not a resistance."
+            },
+            {
+              "id": "tr01-ohm",
+              "topicId": "T5D",
+              "stem": "90 volts pushes 3 amperes. What resistance did voltage divided by current give?",
+              "choices": ["30 ohms", "270 ohms", "0.03 ohms"],
+              "correctIndex": 0,
+              "why": "Resistance is voltage divided by current. 90 / 3 is 30 ohms."
+            },
+            {
+              "id": "tr01-units",
+              "topicId": "T5C",
+              "stem": "Which pairing matches the names used on this bench?",
+              "choices": ["Farad for capacitance, henry for inductance, ohm for impedance", "Henry for capacitance, farad for power, dB for current", "Watt for resistance, ohm for frequency"],
+              "correctIndex": 0,
+              "why": "Capacitance stores energy in an electric field and uses the farad. Inductance stores energy in a magnetic field and uses the henry. Impedance opposes AC current and uses the ohm."
+            },
+            {
+              "id": "tr01-ac",
+              "topicId": "T5A",
+              "stem": "Which description matches alternating current in this lab?",
+              "choices": ["It reverses direction", "It holds one direction", "It is measured in farads"],
+              "correctIndex": 0,
+              "why": "Alternating current reverses. Direct current holds one direction. Current itself is measured in amperes. Frequency, in hertz, counts the cycles each second."
+            },
+            {
+              "id": "tr01-pico",
+              "topicId": "T5B",
+              "stem": "One million picofarads matched which amount on the conversion bench?",
+              "choices": ["1 microfarad", "1 picofarad", "1 kilofarad"],
+              "correctIndex": 0,
+              "why": "A million picofarads is one microfarad. The capacitance did not change when the prefix changed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "label": "FIELD TASK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A handheld for a picnic draws 500 milliamperes from a 12 volt pack while you transmit. Plan the current and the power before you promise the pack will run it."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tr01-picnic-power",
+          "component": "quantity-bench",
+          "config": {
+            "doneText": "500 milliamperes is 0.5 amperes, and 12 volts times that current is 6 watts from the pack.",
+            "problems": [
+              {
+                "prompt": "The radio label says 500 milliamperes. Write that current in amperes before you multiply.",
+                "known": "500 milliamperes",
+                "relation": "prefix",
+                "why": "500 milliamperes is 0.5 amperes. Use 0.5 in the power step.",
+                "relations": [
+                  {"id": "prefix", "label": "500 milliamperes is 0.5 amperes"},
+                  {"id": "wrong", "label": "500 milliamperes is 500 amperes"}
+                ],
+                "results": [
+                  {"label": "0.5 amperes", "correct": true},
+                  {"label": "5000 amperes", "correct": false}
+                ]
+              },
+              {
+                "prompt": "The pack is 12 volts and the radio draws that 0.5 amperes.",
+                "known": "12 volts and 0.5 amperes",
+                "relation": "power",
+                "why": "Power is voltage times current. 12 × 0.5 = 6 watts from the supply while you transmit.",
+                "relations": [
+                  {"id": "power", "label": "Power from voltage and current"},
+                  {"id": "db", "label": "Decibels, because the label used a prefix"}
+                ],
+                "results": [
+                  {"label": "6 watts", "correct": true},
+                  {"label": "24 watts", "correct": false}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "id": "technician-remediation",
+  "title": "Technician Remediation",
+  "version": "V0.1",
+  "licenseLevel": "technician",
+  "phaseId": "technician-remediation",
+  "licenseTarget": "FCC Technician",
+  "audience": "Learners who have finished Technician Foundations and Technician Core and still need the concepts those labs did not teach.",
+  "note": "TR-01 through TR-06 are open. TR-07, TR-08, and TR-09 are not open yet. Finishing the open labs does not finish the 2026–2030 syllabus and is not Technician exam readiness. The coverage audit remains the historical record of the curriculum before remediation.",
+  "stages": [
+    {"id": "learn", "label": "LEARN", "order": 1},
+    {"id": "see", "label": "SEE IT", "order": 2},
+    {"id": "do", "label": "DO IT", "order": 3},
+    {"id": "explain", "label": "EXPLAIN IT", "order": 4},
+    {"id": "exam", "label": "EXAM CONNECTION", "order": 5},
+    {"id": "field", "label": "FIELD TASK", "order": 6}
+  ],
+  "labs": [
+    {
+      "id": "tr-01",
+      "number": "TR-01",
+      "title": "Electrical Quantities & Circuit Math",
+      "description": "Prefixes, decibel ratios, series and parallel resistance, and mixed voltage, current, and power decisions.",
+      "available": true,
+      "lesson": "labs/tr-01/lesson.json",
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T5A", "T5B", "T5C", "T5D"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-basics.js",
+        "remediation-01-03.js"
+      ]
+    },
+    {
+      "id": "tr-02",
+      "number": "TR-02",
+      "title": "Parts, Symbols & Practical Circuits",
+      "description": "Parts and their jobs, the official schematic figures, a power-supply path, and solder-joint diagnosis.",
+      "available": true,
+      "lesson": "labs/tr-02/lesson.json",
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T6A", "T6B", "T6C", "T6D", "T7D"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-basics.js",
+        "remediation-01-03.js"
+      ]
+    },
+    {
+      "id": "tr-03",
+      "number": "TR-03",
+      "title": "Rules as Operating Decisions",
+      "description": "License, privilege, control, identification, and content decisions from a teaching reference, including a first week on the air.",
+      "available": true,
+      "lesson": "labs/tr-03/lesson.json",
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T1A", "T1B", "T1C", "T1D", "T1E", "T1F"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-basics.js",
+        "remediation-01-03.js"
+      ]
+    },
+    {
+      "id": "tr-04",
+      "number": "TR-04",
+      "title": "Repeaters, Nets & Public-Service Operating",
+      "description": "CQ, repeater offsets including 70 centimeters, reverse, DTMF, DMR, nets, formal traffic, and ARES versus RACES.",
+      "available": true,
+      "lesson": "labs/tr-04/lesson.json",
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T2A", "T2B", "T2C"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-sim.js",
+        "remediation-labs.js"
+      ]
+    },
+    {
+      "id": "tr-05",
+      "number": "TR-05",
+      "title": "How Radio Waves Travel",
+      "description": "Electric and magnetic fields, one free-space speed, the radio horizon, multipath, and the propagation paths beyond a first skywave sketch.",
+      "available": true,
+      "lesson": "labs/tr-05/lesson.json",
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T3A", "T3B", "T3C"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-sim.js",
+        "remediation-labs.js"
+      ]
+    },
+    {
+      "id": "tr-06",
+      "number": "TR-06",
+      "title": "Station Setup, Interference & Measurement",
+      "description": "Station controls, mobile power, coax, SWR readings, receiver blocks, and an interference report handled with evidence.",
+      "available": true,
+      "lesson": "labs/tr-06/lesson.json",
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T4A", "T4B", "T7A", "T7B", "T7C"],
+      "scripts": [
+        "progress-local.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-sim.js",
+        "remediation-labs.js"
+      ]
+    },
+    {
+      "id": "tr-07",
+      "number": "TR-07",
+      "title": "Modes, Satellites & Digital Activities",
+      "description": "Coming soon. Not open in this build.",
+      "available": false,
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T8A", "T8B", "T8C", "T8D"]
+    },
+    {
+      "id": "tr-08",
+      "number": "TR-08",
+      "title": "Antennas, Feed Lines & Connectors",
+      "description": "Coming soon. Not open in this build.",
+      "available": false,
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T9A", "T9B"]
+    },
+    {
+      "id": "tr-09",
+      "number": "TR-09",
+      "title": "Safety Beyond the First Inspection",
+      "description": "Coming soon. Not open in this build.",
+      "available": false,
+      "curriculumId": "technician-remediation",
+      "phaseTitle": "Technician Remediation",
+      "curriculumFile": "technician-remediation.json",
+      "topics": ["T0A", "T0B", "T0C"]
+    }
+  ]
+}

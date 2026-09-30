@@ -41,7 +41,9 @@ class FoundationTests(unittest.TestCase):
         self.assertIn(b"Continue Learning", home.data)
         self.assertIn(b"NOT STARTED", home.data)
         self.assertIn(b"Electricity Without the Textbook", home.data)
-        self.assertNotIn(b"COMING SOON", home.data)
+        foundations = home.data.split(b"Technician Core")[0]
+        self.assertNotIn(b"COMING SOON", foundations)
+        self.assertIn(b"COMING SOON", home.data)
 
         lab = self.client.get("/labs/01")
         for label in (
