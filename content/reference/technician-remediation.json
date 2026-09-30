@@ -138,6 +138,66 @@
       "id": "hf-power",
       "title": "Technician HF phone and power",
       "body": "Use the versioned privilege card, not this sentence, when you decide. That card places Technician HF phone at 28.300 to 28.500 MHz and HF peak envelope power at 200 watts. Above 30 MHz the usual maximum on that card is 1500 watts PEP. A signal has width, so the edge is a poor center frequency."
+    },
+    {
+      "id": "usb-lsb",
+      "title": "USB and LSB",
+      "body": "Upper sideband puts the voice above the carrier. Lower sideband puts it below. Voice SSB on 10 meters, VHF, and UHF is normally upper sideband. Voice SSB below 10 MHz is normally lower sideband."
+    },
+    {
+      "id": "bandwidth",
+      "title": "Typical bandwidths",
+      "body": "For comparison on this bench: CW about 150 Hz, SSB voice about 3 kHz, FM voice about 10 to 15 kHz, fast-scan television about 6 MHz. A particular radio can differ."
+    },
+    {
+      "id": "ft8-psk",
+      "title": "FT8, PSK, and APRS",
+      "body": "FT8 is a weak-signal digital mode in the WSJT-X family. The exchange is short and includes a call sign and grid. PSK means phase-shift keying. APRS carries data such as position and weather."
+    },
+    {
+      "id": "arq-mesh",
+      "title": "ARQ and mesh",
+      "body": "ARQ requests a repeat when data is damaged. A mesh network is amateur stations forwarding data for one another."
+    },
+    {
+      "id": "leo",
+      "title": "LEO, uplink, and downlink",
+      "body": "LEO means low Earth orbit. The satellite is available only during the pass. Uplink is the signal you send up. Downlink is the signal you receive. In U/V mode the uplink is UHF and the downlink is VHF. Doppler shift raises the apparent frequency while the satellite approaches."
+    },
+    {
+      "id": "grid",
+      "title": "Grid locator",
+      "body": "A grid locator is a compact code for a place on Earth. Contests and weak-signal contacts often exchange it."
+    },
+    {
+      "id": "dipole-pattern",
+      "title": "Dipole and loading",
+      "body": "A half-wave dipole is strongest broadside to the wire in the educational model, not off the ends. A loading coil lets a physically short antenna resonate. It does not restore a full-size antenna."
+    },
+    {
+      "id": "pl259-n",
+      "title": "PL-259 and N",
+      "body": "A PL-259 is a common coax connector at HF and VHF. Tape it when it lives outdoors. An N connector is the better choice above 400 MHz."
+    },
+    {
+      "id": "rg58-rg213",
+      "title": "RG-58 and RG-213",
+      "body": "Both are about 50-ohm coax. RG-213 is larger and loses less in the same situation. Loss rises with frequency and length. Neither cable is the right choice for every run."
+    },
+    {
+      "id": "antenna-tuner",
+      "title": "Antenna tuner",
+      "body": "A tuner matches the impedance the transmitter sees. It does not change the antenna's length or resonance, and it does not remove loss in the feed line."
+    },
+    {
+      "id": "lightning-bond",
+      "title": "Lightning arrestor and bonding",
+      "body": "Put the arrestor where the feed line enters the building and ground it. Bond ground rods together. Keep lightning conductors short and direct. That is not the same job as an antenna tuner."
+    },
+    {
+      "id": "rf-exposure",
+      "title": "RF exposure",
+      "body": "Amateur RF is non-ionizing. FCC limits vary with frequency, and the VHF range is the more restrictive one. Power, duty cycle, distance, and the antenna all matter. The licensee evaluates the station using FCC guidance. The lab average is not a compliance result. Read the FCC card."
     }
   ]
 }

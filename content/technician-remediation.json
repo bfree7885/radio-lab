@@ -6,7 +6,7 @@
   "phaseId": "technician-remediation",
   "licenseTarget": "FCC Technician",
   "audience": "Learners who have finished Technician Foundations and Technician Core and still need the concepts those labs did not teach.",
-  "note": "TR-01 through TR-06 are open. TR-07, TR-08, and TR-09 are not open yet. Finishing the open labs does not finish the 2026–2030 syllabus and is not Technician exam readiness. The coverage audit remains the historical record of the curriculum before remediation.",
+  "note": "TR-01 through TR-09 are open. Finishing them is Technician Remediation complete and still requires a coverage verification. It is not Technician exam readiness. The coverage audit remains the historical record of the curriculum before remediation.",
   "stages": [
     {"id": "learn", "label": "LEARN", "order": 1},
     {"id": "see", "label": "SEE IT", "order": 2},
@@ -149,34 +149,67 @@
       "id": "tr-07",
       "number": "TR-07",
       "title": "Modes, Satellites & Digital Activities",
-      "description": "Coming soon. Not open in this build.",
-      "available": false,
+      "description": "Mode bandwidth, upper and lower sideband, digital activities, fast-scan television, and a low-Earth-orbit pass.",
+      "available": true,
+      "lesson": "labs/tr-07/lesson.json",
       "curriculumId": "technician-remediation",
       "phaseTitle": "Technician Remediation",
       "curriculumFile": "technician-remediation.json",
-      "topics": ["T8A", "T8B", "T8C", "T8D"]
+      "topics": ["T8A", "T8B", "T8C", "T8D"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-sim.js",
+        "remediation-final.js"
+      ]
     },
     {
       "id": "tr-08",
       "number": "TR-08",
       "title": "Antennas, Feed Lines & Connectors",
-      "description": "Coming soon. Not open in this build.",
-      "available": false,
+      "description": "Named antennas, a dipole pattern model, loading, feed-line loss, connectors, the tuner, and SWR.",
+      "available": true,
+      "lesson": "labs/tr-08/lesson.json",
       "curriculumId": "technician-remediation",
       "phaseTitle": "Technician Remediation",
       "curriculumFile": "technician-remediation.json",
-      "topics": ["T9A", "T9B"]
+      "topics": ["T9A", "T9B"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-sim.js",
+        "remediation-final.js"
+      ]
     },
     {
       "id": "tr-09",
       "number": "TR-09",
       "title": "Safety Beyond the First Inspection",
-      "description": "Coming soon. Not open in this build.",
-      "available": false,
+      "description": "Electrical hazards, fuses, lightning bonding, tower decisions, and RF exposure factors. The exposure model is not a compliance calculator.",
+      "available": true,
+      "lesson": "labs/tr-09/lesson.json",
       "curriculumId": "technician-remediation",
       "phaseTitle": "Technician Remediation",
       "curriculumFile": "technician-remediation.json",
-      "topics": ["T0A", "T0B", "T0C"]
+      "topics": ["T0A", "T0B", "T0C"],
+      "scripts": [
+        "progress-local.js",
+        "foundations-sim.js",
+        "core-sim.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "core-labs.js",
+        "remediation-sim.js",
+        "remediation-final.js"
+      ]
     }
   ]
 }

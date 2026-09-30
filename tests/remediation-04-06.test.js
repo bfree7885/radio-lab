@@ -47,7 +47,9 @@ function main() {
   });
   ["tr-07", "tr-08", "tr-09"].forEach(function (id) {
     var lab = remediation.labs.find(function (item) { return item.id === id; });
-    assert.equal(lab.available, false);
+    assert.equal(lab.available, true);
+    assert.ok(lab.scripts.indexOf("core-sim.js") < lab.scripts.indexOf("core-labs.js"));
+    assert.ok(lab.scripts.indexOf("remediation-final.js") > lab.scripts.indexOf("core-labs.js"));
   });
 
   const general = roadmap.tracks.find(function (track) { return track.id === "general"; });

@@ -77,6 +77,10 @@
   <section class="panel" aria-labelledby="remediation-progress-heading">
     <h2 id="remediation-progress-heading">Technician Remediation</h2>
     <p>{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. Lesson completion, concept checks, practice results, and the historical coverage audit are separate. None of them is Technician exam readiness.</p>
+    {% if remediation_summary.completed == remediation_summary.total and remediation_summary.total %}
+      <p class="stat-line">TECHNICIAN REMEDIATION COMPLETE</p>
+      <p class="stat-line">COVERAGE VERIFICATION REQUIRED</p>
+    {% endif %}
     <ol class="status-list">
       {% for lab in remediation_labs %}
         <li>

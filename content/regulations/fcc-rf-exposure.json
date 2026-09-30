@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "fcc-rf-exposure",
+  "role": "educational-summary",
+  "notOfficial": true,
+  "retrieved": "2026-09-30",
+  "note": "A teaching card for TR-09. It is not an FCC compliance determination and it does not reproduce exposure tables. Confirm the current rules before you rely on a station evaluation.",
+  "sources": [
+    {
+      "title": "FCC Radio Frequency Safety",
+      "url": "https://www.fcc.gov/general/radio-frequency-safety-0",
+      "retrieved": "2026-09-30",
+      "note": "The FCC states that its exposure limits are in 47 CFR 1.1310 and related rules in Parts 1 and 2, including 1.1307(b). A 2019 Commission action maintained the existing limits and described exemption criteria that depend on power, distance, and frequency."
+    },
+    {
+      "title": "OET Bulletin 65, including Supplement B for amateur stations",
+      "url": "https://www.fcc.gov/general/radio-frequency-safety-0",
+      "note": "FCC guidance for evaluating compliance. Acceptable methods include calculation and measurement. This lab does not copy the bulletin's tables or formulas."
+    }
+  ],
+  "sections": [
+    {
+      "id": "what-this-card-is",
+      "title": "What this card is",
+      "body": "A teaching summary. It is not an FCC compliance determination and it does not copy exposure tables. Sources: the FCC Radio Frequency Safety page (47 CFR 1.1310 and 1.1307(b)) and OET Bulletin 65, including Supplement B for amateur stations. Retrieved 2026-09-30."
+    },
+    {
+      "id": "non-ionizing",
+      "title": "Non-ionizing RF",
+      "body": "Amateur RF is non-ionizing. It does not have the photon energy of ionizing radiation and it does not make an object radioactive. It can still cause burns, and FCC exposure limits still apply."
+    },
+    {
+      "id": "factors",
+      "title": "What an evaluation considers",
+      "body": "FCC limits vary with frequency because the body absorbs RF differently. The VHF range is the more restrictive one. Power, duty cycle, distance, and the antenna all change exposure. Duty cycle is the fraction of the averaging time the transmitter is producing RF. Halving duty cycle halves average power for the same peak. That relationship is not itself a limit."
+    },
+    {
+      "id": "who",
+      "title": "Who evaluates",
+      "body": "The station licensee is responsible. FCC guidance accepts calculation and measurement. Re-evaluate when frequency, power, antenna, or location changes. This lab's average is not a certificate."
+    }
+  ],
+  "points": [
+    "Amateur RF is non-ionizing radiation. It does not have the photon energy of ionizing radiation and it does not make an object radioactive.",
+    "FCC exposure limits vary with frequency because the human body absorbs RF energy differently across the spectrum. The VHF range is where those limits are most restrictive.",
+    "The station licensee is responsible for preventing exposure above the FCC limits.",
+    "Power, duty cycle, distance, and the antenna all change exposure. Duty cycle is the fraction of the averaging time during which the transmitter is producing RF.",
+    "Halving the duty cycle halves the average power for the same peak power. That averaging relationship is not itself an exposure limit.",
+    "Changing frequency, power, antenna, or location is a reason to evaluate the station again.",
+    "This card and the lab model are not a substitute for the FCC rules or for OET Bulletin 65."
+  ]
+}

@@ -108,12 +108,13 @@
 
   <section aria-labelledby="remediation-heading">
     <h2 id="remediation-heading">Technician Remediation</h2>
-    <p class="lede">{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. TR-01 through TR-06 are open. TR-07, TR-08, and TR-09 are coming soon. Finishing the open labs does not finish the Technician syllabus and is not exam readiness.</p>
+    <p class="lede">{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. TR-01 through TR-09 are open. Finishing them is not exam readiness. A coverage verification still has to be done.</p>
     {% if remediation_continue %}
       <a class="button" href="{{ url_for('lab_workspace', lab_id=remediation_continue.id) }}">Continue remediation</a>
     {% elif remediation_summary.total and remediation_summary.completed == remediation_summary.total %}
-      <p class="stat-line">OPEN REMEDIATION LABS COMPLETE</p>
-      <p>These labs do not close the syllabus. Exam readiness is still planned.</p>
+      <p class="stat-line">TECHNICIAN REMEDIATION COMPLETE</p>
+      <p class="stat-line">COVERAGE VERIFICATION REQUIRED</p>
+      <p>Lesson completion is not concept mastery, not the historical coverage audit, and not exam readiness.</p>
     {% endif %}
     <ol class="lab-grid">
       {% for lab in remediation_labs %}

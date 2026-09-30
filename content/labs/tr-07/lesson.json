@@ -1,0 +1,357 @@
+{
+  "schemaVersion": 1,
+  "labId": "tr-07",
+  "curriculumId": "technician-remediation",
+  "licenseLevel": "technician",
+  "title": "Modes, Satellites & Digital Activities",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T8"],
+    "topics": ["T8A", "T8B", "T8C", "T8D"]
+  },
+  "requires": ["simulation.receiver"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "label": "LEARN",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "TC-05 introduced modes. This bench is the widths, the sideband convention, and the activities those modes are used for. A mode is how the information rides on the radio wave, and how much spectrum that ride occupies."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-remediation.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "spectrum-lab",
+          "recordsStage": false,
+          "gate": "tr07-width"
+        },
+        {
+          "type": "interaction",
+          "component": "sideband-lab",
+          "requiresGates": ["tr07-width"]
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "label": "SEE IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Digital activities exchange structured information. A television picture is still a radio emission with a very wide footprint. A low-Earth-orbit satellite is only available while it is in view."
+        },
+        {
+          "type": "interaction",
+          "component": "digital-explorer",
+          "recordsStage": false,
+          "gate": "tr07-digital",
+          "config": {
+            "intro": "For each activity: what is exchanged, and how it differs from ordinary analog voice.",
+            "doneText": "Those activities are different jobs, not different words for the same voice contact.",
+            "cards": [
+              {
+                "prompt": "FT8 is running. What is being exchanged?",
+                "readout": "Short timed transmissions. The software is in the WSJT-X family.",
+                "choices": [
+                  {"label": "Call signs and a grid locator, built for weak signals", "correct": true, "why": "FT8 is a weak-signal digital mode. The contact is structured data, not a conversation."},
+                  {"label": "A wideband analog voice roundtable", "correct": false, "why": "FT8 is not analog voice."}
+                ]
+              },
+              {
+                "prompt": "A station is using PSK. What does the abbreviation describe?",
+                "readout": "The carrier's phase is the thing that changes.",
+                "choices": [
+                  {"label": "Phase-shift keying, a digital method", "correct": true, "why": "PSK means phase-shift keying. The information is in the phase changes, not in an analog voice."},
+                  {"label": "A louder form of FM voice", "correct": false, "why": "FM voice is a different emission."}
+                ]
+              },
+              {
+                "prompt": "APRS beacons from a car. What can that carry?",
+                "readout": "A position report is the usual payload.",
+                "choices": [
+                  {"label": "Position, weather, and short messages", "correct": true, "why": "APRS carries data such as location and weather. It is not a voice net."},
+                  {"label": "A fast-scan television picture", "correct": false, "why": "A picture is a different emission, and it is much wider."}
+                ]
+              },
+              {
+                "prompt": "A packet arrives with an error. What does ARQ do?",
+                "readout": "The receiving end can tell the sending end to try again.",
+                "choices": [
+                  {"label": "It requests a repeat of the damaged data", "correct": true, "why": "ARQ is automatic repeat request. The check finds the error and the data is sent again."},
+                  {"label": "It makes the voice louder", "correct": false, "why": "ARQ is an error-control job, not a volume control."}
+                ]
+              },
+              {
+                "prompt": "Several stations relay data among themselves without a single hilltop repeater. What is that?",
+                "readout": "Each station can pass traffic for the others.",
+                "choices": [
+                  {"label": "An amateur radio mesh network", "correct": true, "why": "A mesh lets stations forward data for one another. Broadband-Hamnet is one amateur example of that idea."},
+                  {"label": "A single analog repeater", "correct": false, "why": "A repeater is one station retransmitting. A mesh is many stations forwarding."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "image-lab",
+          "recordsStage": false,
+          "gate": "tr07-image",
+          "requiresGates": ["tr07-digital"],
+          "config": {
+            "intro": "A picture is still a radio signal. Compare the footprint with voice.",
+            "doneText": "Fast-scan television occupies megahertz, not a voice channel.",
+            "cards": [
+              {
+                "prompt": "What is NTSC in this lab?",
+                "readout": "An analog color television standard used for fast-scan amateur television.",
+                "choices": [
+                  {"label": "The analog fast-scan television system", "correct": true, "why": "NTSC names that analog television standard. The emission is a picture, and a typical fast-scan signal is about 6 MHz wide."},
+                  {"label": "A keyboard digital chat mode", "correct": false, "why": "Keyboard chat is a narrow digital mode. NTSC is television."}
+                ]
+              },
+              {
+                "prompt": "You have a clear 15 kHz FM voice channel. Can you put fast-scan television there?",
+                "readout": "Fast-scan is about 6000 kHz in the comparison model.",
+                "choices": [
+                  {"label": "No. The picture needs a much wider channel", "correct": true, "why": "A typical fast-scan signal is about 6 MHz. An FM voice channel is on the order of 10 to 15 kHz."},
+                  {"label": "Yes. A picture uses less spectrum than voice", "correct": false, "why": "The picture is the wide emission."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "leo-pass",
+          "requiresGates": ["tr07-image"]
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "label": "DO IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Pick the activity that fits the goal. None of these is required to hold a license. FM is the usual voice mode on VHF and UHF repeaters, and it is also common for VHF packet. SSB is the weak-signal voice choice and uses less spectrum than FM. SSB is a form of amplitude modulation. CW is on-off keying and is the narrowest of the modes on the bench."
+        },
+        {
+          "type": "interaction",
+          "component": "activity-chooser",
+          "config": {
+            "intro": "Match the goal to the activity. The activity is optional. The match still has to be right.",
+            "doneText": "You matched the goal to the system. Wanting a contact is not the same as picking a mode.",
+            "cards": [
+              {
+                "prompt": "You want as many contacts as possible before the clock runs out.",
+                "readout": "Each contact should carry only the required exchange.",
+                "choices": [
+                  {"label": "A contest", "correct": true, "why": "A contest is contacting many stations in a set period. Send the exchange and move on."},
+                  {"label": "A mesh firmware update", "correct": false, "why": "That is a network job, not a timed contact event."}
+                ]
+              },
+              {
+                "prompt": "The other station asks for your grid locator.",
+                "readout": "A grid is a compact name for a place on Earth.",
+                "choices": [
+                  {"label": "Send the grid. It names your location", "correct": true, "why": "A grid locator is a coordinate square, often exchanged in weak-signal and contest contacts."},
+                  {"label": "Send your street address on a repeater instead", "correct": false, "why": "The grid is the location code they asked for."}
+                ]
+              },
+              {
+                "prompt": "A noise source is bothering the repeater. You need to find the transmitter.",
+                "readout": "A directional antenna makes the signal stronger in one heading.",
+                "choices": [
+                  {"label": "Radio direction finding", "correct": true, "why": "Direction finding, including a hidden-transmitter hunt, locates a signal. A directional antenna is the useful tool."},
+                  {"label": "Increase your own power until the noise is gone", "correct": false, "why": "More power does not locate the source."}
+                ]
+              },
+              {
+                "prompt": "You want to reach a distant repeater through the Internet Radio Linking Project.",
+                "readout": "The local node is on a radio. The link between nodes is the internet.",
+                "choices": [
+                  {"label": "Send the DTMF command over the radio to the IRLP node", "correct": true, "why": "IRLP links radios through the internet. Over-the-air access uses DTMF tones to the node."},
+                  {"label": "Switch the radio to fast-scan television", "correct": false, "why": "IRLP is a voice link, accessed by tones."}
+                ]
+              },
+              {
+                "prompt": "A friend wants to use EchoLink from a computer, with no radio at their desk.",
+                "readout": "The computer connects to the system over the internet.",
+                "choices": [
+                  {"label": "They need a validated amateur call sign registered before they connect", "correct": true, "why": "EchoLink checks the license before a station may use it. Voice over Internet Protocol is the method. A gateway is the station that connects radios to that internet side."},
+                  {"label": "Anyone may connect, licensed or not", "correct": false, "why": "The system requires the call sign to be validated."}
+                ]
+              },
+              {
+                "prompt": "You are hearing a satellite beacon. What is it telling you, and who may listen?",
+                "readout": "The beacon is the satellite's own transmission.",
+                "choices": [
+                  {"label": "Health and status telemetry. Anyone may receive it", "correct": true, "why": "A satellite beacon carries telemetry. Reception is not limited to one license class. A tracking program uses your location and the satellite's orbital data to predict the pass, the direction, and the Doppler shift."},
+                  {"label": "It is a private voice channel for the satellite owner", "correct": false, "why": "The beacon is telemetry, and listening is open."}
+                ]
+              },
+              {
+                "prompt": "The satellite listing says U/V. Which way is the uplink?",
+                "readout": "The mode letters are uplink then downlink.",
+                "choices": [
+                  {"label": "Uplink on UHF, downlink on VHF", "correct": true, "why": "U/V means you transmit on UHF and listen on VHF. Keep the uplink only as strong as the transponder needs. Compare your downlink with the beacon so you are not the loud station blocking others. Spin fading comes from the satellite's rotation."},
+                  {"label": "Uplink and downlink on the same VHF frequency", "correct": false, "why": "U/V is two bands, and the first letter is the uplink."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "label": "EXPLAIN IT",
+      "blocks": [
+        {
+          "type": "explain",
+          "conceptId": "mode-is-more-than-voice-or-data",
+          "prompt": "Why isn't choosing a radio mode only a matter of deciding whether you want voice or data?",
+          "reference": "Voice can be FM or SSB, and those two do not fit the same channel or the same weak-signal job. Data can be a short FT8 exchange, a position beacon, or a mesh that forwards for other stations. A picture is neither of those, and it occupies megahertz. The mode also has to match the repeater, the satellite, or the station you want to reach. Wanting voice does not tell you the sideband, the width, or whether the other station is even in view.",
+          "returnHref": "#stage-learn",
+          "returnLabel": "Return to the spectrum bench"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "label": "EXAM CONNECTION",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Radio Lab practice from this bench. Not the official pool."
+        },
+        {
+          "type": "exam",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "licenseLevel": "technician",
+          "questions": [
+            {
+              "id": "tr07-width",
+              "topicId": "T8A",
+              "stem": "On this bench, which emission had the narrowest typical width?",
+              "choices": ["CW, about 0.15 kHz", "FM voice, about 15 kHz", "Fast-scan television, about 6000 kHz"],
+              "correctIndex": 0,
+              "why": "CW was the narrowest. A typical SSB voice signal is about 3 kHz. FM voice on a repeater is wider, about 10 to 15 kHz. Fast-scan television is about 6 MHz. A particular radio can differ."
+            },
+            {
+              "id": "tr07-usb",
+              "topicId": "T8A",
+              "stem": "Which sideband did the bench use for 10-meter and VHF voice SSB?",
+              "choices": ["Upper sideband", "Lower sideband", "Both sidebands at once, like a full AM signal"],
+              "correctIndex": 0,
+              "why": "Upper sideband is the usual voice convention on 10 meters, VHF, and UHF. SSB is a form of amplitude modulation and uses less spectrum than FM. FM is the usual choice for VHF and UHF voice repeaters."
+            },
+            {
+              "id": "tr07-ft8",
+              "topicId": "T8D",
+              "stem": "What did FT8 exchange on this bench?",
+              "choices": ["Call signs and a grid, in short weak-signal transmissions", "An analog color television picture", "A continuous voice roundtable"],
+              "correctIndex": 0,
+              "why": "FT8 is a WSJT-X digital mode for weak signals. PSK means phase-shift keying. Packet carries a header, data, and a check. APRS carries position and similar data."
+            },
+            {
+              "id": "tr07-arq",
+              "topicId": "T8D",
+              "stem": "What did ARQ do when the data was damaged?",
+              "choices": ["Requested a repeat", "Widened the signal to 6 MHz", "Turned the transmission into FM voice"],
+              "correctIndex": 0,
+              "why": "ARQ asks for the damaged data again. A mesh network is the separate idea of stations forwarding for one another. NTSC is the analog fast-scan television system."
+            },
+            {
+              "id": "tr07-leo",
+              "topicId": "T8B",
+              "stem": "During the pass, when did the apparent frequency go down?",
+              "choices": ["After the satellite passed its highest point and started leaving", "While it was still climbing toward you", "Only when the elevation was zero"],
+              "correctIndex": 0,
+              "why": "Doppler shift raises the apparent frequency while the satellite approaches and lowers it as the satellite leaves. LEO means a low Earth orbit, so the pass is short. Tracking predicts when the satellite is in view."
+            },
+            {
+              "id": "tr07-uplink",
+              "topicId": "T8B",
+              "stem": "The listing said U/V. Which transmission was the uplink?",
+              "choices": ["Your signal on UHF", "Your signal on VHF", "The beacon, because it is the strongest"],
+              "correctIndex": 0,
+              "why": "U/V is UHF uplink and VHF downlink. The beacon carries telemetry and anyone may receive it. Too much uplink power overloads a linear transponder and blocks other stations."
+            },
+            {
+              "id": "tr07-contest",
+              "topicId": "T8C",
+              "stem": "Which goal matched a contest on this bench?",
+              "choices": ["As many contacts as possible during a set period, with only the required exchange", "Finding a noise source with a directional antenna", "Registering a call sign for a computer voice link"],
+              "correctIndex": 0,
+              "why": "A contest is many contacts in a period. Direction finding locates a signal. EchoLink requires a validated call sign. IRLP is reached with DTMF over the radio. A grid locator names a place."
+            },
+            {
+              "id": "tr07-fm",
+              "topicId": "T8A",
+              "stem": "Which disadvantage of FM, compared with SSB, did the widths show?",
+              "choices": ["FM occupies more spectrum for a voice contact", "FM is the narrowest emission on the bench", "FM cannot be used on a repeater"],
+              "correctIndex": 0,
+              "why": "A typical FM voice signal is wider than a typical SSB voice signal. That is why SSB is used for weak-signal work and FM is used where the channel is wide enough, such as a VHF repeater."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "label": "FIELD TASK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "You are on a hill with a dual-band handheld, a notebook of satellite passes, and an hour. One goal is a local voice contact. Another is a weak digital contact. A LEO satellite is due in twenty minutes."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tr07-hill-mission",
+          "component": "activity-chooser",
+          "config": {
+            "doneText": "You kept FM for the local repeater, used a weak-signal digital mode for the distant contact, and waited for the satellite pass before calling on the uplink.",
+            "cards": [
+              {
+                "prompt": "The local club repeater is on 146.52's neighborhood, FM voice. Which mode fits that contact?",
+                "readout": "The repeater is built for FM voice.",
+                "choices": [
+                  {"label": "FM voice. The channel is wide enough for it", "correct": true, "why": "VHF voice repeaters use FM. Fast-scan television would not fit."},
+                  {"label": "Fast-scan television, because the hill has a view", "correct": false, "why": "The view does not make a 6 MHz picture fit an FM voice channel."}
+                ]
+              },
+              {
+                "prompt": "You want a distant station who is running FT8.",
+                "readout": "The signal is weak. The exchange is a call sign and a grid.",
+                "choices": [
+                  {"label": "Use that digital mode and send the grid", "correct": true, "why": "FT8 is the weak-signal data contact. Ordinary FM voice is the wrong method."},
+                  {"label": "Call them on FM and talk as long as you like", "correct": false, "why": "They are not listening for FM voice."}
+                ]
+              },
+              {
+                "prompt": "The satellite is still below the horizon. The tracking line says it rises in twenty minutes, U/V.",
+                "readout": "Elevation is zero on the model.",
+                "choices": [
+                  {"label": "Wait for the pass. Then uplink on UHF and listen on VHF, and keep the power modest", "correct": true, "why": "A LEO satellite is only available while it is in view. U/V means UHF up and VHF down. Excess uplink power hurts other users."},
+                  {"label": "Transmit now on any band so the satellite hears you early", "correct": false, "why": "Below the horizon, the satellite is not in the pass."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

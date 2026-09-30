@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "labId": "tr-08",
+  "curriculumId": "technician-remediation",
+  "licenseLevel": "technician",
+  "title": "Antennas, Feed Lines & Connectors",
+  "alignment": {
+    "licenseLevel": "technician",
+    "pool": "2026-2030",
+    "effectiveFrom": "2026-07-01",
+    "effectiveThrough": "2030-06-30",
+    "subelements": ["T9"],
+    "topics": ["T9A", "T9B"]
+  },
+  "requires": ["simulation.swr"],
+  "hardware": [],
+  "stages": [
+    {
+      "id": "learn",
+      "label": "LEARN",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Lab 06 and TC-06 already used a wire, a match, and coax. This bench names the antennas, the pattern, and the loading coil those labs left thin."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/technician-remediation.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "antenna-gallery",
+          "config": {
+            "antennas": [
+              {"id": "dipole", "name": "Half-wave dipole", "behavior": "Two wires in a line, about a half wavelength overall. It is a basic HF antenna. It radiates strongest broadside and weakest off the ends. Polarization follows the wire: horizontal wire, horizontal polarization."},
+              {"id": "vertical", "name": "Vertical", "behavior": "The radiating part stands upright, so the polarization is vertical. A quarter-wave vertical is a common mobile and base antenna. Gain here means energy concentrated compared with a reference antenna, not a louder radio."},
+              {"id": "beam", "name": "Beam", "behavior": "A Yagi or quad concentrates radiation in one direction and has more gain than a dipole. You aim it. It is a poor choice if you need every direction at once."},
+              {"id": "duck", "name": "Rubber duck", "behavior": "The short flexible antenna on a handheld. It is convenient and electrically small, so it is less effective than a full quarter-wave antenna on the same band."},
+              {"id": "mobile", "name": "Vehicle antenna", "behavior": "A whip on the outside of a car uses the vehicle body as the other half of the antenna. A handheld inside the car, with only its rubber duck, is shielded by the body and is a weak way to operate."},
+              {"id": "five", "name": "5/8-wave whip", "behavior": "On VHF or UHF mobile service, a 5/8-wavelength whip has more gain and a lower main lobe than a quarter-wave whip. It is still a vertical, not a beam that you aim down the road."},
+              {"id": "loaded", "name": "Loaded antenna", "behavior": "A coil or other loading makes a physically short antenna resonant. Shortening a dipole raises its resonant frequency. Loading lets you bring that frequency back down without restoring the full length."}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "see",
+      "label": "SEE IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Turn the dipole and watch the teaching pattern. Then shorten an antenna and see what the coil is doing."
+        },
+        {
+          "type": "interaction",
+          "component": "pattern-lab",
+          "recordsStage": false,
+          "gate": "tr08-pattern"
+        },
+        {
+          "type": "interaction",
+          "component": "loading-lab",
+          "requiresGates": ["tr08-pattern"]
+        }
+      ]
+    },
+    {
+      "id": "do",
+      "label": "DO IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Coax is the usual feed line because the shield keeps the field inside and the cable is easy to route. Most amateur coax is about 50 ohms. Loss rises with frequency. An antenna tuner matches what the transmitter sees. It does not retune the antenna itself."
+        },
+        {
+          "type": "interaction",
+          "component": "feed-compare",
+          "recordsStage": false,
+          "gate": "tr08-feed"
+        },
+        {
+          "type": "interaction",
+          "component": "connector-lab",
+          "recordsStage": false,
+          "gate": "tr08-connector",
+          "requiresGates": ["tr08-feed"],
+          "config": {
+            "intro": "Pick the connector from the job.",
+            "doneText": "PL-259 is the common threaded coax connector at HF and VHF. An N connector is the better constant-impedance choice above 400 MHz.",
+            "cards": [
+              {
+                "prompt": "The cable will live outdoors. The fitting is a PL-259.",
+                "readout": "The threads and the shell are not a weather seal by themselves.",
+                "choices": [
+                  {"label": "Tape it for weather protection", "correct": true, "why": "A PL-259 used outdoors should be taped. Water in the coax is a source of loss and of erratic SWR."},
+                  {"label": "Leave it open so the joint can dry", "correct": false, "why": "An open outdoor joint is how water gets in."}
+                ]
+              },
+              {
+                "prompt": "The run is at 440 MHz and you can choose the connector.",
+                "readout": "Above 400 MHz the connector's impedance matters more.",
+                "choices": [
+                  {"label": "An N connector", "correct": true, "why": "An N connector is the suitable RF connector above 400 MHz. A PL-259 is common and usable at lower frequencies, and it is not the best choice up here."},
+                  {"label": "Any connector, because the cable is 50 ohms", "correct": false, "why": "The cable impedance does not make every connector equal at UHF."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "tuner-lab",
+          "recordsStage": false,
+          "gate": "tr08-tuner",
+          "requiresGates": ["tr08-connector"],
+          "config": {
+            "intro": "The transmitter is unhappy with the load. Decide what the tuner changes.",
+            "doneText": "The tuner matches the impedance the transmitter sees. The antenna and the feed line are still the same system.",
+            "cards": [
+              {
+                "prompt": "What does the antenna tuner change?",
+                "readout": "The radio sees a kinder impedance. The wire on the roof is unchanged.",
+                "choices": [
+                  {"label": "The match at the transmitter", "correct": true, "why": "A tuner, or coupler, presents a match to the transmitter. It does not turn a non-resonant antenna into a resonant one, and it does not remove loss that high SWR causes in the feed line."},
+                  {"label": "The physical length of the antenna", "correct": false, "why": "The tuner has no effect on the length of the wire."}
+                ]
+              },
+              {
+                "prompt": "After the tuner is adjusted, where can loss from a poor antenna match still happen?",
+                "readout": "The tuner is in the shack. The coax runs to the antenna.",
+                "choices": [
+                  {"label": "In the feed line between the tuner and the antenna", "correct": true, "why": "The line still carries the mismatch. Loss there becomes heat. Hardline has lower loss than small coax, which matters more on a long or high-frequency run."},
+                  {"label": "Nowhere. A matched radio means the whole system is resonant", "correct": false, "why": "The radio's match is not the antenna's resonance."}
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "interaction",
+          "component": "swr-lab",
+          "requiresGates": ["tr08-tuner"]
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "label": "EXPLAIN IT",
+      "blocks": [
+        {
+          "type": "explain",
+          "conceptId": "feed-line-loss-differs",
+          "prompt": "Why can two feed lines connected to the same antenna deliver different amounts of transmitter power to the antenna?",
+          "reference": "The antenna has not changed. The cable has. Loss in the cable becomes heat, so less power is left at the far end. A longer cable, a higher frequency, a smaller cable such as RG-58, or water in the line all increase that loss. RG-213 loses less than RG-58 in the same situation because it is a larger 50-ohm cable. A tuner at the radio can make the transmitter happy and still leave the loss in the line.",
+          "returnHref": "#stage-do",
+          "returnLabel": "Return to the feed-line bench"
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "label": "EXAM CONNECTION",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Radio Lab practice. Not the official pool."
+        },
+        {
+          "type": "exam",
+          "poolId": null,
+          "practicePoolId": "radio-lab-practice",
+          "licenseLevel": "technician",
+          "questions": [
+            {
+              "id": "tr08-beam",
+              "topicId": "T9A",
+              "stem": "Which antenna on the bench concentrates radiation in one direction and has more gain than a dipole?",
+              "choices": ["A beam, such as a Yagi", "A rubber duck", "A loading coil by itself"],
+              "correctIndex": 0,
+              "why": "A beam concentrates energy one way. Gain is that concentration compared with a reference antenna. A rubber duck is a short handheld antenna and is less effective than a full quarter wave."
+            },
+            {
+              "id": "tr08-dipole",
+              "topicId": "T9A",
+              "stem": "Where was the half-wave dipole strongest in the educational model?",
+              "choices": ["Broadside to the wire", "Off the ends of the wire", "Equally in every direction"],
+              "correctIndex": 0,
+              "why": "The model is strongest broadside and weakest off the ends. It is not a field-strength prediction. Polarization follows the orientation of the antenna."
+            },
+            {
+              "id": "tr08-load",
+              "topicId": "T9A",
+              "stem": "What did the loading coil let the short antenna do?",
+              "choices": ["Resonate even though the wire was physically short", "Become a full-size antenna with the same efficiency", "Change a horizontal dipole into a beam"],
+              "correctIndex": 0,
+              "why": "Loading adds electrical length. Shortening a dipole raises its resonant frequency, and a coil can bring the resonance back down. A 5/8-wave whip is a different mobile antenna, with more gain than a quarter-wave whip."
+            },
+            {
+              "id": "tr08-car",
+              "topicId": "T9A",
+              "stem": "What was the drawback of using the handheld inside a car with only its rubber duck?",
+              "choices": ["The vehicle shields the antenna", "The rubber duck becomes a 5/8-wave whip", "The coax loss falls to zero"],
+              "correctIndex": 0,
+              "why": "The metal body blocks the signal. An external vehicle antenna uses the body as part of the antenna. A free-space quarter wave near 146 MHz is about 20 inches, and a practical 2-meter vertical is near 19 inches."
+            },
+            {
+              "id": "tr08-cable",
+              "topicId": "T9B",
+              "stem": "In the same-length comparison at 146 MHz, which cable lost less?",
+              "choices": ["RG-213", "RG-58", "They were identical because both are about 50 ohms"],
+              "correctIndex": 0,
+              "why": "RG-213 is larger and has less loss than RG-58. Both are about 50-ohm coax. Loss still rises with frequency, and a short low-frequency run can make the smaller cable reasonable."
+            },
+            {
+              "id": "tr08-tuner",
+              "topicId": "T9B",
+              "stem": "What did the tuner change?",
+              "choices": ["The match seen by the transmitter", "The length of the antenna", "The loss inside a wet connector"],
+              "correctIndex": 0,
+              "why": "The tuner matches the transmitter to the system it sees. It does not make the antenna resonant, and feed-line loss from a mismatch can remain."
+            },
+            {
+              "id": "tr08-swr",
+              "topicId": "T9B",
+              "stem": "What did 1:1 mean on this bench?",
+              "choices": ["Essentially no reflected power in the model", "A universal safe operating limit for every radio", "The cable is RG-213"],
+              "correctIndex": 0,
+              "why": "1:1 is a perfect match in the model, so the reflection fraction is zero. 4:1 is a large mismatch. Neither number is a universal safety limit. Erratic SWR can come from a loose or wet connection."
+            },
+            {
+              "id": "tr08-n",
+              "topicId": "T9B",
+              "stem": "Which connector did the bench choose above 400 MHz?",
+              "choices": ["An N connector", "A PL-259 left untaped in the weather", "No connector, because 50 ohms is enough"],
+              "correctIndex": 0,
+              "why": "An N connector is the suitable choice above 400 MHz. A PL-259 used outdoors should be taped. Coax is common because it is easy to route and the shield contains the field. Hardline has still lower loss."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "label": "FIELD TASK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A picnic on 2 meters. You have a handheld with a rubber duck, a mag-mount quarter-wave for the car, 3 meters of RG-58, 20 meters of RG-213, a PL-259, and an N connector. The table is far from the car. The radio is FM voice."
+        },
+        {
+          "type": "fieldTask",
+          "taskId": "tr08-picnic-antenna",
+          "component": "connector-lab",
+          "config": {
+            "doneText": "You used the external quarter-wave, the lower-loss cable for the longer run, and a connector you will tape if it stays outdoors. The tuner was not required for this matched 2-meter whip.",
+            "cards": [
+              {
+                "prompt": "You will operate from the car. Which antenna is the better of the two you brought?",
+                "readout": "The rubber duck works. The mag-mount is a quarter-wave outside the vehicle.",
+                "choices": [
+                  {"label": "The external quarter-wave", "correct": true, "why": "The rubber duck is short, and a handheld inside the car is shielded. The outside quarter-wave is the better 2-meter choice here. It is not a beam, and it does not need to be."},
+                  {"label": "The rubber duck on the dash", "correct": false, "why": "The car body works against that antenna."}
+                ]
+              },
+              {
+                "prompt": "The radio stays at the picnic table, 15 meters from the car antenna. Which feed line loses less on this run?",
+                "readout": "Both cables are about 50 ohms. The run is long enough to matter at 146 MHz.",
+                "choices": [
+                  {"label": "The RG-213", "correct": true, "why": "For the same long VHF run, RG-213 delivers more power to the antenna than RG-58. The short RG-58 jumper would be fine for a very short connection."},
+                  {"label": "The RG-58, because thinner cable is always better", "correct": false, "why": "Thinner is not the same as lower loss."}
+                ]
+              },
+              {
+                "prompt": "The joint will sit outside overnight. The fitting you have on the cable is a PL-259.",
+                "readout": "440 MHz is not the band today. The weather is.",
+                "choices": [
+                  {"label": "Use the PL-259 and tape it", "correct": true, "why": "A PL-259 is a normal VHF connector, and outdoors it needs weather protection. An N connector would be the better choice if this run were above 400 MHz."},
+                  {"label": "Leave the PL-259 open so you can see the center pin", "correct": false, "why": "An open outdoor joint invites water, loss, and erratic SWR."}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

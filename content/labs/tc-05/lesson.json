@@ -10,8 +10,7 @@
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
     "subelements": ["T8", "T2"],
-    "topics": ["T8A", "T8B", "T8C", "T8D", "T2A"],
-    "partial": ["T8B", "T8C", "T8D"]
+    "topics": ["T8A", "T8B", "T8C", "T8D", "T2A"]
   },
   "requires": ["simulation.receiver"],
   "hardware": [],

@@ -1,4 +1,9 @@
-/* Educational models for Technician remediation TR-04 through TR-06.
+/* Educational models for Technician remediation.
+
+   TR-04 through TR-06 use the operating, propagation, and station models.
+   TR-07 through TR-09 add bandwidth, satellite, antenna, and safety models.
+   Bandwidths and patterns are teaching comparisons, not equipment specifications.
+   The exposure average is not an FCC compliance result.
 
    Offsets, horizons, multipath, and SWR readings are teaching models.
    They are not band-plan law, survey measurements, or equipment limits.
@@ -721,6 +726,108 @@
     },
   };
 
+  var TYPICAL_BANDWIDTH_KHZ = { cw: 0.15, ssb: 3, fm: 15, "fast-scan": 6000 };
+
+  function typicalBandwidth(mode) {
+    var khz = TYPICAL_BANDWIDTH_KHZ[mode];
+    if (khz == null) {
+      return null;
+    }
+    return {
+      mode: mode,
+      khz: khz,
+      approximate: true,
+      note: "A typical occupied width for comparison. A filter, deviation setting, or television format can differ.",
+    };
+  }
+
+  function narrowerMode(left, right) {
+    var a = typicalBandwidth(left);
+    var b = typicalBandwidth(right);
+    if (!a || !b || a.khz === b.khz) {
+      return null;
+    }
+    return a.khz < b.khz ? left : right;
+  }
+
+  function sidebandFor(service) {
+    if (service === "10m" || service === "vhf" || service === "uhf") {
+      return "usb";
+    }
+    if (service === "hf-below-10") {
+      return "lsb";
+    }
+    return null;
+  }
+
+  function satellitePass(step) {
+    var elevations = [0, 12, 28, 48, 70, 48, 28, 12, 0];
+    if (step < 0 || step >= elevations.length || step !== Math.floor(step)) {
+      return null;
+    }
+    var peak = 4;
+    return {
+      step: step,
+      elevation: elevations[step],
+      available: elevations[step] > 0,
+      doppler: step < peak ? "up" : step > peak ? "down" : "zero",
+      approaching: step < peak,
+      steps: elevations.length,
+    };
+  }
+
+  function dipoleRelative(degreesFromEnd) {
+    if (!isFinite(degreesFromEnd)) {
+      return null;
+    }
+    var wrapped = ((degreesFromEnd % 180) + 180) % 180;
+    var strength = Math.abs(Math.sin(wrapped * Math.PI / 180));
+    return { degreesFromEnd: wrapped, relative: round(strength, 2), model: "educational" };
+  }
+
+  function quarterWaveInches(mhz) {
+    var meters = wavelengthM(mhz);
+    if (meters == null) {
+      return null;
+    }
+    return round((meters / 4) * 39.37, 1);
+  }
+
+  function feedLineLoss(cable, meters, mhz) {
+    var factor = { "RG-58": 1, "RG-213": 0.45, hardline: 0.15 }[cable];
+    if (factor == null || !(meters > 0) || !(mhz > 0)) {
+      return null;
+    }
+    return round(meters * (mhz / 146) * factor, 2);
+  }
+
+  function reflectionFraction(swr) {
+    if (!(swr >= 1)) {
+      return null;
+    }
+    return round((swr - 1) / (swr + 1), 3);
+  }
+
+  function fuseChoice(rated, installed) {
+    if (!(rated > 0) || !(installed > 0)) {
+      return null;
+    }
+    if (installed === rated) {
+      return { ok: true, reason: "matched" };
+    }
+    if (installed > rated) {
+      return { ok: false, reason: "oversized" };
+    }
+    return { ok: false, reason: "smaller" };
+  }
+
+  function exposureAverage(watts, duty) {
+    if (!(watts >= 0) || !(duty >= 0) || duty > 1) {
+      return null;
+    }
+    return round(watts * duty, 3);
+  }
+
   var api = {
     round: round,
     FREE_SPACE_M_PER_S: FREE_SPACE_M_PER_S,
@@ -747,6 +854,16 @@
     initScenario: initScenario,
     scenario: scenario,
     stepScenario: stepScenario,
+    typicalBandwidth: typicalBandwidth,
+    narrowerMode: narrowerMode,
+    sidebandFor: sidebandFor,
+    satellitePass: satellitePass,
+    dipoleRelative: dipoleRelative,
+    quarterWaveInches: quarterWaveInches,
+    feedLineLoss: feedLineLoss,
+    reflectionFraction: reflectionFraction,
+    fuseChoice: fuseChoice,
+    exposureAverage: exposureAverage,
   };
 
   if (typeof module !== "undefined" && module.exports) {

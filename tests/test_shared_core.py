@@ -152,6 +152,7 @@ class SharedCoreTests(unittest.TestCase):
             "tests/core-05-08.test.js",
             "tests/remediation-01-03.test.js",
             "tests/remediation-04-06.test.js",
+            "tests/remediation-07-09.test.js",
         ):
             result = subprocess.run(
                 ["node", script],
@@ -495,7 +496,7 @@ class SharedCoreTests(unittest.TestCase):
         )
         self.assertEqual(
             [lab["id"] for lab in get_remediation_labs() if lab["available"]],
-            ["tr-01", "tr-02", "tr-03", "tr-04", "tr-05", "tr-06"],
+            ["tr-01", "tr-02", "tr-03", "tr-04", "tr-05", "tr-06", "tr-07", "tr-08", "tr-09"],
         )
         roadmap = load_roadmap()
         general = next(track for track in roadmap["tracks"] if track["id"] == "general")
@@ -521,10 +522,14 @@ class SharedCoreTests(unittest.TestCase):
             self.assertIn(b"remediation-labs.js", page.data)
             self.assertIn(b"not Technician exam readiness", page.data)
             page.close()
-        soon = self.client.get("/labs/tr-07")
-        self.assertEqual(soon.status_code, 200)
-        self.assertIn(b"COMING SOON", soon.data)
-        soon.close()
+        for lab_id in ("tr-07", "tr-08", "tr-09"):
+            page = self.client.get(f"/labs/{lab_id}")
+            self.assertEqual(page.status_code, 200)
+            self.assertIn(b"core-sim.js", page.data)
+            self.assertIn(b"remediation-sim.js", page.data)
+            self.assertIn(b"remediation-final.js", page.data)
+            self.assertNotIn(b"not open yet", page.data)
+            page.close()
         diagram = self.client.get(
             "/content/exam/sources/technician-2026-2030/diagrams/technician-diagram-t1.jpg"
         )
@@ -536,11 +541,13 @@ class SharedCoreTests(unittest.TestCase):
         from progress.store import init_db, set_stage_completed, sync_lab_status
 
         coverage = syllabus_coverage()
-        self.assertGreater(coverage["counts"]["partial"], 0)
-        self.assertLess(coverage["counts"]["recorded"], coverage["counts"]["groups"])
+        self.assertEqual(coverage["counts"]["notCovered"], 0)
+        self.assertEqual(coverage["counts"]["recorded"], coverage["counts"]["groups"])
         t5b = next(row for row in coverage["rows"] if row["id"] == "T5B")
         self.assertEqual(t5b["status"], "recorded")
-        self.assertNotIn("T5B", [row["id"] for row in coverage["notCovered"]])
+        for group_id in ("T8A", "T8B", "T8C", "T8D", "T9A", "T9B", "T0A", "T0B", "T0C"):
+            row = next(item for item in coverage["rows"] if item["id"] == group_id)
+            self.assertEqual(row["status"], "recorded", group_id)
         self.assertIn("not a coverage audit", coverage["note"])
         audit = json.loads(
             (ROOT / "content" / "exam" / "technician-2026-2030-coverage.json").read_text(encoding="utf-8")
@@ -557,7 +564,7 @@ class SharedCoreTests(unittest.TestCase):
         self.assertEqual(exam_phase["status"], "planned")
 
         progress = self.client.get("/progress")
-        self.assertIn(b"T0C", progress.data)
+        self.assertIn(b"35 of 35", progress.data)
         self.assertIn(b"not a coverage audit", progress.data)
         self.assertNotIn(b"TECHNICIAN READY", progress.data)
         progress.close()
