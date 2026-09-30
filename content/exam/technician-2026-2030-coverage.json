@@ -1,0 +1,1571 @@
+{
+  "schemaVersion": 1,
+  "role": "coverage-audit",
+  "licenseLevel": "technician",
+  "pool": "2026-2030",
+  "errataRelease": "2026-02-19",
+  "effectiveFrom": "2026-07-01",
+  "effectiveThrough": "2030-06-30",
+  "sourceCommit": "000513ef799068aaf215f344bd1f517569b8625c",
+  "syllabus": "exam/technician-2026-2030.json",
+  "questionIndex": "exam/technician-2026-2030-questions.json",
+  "provenance": "exam/sources/technician-2026-2030/provenance.json",
+  "curriculum": {
+    "foundations": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08"
+    ],
+    "core": [
+      "tc-01",
+      "tc-02",
+      "tc-03",
+      "tc-04",
+      "tc-05",
+      "tc-06",
+      "tc-07",
+      "tc-08"
+    ]
+  },
+  "metric": {
+    "name": "group-level coverage",
+    "denominator": 35,
+    "weighting": "Each official group counts as one, whether the group is broad or narrow. This is not a percentage of exam readiness and not a percentage of the 409 questions.",
+    "complete": 0,
+    "partial": 34,
+    "missing": 1
+  },
+  "conceptMetric": {
+    "name": "concept-level coverage",
+    "note": "Concepts were identified for this audit from the official topic text and the question stems. They are not an official NCVEC list, and they are not combined with the group-level metric.",
+    "counts": {
+      "complete": 82,
+      "taught-not-practiced": 2,
+      "missing": 42,
+      "mentioned-only": 2,
+      "reference-only": 2
+    },
+    "total": 130
+  },
+  "note": "Audit of Foundations 01-08 and Technician Core TC-01 through TC-08 as they existed at the source commit. Official exam data was not modified. This is not exam readiness.",
+  "groups": [
+    {
+      "officialId": "T1A",
+      "officialTopicText": "Purpose and permissible use of the Amateur Radio Service; Operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator; Beacon",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-01",
+        "tc-02"
+      ],
+      "concepts": [
+        {
+          "name": "The amateur service is for personal, training, and emergency communications, not broadcasting or hire",
+          "status": "complete",
+          "evidence": "TC-01 decision deck and practice question tc01-purpose."
+        },
+        {
+          "name": "One license grant covers the operator and the primary station",
+          "status": "taught-not-practiced",
+          "evidence": "Stated in the TC-01 lesson text and the reference card. No task asks the learner to use that fact."
+        },
+        {
+          "name": "Phonetics clarify a call sign and do not replace it",
+          "status": "complete",
+          "evidence": "TC-02 phonetic exercise and practice question."
+        },
+        {
+          "name": "RACES enrollment, automatically controlled beacons, frequency coordinators, and the Part 97 meaning of a space station",
+          "status": "missing",
+          "evidence": "Named nowhere in the lessons."
+        }
+      ],
+      "evidence": [
+        "The amateur service is for personal, training, and emergency communications, not broadcasting or hire: TC-01 decision deck and practice question tc01-purpose.",
+        "One license grant covers the operator and the primary station: Stated in the TC-01 lesson text and the reference card. No task asks the learner to use that fact.",
+        "Phonetics clarify a call sign and do not replace it: TC-02 phonetic exercise and practice question."
+      ],
+      "missingConcepts": [
+        "RACES enrollment, automatically controlled beacons, frequency coordinators, and the Part 97 meaning of a space station"
+      ],
+      "notes": "Purpose and the license grant are practiced. RACES, beacons, the frequency coordinator, and Part 97 definitions are not."
+    },
+    {
+      "officialId": "T1B",
+      "officialTopicText": "Frequency allocations; Emission modes; Spectrum sharing; Transmissions near band edges; Contacting the International Space Station; Power output",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "04",
+        "tc-01"
+      ],
+      "concepts": [
+        {
+          "name": "A frequency must be inside an amateur allocation and inside the license privilege",
+          "status": "complete",
+          "evidence": "Lab 04 reference tasks, including 28.400 and 29.600 MHz voice decisions."
+        },
+        {
+          "name": "A signal has width, so the band edge is not a safe center frequency",
+          "status": "complete",
+          "evidence": "TC-01 edge meter."
+        },
+        {
+          "name": "Use the lowest power that completes the contact",
+          "status": "complete",
+          "evidence": "TC-01 power decision and practice question tc01-power."
+        },
+        {
+          "name": "Technician HF phone segments, CW-only segments, secondary status, ISS contacts, and peak-envelope-power ceilings",
+          "status": "missing",
+          "evidence": "Not in Lab 04 or TC-01."
+        }
+      ],
+      "evidence": [
+        "A frequency must be inside an amateur allocation and inside the license privilege: Lab 04 reference tasks, including 28.400 and 29.600 MHz voice decisions.",
+        "A signal has width, so the band edge is not a safe center frequency: TC-01 edge meter.",
+        "Use the lowest power that completes the contact: TC-01 power decision and practice question tc01-power."
+      ],
+      "missingConcepts": [
+        "Technician HF phone segments, CW-only segments, secondary status, ISS contacts, and peak-envelope-power ceilings"
+      ],
+      "notes": "Lab 04 makes the learner check a privilege before transmitting. Power ceilings and secondary-status sharing are not taught."
+    },
+    {
+      "officialId": "T1C",
+      "officialTopicText": "Licensing: classes, sequential and vanity call sign systems, places where the Amateur Radio Service is regulated by the FCC, name and address on FCC license database, term, renewal, grace period, maintaining mailing address; International communications",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-01"
+      ],
+      "concepts": [
+        {
+          "name": "A new license is Technician, General, or Amateur Extra; the usual term is 10 years",
+          "status": "complete",
+          "evidence": "TC-01 and practice question tc01-term."
+        },
+        {
+          "name": "The two-year grace period is for renewal, not for transmitting",
+          "status": "complete",
+          "evidence": "TC-01 and the same practice question."
+        },
+        {
+          "name": "Vanity and sequential call signs, Group D format, mailing address or email, renewal window, and operation in international waters",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A new license is Technician, General, or Amateur Extra; the usual term is 10 years: TC-01 and practice question tc01-term.",
+        "The two-year grace period is for renewal, not for transmitting: TC-01 and the same practice question."
+      ],
+      "missingConcepts": [
+        "Vanity and sequential call signs, Group D format, mailing address or email, renewal window, and operation in international waters"
+      ],
+      "notes": "Term, grace period, and the three current license classes are taught. Vanity calls, databases, and international operation are not."
+    },
+    {
+      "officialId": "T1D",
+      "officialTopicText": "Authorized and prohibited transmissions; Sale of equipment",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-01",
+        "tc-02"
+      ],
+      "concepts": [
+        {
+          "name": "Music broadcasts and communications for hire are not amateur transmissions",
+          "status": "complete",
+          "evidence": "TC-01 paid-message refusal."
+        },
+        {
+          "name": "A test transmission is still identified",
+          "status": "complete",
+          "evidence": "TC-02 on-air practice."
+        },
+        {
+          "name": "Prohibited countries, obscured meanings, indecent language, equipment-sale notices, auxiliary stations, and news gathering",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Music broadcasts and communications for hire are not amateur transmissions: TC-01 paid-message refusal.",
+        "A test transmission is still identified: TC-02 on-air practice."
+      ],
+      "missingConcepts": [
+        "Prohibited countries, obscured meanings, indecent language, equipment-sale notices, auxiliary stations, and news gathering"
+      ],
+      "notes": "A few prohibited uses are decisions. The broader list of prohibited and exceptional transmissions is not taught."
+    },
+    {
+      "officialId": "T1E",
+      "officialTopicText": "Control operator: eligibility, designating, privileges, duties, location, required; Control point; Control types: automatic, remote",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-01"
+      ],
+      "concepts": [
+        {
+          "name": "The control operator is responsible and must be at the control point",
+          "status": "complete",
+          "evidence": "TC-01 lending and third-party scenes; practice question tc01-control."
+        },
+        {
+          "name": "Who designates the control operator, privileges follow that operator's license, automatic control, and remote control",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "The control operator is responsible and must be at the control point: TC-01 lending and third-party scenes; practice question tc01-control."
+      ],
+      "missingConcepts": [
+        "Who designates the control operator, privileges follow that operator's license, automatic control, and remote control"
+      ],
+      "notes": "Control operator and control point are practiced. Automatic and remote control are not."
+    },
+    {
+      "officialId": "T1F",
+      "officialTopicText": "Station identification; Repeaters; Third-party communications; Club stations; FCC inspection",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-01",
+        "03"
+      ],
+      "concepts": [
+        {
+          "name": "Identify often enough to stay inside 10 minutes, and again at the end",
+          "status": "complete",
+          "evidence": "TC-01 timeline and practice question tc01-id."
+        },
+        {
+          "name": "A brief third-party hello requires the control operator to remain in control",
+          "status": "complete",
+          "evidence": "TC-01 practice question tc01-third."
+        },
+        {
+          "name": "A repeater retransmits on another frequency",
+          "status": "complete",
+          "evidence": "Lab 03 offset model."
+        },
+        {
+          "name": "Tactical calls, self-assigned indicators, club-station grants, and FCC inspection",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Identify often enough to stay inside 10 minutes, and again at the end: TC-01 timeline and practice question tc01-id.",
+        "A brief third-party hello requires the control operator to remain in control: TC-01 practice question tc01-third.",
+        "A repeater retransmits on another frequency: Lab 03 offset model."
+      ],
+      "missingConcepts": [
+        "Tactical calls, self-assigned indicators, club-station grants, and FCC inspection"
+      ],
+      "notes": "Identification timing and a simple third-party hello are taught. Club stations and inspection are not."
+    },
+    {
+      "officialId": "T2A",
+      "officialTopicText": "Station operation: choosing an operating frequency, calling another station, test transmissions; Band plans: calling frequencies, repeater offsets",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "02",
+        "03",
+        "04",
+        "08",
+        "tc-02"
+      ],
+      "concepts": [
+        {
+          "name": "Choose a frequency, listen, and call with your call sign",
+          "status": "complete",
+          "evidence": "TC-02 on-air sequence."
+        },
+        {
+          "name": "146.520 MHz is the 2-meter simplex calling example",
+          "status": "complete",
+          "evidence": "Labs 01 and 02 tune and store 146.520 MHz."
+        },
+        {
+          "name": "A repeater offset separates input and output; 600 kHz is a common 2-meter example, not a universal rule",
+          "status": "complete",
+          "evidence": "Lab 03 offset-tone bench."
+        },
+        {
+          "name": "A band plan is a shared custom and does not replace the privilege",
+          "status": "complete",
+          "evidence": "Lab 04 practice question on calling custom versus the reference."
+        },
+        {
+          "name": "CQ procedure, answering CQ, and the common 70-centimeter offset",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Choose a frequency, listen, and call with your call sign: TC-02 on-air sequence.",
+        "146.520 MHz is the 2-meter simplex calling example: Labs 01 and 02 tune and store 146.520 MHz.",
+        "A repeater offset separates input and output; 600 kHz is a common 2-meter example, not a universal rule: Lab 03 offset-tone bench.",
+        "A band plan is a shared custom and does not replace the privilege: Lab 04 practice question on calling custom versus the reference."
+      ],
+      "missingConcepts": [
+        "CQ procedure, answering CQ, and the common 70-centimeter offset"
+      ],
+      "notes": "Calling, listening, a 2-meter offset example, and the calling frequency are practiced. CQ procedure and the 70-centimeter offset are not."
+    },
+    {
+      "officialId": "T2B",
+      "officialTopicText": "VHF/UHF operating practices: FM repeater, simplex, reverse splits; Access tones: CTCSS, DTMF; DMR operation; Resolving operating problems; Q signals",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "02",
+        "03",
+        "08",
+        "tc-02",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "Simplex uses one frequency; a repeater uses an input, an output, and sometimes a tone",
+          "status": "complete",
+          "evidence": "Lab 03 and TC-07 wrong-tone case."
+        },
+        {
+          "name": "Squelch hides noise and does not create a signal",
+          "status": "complete",
+          "evidence": "Lab 02 squelch task."
+        },
+        {
+          "name": "QSY means change frequency",
+          "status": "mentioned-only",
+          "evidence": "Technician Core reference card, not a lab task."
+        },
+        {
+          "name": "Reverse split, DTMF, linked repeaters, DMR talkgroups and color codes, and QRM",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Simplex uses one frequency; a repeater uses an input, an output, and sometimes a tone: Lab 03 and TC-07 wrong-tone case.",
+        "Squelch hides noise and does not create a signal: Lab 02 squelch task.",
+        "QSY means change frequency: Technician Core reference card, not a lab task."
+      ],
+      "missingConcepts": [
+        "Reverse split, DTMF, linked repeaters, DMR talkgroups and color codes, and QRM"
+      ],
+      "notes": "Simplex, repeater access, and squelch are hands-on. Reverse, DTMF, DMR, and Q signals are not, except a reference mention of QSY."
+    },
+    {
+      "officialId": "T2C",
+      "officialTopicText": "Public service: emergency operations, applicability of FCC rules, RACES and ARES, net and traffic procedures, operating restrictions during emergencies, use of phonetics in message handling",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-02",
+        "tc-08"
+      ],
+      "concepts": [
+        {
+          "name": "In a directed net, follow net control and keep emergency traffic clear",
+          "status": "complete",
+          "evidence": "TC-02 net scene and TC-08 emergency scenes."
+        },
+        {
+          "name": "Do not self-deploy into an incident",
+          "status": "complete",
+          "evidence": "TC-08 public-service scene and practice question tc08-deploy."
+        },
+        {
+          "name": "RACES versus ARES, radiogram preamble and check, Winlink, and phonetics inside formal messages",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "In a directed net, follow net control and keep emergency traffic clear: TC-02 net scene and TC-08 emergency scenes.",
+        "Do not self-deploy into an incident: TC-08 public-service scene and practice question tc08-deploy."
+      ],
+      "missingConcepts": [
+        "RACES versus ARES, radiogram preamble and check, Winlink, and phonetics inside formal messages"
+      ],
+      "notes": "Nets and emergency priority are decisions. Formal traffic, RACES, and ARES are not taught."
+    },
+    {
+      "officialId": "T3A",
+      "officialTopicText": "Radio wave characteristics: how a radio signal travels, fading, multipath, polarization, wavelength vs absorption; Antenna orientation",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "07",
+        "tc-06"
+      ],
+      "concepts": [
+        {
+          "name": "On VHF/UHF, terrain and antenna height open or block a path",
+          "status": "complete",
+          "evidence": "Lab 07 hill and ridge tasks."
+        },
+        {
+          "name": "More transmitter power does not remove a ridge",
+          "status": "complete",
+          "evidence": "Lab 07 high-power ridge task and practice question."
+        },
+        {
+          "name": "A local FM signal in this course is treated as vertical, and cross-polarization weakens coupling",
+          "status": "complete",
+          "evidence": "TC-06 polarization model."
+        },
+        {
+          "name": "Picket fencing, vegetation and rain absorption, multipath on data, and ionospheric elliptical polarization",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "On VHF/UHF, terrain and antenna height open or block a path: Lab 07 hill and ridge tasks.",
+        "More transmitter power does not remove a ridge: Lab 07 high-power ridge task and practice question.",
+        "A local FM signal in this course is treated as vertical, and cross-polarization weakens coupling: TC-06 polarization model."
+      ],
+      "missingConcepts": [
+        "Picket fencing, vegetation and rain absorption, multipath on data, and ionospheric elliptical polarization"
+      ],
+      "notes": "Terrain, height, and one polarization case are taught. Multipath, picket fencing, and absorption are not."
+    },
+    {
+      "officialId": "T3B",
+      "officialTopicText": "Electromagnetic wave properties: wavelength vs frequency, nature and velocity of electromagnetic waves, relationship of wavelength and frequency; Electromagnetic Spectrum Definitions: UHF, VHF, HF",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "01"
+      ],
+      "concepts": [
+        {
+          "name": "Higher frequency means shorter wavelength",
+          "status": "complete",
+          "evidence": "Lab 01 wave display and practice question lab01-wavelength."
+        },
+        {
+          "name": "Wavelength in meters is about 300 divided by frequency in megahertz",
+          "status": "complete",
+          "evidence": "Lab 01 shortcut, used again in Lab 06."
+        },
+        {
+          "name": "The same frequency can be written in hertz, kilohertz, and megahertz",
+          "status": "complete",
+          "evidence": "Lab 01 converter and practice question lab01-units."
+        },
+        {
+          "name": "VHF in this lab is about 30 to 300 MHz and UHF is about 300 to 3000 MHz",
+          "status": "complete",
+          "evidence": "Lab 01 spectrum labels."
+        },
+        {
+          "name": "A radio wave has electric and magnetic fields, polarization follows the electric field, and every frequency has the same free-space speed",
+          "status": "missing",
+          "evidence": "The shortcut calls 300 a rounded speed of light. It does not teach the fields or equal velocity."
+        },
+        {
+          "name": "HF as a defined frequency range",
+          "status": "missing",
+          "evidence": "Lab 07 uses an HF sketch. It does not define 3 to 30 MHz."
+        }
+      ],
+      "evidence": [
+        "Higher frequency means shorter wavelength: Lab 01 wave display and practice question lab01-wavelength.",
+        "Wavelength in meters is about 300 divided by frequency in megahertz: Lab 01 shortcut, used again in Lab 06.",
+        "The same frequency can be written in hertz, kilohertz, and megahertz: Lab 01 converter and practice question lab01-units.",
+        "VHF in this lab is about 30 to 300 MHz and UHF is about 300 to 3000 MHz: Lab 01 spectrum labels."
+      ],
+      "missingConcepts": [
+        "A radio wave has electric and magnetic fields, polarization follows the electric field, and every frequency has the same free-space speed",
+        "HF as a defined frequency range"
+      ],
+      "notes": "Wavelength, frequency, and the VHF/UHF labels are practiced. The electric and magnetic fields and the speed of the wave are only a rounded shortcut."
+    },
+    {
+      "officialId": "T3C",
+      "officialTopicText": "Propagation modes: sporadic E, meteor scatter, auroral propagation, tropospheric ducting; F region skip; Line of sight and radio horizon",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "07"
+      ],
+      "concepts": [
+        {
+          "name": "A typical VHF/UHF direct path is line of sight",
+          "status": "complete",
+          "evidence": "Lab 07 and practice question lab07-vhf."
+        },
+        {
+          "name": "HF skywave can return from the ionosphere, and the return is not guaranteed",
+          "status": "complete",
+          "evidence": "Lab 07 HF introduction and practice question lab07-hf."
+        },
+        {
+          "name": "Sporadic E, meteor scatter, auroral backscatter, tropospheric ducting, and F-region skip",
+          "status": "missing",
+          "evidence": "No lesson."
+        },
+        {
+          "name": "The radio horizon is farther than the visual horizon",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A typical VHF/UHF direct path is line of sight: Lab 07 and practice question lab07-vhf.",
+        "HF skywave can return from the ionosphere, and the return is not guaranteed: Lab 07 HF introduction and practice question lab07-hf."
+      ],
+      "missingConcepts": [
+        "Sporadic E, meteor scatter, auroral backscatter, tropospheric ducting, and F-region skip",
+        "The radio horizon is farther than the visual horizon"
+      ],
+      "notes": "Line of sight and a first skywave picture are taught. The named propagation modes in the pool are not."
+    },
+    {
+      "officialId": "T4A",
+      "officialTopicText": "Station setup: connecting a microphone, RF power meter, a power source, a computer, digital equipment, an SWR meter; RF grounding; Mobile radio installation",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "05",
+        "08",
+        "tc-05",
+        "tc-06",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "Digital operation connects a computer or device to the radio through an interface",
+          "status": "complete",
+          "evidence": "TC-05 ordered digital path."
+        },
+        {
+          "name": "An SWR or RF-power check belongs in the station path; a dummy load replaces the antenna for a power test",
+          "status": "complete",
+          "evidence": "TC-06 path and TC-07 meter choices. Lab 08 connects supply, radio, feed line, and antenna before the station is called ready."
+        },
+        {
+          "name": "Supply power is not the same quantity as RF output",
+          "status": "complete",
+          "evidence": "Lab 05 power task."
+        },
+        {
+          "name": "Mobile DC wiring, RF bonding, battery capacity, hotspots, and electronic keyers",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Digital operation connects a computer or device to the radio through an interface: TC-05 ordered digital path.",
+        "An SWR or RF-power check belongs in the station path; a dummy load replaces the antenna for a power test: TC-06 path and TC-07 meter choices. Lab 08 connects supply, radio, feed line, and antenna before the station is called ready.",
+        "Supply power is not the same quantity as RF output: Lab 05 power task."
+      ],
+      "missingConcepts": [
+        "Mobile DC wiring, RF bonding, battery capacity, hotspots, and electronic keyers"
+      ],
+      "notes": "A digital path and an SWR or power check are taught. Mobile wiring, hotspots, and keyers are not."
+    },
+    {
+      "officialId": "T4B",
+      "officialTopicText": "Operating controls: frequency tuning, use of filters, squelch function, AGC, memory channels, noise blanker, microphone gain, receiver incremental tuning (RIT), bandwidth selection, scanning function; Digital transceiver configuration; DMR code plugs and talk groups",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "02",
+        "tc-02",
+        "tc-04"
+      ],
+      "concepts": [
+        {
+          "name": "Squelch, VFO, and memory are separate controls",
+          "status": "complete",
+          "evidence": "Lab 02 handheld tasks."
+        },
+        {
+          "name": "Too much microphone gain distorts the voice",
+          "status": "complete",
+          "evidence": "TC-02 and TC-04 gain tasks."
+        },
+        {
+          "name": "A wider filter passes more noise and a narrower one can cut the voice",
+          "status": "complete",
+          "evidence": "TC-02 gain-filter comparison."
+        },
+        {
+          "name": "AGC, noise blanker, RIT, scanning, DMR code plugs, and D-STAR programming",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Squelch, VFO, and memory are separate controls: Lab 02 handheld tasks.",
+        "Too much microphone gain distorts the voice: TC-02 and TC-04 gain tasks.",
+        "A wider filter passes more noise and a narrower one can cut the voice: TC-02 gain-filter comparison."
+      ],
+      "missingConcepts": [
+        "AGC, noise blanker, RIT, scanning, DMR code plugs, and D-STAR programming"
+      ],
+      "notes": "Squelch, VFO, memory, microphone gain, and a filter comparison are hands-on. AGC, RIT, scanning, and digital code plugs are not."
+    },
+    {
+      "officialId": "T5A",
+      "officialTopicText": "Current and voltage: terminology and units, conductors and insulators, alternating and direct current",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "01",
+        "05",
+        "08",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "Voltage pushes, current flows, and resistance opposes",
+          "status": "complete",
+          "evidence": "Lab 05 bench and explain prompt."
+        },
+        {
+          "name": "Electrical power from the supply is about voltage times current",
+          "status": "complete",
+          "evidence": "Lab 05 13.8 V by 0.3 A task and practice question. Lab 08 computes receive and transmit supply watts and says they are not RF output."
+        },
+        {
+          "name": "One hertz is one cycle each second",
+          "status": "complete",
+          "evidence": "Lab 01 practice question lab01-hertz."
+        },
+        {
+          "name": "A conductor carries current, an insulator does not, DC holds one direction, and AC reverses",
+          "status": "reference-only",
+          "evidence": "Technician Core reference card only."
+        }
+      ],
+      "evidence": [
+        "Voltage pushes, current flows, and resistance opposes: Lab 05 bench and explain prompt.",
+        "Electrical power from the supply is about voltage times current: Lab 05 13.8 V by 0.3 A task and practice question. Lab 08 computes receive and transmit supply watts and says they are not RF output.",
+        "One hertz is one cycle each second: Lab 01 practice question lab01-hertz.",
+        "A conductor carries current, an insulator does not, DC holds one direction, and AC reverses: Technician Core reference card only."
+      ],
+      "missingConcepts": [],
+      "notes": "Voltage, current, resistance, and hertz are practiced. Conductors, insulators, and AC versus DC are only on the reference card."
+    },
+    {
+      "officialId": "T5B",
+      "officialTopicText": "Math for electronics: conversion of electrical units, decibels",
+      "classification": "missing",
+      "taught": false,
+      "practiced": false,
+      "assessed": false,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [],
+      "concepts": [
+        {
+          "name": "Convert amperes, volts, watts, and farads across metric prefixes",
+          "status": "missing",
+          "evidence": "No lesson asks for milliamperes, microvolts, or picofarads."
+        },
+        {
+          "name": "Decibels as a comparison of power",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [],
+      "missingConcepts": [
+        "Convert amperes, volts, watts, and farads across metric prefixes",
+        "Decibels as a comparison of power"
+      ],
+      "notes": "Lab 01 equates hertz, kilohertz, and megahertz for one frequency. That does not teach milli, micro, or pico conversions, or decibels. Those Lab 01 skills are counted under T3B."
+    },
+    {
+      "officialId": "T5C",
+      "officialTopicText": "Capacitance and inductance terminology and units; Radio frequency definition and units; Impedance definition and units; Calculating power",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "05",
+        "tc-03"
+      ],
+      "concepts": [
+        {
+          "name": "DC electrical power is voltage times current",
+          "status": "complete",
+          "evidence": "Lab 05 calculation task."
+        },
+        {
+          "name": "A capacitor stores charge briefly and an inductor opposes a change in current",
+          "status": "complete",
+          "evidence": "TC-03 component bench."
+        },
+        {
+          "name": "Farad, henry, and the meaning and unit of impedance",
+          "status": "missing",
+          "evidence": "Impedance is not named. Match and SWR are taught elsewhere without this definition."
+        },
+        {
+          "name": "Radio frequency as a defined rate, separate from the hertz already taught",
+          "status": "missing",
+          "evidence": "Lab 01 teaches hertz. It does not define radio frequency as a term."
+        }
+      ],
+      "evidence": [
+        "DC electrical power is voltage times current: Lab 05 calculation task.",
+        "A capacitor stores charge briefly and an inductor opposes a change in current: TC-03 component bench."
+      ],
+      "missingConcepts": [
+        "Farad, henry, and the meaning and unit of impedance",
+        "Radio frequency as a defined rate, separate from the hertz already taught"
+      ],
+      "notes": "Power is calculated and capacitance and inductance are shown as behavior. Their units and impedance are not taught."
+    },
+    {
+      "officialId": "T5D",
+      "officialTopicText": "Ohm’s Law; Series and parallel circuits",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "05"
+      ],
+      "concepts": [
+        {
+          "name": "Current equals voltage divided by resistance",
+          "status": "complete",
+          "evidence": "Lab 05 13.8 V and 46 ohm reading, and practice question lab05-ohm."
+        },
+        {
+          "name": "Two equal loads in parallel have a lower total resistance than one of them",
+          "status": "complete",
+          "evidence": "Lab 05 parallel task and practice question lab05-parallel."
+        },
+        {
+          "name": "Series loads add resistance",
+          "status": "mentioned-only",
+          "evidence": "The parallel question's explanation contrasts series. There is no series task."
+        }
+      ],
+      "evidence": [
+        "Current equals voltage divided by resistance: Lab 05 13.8 V and 46 ohm reading, and practice question lab05-ohm.",
+        "Two equal loads in parallel have a lower total resistance than one of them: Lab 05 parallel task and practice question lab05-parallel.",
+        "Series loads add resistance: The parallel question's explanation contrasts series. There is no series task."
+      ],
+      "missingConcepts": [],
+      "notes": "Ohm's law and parallel loads are practiced. Series circuits are named in an answer explanation and are not a task."
+    },
+    {
+      "officialId": "T6A",
+      "officialTopicText": "Fixed and variable resistors; Capacitors; Inductors; Fuses; Switches; Batteries",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-03",
+        "05"
+      ],
+      "concepts": [
+        {
+          "name": "A resistor limits current, a switch opens or closes, and a fuse opens when current is too high",
+          "status": "complete",
+          "evidence": "TC-03 bench and schematic."
+        },
+        {
+          "name": "A capacitor and an inductor store or oppose energy in the ways the bench shows",
+          "status": "complete",
+          "evidence": "TC-03 component bench."
+        },
+        {
+          "name": "A battery is the supply in the station path",
+          "status": "complete",
+          "evidence": "Lab 05 and TC-03 power path."
+        },
+        {
+          "name": "Potentiometers and which battery chemistries are rechargeable",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A resistor limits current, a switch opens or closes, and a fuse opens when current is too high: TC-03 bench and schematic.",
+        "A capacitor and an inductor store or oppose energy in the ways the bench shows: TC-03 component bench.",
+        "A battery is the supply in the station path: Lab 05 and TC-03 power path."
+      ],
+      "missingConcepts": [
+        "Potentiometers and which battery chemistries are rechargeable"
+      ],
+      "notes": "Fixed parts in a power path are hands-on. Variable resistors and battery chemistry are not."
+    },
+    {
+      "officialId": "T6B",
+      "officialTopicText": "Semiconductors: basic principles and applications of solid-state devices, diodes and transistors; Gain",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-03"
+      ],
+      "concepts": [
+        {
+          "name": "A diode in this course conducts one way",
+          "status": "complete",
+          "evidence": "TC-03 diode task."
+        },
+        {
+          "name": "A transistor model lets a small control affect a larger current",
+          "status": "complete",
+          "evidence": "TC-03 transistor task."
+        },
+        {
+          "name": "Gain means a small control affects a larger current",
+          "status": "reference-only",
+          "evidence": "Reference card restates the transistor model. The lab does not measure gain."
+        },
+        {
+          "name": "Forward voltage, cathode mark, LED, FET electrodes, and bipolar transistor electrodes",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A diode in this course conducts one way: TC-03 diode task.",
+        "A transistor model lets a small control affect a larger current: TC-03 transistor task.",
+        "Gain means a small control affects a larger current: Reference card restates the transistor model. The lab does not measure gain."
+      ],
+      "missingConcepts": [
+        "Forward voltage, cathode mark, LED, FET electrodes, and bipolar transistor electrodes"
+      ],
+      "notes": "The diode and transistor models are educational cartoons. Electrode names, LEDs, and FETs are not taught."
+    },
+    {
+      "officialId": "T6C",
+      "officialTopicText": "Circuit diagrams: use of term schematic, basic structure; Schematic symbols of basic components",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-03"
+      ],
+      "concepts": [
+        {
+          "name": "A schematic shows electrical jobs, not the photograph of the case",
+          "status": "complete",
+          "evidence": "TC-03 schematic lab and explain prompt."
+        },
+        {
+          "name": "Battery, fuse, switch, and resistor symbols match the physical chain",
+          "status": "complete",
+          "evidence": "TC-03 symbol task."
+        },
+        {
+          "name": "Transistor, lamp, ground, capacitor, inductor, and regulator symbols from the pool figures",
+          "status": "missing",
+          "evidence": "Those figures are not in the lessons."
+        }
+      ],
+      "evidence": [
+        "A schematic shows electrical jobs, not the photograph of the case: TC-03 schematic lab and explain prompt.",
+        "Battery, fuse, switch, and resistor symbols match the physical chain: TC-03 symbol task."
+      ],
+      "missingConcepts": [
+        "Transistor, lamp, ground, capacitor, inductor, and regulator symbols from the pool figures"
+      ],
+      "notes": "The learner matches a short power-path schematic to parts. The pool's figure symbol set is not taught."
+    },
+    {
+      "officialId": "T6D",
+      "officialTopicText": "Component functions: rectifiers, relays, voltage regulators, meters, indicators, integrated circuits, transformers; Resonant circuit; Shielding",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-03",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "A relay uses a small coil to switch another circuit",
+          "status": "complete",
+          "evidence": "TC-03 relay task."
+        },
+        {
+          "name": "A meter reads an electrical quantity when it is connected for that quantity",
+          "status": "complete",
+          "evidence": "TC-07 workbench."
+        },
+        {
+          "name": "Rectifiers, voltage regulators, transformers, shielded wire, indicators, integrated circuits, and resonant circuits",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A relay uses a small coil to switch another circuit: TC-03 relay task.",
+        "A meter reads an electrical quantity when it is connected for that quantity: TC-07 workbench."
+      ],
+      "missingConcepts": [
+        "Rectifiers, voltage regulators, transformers, shielded wire, indicators, integrated circuits, and resonant circuits"
+      ],
+      "notes": "The relay is a hands-on part. Rectifiers, regulators, transformers, shielding, and resonance are not."
+    },
+    {
+      "officialId": "T7A",
+      "officialTopicText": "Station equipment: receivers, transceivers, transmitter amplifiers, RF preamplifiers, transverters; Basic radio circuit concepts and terminology: sensitivity, selectivity, mixers, oscillators, Push-To-Talk (PTT), VFO, modulation",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-04",
+        "02"
+      ],
+      "concepts": [
+        {
+          "name": "A transceiver transmits and receives through modulation, an RF stage, a feed line, and an antenna",
+          "status": "complete",
+          "evidence": "TC-04 signal path."
+        },
+        {
+          "name": "The VFO selects the operating frequency",
+          "status": "complete",
+          "evidence": "Lab 02."
+        },
+        {
+          "name": "Sensitivity, selectivity, mixers, oscillators as named circuits, PTT, preamplifiers, and transverters",
+          "status": "missing",
+          "evidence": "No lesson. Filters are taught as a control in TC-02, not as selectivity."
+        }
+      ],
+      "evidence": [
+        "A transceiver transmits and receives through modulation, an RF stage, a feed line, and an antenna: TC-04 signal path.",
+        "The VFO selects the operating frequency: Lab 02."
+      ],
+      "missingConcepts": [
+        "Sensitivity, selectivity, mixers, oscillators as named circuits, PTT, preamplifiers, and transverters"
+      ],
+      "notes": "The transmit and receive path and modulation are taught. Sensitivity, mixers, and transverters are not."
+    },
+    {
+      "officialId": "T7B",
+      "officialTopicText": "Symptoms, causes, and cures of common transmitter and receiver problems: overload and overdrive, distortion, interference and consumer electronics, RF feedback",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-04",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "Too much microphone gain can make transmitted voice distorted",
+          "status": "complete",
+          "evidence": "TC-04 weak-audio case."
+        },
+        {
+          "name": "Check power, connections, and settings before assuming an internal failure",
+          "status": "complete",
+          "evidence": "TC-04 and TC-07 diagnostic cases."
+        },
+        {
+          "name": "Over-deviation, fundamental overload, RF feedback, and what to do when a neighbor reports interference",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Too much microphone gain can make transmitted voice distorted: TC-04 weak-audio case.",
+        "Check power, connections, and settings before assuming an internal failure: TC-04 and TC-07 diagnostic cases."
+      ],
+      "missingConcepts": [
+        "Over-deviation, fundamental overload, RF feedback, and what to do when a neighbor reports interference"
+      ],
+      "notes": "Station faults and distorted transmit audio are practiced. Interference to a neighbor's radio or television is not."
+    },
+    {
+      "officialId": "T7C",
+      "officialTopicText": "Antenna and transmission line measurements and troubleshooting: measuring SWR, effects of high SWR, causes of feed line failures; Basic coaxial cable characteristics; Use of dummy loads when testing",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "06",
+        "tc-06",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "High SWR points at the antenna and feed line, and a dummy load is the comparison load",
+          "status": "complete",
+          "evidence": "Lab 06 match model, TC-06 mismatch case, TC-07 high-SWR case."
+        },
+        {
+          "name": "Longer cable, higher frequency, or poorer cable increases relative loss",
+          "status": "complete",
+          "evidence": "TC-06 feed-loss model."
+        },
+        {
+          "name": "A poor connector can make the path look bad",
+          "status": "complete",
+          "evidence": "TC-06 connector case."
+        },
+        {
+          "name": "A 1:1 reading, transmitter foldback, water and sunlight damage to coax, and foam versus solid dielectric",
+          "status": "missing",
+          "evidence": "No lesson. The labs refuse a universal safe SWR number."
+        }
+      ],
+      "evidence": [
+        "High SWR points at the antenna and feed line, and a dummy load is the comparison load: Lab 06 match model, TC-06 mismatch case, TC-07 high-SWR case.",
+        "Longer cable, higher frequency, or poorer cable increases relative loss: TC-06 feed-loss model.",
+        "A poor connector can make the path look bad: TC-06 connector case."
+      ],
+      "missingConcepts": [
+        "A 1:1 reading, transmitter foldback, water and sunlight damage to coax, and foam versus solid dielectric"
+      ],
+      "notes": "SWR, a dummy load, and relative feed-line loss are practiced. Coax construction and a numerical match reading are not."
+    },
+    {
+      "officialId": "T7D",
+      "officialTopicText": "Using basic test instruments: voltmeter, ammeter, and ohmmeter; Soldering",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "Measure voltage across a source, current in series, and resistance only on an unpowered part",
+          "status": "complete",
+          "evidence": "TC-07 workbench and practice questions tc07-voltage, tc07-ohms, and tc07-current."
+        },
+        {
+          "name": "Solder types, cold joints, and an ohmmeter across a discharged capacitor",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Measure voltage across a source, current in series, and resistance only on an unpowered part: TC-07 workbench and practice questions tc07-voltage, tc07-ohms, and tc07-current."
+      ],
+      "missingConcepts": [
+        "Solder types, cold joints, and an ohmmeter across a discharged capacitor"
+      ],
+      "notes": "Voltage, current, and resistance setups are practiced. Soldering is absent."
+    },
+    {
+      "officialId": "T8A",
+      "officialTopicText": "Basic characteristics of FM and SSB; Bandwidth of various modulation modes: CW, SSB, FM, fast-scan TV; Choice of emission type: selection of USB vs LSB, use of SSB for weak signal work, use of FM for VHF packet and repeaters",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-04",
+        "tc-05"
+      ],
+      "concepts": [
+        {
+          "name": "FM voice, SSB voice, CW, and digital data need different receiver settings",
+          "status": "complete",
+          "evidence": "TC-05 mode bench."
+        },
+        {
+          "name": "Different emissions can occupy different amounts of spectrum",
+          "status": "complete",
+          "evidence": "TC-05 bandwidth comparison. The bars are not a specification."
+        },
+        {
+          "name": "AM, FM, SSB, and CW place information on RF in different ways",
+          "status": "complete",
+          "evidence": "TC-04 modulation cartoons."
+        },
+        {
+          "name": "USB versus LSB, approximate bandwidths in kilohertz, and fast-scan television",
+          "status": "missing",
+          "evidence": "The bandwidth lab avoids fixed numbers. Sideband selection and television are absent."
+        }
+      ],
+      "evidence": [
+        "FM voice, SSB voice, CW, and digital data need different receiver settings: TC-05 mode bench.",
+        "Different emissions can occupy different amounts of spectrum: TC-05 bandwidth comparison. The bars are not a specification.",
+        "AM, FM, SSB, and CW place information on RF in different ways: TC-04 modulation cartoons."
+      ],
+      "missingConcepts": [
+        "USB versus LSB, approximate bandwidths in kilohertz, and fast-scan television"
+      ],
+      "notes": "The learner matches receiver mode and compares relative width. Numerical bandwidths, sideband choice, and fast-scan television are not taught."
+    },
+    {
+      "officialId": "T8B",
+      "officialTopicText": "Amateur satellite operation: Doppler shift, basic orbits, operating protocols, modulation mode selection, transmitter power considerations, telemetry, satellite tracking programs, beacons, uplink and downlink mode definitions, spin fading, definition of “LEO”, setting uplink power",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-05"
+      ],
+      "concepts": [
+        {
+          "name": "Uplink goes to the satellite and downlink comes back during a line-of-sight pass",
+          "status": "complete",
+          "evidence": "TC-05 satellite scenes and practice question tc05-sat."
+        },
+        {
+          "name": "The frequency can shift during the pass",
+          "status": "complete",
+          "evidence": "TC-05 Doppler choice."
+        },
+        {
+          "name": "LEO, tracking programs, beacons, telemetry, spin fading, U/V mode, and uplink power into a transponder",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Uplink goes to the satellite and downlink comes back during a line-of-sight pass: TC-05 satellite scenes and practice question tc05-sat.",
+        "The frequency can shift during the pass: TC-05 Doppler choice."
+      ],
+      "missingConcepts": [
+        "LEO, tracking programs, beacons, telemetry, spin fading, U/V mode, and uplink power into a transponder"
+      ],
+      "notes": "Uplink, downlink, a pass, and a frequency shift are introduced. Orbits, tracking, telemetry, and LEO are not."
+    },
+    {
+      "officialId": "T8C",
+      "officialTopicText": "Operating activities: radio direction finding, contests, linking over the internet, exchanging grid locators",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-05"
+      ],
+      "concepts": [
+        {
+          "name": "Rotating a directional antenna until a signal peaks is a simple direction-finding check",
+          "status": "complete",
+          "evidence": "TC-05 direction-finding scene and practice question tc05-rdf."
+        },
+        {
+          "name": "Contests, grid locators, IRLP, EchoLink, and VoIP gateways",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Rotating a directional antenna until a signal peaks is a simple direction-finding check: TC-05 direction-finding scene and practice question tc05-rdf."
+      ],
+      "missingConcepts": [
+        "Contests, grid locators, IRLP, EchoLink, and VoIP gateways"
+      ],
+      "notes": "A beginner direction-finding check is one decision. Contests, grid locators, and internet linking are not taught."
+    },
+    {
+      "officialId": "T8D",
+      "officialTopicText": "Non-voice and digital communications: image signals and definition of NTSC, CW, packet radio, PSK, APRS, error detection and correction, amateur radio networking, DMR, WSJT modes, Broadband-Hamnet",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-05",
+        "tc-04"
+      ],
+      "concepts": [
+        {
+          "name": "Data still travels computer, interface, radio, RF, receiving radio, decoder",
+          "status": "complete",
+          "evidence": "TC-05 path assembly."
+        },
+        {
+          "name": "APRS here is a radio packet of station, location, or status, not an internet message",
+          "status": "complete",
+          "evidence": "TC-05 follow-up and practice question tc05-aprs."
+        },
+        {
+          "name": "CW is on-off keying rather than voice",
+          "status": "complete",
+          "evidence": "TC-04 and TC-05."
+        },
+        {
+          "name": "NTSC, PSK, FT8 and other WSJT modes, DMR, ARQ, and amateur mesh networks",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Data still travels computer, interface, radio, RF, receiving radio, decoder: TC-05 path assembly.",
+        "APRS here is a radio packet of station, location, or status, not an internet message: TC-05 follow-up and practice question tc05-aprs.",
+        "CW is on-off keying rather than voice: TC-04 and TC-05."
+      ],
+      "missingConcepts": [
+        "NTSC, PSK, FT8 and other WSJT modes, DMR, ARQ, and amateur mesh networks"
+      ],
+      "notes": "A digital path, CW, and a beginner APRS packet are taught. FT8, PSK, DMR, NTSC, and mesh networks are not."
+    },
+    {
+      "officialId": "T9A",
+      "officialTopicText": "Antennas: vertical and horizontal polarization, concept of antenna gain, definition and types of beam antennas, antenna loading, common portable and mobile antennas, relationships between resonant length and frequency, dipole pattern",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "06",
+        "08",
+        "tc-06"
+      ],
+      "concepts": [
+        {
+          "name": "A longer wavelength wants a longer resonant wire",
+          "status": "complete",
+          "evidence": "Lab 06 length model. Lab 08 chooses a wire length for the 2-meter outing."
+        },
+        {
+          "name": "Polarization is the antenna's orientation, and matching it improves coupling in the model",
+          "status": "complete",
+          "evidence": "TC-06 polarization experiment."
+        },
+        {
+          "name": "A directional antenna redistributes energy; aiming it toward a station uses that pattern",
+          "status": "complete",
+          "evidence": "TC-06 pattern experiment and practice question tc06-gain."
+        },
+        {
+          "name": "Beam names, loading coils, rubber-duck and vehicle antennas, the 5/8-wave whip, and the dipole's broadside pattern",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A longer wavelength wants a longer resonant wire: Lab 06 length model. Lab 08 chooses a wire length for the 2-meter outing.",
+        "Polarization is the antenna's orientation, and matching it improves coupling in the model: TC-06 polarization experiment.",
+        "A directional antenna redistributes energy; aiming it toward a station uses that pattern: TC-06 pattern experiment and practice question tc06-gain."
+      ],
+      "missingConcepts": [
+        "Beam names, loading coils, rubber-duck and vehicle antennas, the 5/8-wave whip, and the dipole's broadside pattern"
+      ],
+      "notes": "Length versus frequency, polarization, aim, and gain-as-redistribution are practiced. Named antenna types and the dipole pattern are not."
+    },
+    {
+      "officialId": "T9B",
+      "officialTopicText": "Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "06",
+        "tc-06",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "Feed-line loss rises with length, frequency, and poorer cable in the educational model",
+          "status": "complete",
+          "evidence": "TC-06 loss experiment."
+        },
+        {
+          "name": "SWR is a match reading, and a dummy load separates the antenna from the radio",
+          "status": "complete",
+          "evidence": "Lab 06, TC-06, and TC-07."
+        },
+        {
+          "name": "A loose or corroded connector is a path fault",
+          "status": "complete",
+          "evidence": "TC-06 connector case."
+        },
+        {
+          "name": "50-ohm coax, antenna tuners, PL-259 and N connectors, weather sealing, and RG-58 versus RG-213",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Feed-line loss rises with length, frequency, and poorer cable in the educational model: TC-06 loss experiment.",
+        "SWR is a match reading, and a dummy load separates the antenna from the radio: Lab 06, TC-06, and TC-07.",
+        "A loose or corroded connector is a path fault: TC-06 connector case."
+      ],
+      "missingConcepts": [
+        "50-ohm coax, antenna tuners, PL-259 and N connectors, weather sealing, and RG-58 versus RG-213"
+      ],
+      "notes": "Relative loss, SWR, and a bad connector are practiced. Characteristic impedance, tuners, and connector families are not."
+    },
+    {
+      "officialId": "T0A",
+      "officialTopicText": "Power circuits and hazards: hazardous voltages, fuses and circuit breakers, grounding, electrical code compliance; Lightning protection; Battery safety",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-08",
+        "tc-03",
+        "tc-07"
+      ],
+      "concepts": [
+        {
+          "name": "A fuse opens an over-current path and must not be jumpered",
+          "status": "complete",
+          "evidence": "TC-08 site inspection and outing power check; TC-03 fuse in the power path; TC-07 open-fuse case."
+        },
+        {
+          "name": "Damaged insulation is a shock hazard",
+          "status": "complete",
+          "evidence": "TC-08 site inspection and radio-safety field choice."
+        },
+        {
+          "name": "A battery needs a sensible dry placement and can be hazardous if abused",
+          "status": "complete",
+          "evidence": "TC-08 puddle-and-heat battery spot; TC-07 low-voltage and fuse cases."
+        },
+        {
+          "name": "Health effect of current through the body",
+          "status": "missing",
+          "evidence": "No lesson explains shock current through the body."
+        },
+        {
+          "name": "AC wiring color, fuse or breaker location, and replacing a fuse with a higher rating",
+          "status": "missing",
+          "evidence": "No lesson teaches black-wire hot, series fuse placement, or 5 A versus 20 A."
+        },
+        {
+          "name": "Lightning arrestor placement and bonding ground rods",
+          "status": "missing",
+          "evidence": "TC-08 stops outdoor work for a storm. It does not teach arrestors or ground-rod bonding."
+        },
+        {
+          "name": "Charge stored in a supply after it is switched off, and high-voltage meter precautions",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "A fuse opens an over-current path and must not be jumpered: TC-08 site inspection and outing power check; TC-03 fuse in the power path; TC-07 open-fuse case.",
+        "Damaged insulation is a shock hazard: TC-08 site inspection and radio-safety field choice.",
+        "A battery needs a sensible dry placement and can be hazardous if abused: TC-08 puddle-and-heat battery spot; TC-07 low-voltage and fuse cases."
+      ],
+      "missingConcepts": [
+        "Health effect of current through the body",
+        "AC wiring color, fuse or breaker location, and replacing a fuse with a higher rating",
+        "Lightning arrestor placement and bonding ground rods",
+        "Charge stored in a supply after it is switched off, and high-voltage meter precautions"
+      ],
+      "notes": "Fuses, a damaged cord, and battery placement are real decisions. AC wiring colors, lightning arrestors, stored charge, and fuse sizing are not taught."
+    },
+    {
+      "officialId": "T0B",
+      "officialTopicText": "Antenna safety: tower safety and grounding, installing antennas, antenna supports",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-08"
+      ],
+      "concepts": [
+        {
+          "name": "Keep antennas away from overhead power lines and utility poles",
+          "status": "complete",
+          "evidence": "TC-08 site spot, line scenario, and antenna-site field check."
+        },
+        {
+          "name": "Stop outdoor antenna work when a thunderstorm is approaching",
+          "status": "complete",
+          "evidence": "TC-08 storm scenario and weather field decision."
+        },
+        {
+          "name": "Do not climb a tower as part of this course",
+          "status": "taught-not-practiced",
+          "evidence": "TC-08 says the lab will not practice climbing. It does not teach a climb procedure."
+        },
+        {
+          "name": "Tower grounding, guy turnbuckles, crank-up towers, helpers, and clearance distances",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Keep antennas away from overhead power lines and utility poles: TC-08 site spot, line scenario, and antenna-site field check.",
+        "Stop outdoor antenna work when a thunderstorm is approaching: TC-08 storm scenario and weather field decision.",
+        "Do not climb a tower as part of this course: TC-08 says the lab will not practice climbing. It does not teach a climb procedure."
+      ],
+      "missingConcepts": [
+        "Tower grounding, guy turnbuckles, crank-up towers, helpers, and clearance distances"
+      ],
+      "notes": "The lab teaches avoidance: stay clear of overhead lines, do not use a utility pole, and do not climb. It does not teach tower work."
+    },
+    {
+      "officialId": "T0C",
+      "officialTopicText": "RF hazards: radiation exposure, proximity to antennas, recognized safe power levels, radiation types, duty cycle",
+      "classification": "partial",
+      "taught": true,
+      "practiced": true,
+      "assessed": true,
+      "referenceOnly": false,
+      "mentionedOnly": false,
+      "supportingLabs": [
+        "tc-08"
+      ],
+      "concepts": [
+        {
+          "name": "Exposure depends on power, distance, and duty cycle",
+          "status": "complete",
+          "evidence": "TC-08 exposure model and practice questions tc08-exposure and tc08-duty."
+        },
+        {
+          "name": "People who are not operating should not sit against the antenna",
+          "status": "complete",
+          "evidence": "TC-08 picnic-table hazard and field seating choice."
+        },
+        {
+          "name": "RF is non-ionizing and differs from radioactivity",
+          "status": "missing",
+          "evidence": "No lesson."
+        },
+        {
+          "name": "Exposure limits vary with frequency, and compliance uses current FCC evaluation methods",
+          "status": "missing",
+          "evidence": "The lab tells the learner to use current rules and refuses to give a legal result. It does not teach those methods."
+        },
+        {
+          "name": "The station licensee is responsible for exposure limits, and touching a transmitting antenna can burn",
+          "status": "missing",
+          "evidence": "No lesson."
+        }
+      ],
+      "evidence": [
+        "Exposure depends on power, distance, and duty cycle: TC-08 exposure model and practice questions tc08-exposure and tc08-duty.",
+        "People who are not operating should not sit against the antenna: TC-08 picnic-table hazard and field seating choice."
+      ],
+      "missingConcepts": [
+        "RF is non-ionizing and differs from radioactivity",
+        "Exposure limits vary with frequency, and compliance uses current FCC evaluation methods",
+        "The station licensee is responsible for exposure limits, and touching a transmitting antenna can burn"
+      ],
+      "notes": "The exposure tool is labeled an educational model, not a compliance calculator. Frequency dependence, ionizing versus non-ionizing, and evaluation methods are absent."
+    }
+  ]
+}
