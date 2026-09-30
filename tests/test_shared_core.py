@@ -520,6 +520,84 @@ class SharedCoreTests(unittest.TestCase):
         self.assertNotIn(b"TECHNICIAN READY", home.data)
         home.close()
 
+    def test_authoritative_technician_syllabus_source(self) -> None:
+        import hashlib
+
+        from labs.catalog import get_core_labs, get_labs, load_roadmap
+        from labs.ncvec_extract import ERRATA_STEMS, pdf_text, parse_questions, parse_syllabus
+
+        source_dir = ROOT / "content" / "exam" / "sources" / "technician-2026-2030"
+        provenance = json.loads((source_dir / "provenance.json").read_text(encoding="utf-8"))
+        pdf_path = source_dir / provenance["localFilename"]
+        self.assertTrue(pdf_path.is_file())
+        self.assertEqual(hashlib.sha256(pdf_path.read_bytes()).hexdigest(), provenance["sha256"])
+        self.assertTrue(provenance["authoritative"])
+        self.assertEqual(provenance["organization"], "NCVEC Question Pool Committee")
+        self.assertEqual(provenance["licenseLevel"], "technician")
+        self.assertEqual(provenance["fccElement"], "2")
+        self.assertEqual(provenance["pool"], "2026-2030")
+        self.assertEqual(provenance["effectiveDate"], "2026-07-01")
+        self.assertEqual(provenance["expirationDate"], "2030-06-30")
+        self.assertEqual(provenance["errataRelease"], "2026-02-19")
+        self.assertIn("2025-12-18", provenance["supersedes"])
+
+        text = pdf_text(pdf_path)
+        self.assertIn("Issued February 19, 2026", text)
+        subelements = parse_syllabus(text)
+        self.assertEqual({item["id"] for item in subelements}, {f"T{number}" for number in range(10)})
+        groups = [group for item in subelements for group in item["groups"]]
+        group_ids = [group["id"] for group in groups]
+        self.assertEqual(len(group_ids), len(set(group_ids)))
+        self.assertGreater(len(group_ids), 0)
+        for group in groups:
+            self.assertTrue(group["officialTopicText"].strip())
+            self.assertNotIn("title", group)
+
+        questions = parse_questions(text)
+        question_ids = [question["id"] for question in questions]
+        self.assertEqual(len(question_ids), len(set(question_ids)))
+        known_groups = set(group_ids)
+        for question in questions:
+            self.assertIn(question["groupId"], known_groups)
+            self.assertTrue(question["id"].startswith(question["groupId"]))
+            self.assertNotIn("answer", question)
+            self.assertNotIn("choices", question)
+            self.assertNotIn("correctIndex", question)
+        for subelement in subelements:
+            counted = sum(1 for question in questions if question["id"].startswith(subelement["id"]))
+            self.assertEqual(counted, subelement["poolQuestionCount"])
+            self.assertEqual(len(subelement["groups"]), subelement["groupCount"])
+
+        committed = json.loads(
+            (ROOT / "content" / "exam" / "technician-2026-2030-questions.json").read_text(encoding="utf-8")
+        )
+        self.assertFalse(committed["answersIncluded"])
+        self.assertEqual(committed["pool"], "2026-2030")
+        self.assertEqual(committed["errataRelease"], "2026-02-19")
+        self.assertEqual([question["id"] for question in committed["questions"]], question_ids)
+        stems = {question["id"]: question["stem"] for question in committed["questions"]}
+        for question_id, stem in ERRATA_STEMS.items():
+            self.assertEqual(stems[question_id], stem)
+            self.assertIn(stem, text)
+
+        syllabus = json.loads(
+            (ROOT / "content" / "exam" / "technician-2026-2030.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(syllabus["role"], "official-syllabus")
+        self.assertFalse(syllabus["questionsIncluded"])
+        self.assertFalse(syllabus["answersIncluded"])
+        self.assertEqual(len(get_labs()), 8)
+        self.assertEqual([lab["id"] for lab in get_core_labs()], [f"tc-0{number}" for number in range(1, 9)])
+        roadmap = load_roadmap()
+        general = next(track for track in roadmap["tracks"] if track["id"] == "general")
+        self.assertTrue(all(phase["status"] == "planned" for phase in general["phases"]))
+        self.assertEqual(self.client.get("/").status_code, 200)
+        hidden = self.client.get(
+            "/content/exam/sources/technician-2026-2030/2026-2030-technician-ncvec-feb-19-2026.pdf"
+        )
+        self.assertEqual(hidden.status_code, 404)
+        hidden.close()
+
 
 if __name__ == "__main__":
     unittest.main()

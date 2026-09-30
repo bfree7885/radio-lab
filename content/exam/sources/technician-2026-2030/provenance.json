@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "role": "authoritative-source",
+  "authoritative": true,
+  "organization": "NCVEC Question Pool Committee",
+  "licenseLevel": "technician",
+  "fccElement": "2",
+  "pool": "2026-2030",
+  "effectiveDate": "2026-07-01",
+  "expirationDate": "2030-06-30",
+  "errataRelease": "2026-02-19",
+  "supersedes": "2025-12-18 public release",
+  "sourcePage": "https://ncvec.org/index.php/2026-2030-technician-question-pool",
+  "sourceUrl": "https://ncvec.org/downloads/2026-2030%20Technician%20Pool%20and%20Syllabus%20Public%20Release%20Feb%2019%202026.pdf",
+  "retrievalDate": "2026-09-29",
+  "originalFilename": "2026-2030 Technician Pool and Syllabus Public Release Feb 19 2026.pdf",
+  "localFilename": "2026-2030-technician-ncvec-feb-19-2026.pdf",
+  "sha256": "3618649d64df77f2cf217fa79ef82094fe5d2d41b26d20ce08c46ca1c3d5055a",
+  "note": "This file records the February 19, 2026 NCVEC Technician pool and syllabus. For Radio Lab it supersedes the December 18, 2025 public release. The PDF is kept unchanged. Official exam data is reference and alignment data. It is not the Radio Lab teaching layer."
+}

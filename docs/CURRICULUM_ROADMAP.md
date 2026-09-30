@@ -45,7 +45,7 @@ Foundations is the start of Technician preparation. Finishing those eight labs i
 
 ## Exam alignment
 
-Official question pools change. Radio Lab will attach practice to a named pool with a license level (`technician` or `general`), a version label, and the dates that pool was in effect. A question reference can also carry a subelement id and a topic tag. The empty shape is `content/exam/model.json`. No official questions are stored yet.
+Official question pools change. Radio Lab attaches reference data to a named pool with a license level (`technician` or `general`), a version label, an errata date, and the dates that pool is in effect. The Technician February 19, 2026 NCVEC syllabus and question-id index are described in `docs/EXAM_SOURCES.md`. Answer keys are not stored. Exam readiness is still planned. General has no source file yet.
 
 Two records stay separate:
 

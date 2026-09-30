@@ -161,7 +161,7 @@ def syllabus_coverage() -> dict:
             groups.append(
                 {
                     "id": group["id"],
-                    "title": group.get("title", ""),
+                    "title": group.get("officialTopicText") or group.get("title", ""),
                     "subelement": subelement["id"],
                 }
             )

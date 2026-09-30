@@ -11,8 +11,13 @@
     "versionLabel": "2026-2030 Technician Class",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
+    "errataRelease": "2026-02-19",
+    "source": "exam/sources/technician-2026-2030/provenance.json",
     "syllabus": "exam/technician-2026-2030.json",
-    "questionsImported": false
+    "questionIndex": "exam/technician-2026-2030-questions.json",
+    "questionsImported": false,
+    "questionIdsIndexed": true,
+    "answersIncluded": false
   },
   "poolShape": {
     "id": null,
