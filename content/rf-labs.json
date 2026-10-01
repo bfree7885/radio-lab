@@ -1,0 +1,49 @@
+{
+  "id": "rf-labs",
+  "title": "RF Labs",
+  "version": "V0.1",
+  "licenseLevel": null,
+  "phaseId": "rf-labs",
+  "kind": "exploration",
+  "note": "RF Labs are supplemental. They are not Technician Foundations, Core, Remediation, or Exam Readiness. Completing RF-01 does not change Technician syllabus coverage.",
+  "modes": {
+    "simulation": "available",
+    "rtlSdrReceiveOnly": "future",
+    "transmit": "not-supported"
+  },
+  "stages": [
+    {"id": "see", "label": "SEE IT", "order": 1},
+    {"id": "change", "label": "CHANGE IT", "order": 2},
+    {"id": "measure", "label": "MEASURE IT", "order": 3},
+    {"id": "identify", "label": "IDENTIFY IT", "order": 4},
+    {"id": "recover", "label": "RECOVER IT", "order": 5},
+    {"id": "explain", "label": "EXPLAIN IT", "order": 6},
+    {"id": "field", "label": "FIELD TASK", "order": 7}
+  ],
+  "labs": [
+    {
+      "id": "rf-01",
+      "number": "RF-01",
+      "title": "RF Interference & Jamming",
+      "description": "What a receiver does when another signal or a raised noise floor competes with the signal you want. Simulation only.",
+      "available": true,
+      "lesson": "labs/rf-01/lesson.json",
+      "curriculumId": "rf-labs",
+      "phaseTitle": "RF Labs",
+      "curriculumFile": "rf-labs.json",
+      "prerequisiteNote": "Useful after you have met frequency, bandwidth, modes, and receivers. Not required for a Technician license.",
+      "modes": {
+        "simulation": "available",
+        "rtlSdrReceiveOnly": "future",
+        "transmit": "not-supported"
+      },
+      "scripts": [
+        "progress-local.js",
+        "lesson-kit.js",
+        "reference-kit.js",
+        "rf-labs-sim.js",
+        "rf-labs.js"
+      ]
+    }
+  ]
+}

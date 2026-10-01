@@ -132,4 +132,22 @@
       {% endfor %}
     </ol>
   </section>
+
+  <section aria-labelledby="rf-heading">
+    <h2 id="rf-heading">RF Labs</h2>
+    <p class="lede">{{ rf_summary.completed }} of {{ rf_summary.total }} RF labs complete. This track is supplemental. It is not Technician Remediation, and it is not exam readiness.</p>
+    <ol class="lab-grid">
+      {% for lab in rf_labs %}
+        <li class="card">
+          <p class="lab-number">{{ lab.number }}</p>
+          <h3>{{ lab.title }}</h3>
+          <p>{{ lab.prerequisiteNote }}</p>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          {% if lab.available %}
+            <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
 {% endblock %}

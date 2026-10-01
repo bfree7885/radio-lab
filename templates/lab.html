@@ -20,6 +20,9 @@
         <p>Work through the six stages. This is Technician Core, built on Foundations. Finishing the lab does not mean the idea is mastered, and it is not Technician exam readiness.</p>
       {% elif lab.curriculumId == "technician-remediation" %}
         <p>Work through the six stages. This remediation lab fills a gap left by Foundations and Core. Finishing it does not finish the Technician syllabus, and it is not Technician exam readiness.</p>
+      {% elif lab.curriculumId == "rf-labs" %}
+        <p>This lab studies interference entirely through simulation. It does not transmit or create over-the-air interference. It is supplemental. It is not a Technician licensing step.</p>
+        <p class="sim-flag">SIMULATION — AVAILABLE · RTL-SDR RECEIVE-ONLY — FUTURE / OPTIONAL · TRANSMIT — NOT SUPPORTED</p>
       {% else %}
         <p>Work through the six stages. Try the controls. Nothing here receives or transmits a real radio signal.</p>
       {% endif %}

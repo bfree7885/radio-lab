@@ -1,0 +1,160 @@
+{
+  "id": "rf-01",
+  "labId": "rf-01",
+  "curriculumId": "rf-labs",
+  "title": "RF Interference & Jamming",
+  "licenseLevel": null,
+  "alignment": {
+    "topics": [],
+    "partial": []
+  },
+  "stages": [
+    {
+      "id": "see",
+      "label": "SEE IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Tune the marker onto the peak. The display is a simulation of a receiver's view, not a transmitter and not a calibrated instrument."
+        },
+        {
+          "type": "interaction",
+          "component": "field-reference",
+          "config": {"file": "reference/rf-labs.json"}
+        },
+        {
+          "type": "interaction",
+          "component": "clean-bench"
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "label": "CHANGE IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Move a second signal, then lift a wide noise floor, then compare shapes. The desired signal stays a generic simulated trace."
+        },
+        {
+          "type": "interaction",
+          "component": "narrow-lab",
+          "recordsStage": false,
+          "gate": "rf-narrow"
+        },
+        {
+          "type": "interaction",
+          "component": "broad-lab",
+          "recordsStage": false,
+          "gate": "rf-broad",
+          "requiresGates": ["rf-narrow"]
+        },
+        {
+          "type": "interaction",
+          "component": "partial-lab",
+          "requiresGates": ["rf-narrow", "rf-broad"]
+        }
+      ]
+    },
+    {
+      "id": "measure",
+      "label": "MEASURE IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "A strong signal outside the shaded passband can still spoil the copy. Then compare two reception rules, move SNR yourself, and set the pictures side by side."
+        },
+        {
+          "type": "interaction",
+          "component": "overload-lab",
+          "recordsStage": false,
+          "gate": "rf-overload"
+        },
+        {
+          "type": "interaction",
+          "component": "mode-lab",
+          "recordsStage": false,
+          "gate": "rf-mode",
+          "requiresGates": ["rf-overload"]
+        },
+        {
+          "type": "interaction",
+          "component": "snr-lab",
+          "recordsStage": false,
+          "gate": "rf-snr",
+          "requiresGates": ["rf-mode"]
+        },
+        {
+          "type": "interaction",
+          "component": "compare-lab",
+          "requiresGates": ["rf-overload", "rf-mode", "rf-snr"]
+        }
+      ]
+    },
+    {
+      "id": "identify",
+      "label": "IDENTIFY IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "You have seen the pictures. The word jamming names intentional disruption. The traces below are still only the receiver-side simulation."
+        },
+        {
+          "type": "interaction",
+          "component": "jamming-term",
+          "recordsStage": false,
+          "gate": "rf-jamming"
+        },
+        {
+          "type": "interaction",
+          "component": "mystery-lab",
+          "requiresGates": ["rf-jamming"]
+        }
+      ]
+    },
+    {
+      "id": "recover",
+      "label": "RECOVER IT",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Leave the interference where it is. Change only the receiver passband. One case comes back. One does not."
+        },
+        {
+          "type": "interaction",
+          "component": "recover-lab"
+        }
+      ]
+    },
+    {
+      "id": "explain",
+      "label": "EXPLAIN IT",
+      "blocks": [
+        {
+          "type": "explain",
+          "conceptId": "rf-overload-why",
+          "prompt": "Why can a strong interfering signal make reception worse even when the receiver is tuned to a different frequency?",
+          "reference": "The receiver's filtering is finite. A very strong signal outside the tuned channel can still reach earlier stages and desensitize the receiver, so the desired signal becomes harder to recover. The problem can be in the receiver itself.",
+          "unsure": "Go back to the strong signal that sat outside the shaded passband. The tuned channel did not contain that signal, and the copy still failed.",
+          "returnHref": "#stage-measure",
+          "returnLabel": "Return to the overload experiment"
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "label": "FIELD TASK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "RF interference investigation. Read each simulated display. Do not create interference. Decide what the picture is, whether the desired signal is recoverable here, and which receiver-side choice matches the evidence."
+        },
+        {
+          "type": "interaction",
+          "component": "field-investigation",
+          "taskId": "rf01-investigation"
+        }
+      ]
+    }
+  ]
+}

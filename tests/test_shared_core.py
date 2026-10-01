@@ -153,6 +153,7 @@ class SharedCoreTests(unittest.TestCase):
             "tests/remediation-01-03.test.js",
             "tests/remediation-04-06.test.js",
             "tests/remediation-07-09.test.js",
+            "tests/rf-01.test.js",
         ):
             result = subprocess.run(
                 ["node", script],
@@ -205,7 +206,9 @@ class SharedCoreTests(unittest.TestCase):
             ["learn", "see", "do", "explain", "exam", "field"],
         )
         ids = [track["id"] for track in roadmap["tracks"]]
-        self.assertEqual(ids, ["technician", "general", "field-radio", "sota"])
+        self.assertEqual(ids, ["technician", "general", "field-radio", "sota", "rf-labs"])
+        self.assertEqual(phase_by_id("rf-labs")["status"], "available")
+        self.assertEqual(phase_by_id("rf-labs")["content"], "rf-labs.json")
         foundations = phase_by_id("technician-foundations")
         self.assertIsNotNone(foundations)
         assert foundations is not None
@@ -659,6 +662,66 @@ class SharedCoreTests(unittest.TestCase):
         )
         self.assertEqual(hidden.status_code, 404)
         hidden.close()
+
+    def test_rf_lab_is_supplemental_and_receive_only(self) -> None:
+        from labs.catalog import (
+            get_remediation_labs,
+            get_rf_labs,
+            load_roadmap,
+            stages_for_lab,
+            syllabus_coverage,
+        )
+
+        labs = get_rf_labs()
+        self.assertEqual([lab["id"] for lab in labs], ["rf-01"])
+        lab = labs[0]
+        self.assertEqual(lab["curriculumId"], "rf-labs")
+        self.assertNotIn("rf-01", [item["id"] for item in get_remediation_labs()])
+        self.assertEqual(lab["modes"]["transmit"], "not-supported")
+        self.assertEqual(lab["modes"]["simulation"], "available")
+        self.assertEqual(
+            [stage["id"] for stage in stages_for_lab("rf-01")],
+            ["see", "change", "measure", "identify", "recover", "explain", "field"],
+        )
+        self.assertEqual(
+            [stage["id"] for stage in stages_for_lab("01")],
+            ["learn", "see", "do", "explain", "exam", "field"],
+        )
+        roadmap = load_roadmap()
+        general = next(track for track in roadmap["tracks"] if track["id"] == "general")
+        technician = next(track for track in roadmap["tracks"] if track["id"] == "technician")
+        rf = next(track for track in roadmap["tracks"] if track["id"] == "rf-labs")
+        self.assertTrue(all(phase["status"] == "planned" for phase in general["phases"]))
+        self.assertEqual(
+            next(phase["status"] for phase in technician["phases"] if phase["id"] == "technician-exam"),
+            "planned",
+        )
+        self.assertEqual(rf["phases"][0]["status"], "available")
+        coverage = syllabus_coverage()
+        self.assertEqual(coverage["counts"]["recorded"], coverage["counts"]["groups"])
+        page = self.client.get("/labs/rf-01")
+        self.assertEqual(page.status_code, 200)
+        self.assertIn(b"rf-labs-sim.js", page.data)
+        self.assertIn(b"does not transmit", page.data)
+        self.assertIn(b"NOT SUPPORTED", page.data)
+        self.assertNotIn(b"not open yet", page.data)
+        saved = self.client.post(
+            "/api/progress/rf-01",
+            json={"op": "stage", "stageId": "see", "completed": True, "curriculumId": "rf-labs"},
+        )
+        self.assertEqual(saved.status_code, 200)
+        self.assertTrue(saved.get_json()["stages"]["see"])
+        rejected = self.client.post(
+            "/api/progress/rf-01",
+            json={"op": "stage", "stageId": "learn", "completed": True, "curriculumId": "rf-labs"},
+        )
+        self.assertEqual(rejected.status_code, 400)
+        audit = json.loads(
+            (ROOT / "content" / "exam" / "technician-2026-2030-coverage.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(audit["metric"]["complete"], 0)
+        self.assertEqual(audit["metric"]["partial"], 34)
+        self.assertEqual(audit["metric"]["missing"], 1)
 
 
 if __name__ == "__main__":

@@ -19,12 +19,13 @@ from labs.catalog import (
     CORE_ID,
     FOUNDATIONS_ID,
     REMEDIATION_ID,
+    RF_ID,
     curriculum_meta,
     get_core_labs,
     get_lab,
     get_labs,
     get_remediation_labs,
-    get_stages,
+    get_rf_labs,
     load_roadmap,
     stages_for_lab,
     syllabus_coverage,
@@ -89,6 +90,10 @@ def _remediation_view() -> tuple[list[dict], dict]:
     return _labs_for(get_remediation_labs(), REMEDIATION_ID)
 
 
+def _rf_view() -> tuple[list[dict], dict]:
+    return _labs_for(get_rf_labs(), RF_ID)
+
+
 def _continue_lab(labs: list[dict]) -> dict | None:
     for lab in labs:
         if lab["available"] and lab["status"] != "complete":
@@ -136,6 +141,7 @@ def dashboard():
     labs, summary = _labs_view()
     core_labs, core_summary = _core_view()
     remediation_labs, remediation_summary = _remediation_view()
+    rf_labs, rf_summary = _rf_view()
     return render_template(
         "dashboard.html",
         labs=labs,
@@ -147,6 +153,8 @@ def dashboard():
         remediation_labs=remediation_labs,
         remediation_summary=remediation_summary,
         remediation_continue=_continue_lab(remediation_labs),
+        rf_labs=rf_labs,
+        rf_summary=rf_summary,
         roadmap=load_roadmap(),
     )
 
@@ -156,6 +164,7 @@ def labs_index():
     labs, summary = _labs_view()
     core_labs, core_summary = _core_view()
     remediation_labs, remediation_summary = _remediation_view()
+    rf_labs, rf_summary = _rf_view()
     return render_template(
         "labs.html",
         labs=labs,
@@ -164,6 +173,8 @@ def labs_index():
         core_summary=core_summary,
         remediation_labs=remediation_labs,
         remediation_summary=remediation_summary,
+        rf_labs=rf_labs,
+        rf_summary=rf_summary,
     )
 
 
@@ -235,7 +246,7 @@ def _apply_progress(lab_id: str, curriculum_id: str, stage_ids: list[str], paylo
 def progress_api(lab_id: str):
     if get_lab(lab_id) is None:
         abort(404)
-    stage_ids = [stage["id"] for stage in get_stages()]
+    stage_ids = [stage["id"] for stage in stages_for_lab(lab_id)]
     if request.method == "GET":
         curriculum_id = _curriculum_id(request.args.get("curriculumId"))
         return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id))
@@ -272,6 +283,7 @@ def progress_page():
     labs, summary = _labs_view()
     core_labs, core_summary = _core_view()
     remediation_labs, remediation_summary = _remediation_view()
+    rf_labs, rf_summary = _rf_view()
     return render_template(
         "progress.html",
         labs=labs,
@@ -287,6 +299,8 @@ def progress_page():
         remediation_summary=remediation_summary,
         remediation_topics=weak_topics(curriculum_id=REMEDIATION_ID),
         remediation_concepts=concept_count(REMEDIATION_ID),
+        rf_labs=rf_labs,
+        rf_summary=rf_summary,
         coverage=syllabus_coverage(),
     )
 

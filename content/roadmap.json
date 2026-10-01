@@ -102,6 +102,22 @@
           "content": null
         }
       ]
+    },
+    {
+      "id": "rf-labs",
+      "title": "RF Labs",
+      "licenseLevel": null,
+      "kind": "exploration",
+      "compact": true,
+      "phases": [
+        {
+          "id": "rf-labs",
+          "title": "RF Labs",
+          "status": "available",
+          "statusLabel": "AVAILABLE",
+          "content": "rf-labs.json"
+        }
+      ]
     }
   ]
 }

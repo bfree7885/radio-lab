@@ -103,6 +103,20 @@
     <p>{% if remediation_concepts %}{{ remediation_concepts }} concept checks recorded for Technician Remediation.{% else %}No Technician Remediation concept checks recorded yet.{% endif %}</p>
   </section>
 
+  <section class="panel" aria-labelledby="rf-progress-heading">
+    <h2 id="rf-progress-heading">RF Labs</h2>
+    <p>{{ rf_summary.completed }} of {{ rf_summary.total }} RF labs complete. Tracked separately from Technician syllabus coverage. Not exam readiness.</p>
+    <ol class="status-list">
+      {% for lab in rf_labs %}
+        <li>
+          <span class="lab-number">{{ lab.number }}</span>
+          <span class="status-title">{{ lab.title }}</span>
+          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
   <section class="panel" aria-labelledby="coverage-heading">
     <h2 id="coverage-heading">Syllabus metadata</h2>
     <p>{{ coverage.note }}</p>

@@ -72,4 +72,24 @@
       </li>
     {% endfor %}
   </ol>
+
+  <h2>RF Labs</h2>
+  <p>RF-01 is a supplemental simulation. It is not part of Technician Remediation, and it is not exam readiness. {{ rf_summary.completed }} of {{ rf_summary.total }} complete.</p>
+  <ol class="lab-index">
+    {% for lab in rf_labs %}
+      <li class="card lab-row">
+        <p class="lab-number">{{ lab.number }}</p>
+        <div class="lab-copy">
+          <h2>{{ lab.title }}</h2>
+          <p>{{ lab.description }}</p>
+          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+        </div>
+        <div class="lab-action">
+          {% if lab.available %}
+            <a class="button" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open</a>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
 {% endblock %}

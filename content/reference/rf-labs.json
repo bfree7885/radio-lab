@@ -1,0 +1,72 @@
+{
+  "id": "rf-labs",
+  "title": "RF lab card",
+  "note": "Names for the simulation. This card does not replace the experiments, and it is not a guide to transmitting.",
+  "sections": [
+    {
+      "id": "noise-floor",
+      "title": "Noise floor",
+      "body": "The lower trace when no desired signal is present in that slice of the display. Raising it makes a signal of the same height harder to copy."
+    },
+    {
+      "id": "snr",
+      "title": "SNR",
+      "body": "Signal-to-noise ratio. In this model it is the desired level divided by the noise, interference, and desense in the passband. A ratio of about ten is about +10 dB, the same kind of power step taught with decibels earlier. Higher SNR is generally easier to copy."
+    },
+    {
+      "id": "interference",
+      "title": "Interference",
+      "body": "Other energy that competes with the signal you want. It can be accidental. The lab studies the receiver's view of it."
+    },
+    {
+      "id": "narrowband",
+      "title": "Narrowband interference",
+      "body": "A thin trace. It matters most when it enters the receiver passband."
+    },
+    {
+      "id": "broadband",
+      "title": "Broadband interference",
+      "body": "Energy spread across a wide part of the display. It lifts the noise floor. The desired peak can stay the same while SNR falls."
+    },
+    {
+      "id": "co-channel",
+      "title": "Co-channel interference",
+      "body": "Energy inside the same passband as the desired signal."
+    },
+    {
+      "id": "adjacent",
+      "title": "Adjacent-channel interference",
+      "body": "Energy just outside the passband that still spills into the receiver because the filter edge is not a brick wall."
+    },
+    {
+      "id": "overload",
+      "title": "Receiver overload",
+      "body": "A very strong signal can degrade reception even when the receiver is not tuned to it. The failure is in the receiver."
+    },
+    {
+      "id": "desense",
+      "title": "Desensitization",
+      "body": "Another name for that overload effect. The receiver becomes less able to recover the desired signal."
+    },
+    {
+      "id": "passband",
+      "title": "Passband",
+      "body": "The shaded slice the receiver is using. Energy inside it is what this model treats as in-channel."
+    },
+    {
+      "id": "filtering",
+      "title": "Filtering",
+      "body": "Narrowing the passband can exclude an interferer that sits on a different frequency. It cannot recover a desired signal that is covered by energy on the same frequencies."
+    },
+    {
+      "id": "waterfall",
+      "title": "Waterfall",
+      "body": "The same spectrum drawn again and again, newest row at the bottom, so a shape can be recognized over time. This one is simulated history."
+    },
+    {
+      "id": "jamming",
+      "title": "Jamming",
+      "body": "Intentional interference meant to disrupt reception. Interference can also be accidental. This lab does not transmit and does not describe how to interfere with a real system."
+    }
+  ]
+}

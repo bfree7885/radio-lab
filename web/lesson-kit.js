@@ -6,6 +6,16 @@
 (function (root) {
   var STAGE_IDS = ["learn", "see", "do", "explain", "exam", "field"];
 
+  function stageIdsOf(lesson) {
+    var ids = [];
+    ((lesson && lesson.stages) || []).forEach(function (stage) {
+      if (stage && stage.id) {
+        ids.push(stage.id);
+      }
+    });
+    return ids.length ? ids : STAGE_IDS.slice();
+  }
+
   function paragraph(text) {
     var node = document.createElement("p");
     node.textContent = text || "";
@@ -97,7 +107,7 @@
           .then(function (saved) {
             var ctx = makeContext(session, lesson, saved || emptySaved());
             render(ctx);
-            STAGE_IDS.forEach(function (stageId) {
+            stageIdsOf(lesson).forEach(function (stageId) {
               paintStage(stageId, !!(ctx.saved.stages && ctx.saved.stages[stageId]));
             });
             paintLabStatus(ctx.saved.status || "not_started");
@@ -119,7 +129,7 @@
     }
     var saved = emptySaved();
     saved.status = progress.getLabStatus(lesson.labId, lesson.curriculumId);
-    STAGE_IDS.forEach(function (stageId) {
+    stageIdsOf(lesson).forEach(function (stageId) {
       saved.stages[stageId] = !!progress.stageCompleted(lesson.labId, stageId, lesson.curriculumId);
     });
     (lesson.stages || []).forEach(function (stage) {
@@ -211,10 +221,11 @@
 
     function rollup() {
       var progress = RadioLab.progress;
-      var done = STAGE_IDS.every(function (stageId) {
+      var ids = stageIdsOf(lesson);
+      var done = ids.every(function (stageId) {
         return saved.stages[stageId];
       });
-      var any = STAGE_IDS.some(function (stageId) {
+      var any = ids.some(function (stageId) {
         return saved.stages[stageId];
       });
       var status = done ? "complete" : any ? "in_progress" : "not_started";

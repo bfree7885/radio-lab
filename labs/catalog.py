@@ -18,12 +18,14 @@ CONTENT = ROOT / "content"
 CURRICULUM_PATH = CONTENT / "curriculum.json"
 CORE_CURRICULUM_PATH = CONTENT / "technician-core.json"
 REMEDIATION_CURRICULUM_PATH = CONTENT / "technician-remediation.json"
+RF_CURRICULUM_PATH = CONTENT / "rf-labs.json"
 ROADMAP_PATH = CONTENT / "roadmap.json"
 EXAM_MODEL_PATH = CONTENT / "exam" / "model.json"
 SYLLABUS_PATH = CONTENT / "exam" / "technician-2026-2030.json"
 FOUNDATIONS_ID = "technician-foundations"
 CORE_ID = "technician-core"
 REMEDIATION_ID = "technician-remediation"
+RF_ID = "rf-labs"
 
 SHELL_TEXT = {
     "learn": "A short orientation for this lab will be added here.",
@@ -37,6 +39,7 @@ SHELL_TEXT = {
 _curriculum: dict | None = None
 _core_curriculum: dict | None = None
 _remediation_curriculum: dict | None = None
+_rf_curriculum: dict | None = None
 _roadmap: dict | None = None
 
 
@@ -67,6 +70,13 @@ def load_remediation_curriculum() -> dict:
     if _remediation_curriculum is None:
         _remediation_curriculum = _read_json(REMEDIATION_CURRICULUM_PATH)
     return _remediation_curriculum
+
+
+def load_rf_curriculum() -> dict:
+    global _rf_curriculum
+    if _rf_curriculum is None:
+        _rf_curriculum = _read_json(RF_CURRICULUM_PATH)
+    return _rf_curriculum
 
 
 def curriculum_meta() -> dict:
@@ -121,8 +131,12 @@ def get_remediation_labs() -> list[dict]:
     return list(load_remediation_curriculum()["labs"])
 
 
+def get_rf_labs() -> list[dict]:
+    return list(load_rf_curriculum()["labs"])
+
+
 def _all_labs() -> list[dict]:
-    return list(get_labs()) + list(get_core_labs()) + list(get_remediation_labs())
+    return list(get_labs()) + list(get_core_labs()) + list(get_remediation_labs()) + list(get_rf_labs())
 
 
 def get_lab(lab_id: str) -> dict | None:
@@ -189,6 +203,8 @@ def syllabus_coverage() -> dict:
     assessed: set[str] = set()
     partial_ids: set[str] = set()
     for lab in _all_labs():
+        if lab.get("curriculumId") == RF_ID:
+            continue
         lesson = load_lesson(lab["id"])
         if not lesson:
             continue
@@ -257,13 +273,27 @@ def syllabus_coverage() -> dict:
 
 def stages_for_lab(lab_id: str) -> list[dict]:
     lesson = load_lesson(lab_id)
+    foundation = get_stages()
+    foundation_ids = {stage["id"] for stage in foundation}
+    lesson_stages = (lesson or {}).get("stages") or []
+    custom = bool(lesson_stages) and any(stage.get("id") not in foundation_ids for stage in lesson_stages)
+    if custom:
+        return [
+            {
+                "id": stage["id"],
+                "label": stage.get("label") or stage["id"],
+                "placeholder": display_text(stage["id"], lesson),
+            }
+            for stage in lesson_stages
+            if stage.get("id")
+        ]
     labels = {}
     if lesson:
-        for stage in lesson.get("stages", []):
+        for stage in lesson_stages:
             if stage.get("label"):
                 labels[stage["id"]] = stage["label"]
     rows = []
-    for stage in get_stages():
+    for stage in foundation:
         rows.append(
             {
                 "id": stage["id"],

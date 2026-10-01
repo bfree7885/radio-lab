@@ -557,6 +557,16 @@ section > h2 {
   letter-spacing: 0.06em;
 }
 
+.rf-bench canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0.5rem 0;
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  background: #14181c;
+}
+
 .freq-readout {
   margin: 0.15rem 0;
   font-family: var(--mono);
