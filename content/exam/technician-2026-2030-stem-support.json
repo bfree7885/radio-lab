@@ -1,0 +1,3340 @@
+{
+  "role": "post-remediation-stem-support",
+  "curriculumCommit": "e83aeaac9d078369f965d5e9ae445caa899692f2",
+  "answersIncluded": false,
+  "note": "Support judgments describe whether the Technician curriculum teaches the knowledge a stem requires. Official answer letters are not stored.",
+  "excludedFromScoring": [
+    "rf-01"
+  ],
+  "counts": {
+    "SUPPORTED": 386,
+    "PARTIALLY SUPPORTED": 14,
+    "UNSUPPORTED": 9
+  },
+  "bySubelement": {
+    "T0": {
+      "SUPPORTED": 35,
+      "PARTIALLY SUPPORTED": 1,
+      "UNSUPPORTED": 0
+    },
+    "T1": {
+      "SUPPORTED": 67,
+      "PARTIALLY SUPPORTED": 1,
+      "UNSUPPORTED": 0
+    },
+    "T2": {
+      "SUPPORTED": 36,
+      "PARTIALLY SUPPORTED": 0,
+      "UNSUPPORTED": 1
+    },
+    "T3": {
+      "SUPPORTED": 32,
+      "PARTIALLY SUPPORTED": 1,
+      "UNSUPPORTED": 2
+    },
+    "T4": {
+      "SUPPORTED": 14,
+      "PARTIALLY SUPPORTED": 8,
+      "UNSUPPORTED": 1
+    },
+    "T5": {
+      "SUPPORTED": 50,
+      "PARTIALLY SUPPORTED": 0,
+      "UNSUPPORTED": 0
+    },
+    "T6": {
+      "SUPPORTED": 46,
+      "PARTIALLY SUPPORTED": 0,
+      "UNSUPPORTED": 0
+    },
+    "T7": {
+      "SUPPORTED": 39,
+      "PARTIALLY SUPPORTED": 2,
+      "UNSUPPORTED": 3
+    },
+    "T8": {
+      "SUPPORTED": 44,
+      "PARTIALLY SUPPORTED": 1,
+      "UNSUPPORTED": 2
+    },
+    "T9": {
+      "SUPPORTED": 23,
+      "PARTIALLY SUPPORTED": 0,
+      "UNSUPPORTED": 0
+    }
+  },
+  "stems": [
+    {
+      "questionId": "T1A01",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A02",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A03",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A04",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A05",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A06",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A07",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A08",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A09",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A10",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1A11",
+      "groupId": "T1A",
+      "concept": "Amateur Service purpose, FCC authority, license classes, and license term",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 rule decisions and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T1B01",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B02",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B03",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B04",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B05",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B06",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B07",
+      "groupId": "T1B",
+      "concept": "VHF and UHF segments limited to CW only",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": "Named once in the TR-03 stage text and not practiced."
+    },
+    {
+      "questionId": "T1B08",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B09",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B10",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B11",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1B12",
+      "groupId": "T1B",
+      "concept": "Frequency privileges, band edges, secondary use, beacons, and power limits",
+      "support": "SUPPORTED",
+      "lessonEvidence": "04, TC-01, and TR-03 privilege decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C01",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C02",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C03",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C04",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C05",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C06",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C07",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C08",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C09",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C10",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1C11",
+      "groupId": "T1C",
+      "concept": "License grant, club stations, vanity calls, and inspection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 grant, club, vanity, and inspection decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D01",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D02",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D03",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D04",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D05",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D06",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D07",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D08",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D09",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D10",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D11",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1D12",
+      "groupId": "T1D",
+      "concept": "Prohibited and permitted communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 permitted and prohibited communication decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E01",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E02",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E03",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E04",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E05",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E06",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E07",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E08",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E09",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E10",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1E11",
+      "groupId": "T1E",
+      "concept": "Control operator, control point, and control types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-03 control decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F01",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F02",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F03",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F04",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F05",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F06",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F07",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F08",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F09",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F10",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T1F11",
+      "groupId": "T1F",
+      "concept": "Station identification, repeaters, and international communications",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-03 identification and repeater decisions",
+      "note": ""
+    },
+    {
+      "questionId": "T2A01",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A02",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A03",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A04",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A05",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A06",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A07",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A08",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A09",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A10",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2A11",
+      "groupId": "T2A",
+      "concept": "Simplex, repeater offset, tones, and calling",
+      "support": "SUPPORTED",
+      "lessonEvidence": "03, TC-02, and TR-04 repeater lab",
+      "note": ""
+    },
+    {
+      "questionId": "T2B01",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B02",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B03",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B04",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B05",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B06",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B07",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B08",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B09",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B10",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B11",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B12",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B13",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2B14",
+      "groupId": "T2B",
+      "concept": "Interference, nets, and operating courtesy",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 interference, net, and courtesy scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C01",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C02",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C03",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C04",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C05",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C06",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C07",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C08",
+      "groupId": "T2C",
+      "concept": "Winlink email-via-call-sign messaging",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": "No Technician lesson teaches Winlink or an equivalent system."
+    },
+    {
+      "questionId": "T2C09",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C10",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C11",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T2C12",
+      "groupId": "T2C",
+      "concept": "Public service, formal traffic, ARES, and RACES",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-04 public-service and traffic scenarios",
+      "note": ""
+    },
+    {
+      "questionId": "T3A01",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A02",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A03",
+      "groupId": "T3A",
+      "concept": "Usual polarization for long-distance weak-signal VHF and UHF",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": "Polarization matching is taught. The horizontal convention for long-distance CW and SSB is not."
+    },
+    {
+      "questionId": "T3A04",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A05",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A06",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A07",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A08",
+      "groupId": "T3A",
+      "concept": "Irregular fading of ionospheric signals",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": "The ionospheric polarization mechanism is not taught."
+    },
+    {
+      "questionId": "T3A09",
+      "groupId": "T3A",
+      "concept": "Elliptical polarization after an ionospheric path",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": "Elliptical polarization is not taught."
+    },
+    {
+      "questionId": "T3A10",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A11",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3A12",
+      "groupId": "T3A",
+      "concept": "Multipath, absorption, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 multipath and absorption labs",
+      "note": ""
+    },
+    {
+      "questionId": "T3B01",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B02",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B03",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B04",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B05",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B06",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B07",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B08",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B09",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B10",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B11",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3B12",
+      "groupId": "T3B",
+      "concept": "Electromagnetic wave, speed, and wavelength",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-05 wave lab",
+      "note": ""
+    },
+    {
+      "questionId": "T3C01",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C02",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C03",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C04",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C05",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C06",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C07",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C08",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C09",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C10",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T3C11",
+      "groupId": "T3C",
+      "concept": "Radio horizon, skywave, and VHF propagation modes",
+      "support": "SUPPORTED",
+      "lessonEvidence": "07, TC-07, and TR-05 path gallery",
+      "note": ""
+    },
+    {
+      "questionId": "T4A01",
+      "groupId": "T4A",
+      "concept": "Power-supply current rating for a mobile radio",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "The relationship is stated in the TR-06 mobile-power readout and is not practiced or assessed."
+    },
+    {
+      "questionId": "T4A02",
+      "groupId": "T4A",
+      "concept": "SWR meter frequency and power rating",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "Stated in TR-06 stage text only."
+    },
+    {
+      "questionId": "T4A03",
+      "groupId": "T4A",
+      "concept": "Station wiring, power, and station accessories",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": ""
+    },
+    {
+      "questionId": "T4A04",
+      "groupId": "T4A",
+      "concept": "FT8 audio connection between radio and computer",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "Stated in TR-06 stage text only."
+    },
+    {
+      "questionId": "T4A05",
+      "groupId": "T4A",
+      "concept": "Where an RF power meter is inserted",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "Stated in TR-06 stage text only."
+    },
+    {
+      "questionId": "T4A06",
+      "groupId": "T4A",
+      "concept": "Computer sound-card interface to a radio",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "Stated in TR-06 stage text only."
+    },
+    {
+      "questionId": "T4A07",
+      "groupId": "T4A",
+      "concept": "Receive-audio connection into a computer interface",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "Stated in TR-06 stage text only."
+    },
+    {
+      "questionId": "T4A08",
+      "groupId": "T4A",
+      "concept": "Flat copper strap for RF bonding",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "Stated in TR-06 stage text only."
+    },
+    {
+      "questionId": "T4A09",
+      "groupId": "T4A",
+      "concept": "Battery amp-hour runtime",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": "The relationship is stated in the TR-06 mobile-power readout and is not practiced or assessed."
+    },
+    {
+      "questionId": "T4A10",
+      "groupId": "T4A",
+      "concept": "Station wiring, power, and station accessories",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": ""
+    },
+    {
+      "questionId": "T4A11",
+      "groupId": "T4A",
+      "concept": "Station wiring, power, and station accessories",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": ""
+    },
+    {
+      "questionId": "T4A12",
+      "groupId": "T4A",
+      "concept": "Station wiring, power, and station accessories",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 mobile-power and hotspot interactions",
+      "note": ""
+    },
+    {
+      "questionId": "T4B01",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B02",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B03",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B04",
+      "groupId": "T4B",
+      "concept": "Sound of an FM signal received slightly off frequency",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": "Not taught."
+    },
+    {
+      "questionId": "T4B05",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B06",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B07",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B08",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B09",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B10",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T4B11",
+      "groupId": "T4B",
+      "concept": "Receiver and transmitter operating controls",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 front panel and code plug",
+      "note": ""
+    },
+    {
+      "questionId": "T5A01",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A02",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A03",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A04",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A05",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A06",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A07",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A08",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A09",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A10",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5A11",
+      "groupId": "T5A",
+      "concept": "Voltage, current, resistance, power, and current types",
+      "support": "SUPPORTED",
+      "lessonEvidence": "05, TC-05, and TR-01",
+      "note": ""
+    },
+    {
+      "questionId": "T5B01",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B02",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B03",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B04",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B05",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B06",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B07",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B08",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B09",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B10",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B11",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B12",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5B13",
+      "groupId": "T5B",
+      "concept": "Metric prefixes and decibels",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 prefix and decibel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C01",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C02",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C03",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C04",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C05",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C06",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C07",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C08",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C09",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C10",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C11",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5C12",
+      "groupId": "T5C",
+      "concept": "Ohm's law, power, and series and parallel resistance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 Ohm's law, power, series, and parallel benches",
+      "note": ""
+    },
+    {
+      "questionId": "T5D01",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D02",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D03",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D04",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D05",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D06",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D07",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D08",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D09",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D10",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D11",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D12",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D13",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T5D14",
+      "groupId": "T5D",
+      "concept": "Impedance, capacitance, and inductance",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-01 impedance bench and TR-02 resonance",
+      "note": ""
+    },
+    {
+      "questionId": "T6A01",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A02",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A03",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A04",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A05",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A06",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A07",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A08",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A09",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A10",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6A11",
+      "groupId": "T6A",
+      "concept": "Passive parts, diodes, and transistors",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 parts, diode, and transistor benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6B01",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B02",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B03",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B04",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B05",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B06",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B07",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B08",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B09",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B10",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B11",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6B12",
+      "groupId": "T6B",
+      "concept": "Power-supply path, relays, and shielding",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 supply path",
+      "note": ""
+    },
+    {
+      "questionId": "T6C01",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C02",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C03",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C04",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C05",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C06",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C07",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C08",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C09",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C10",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C11",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6C12",
+      "groupId": "T6C",
+      "concept": "Official schematic figures T-1, T-2, and T-3",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab on official figures T-1, T-2, and T-3",
+      "note": ""
+    },
+    {
+      "questionId": "T6D01",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D02",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D03",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D04",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D05",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D06",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D07",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D08",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D09",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D10",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T6D11",
+      "groupId": "T6D",
+      "concept": "Schematic symbols and component terminals",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 figure-lab and terminal benches",
+      "note": ""
+    },
+    {
+      "questionId": "T7A01",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A02",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A03",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A04",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A05",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A06",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A07",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A08",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A09",
+      "groupId": "T7A",
+      "concept": "SSB versus CW-FM switch on a VHF power amplifier",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": "Not taught."
+    },
+    {
+      "questionId": "T7A10",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7A11",
+      "groupId": "T7A",
+      "concept": "Transmitter, receiver, mixer, and amplifier functions",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 block diagram",
+      "note": ""
+    },
+    {
+      "questionId": "T7B01",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B02",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B03",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B04",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B05",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B06",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B07",
+      "groupId": "T7B",
+      "concept": "Band-reject filter against a nearby commercial FM broadcast",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": "Not taught. RF-01 is not counted."
+    },
+    {
+      "questionId": "T7B08",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B09",
+      "groupId": "T7B",
+      "concept": "First step for reported cable-television interference",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": "A general neighbor response is taught. Checking the television connectors is not."
+    },
+    {
+      "questionId": "T7B10",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7B11",
+      "groupId": "T7B",
+      "concept": "Interference troubleshooting at a home station",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-06 interference cases",
+      "note": ""
+    },
+    {
+      "questionId": "T7C01",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C02",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C03",
+      "groupId": "T7C",
+      "concept": "What a typical RF dummy load consists of",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": "The purpose of a dummy load is taught. Its construction is not."
+    },
+    {
+      "questionId": "T7C04",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C05",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C06",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C07",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C08",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C09",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C10",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7C11",
+      "groupId": "T7C",
+      "concept": "Test equipment, soldering, and feed-line construction",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 soldering and meter; TR-06 coax layers",
+      "note": ""
+    },
+    {
+      "questionId": "T7D01",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D02",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D03",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D04",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D05",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D06",
+      "groupId": "T7D",
+      "concept": "What can damage a multimeter",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": "Not taught."
+    },
+    {
+      "questionId": "T7D07",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D08",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D09",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D10",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T7D11",
+      "groupId": "T7D",
+      "concept": "Measuring voltage, current, resistance, and continuity",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-02 meter and TR-09 rated-meter check",
+      "note": ""
+    },
+    {
+      "questionId": "T8A01",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A02",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A03",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A04",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A05",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A06",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A07",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A08",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A09",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A10",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A11",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8A12",
+      "groupId": "T8A",
+      "concept": "Emission types and bandwidth",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 bandwidth and sideband benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8B01",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B02",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B03",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B04",
+      "groupId": "T8B",
+      "concept": "Operating modes commonly used by amateur satellites",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": "One U/V example is taught. The broader mode fact is not."
+    },
+    {
+      "questionId": "T8B05",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B06",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B07",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B08",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B09",
+      "groupId": "T8B",
+      "concept": "Spin fading",
+      "support": "UNSUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": "Not taught."
+    },
+    {
+      "questionId": "T8B10",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B11",
+      "groupId": "T8B",
+      "concept": "Amateur satellites",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": ""
+    },
+    {
+      "questionId": "T8B12",
+      "groupId": "T8B",
+      "concept": "Judging uplink power against the satellite beacon",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-07 satellite pass",
+      "note": "The overload result is taught. The comparison method is not."
+    },
+    {
+      "questionId": "T8C01",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C02",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C03",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C04",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C05",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C06",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C07",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C08",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C09",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C10",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8C11",
+      "groupId": "T8C",
+      "concept": "Digital modes, image, and internet linking",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 digital and linking benches",
+      "note": ""
+    },
+    {
+      "questionId": "T8D01",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D02",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D03",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D04",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D05",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D06",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D07",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D08",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D09",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D10",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D11",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T8D12",
+      "groupId": "T8D",
+      "concept": "Contesting, direction finding, and other operating activities",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-07 activity bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A01",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A02",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A03",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A04",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A05",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A06",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A07",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A08",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A09",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A10",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9A11",
+      "groupId": "T9A",
+      "concept": "Antenna types, patterns, and polarization",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 antenna bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B01",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B02",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B03",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B04",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B05",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B06",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B07",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B08",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B09",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B10",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B11",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T9B12",
+      "groupId": "T9B",
+      "concept": "Feed lines, connectors, SWR, and matching",
+      "support": "SUPPORTED",
+      "lessonEvidence": "06, TC-06, and TR-08 feed-line bench",
+      "note": ""
+    },
+    {
+      "questionId": "T0A01",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A02",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A03",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A04",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A05",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A06",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A07",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A08",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A09",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A10",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A11",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0A12",
+      "groupId": "T0A",
+      "concept": "Electrical shock, wiring colors, fuses, and stored charge",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 safety-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B01",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B02",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B03",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B04",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B05",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B06",
+      "groupId": "T0B",
+      "concept": "Minimum safe distance from a power line",
+      "support": "PARTIALLY SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": "The fall-clearance principle is practiced. A minimum distance is not taught."
+    },
+    {
+      "questionId": "T0B07",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B08",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B09",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B10",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0B11",
+      "groupId": "T0B",
+      "concept": "Tower grounding, climbing, power-line clearance, and lightning protection",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 tower-safety and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C01",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C02",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C03",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C04",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C05",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C06",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C07",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C08",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C09",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C10",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C11",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C12",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    },
+    {
+      "questionId": "T0C13",
+      "groupId": "T0C",
+      "concept": "RF exposure, duty cycle, and licensee responsibility",
+      "support": "SUPPORTED",
+      "lessonEvidence": "TR-09 exposure-bench and practice items",
+      "note": ""
+    }
+  ]
+}
