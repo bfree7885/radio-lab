@@ -102,6 +102,13 @@ def _continue_lab(labs: list[dict]) -> dict | None:
 
 
 def _labs_for(labs: list[dict], curriculum_id: str) -> tuple[list[dict], dict]:
+    for lab in labs:
+        if lab.get("available"):
+            sync_lab_status(
+                lab["id"],
+                [stage["id"] for stage in stages_for_lab(lab["id"])],
+                curriculum_id,
+            )
     summary = progress_summary([lab["id"] for lab in labs], curriculum_id)
     rows = []
     for lab in labs:
@@ -249,6 +256,7 @@ def progress_api(lab_id: str):
     stage_ids = [stage["id"] for stage in stages_for_lab(lab_id)]
     if request.method == "GET":
         curriculum_id = _curriculum_id(request.args.get("curriculumId"))
+        sync_lab_status(lab_id, stage_ids, curriculum_id)
         return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id))
     payload = request.get_json(silent=True)
     if not isinstance(payload, dict):

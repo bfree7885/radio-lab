@@ -503,8 +503,7 @@ def sync_lab_status(lab_id: str, stage_ids: list[str], curriculum_id: str = FOUN
     elif any(done):
         status = IN_PROGRESS
     else:
-        current = get_lab_status(lab_id, curriculum_id)
-        status = IN_PROGRESS if current == IN_PROGRESS else NOT_STARTED
+        return get_lab_status(lab_id, curriculum_id)
     set_lab_status(lab_id, status, curriculum_id)
     return status
 

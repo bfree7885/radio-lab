@@ -9,10 +9,21 @@
     "pool": "2026-2030",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
-    "subelements": ["T1"],
-    "topics": ["T1A", "T1B", "T1C", "T1D", "T1E", "T1F"]
+    "subelements": [
+      "T1"
+    ],
+    "topics": [
+      "T1A",
+      "T1B",
+      "T1C",
+      "T1D",
+      "T1E",
+      "T1F"
+    ]
   },
-  "requires": ["simulation.bands"],
+  "requires": [
+    "simulation.bands"
+  ],
   "hardware": [],
   "stages": [
     {
@@ -26,7 +37,9 @@
         {
           "type": "interaction",
           "component": "field-reference",
-          "config": {"file": "regulations/technician-operating-2026.json"}
+          "config": {
+            "file": "regulations/technician-operating-2026.json"
+          }
         },
         {
           "type": "interaction",
@@ -54,166 +67,471 @@
       "blocks": [
         {
           "type": "text",
-          "body": "Each card is one operating decision. The FCC is the regulator. Open the reference when a number is involved. SSB phone belongs in the phone portions above 50 MHz, not only on FM. Segments such as 50.0–50.1 MHz and 144.0–144.1 MHz are CW only in this card. Six meters is 50–54 MHz. 146.52 MHz is in the 2-meter band. Technician digital operation includes 10 meters and VHF/UHF, still inside the privileges you look up."
+          "body": "Each card is one operating decision. The FCC is the regulator. Open the reference when a number is involved. SSB phone belongs in the phone portions above 50 MHz, not only on FM. Segments such as 50.0\u201350.1 MHz and 144.0\u2013144.1 MHz are CW only in this card. Six meters is 50\u201354 MHz. 146.52 MHz is in the 2-meter band. Technician digital operation includes 10 meters and VHF/UHF, still inside the privileges you look up."
         },
         {
           "type": "interaction",
           "component": "rule-deck",
           "config": {
             "doneText": "You treated the license, the privileges, the content, and the control type as separate decisions.",
-            "ids": ["races", "beacon", "coordinator", "secondary", "hf-phone", "pep", "vanity", "waters", "country", "code", "auto", "remote", "tactical", "club", "inspect", "grant", "grace", "renew", "groupd", "email", "international", "classes", "iss", "edge", "third", "music", "sale", "broadcast", "testid", "extra-op", "both", "repeater-account", "phonetics", "indicator", "news", "pay", "auxiliary", "obscenity"],
+            "ids": [
+              "races",
+              "beacon",
+              "coordinator",
+              "secondary",
+              "hf-phone",
+              "pep",
+              "vanity",
+              "waters",
+              "country",
+              "code",
+              "auto",
+              "remote",
+              "tactical",
+              "club",
+              "inspect",
+              "grant",
+              "grace",
+              "renew",
+              "groupd",
+              "email",
+              "international",
+              "classes",
+              "iss",
+              "edge",
+              "third",
+              "music",
+              "sale",
+              "broadcast",
+              "testid",
+              "extra-op",
+              "both",
+              "repeater-account",
+              "phonetics",
+              "indicator",
+              "news",
+              "pay",
+              "auxiliary",
+              "obscenity"
+            ],
             "options": {
               "races": [
-                {"id": "enroll", "label": "The license is not enough. Enrollment is also required."},
-                {"id": "go", "label": "The new license already makes you the RACES operator.", "why": "RACES needs the civil-defense enrollment as well as the amateur license."}
+                {
+                  "id": "enroll",
+                  "label": "The license is not enough. Enrollment is also required."
+                },
+                {
+                  "id": "go",
+                  "label": "The new license already makes you the RACES operator.",
+                  "why": "RACES needs the civil-defense enrollment as well as the amateur license."
+                }
               ],
               "beacon": [
-                {"id": "ten-meters", "label": "Use the 10-meter beacon segment in the reference."},
-                {"id": "anywhere", "label": "Put it on any quiet simplex channel.", "why": "An automatically controlled beacon is not 'any quiet channel.'"}
+                {
+                  "id": "ten-meters",
+                  "label": "Use the 10-meter beacon segment in the reference."
+                },
+                {
+                  "id": "anywhere",
+                  "label": "Put it on any quiet simplex channel.",
+                  "why": "An automatically controlled beacon is not 'any quiet channel.'"
+                }
               ],
               "coordinator": [
-                {"id": "coordinator", "label": "A frequency coordinator recommends the pair."},
-                {"id": "fcc-picks", "label": "The FCC assigns the repeater pair with the license.", "why": "The coordinator is chosen by eligible amateur operators. The FCC license is not a channel assignment."}
+                {
+                  "id": "coordinator",
+                  "label": "A frequency coordinator recommends the pair."
+                },
+                {
+                  "id": "fcc-picks",
+                  "label": "The FCC assigns the repeater pair with the license.",
+                  "why": "The coordinator is chosen by eligible amateur operators. The FCC license is not a channel assignment."
+                }
               ],
               "secondary": [
-                {"id": "yield", "label": "Do not interfere with the primary service, and accept its interference."},
-                {"id": "equal", "label": "Secondary means you have equal claim to the channel.", "why": "Secondary is not equal status."}
+                {
+                  "id": "yield",
+                  "label": "Do not interfere with the primary service, and accept its interference."
+                },
+                {
+                  "id": "equal",
+                  "label": "Secondary means you have equal claim to the channel.",
+                  "why": "Secondary is not equal status."
+                }
               ],
               "hf-phone": [
-                {"id": "no", "label": "7.200 MHz phone is not the Technician HF phone slice."},
-                {"id": "yes", "label": "Any HF frequency is fine on phone if you identify.", "why": "Identification does not create a privilege."}
+                {
+                  "id": "no",
+                  "label": "7.200 MHz phone is not the Technician HF phone slice."
+                },
+                {
+                  "id": "yes",
+                  "label": "Any HF frequency is fine on phone if you identify.",
+                  "why": "Identification does not create a privilege."
+                }
               ],
               "pep": [
-                {"id": "200", "label": "Use the 200 watt HF limit in the reference."},
-                {"id": "1500", "label": "1500 watts is the HF Technician limit.", "why": "1500 watts is the usual maximum above 30 MHz in this card, not the HF segment limit."}
+                {
+                  "id": "200",
+                  "label": "Use the 200 watt HF limit in the reference."
+                },
+                {
+                  "id": "1500",
+                  "label": "1500 watts is the HF Technician limit.",
+                  "why": "1500 watts is the usual maximum above 30 MHz in this card, not the HF segment limit."
+                }
               ],
               "vanity": [
-                {"id": "vanity", "label": "Request a vanity call sign. You must already be licensed."},
-                {"id": "invent", "label": "Start using the call sign you like tonight.", "why": "A wish is not a grant. Wait until the call sign is issued."}
+                {
+                  "id": "vanity",
+                  "label": "Request a vanity call sign. You must already be licensed."
+                },
+                {
+                  "id": "invent",
+                  "label": "Start using the call sign you like tonight.",
+                  "why": "A wish is not a grant. Wait until the call sign is issued."
+                }
               ],
               "waters": [
-                {"id": "fcc-rules", "label": "With the ship's permission, still follow FCC amateur rules."},
-                {"id": "none", "label": "International waters mean no rules apply.", "why": "The license does not switch off because the ship left the harbor."}
+                {
+                  "id": "fcc-rules",
+                  "label": "With the ship's permission, still follow FCC amateur rules."
+                },
+                {
+                  "id": "none",
+                  "label": "International waters mean no rules apply.",
+                  "why": "The license does not switch off because the ship left the harbor."
+                }
               ],
               "country": [
-                {"id": "stop", "label": "Do not exchange communications with that country."},
-                {"id": "whisper", "label": "Continue if you speak quietly.", "why": "The prohibition is about the country, not the volume."}
+                {
+                  "id": "stop",
+                  "label": "Do not exchange communications with that country."
+                },
+                {
+                  "id": "whisper",
+                  "label": "Continue if you speak quietly.",
+                  "why": "The prohibition is about the country, not the volume."
+                }
               ],
               "code": [
-                {"id": "plain", "label": "Keep the contact in plain language."},
-                {"id": "scramble", "label": "Scramble it so only your friend understands.", "why": "Hiding the meaning is not allowed for an ordinary contact."}
+                {
+                  "id": "plain",
+                  "label": "Keep the contact in plain language."
+                },
+                {
+                  "id": "scramble",
+                  "label": "Scramble it so only your friend understands.",
+                  "why": "Hiding the meaning is not allowed for an ordinary contact."
+                }
               ],
               "auto": [
-                {"id": "automatic", "label": "This is automatic control."},
-                {"id": "local", "label": "This is local control because the repeater is a radio.", "why": "Local control means a control operator at the station. Nobody is at this site."}
+                {
+                  "id": "automatic",
+                  "label": "This is automatic control."
+                },
+                {
+                  "id": "local",
+                  "label": "This is local control because the repeater is a radio.",
+                  "why": "Local control means a control operator at the station. Nobody is at this site."
+                }
               ],
               "remote": [
-                {"id": "remote", "label": "This is remote control. You are still the control operator."},
-                {"id": "auto", "label": "This is automatic because the internet is involved.", "why": "You are performing the control function from another place. That is remote, not automatic."}
+                {
+                  "id": "remote",
+                  "label": "This is remote control. You are still the control operator."
+                },
+                {
+                  "id": "auto",
+                  "label": "This is automatic because the internet is involved.",
+                  "why": "You are performing the control function from another place. That is remote, not automatic."
+                }
               ],
               "tactical": [
-                {"id": "both", "label": "Use the tactical name, and still give your FCC call sign on the 10-minute rule."},
-                {"id": "only", "label": "The tactical name replaces the call sign for the whole net.", "why": "A tactical name is extra. It is not the station identification."}
+                {
+                  "id": "both",
+                  "label": "Use the tactical name, and still give your FCC call sign on the 10-minute rule."
+                },
+                {
+                  "id": "only",
+                  "label": "The tactical name replaces the call sign for the whole net.",
+                  "why": "A tactical name is extra. It is not the station identification."
+                }
               ],
               "club": [
-                {"id": "trustee", "label": "The club needs a licensed trustee."},
-                {"id": "none", "label": "Four unlicensed friends can hold the grant together.", "why": "The trustee has to hold an amateur license."}
+                {
+                  "id": "trustee",
+                  "label": "The club needs a licensed trustee."
+                },
+                {
+                  "id": "none",
+                  "label": "Four unlicensed friends can hold the grant together.",
+                  "why": "The trustee has to hold an amateur license."
+                }
               ],
               "inspect": [
-                {"id": "show", "label": "Make the station and its records available."},
-                {"id": "later", "label": "Inspections require a two-week appointment.", "why": "The duty is to make the station available when an FCC representative asks."}
+                {
+                  "id": "show",
+                  "label": "Make the station and its records available."
+                },
+                {
+                  "id": "later",
+                  "label": "Inspections require a two-week appointment.",
+                  "why": "The duty is to make the station available when an FCC representative asks."
+                }
               ],
               "grant": [
-                {"id": "wait", "label": "Wait until the grant appears in the FCC license database."},
-                {"id": "now", "label": "Transmit now. The exam session was the grant.", "why": "The exam is not the license grant."}
+                {
+                  "id": "wait",
+                  "label": "Wait until the grant appears in the FCC license database."
+                },
+                {
+                  "id": "now",
+                  "label": "Transmit now. The exam session was the grant.",
+                  "why": "The exam is not the license grant."
+                }
               ],
               "grace": [
-                {"id": "silent", "label": "Do not transmit until the license is renewed."},
-                {"id": "go", "label": "The grace period includes transmitting.", "why": "Grace is time to renew, not time to transmit."}
+                {
+                  "id": "silent",
+                  "label": "Do not transmit until the license is renewed."
+                },
+                {
+                  "id": "go",
+                  "label": "The grace period includes transmitting.",
+                  "why": "Grace is time to renew, not time to transmit."
+                }
               ],
               "renew": [
-                {"id": "ninety", "label": "You may request renewal within 90 days. The term is 10 years."},
-                {"id": "anytime", "label": "Renewal is only allowed after the grant expires.", "why": "The request window opens 90 days before expiration."}
+                {
+                  "id": "ninety",
+                  "label": "You may request renewal within 90 days. The term is 10 years."
+                },
+                {
+                  "id": "anytime",
+                  "label": "Renewal is only allowed after the grant expires.",
+                  "why": "The request window opens 90 days before expiration."
+                }
               ],
               "groupd": [
-                {"id": "shape", "label": "Two letters, one digit, three letters."},
-                {"id": "short", "label": "One letter and one digit.", "why": "That is not the Group D shape on this card."}
+                {
+                  "id": "shape",
+                  "label": "Two letters, one digit, three letters."
+                },
+                {
+                  "id": "short",
+                  "label": "One letter and one digit.",
+                  "why": "That is not the Group D shape on this card."
+                }
               ],
               "email": [
-                {"id": "fix", "label": "Update the email so the FCC can reach you."},
-                {"id": "ignore", "label": "A bounced email has no effect on the grant.", "why": "The FCC can act on the grant if it cannot reach you."}
+                {
+                  "id": "fix",
+                  "label": "Update the email so the FCC can reach you."
+                },
+                {
+                  "id": "ignore",
+                  "label": "A bounced email has no effect on the grant.",
+                  "why": "The FCC can act on the grant if it cannot reach you."
+                }
               ],
               "international": [
-                {"id": "personal", "label": "Personal remarks that fit amateur purposes are permitted."},
-                {"id": "business", "label": "Use the contact to run a business.", "why": "The permission is for amateur purposes, including personal remarks."}
+                {
+                  "id": "personal",
+                  "label": "Personal remarks that fit amateur purposes are permitted."
+                },
+                {
+                  "id": "business",
+                  "label": "Use the contact to run a business.",
+                  "why": "The permission is for amateur purposes, including personal remarks."
+                }
               ],
               "classes": [
-                {"id": "three", "label": "Technician, General, and Amateur Extra."},
-                {"id": "novice", "label": "The FCC currently issues a new Novice license.", "why": "New licenses in this card are Technician, General, and Extra."}
+                {
+                  "id": "three",
+                  "label": "Technician, General, and Amateur Extra."
+                },
+                {
+                  "id": "novice",
+                  "label": "The FCC currently issues a new Novice license.",
+                  "why": "New licenses in this card are Technician, General, and Extra."
+                }
               ],
               "iss": [
-                {"id": "privilege", "label": "Any amateur who has the frequency privilege."},
-                {"id": "extra-only", "label": "Only an Amateur Extra licensee.", "why": "The limit is the frequency privilege, not the Extra class by itself."}
+                {
+                  "id": "privilege",
+                  "label": "Any amateur who has the frequency privilege."
+                },
+                {
+                  "id": "extra-only",
+                  "label": "Only an Amateur Extra licensee.",
+                  "why": "The limit is the frequency privilege, not the Extra class by itself."
+                }
               ],
               "edge": [
-                {"id": "inside", "label": "Move inside so the whole signal stays in the slice."},
-                {"id": "edge-ok", "label": "The carrier on the edge is enough.", "why": "The signal is wider than the carrier frequency."}
+                {
+                  "id": "inside",
+                  "label": "Move inside so the whole signal stays in the slice."
+                },
+                {
+                  "id": "edge-ok",
+                  "label": "The carrier on the edge is enough.",
+                  "why": "The signal is wider than the carrier frequency."
+                }
               ],
               "third": [
-                {"id": "you-control", "label": "You stay the control operator. A foreign third party needs that country's agreement."},
-                {"id": "hand-over", "label": "Hand the station to your friend and leave.", "why": "Someone has to be the control operator. You do not hand the station to an unlicensed person and walk away."}
+                {
+                  "id": "you-control",
+                  "label": "You stay the control operator. A foreign third party needs that country's agreement."
+                },
+                {
+                  "id": "hand-over",
+                  "label": "Hand the station to your friend and leave.",
+                  "why": "Someone has to be the control operator. You do not hand the station to an unlicensed person and walk away."
+                }
               ],
               "music": [
-                {"id": "no-music", "label": "Do not play the song. The space-station exception is not this contact."},
-                {"id": "play", "label": "Play it if you identify first.", "why": "Identification does not make music an amateur transmission."}
+                {
+                  "id": "no-music",
+                  "label": "Do not play the song. The space-station exception is not this contact."
+                },
+                {
+                  "id": "play",
+                  "label": "Play it if you identify first.",
+                  "why": "Identification does not make music an amateur transmission."
+                }
               ],
               "sale": [
-                {"id": "occasional", "label": "One notice that the handheld is for sale is permitted."},
-                {"id": "store", "label": "Use the net as your store every week.", "why": "Occasional is not a business."}
+                {
+                  "id": "occasional",
+                  "label": "One notice that the handheld is for sale is permitted."
+                },
+                {
+                  "id": "store",
+                  "label": "Use the net as your store every week.",
+                  "why": "Occasional is not a business."
+                }
               ],
               "broadcast": [
-                {"id": "not-broadcast", "label": "Do not transmit a program for the general public."},
-                {"id": "public", "label": "Amateur radio is a broadcast service if the signal is strong.", "why": "Broadcasting is defined by the audience you intend, not by signal strength."}
+                {
+                  "id": "not-broadcast",
+                  "label": "Do not transmit a program for the general public."
+                },
+                {
+                  "id": "public",
+                  "label": "Amateur radio is a broadcast service if the signal is strong.",
+                  "why": "Broadcasting is defined by the audience you intend, not by signal strength."
+                }
               ],
               "testid": [
-                {"id": "identify-test", "label": "Identify the test. Model-craft control is the narrow unidentified case."},
-                {"id": "silent-test", "label": "A test needs no identification if it is short.", "why": "A test transmission is identified."}
+                {
+                  "id": "identify-test",
+                  "label": "Identify the test. Model-craft control is the narrow unidentified case."
+                },
+                {
+                  "id": "silent-test",
+                  "label": "A test needs no identification if it is short.",
+                  "why": "A test transmission is identified."
+                }
               ],
               "extra-op": [
-                {"id": "no-extra", "label": "No, other than an emergency."},
-                {"id": "yes-extra", "label": "Yes, if the station licensee is an Extra.", "why": "Privileges follow the control operator, not the station owner's license."}
+                {
+                  "id": "no-extra",
+                  "label": "No, other than an emergency."
+                },
+                {
+                  "id": "yes-extra",
+                  "label": "Yes, if the station licensee is an Extra.",
+                  "why": "Privileges follow the control operator, not the station owner's license."
+                }
               ],
               "both": [
-                {"id": "both-people", "label": "Both the licensee and the control operator."},
-                {"id": "only-you", "label": "Only the control operator. The licensee is finished once they hand you the microphone.", "why": "Both remain responsible."}
+                {
+                  "id": "both-people",
+                  "label": "Both the licensee and the control operator."
+                },
+                {
+                  "id": "only-you",
+                  "label": "Only the control operator. The licensee is finished once they hand you the microphone.",
+                  "why": "Both remain responsible."
+                }
               ],
               "repeater-account": [
-                {"id": "licensee", "label": "The repeater licensee is accountable for the retransmission."},
-                {"id": "nobody", "label": "A repeater is automatic, so nobody is accountable.", "why": "Automatic control does not erase the licensee's accountability."}
+                {
+                  "id": "licensee",
+                  "label": "The repeater licensee is accountable for the retransmission."
+                },
+                {
+                  "id": "nobody",
+                  "label": "A repeater is automatic, so nobody is accountable.",
+                  "why": "Automatic control does not erase the licensee's accountability."
+                }
               ],
               "phonetics": [
-                {"id": "optional", "label": "Phonetics are optional. The call sign in English is required."},
-                {"id": "required", "label": "Every phone identification must use phonetics.", "why": "Phonetics clarify. They are not the identification rule itself."}
+                {
+                  "id": "optional",
+                  "label": "Phonetics are optional. The call sign in English is required."
+                },
+                {
+                  "id": "required",
+                  "label": "Every phone identification must use phonetics.",
+                  "why": "Phonetics clarify. They are not the identification rule itself."
+                }
               ],
               "indicator": [
-                {"id": "after", "label": "It may follow the call sign and does not replace it."},
-                {"id": "instead", "label": "The indicator replaces the call sign.", "why": "An indicator is added. It is not a substitute."}
+                {
+                  "id": "after",
+                  "label": "It may follow the call sign and does not replace it."
+                },
+                {
+                  "id": "instead",
+                  "label": "The indicator replaces the call sign.",
+                  "why": "An indicator is added. It is not a substitute."
+                }
               ],
               "news": [
-                {"id": "safety-only", "label": "Only an immediate safety-of-life or property need, when nothing else works."},
-                {"id": "story", "label": "Any news story is allowed if you identify.", "why": "The exception is the emergency need, not journalism in general."}
+                {
+                  "id": "safety-only",
+                  "label": "Only an immediate safety-of-life or property need, when nothing else works."
+                },
+                {
+                  "id": "story",
+                  "label": "Any news story is allowed if you identify.",
+                  "why": "The exception is the emergency need, not journalism in general."
+                }
               ],
               "pay": [
-                {"id": "classroom", "label": "Only when the operation is incidental to classroom instruction."},
-                {"id": "paid", "label": "You may be paid whenever the contact is useful.", "why": "Useful is not the classroom exception."}
+                {
+                  "id": "classroom",
+                  "label": "Only when the operation is incidental to classroom instruction."
+                },
+                {
+                  "id": "paid",
+                  "label": "You may be paid whenever the contact is useful.",
+                  "why": "Useful is not the classroom exception."
+                }
               ],
               "auxiliary": [
-                {"id": "point", "label": "A point-to-point link among cooperating amateur stations."},
-                {"id": "broadcast-link", "label": "A link that carries a program to the public.", "why": "Auxiliary is between amateur stations."}
+                {
+                  "id": "point",
+                  "label": "A point-to-point link among cooperating amateur stations."
+                },
+                {
+                  "id": "broadcast-link",
+                  "label": "A link that carries a program to the public.",
+                  "why": "Auxiliary is between amateur stations."
+                }
               ],
               "obscenity": [
-                {"id": "stop-language", "label": "Stop. Indecent or obscene language is prohibited."},
-                {"id": "continue", "label": "Continue if the repeater stays open.", "why": "The repeater being open is not permission."}
+                {
+                  "id": "stop-language",
+                  "label": "Stop. Indecent or obscene language is prohibited."
+                },
+                {
+                  "id": "continue",
+                  "label": "Continue if the repeater stays open.",
+                  "why": "The repeater being open is not permission."
+                }
               ]
             }
           }
@@ -252,7 +570,11 @@
               "id": "tr03-races",
               "topicId": "T1A",
               "stem": "Besides the amateur license, what did this lab require before you act as control operator of a RACES station?",
-              "choices": ["Enrollment with the civil defense organization", "A vanity call sign", "A club trustee certificate"],
+              "choices": [
+                "Enrollment with the civil defense organization",
+                "A vanity call sign",
+                "A club trustee certificate"
+              ],
               "correctIndex": 0,
               "why": "The license does not enroll you. RACES needs that civil-defense enrollment. A frequency coordinator is a different role: recommending repeater pairs."
             },
@@ -260,7 +582,11 @@
               "id": "tr03-phone",
               "topicId": "T1B",
               "stem": "Where did the reference put Technician HF phone?",
-              "choices": ["28.300 to 28.500 MHz, at 200 watts PEP", "Every HF band, at 1500 watts PEP", "146.520 MHz only"],
+              "choices": [
+                "28.300 to 28.500 MHz, at 200 watts PEP",
+                "Every HF band, at 1500 watts PEP",
+                "146.520 MHz only"
+              ],
               "correctIndex": 0,
               "why": "The card limits Technician HF phone to that 10-meter slice and HF power to 200 watts PEP. Above 30 MHz the usual maximum in the card is 1500 watts PEP. The edge of a slice is a poor center frequency because the signal has width."
             },
@@ -268,7 +594,11 @@
               "id": "tr03-secondary",
               "topicId": "T1B",
               "stem": "The amateur service is secondary on the frequency you want. What did the decision require?",
-              "choices": ["Do not interfere with the primary service, and accept its interference", "You have equal rights to the channel", "Secondary status removes the identification rule"],
+              "choices": [
+                "Do not interfere with the primary service, and accept its interference",
+                "You have equal rights to the channel",
+                "Secondary status removes the identification rule"
+              ],
               "correctIndex": 0,
               "why": "Secondary sharing is not equal status. Identification and the other operating rules still apply."
             },
@@ -276,7 +606,11 @@
               "id": "tr03-grant",
               "topicId": "T1C",
               "stem": "You passed the exam this afternoon. When may you first transmit, in this lab?",
-              "choices": ["When the FCC license grant shows in the license database", "The moment the exam session ends", "During the two-year grace period before the grant exists"],
+              "choices": [
+                "When the FCC license grant shows in the license database",
+                "The moment the exam session ends",
+                "During the two-year grace period before the grant exists"
+              ],
               "correctIndex": 0,
               "why": "The grant is the permission. The usual term is 10 years. Renewal can be requested 90 days early. The grace period after expiration is not permission to transmit. A vanity call sign is a later request, not the first grant."
             },
@@ -284,7 +618,11 @@
               "id": "tr03-content",
               "topicId": "T1D",
               "stem": "Which transmission did this lab refuse for an ordinary contact?",
-              "choices": ["Scrambled speech meant to hide the meaning", "A plain-language schedule for a club picnic", "Your call sign in English"],
+              "choices": [
+                "Scrambled speech meant to hide the meaning",
+                "A plain-language schedule for a club picnic",
+                "Your call sign in English"
+              ],
               "correctIndex": 0,
               "why": "Ordinary contacts stay understandable. Music, obscenity, regular selling, and broadcasting to the public are separate refusals. An occasional equipment-for-sale notice is not a business."
             },
@@ -292,7 +630,11 @@
               "id": "tr03-control",
               "topicId": "T1E",
               "stem": "You operate a radio across town over a control link. Which control type is that?",
-              "choices": ["Remote control, and you are still the control operator", "Automatic control, because a network is involved", "No control operator is required"],
+              "choices": [
+                "Remote control, and you are still the control operator",
+                "Automatic control, because a network is involved",
+                "No control operator is required"
+              ],
               "correctIndex": 0,
               "why": "Remote control puts the control point somewhere other than the station. Automatic control is a device operating the station when no control operator is performing that function at the site. Privileges follow the control operator's license. The station licensee designates the control operator, and both can be responsible."
             },
@@ -300,7 +642,11 @@
               "id": "tr03-tactical",
               "topicId": "T1F",
               "stem": "Net control uses the tactical name Aid Station 2. What identification is still required?",
-              "choices": ["Your FCC call sign in English, at least every 10 minutes and at the end", "The tactical name alone, for the whole net", "A self-assigned indicator instead of any call sign"],
+              "choices": [
+                "Your FCC call sign in English, at least every 10 minutes and at the end",
+                "The tactical name alone, for the whole net",
+                "A self-assigned indicator instead of any call sign"
+              ],
               "correctIndex": 0,
               "why": "The tactical name does not replace the call sign. A self-assigned indicator may be added. It is not a substitute."
             },
@@ -308,7 +654,11 @@
               "id": "tr03-inspect",
               "topicId": "T1F",
               "stem": "An FCC representative asks to see the station. What is the licensee's duty in this lab?",
-              "choices": ["Make the station and its records available", "Offer the club call sign instead", "Wait for a two-week appointment"],
+              "choices": [
+                "Make the station and its records available",
+                "Offer the club call sign instead",
+                "Wait for a two-week appointment"
+              ],
               "correctIndex": 0,
               "why": "Inspection is on request. A repeater licensee is also accountable for what the repeater retransmits. A club grant needs a licensed trustee."
             }
@@ -330,42 +680,121 @@
           "component": "rule-deck",
           "config": {
             "doneText": "You kept local control at home, stayed the control operator for your friend, used the repeater as automatic control of that station, looked up the HF privilege and power, identified on the picnic net, and recognized remote control the next day.",
-            "ids": ["week-home", "week-friend", "week-repeater", "hf-phone", "pep", "tactical", "week-remote", "inspect"],
+            "ids": [
+              "week-home",
+              "week-friend",
+              "week-repeater",
+              "hf-phone",
+              "pep",
+              "tactical",
+              "week-remote",
+              "inspect"
+            ],
             "options": {
               "week-home": [
-                {"id": "local-home", "label": "You are at the radio. This is local control."},
-                {"id": "auto-home", "label": "The kitchen radio is automatic because it has a power switch.", "why": "A power switch is not automatic control. You are performing the control function."}
+                {
+                  "id": "local-home",
+                  "label": "You are at the radio. This is local control."
+                },
+                {
+                  "id": "auto-home",
+                  "label": "The kitchen radio is automatic because it has a power switch.",
+                  "why": "A power switch is not automatic control. You are performing the control function."
+                }
               ],
               "week-friend": [
-                {"id": "you-stay", "label": "Your friend may say hello. You stay the control operator and you identify."},
-                {"id": "hand-over", "label": "Give your friend the radio and let them be the control operator.", "why": "An unlicensed person is not the control operator."}
+                {
+                  "id": "you-stay",
+                  "label": "Your friend may say hello. You stay the control operator and you identify."
+                },
+                {
+                  "id": "hand-over",
+                  "label": "Give your friend the radio and let them be the control operator.",
+                  "why": "An unlicensed person is not the control operator."
+                }
               ],
               "week-repeater": [
-                {"id": "repeater-auto", "label": "The repeater is automatic control. Your own radio still has you as control operator."},
-                {"id": "you-at-site", "label": "Using a repeater means you are the control operator at the repeater site.", "why": "You are not at the site. The repeater's control is automatic."}
+                {
+                  "id": "repeater-auto",
+                  "label": "The repeater is automatic control. Your own radio still has you as control operator."
+                },
+                {
+                  "id": "you-at-site",
+                  "label": "Using a repeater means you are the control operator at the repeater site.",
+                  "why": "You are not at the site. The repeater's control is automatic."
+                }
               ],
               "hf-phone": [
-                {"id": "no", "label": "Check the card. Do not use 7.200 MHz phone."},
-                {"id": "yes", "label": "Call on 7.200 MHz because the picnic is outdoors.", "why": "The location does not add an HF phone privilege."}
+                {
+                  "id": "no",
+                  "label": "Check the card. Do not use 7.200 MHz phone."
+                },
+                {
+                  "id": "yes",
+                  "label": "Call on 7.200 MHz because the picnic is outdoors.",
+                  "why": "The location does not add an HF phone privilege."
+                }
               ],
               "pep": [
-                {"id": "200", "label": "Keep the HF transmitter inside the 200 watt card."},
-                {"id": "1500", "label": "Use 1500 watts because you can hear the other station.", "why": "Hearing them does not raise the HF power limit in the card."}
+                {
+                  "id": "200",
+                  "label": "Keep the HF transmitter inside the 200 watt card."
+                },
+                {
+                  "id": "1500",
+                  "label": "Use 1500 watts because you can hear the other station.",
+                  "why": "Hearing them does not raise the HF power limit in the card."
+                }
               ],
               "tactical": [
-                {"id": "both", "label": "The picnic net may call you Picnic 1, and you still identify with your call sign."},
-                {"id": "only", "label": "Picnic 1 replaces the call sign while the net lasts.", "why": "The tactical name is not the FCC identification."}
+                {
+                  "id": "both",
+                  "label": "The picnic net may call you Picnic 1, and you still identify with your call sign."
+                },
+                {
+                  "id": "only",
+                  "label": "Picnic 1 replaces the call sign while the net lasts.",
+                  "why": "The tactical name is not the FCC identification."
+                }
               ],
               "week-remote": [
-                {"id": "remote-week", "label": "Operating the home radio from your phone is remote control. You are still the control operator."},
-                {"id": "auto-week", "label": "The phone makes it automatic control.", "why": "You are still performing the control function, from another place."}
+                {
+                  "id": "remote-week",
+                  "label": "Operating the home radio from your phone is remote control. You are still the control operator."
+                },
+                {
+                  "id": "auto-week",
+                  "label": "The phone makes it automatic control.",
+                  "why": "You are still performing the control function, from another place."
+                }
               ],
               "inspect": [
-                {"id": "show", "label": "If an FCC representative asks, show the station."},
-                {"id": "later", "label": "A picnic is exempt from inspection.", "why": "The duty does not pause because you are outdoors."}
+                {
+                  "id": "show",
+                  "label": "If an FCC representative asks, show the station."
+                },
+                {
+                  "id": "later",
+                  "label": "A picnic is exempt from inspection.",
+                  "why": "The duty does not pause because you are outdoors."
+                }
               ]
             }
           }
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "ONE MORE CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The CW-only slices were named earlier. Use them."
+        },
+        {
+          "type": "interaction",
+          "component": "cw-only-desk"
         }
       ]
     }

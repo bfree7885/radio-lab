@@ -9,10 +9,19 @@
     "pool": "2026-2030",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
-    "subelements": ["T2"],
-    "topics": ["T2A", "T2B", "T2C"]
+    "subelements": [
+      "T2"
+    ],
+    "topics": [
+      "T2A",
+      "T2B",
+      "T2C"
+    ]
   },
-  "requires": ["simulation.repeater", "simulation.receiver"],
+  "requires": [
+    "simulation.repeater",
+    "simulation.receiver"
+  ],
   "hardware": [],
   "stages": [
     {
@@ -26,28 +35,44 @@
         {
           "type": "interaction",
           "component": "field-reference",
-          "config": {"file": "reference/technician-remediation.json"}
+          "config": {
+            "file": "reference/technician-remediation.json"
+          }
         },
         {
           "type": "interaction",
           "component": "operating-sequence",
           "recordsStage": false,
           "gate": "tr04-simplex",
-          "config": {"scenario": "simplex", "doneText": "Simplex is one frequency, and the call included your call sign."}
+          "config": {
+            "scenario": "simplex",
+            "doneText": "Simplex is one frequency, and the call included your call sign."
+          }
         },
         {
           "type": "interaction",
           "component": "operating-sequence",
-          "requiresGates": ["tr04-simplex"],
+          "requiresGates": [
+            "tr04-simplex"
+          ],
           "recordsStage": false,
           "gate": "tr04-cq",
-          "config": {"scenario": "cq", "doneText": "CQ asks any station for a contact. You listened, waited, identified, and answered."}
+          "config": {
+            "scenario": "cq",
+            "doneText": "CQ asks any station for a contact. You listened, waited, identified, and answered."
+          }
         },
         {
           "type": "interaction",
           "component": "operating-sequence",
-          "requiresGates": ["tr04-simplex", "tr04-cq"],
-          "config": {"scenario": "answer", "doneText": "You answered CQ with their call sign and yours."}
+          "requiresGates": [
+            "tr04-simplex",
+            "tr04-cq"
+          ],
+          "config": {
+            "scenario": "answer",
+            "doneText": "You answered CQ with their call sign and yours."
+          }
         }
       ]
     },
@@ -70,12 +95,17 @@
           "component": "dtmf-pad",
           "recordsStage": false,
           "gate": "tr04-dtmf",
-          "requiresGates": ["tr04-offset"]
+          "requiresGates": [
+            "tr04-offset"
+          ]
         },
         {
           "type": "interaction",
           "component": "dmr-setup",
-          "requiresGates": ["tr04-offset", "tr04-dtmf"]
+          "requiresGates": [
+            "tr04-offset",
+            "tr04-dtmf"
+          ]
         }
       ]
     },
@@ -92,29 +122,49 @@
           "component": "operating-sequence",
           "recordsStage": false,
           "gate": "tr04-repeater",
-          "config": {"scenario": "repeater", "doneText": "You called a known station, and you identified when you were just listening."}
+          "config": {
+            "scenario": "repeater",
+            "doneText": "You called a known station, and you identified when you were just listening."
+          }
         },
         {
           "type": "interaction",
           "component": "operating-sequence",
           "recordsStage": false,
           "gate": "tr04-qrm",
-          "requiresGates": ["tr04-repeater"],
-          "config": {"scenario": "interference", "doneText": "You moved a crowded contact, left the linked repeater for a long chat, and turned the gain down when audio dropped out."}
+          "requiresGates": [
+            "tr04-repeater"
+          ],
+          "config": {
+            "scenario": "interference",
+            "doneText": "You moved a crowded contact, left the linked repeater for a long chat, and turned the gain down when audio dropped out."
+          }
         },
         {
           "type": "interaction",
           "component": "operating-sequence",
           "recordsStage": false,
           "gate": "tr04-net",
-          "requiresGates": ["tr04-qrm"],
-          "config": {"scenario": "net", "doneText": "You waited for net control, checked in, and stayed off the frequency for priority traffic."}
+          "requiresGates": [
+            "tr04-qrm"
+          ],
+          "config": {
+            "scenario": "net",
+            "doneText": "You waited for net control, checked in, and stayed off the frequency for priority traffic."
+          }
         },
         {
           "type": "interaction",
           "component": "operating-sequence",
-          "requiresGates": ["tr04-repeater", "tr04-qrm", "tr04-net"],
-          "config": {"scenario": "traffic", "doneText": "You passed the text you were given, and the check matched the word count."}
+          "requiresGates": [
+            "tr04-repeater",
+            "tr04-qrm",
+            "tr04-net"
+          ],
+          "config": {
+            "scenario": "traffic",
+            "doneText": "You passed the text you were given, and the check matched the word count."
+          }
         }
       ]
     },
@@ -150,7 +200,11 @@
               "id": "tr04-cq",
               "topicId": "T2A",
               "stem": "You want any phone station, you are on simplex, and the frequency is quiet. What does transmitting CQ with your call sign do?",
-              "choices": ["It asks any station to answer you", "It silently tests the repeater", "It enrolls you in a net"],
+              "choices": [
+                "It asks any station to answer you",
+                "It silently tests the repeater",
+                "It enrolls you in a net"
+              ],
               "correctIndex": 0,
               "why": "CQ is a general call. Your call sign tells the answering station who is calling. You still listen before and after it."
             },
@@ -158,7 +212,11 @@
               "id": "tr04-answer",
               "topicId": "T2A",
               "stem": "A station is calling CQ. How do you answer in this lab?",
-              "choices": ["Their call sign, then yours", "Another CQ on the same frequency", "A silent key-up so they see the meter move"],
+              "choices": [
+                "Their call sign, then yours",
+                "Another CQ on the same frequency",
+                "A silent key-up so they see the meter move"
+              ],
               "correctIndex": 0,
               "why": "The answer names them and then names you. A second CQ covers the station that already asked for a call."
             },
@@ -166,7 +224,11 @@
               "id": "tr04-offset",
               "topicId": "T2A",
               "stem": "This lab's 70-centimeter example uses a 5 MHz offset. What is the right way to treat that number?",
-              "choices": ["As a common United States example, checked against the repeater you are using", "As the offset of every repeater on Earth", "As the bandwidth of an FM voice signal"],
+              "choices": [
+                "As a common United States example, checked against the repeater you are using",
+                "As the offset of every repeater on Earth",
+                "As the bandwidth of an FM voice signal"
+              ],
               "correctIndex": 0,
               "why": "The offset is the split between input and output. Five megahertz is common on 70 centimeters in the United States. The repeater listing still wins."
             },
@@ -174,7 +236,11 @@
               "id": "tr04-reverse",
               "topicId": "T2B",
               "stem": "You turn on reverse. What changes?",
-              "choices": ["You listen on the repeater input", "The transmitter power increases", "The CTCSS tone becomes DTMF"],
+              "choices": [
+                "You listen on the repeater input",
+                "The transmitter power increases",
+                "The CTCSS tone becomes DTMF"
+              ],
               "correctIndex": 0,
               "why": "Reverse lets you hear stations on the input. It does not add power and it does not change the tone type."
             },
@@ -182,7 +248,11 @@
               "id": "tr04-dtmf",
               "topicId": "T2B",
               "stem": "You press one key and the model shows two tones at the same time. What is that keypad for here?",
-              "choices": ["A short command, such as a repeater control", "The continuous tone that opens a CTCSS squelch", "A substitute for your call sign"],
+              "choices": [
+                "A short command, such as a repeater control",
+                "The continuous tone that opens a CTCSS squelch",
+                "A substitute for your call sign"
+              ],
               "correctIndex": 0,
               "why": "DTMF is the pair of tones. CTCSS is the separate low tone that rides with your voice to open a receiver."
             },
@@ -190,7 +260,11 @@
               "id": "tr04-dmr",
               "topicId": "T2B",
               "stem": "A DMR radio is on the repeater frequency and you still are not in the conversation. What else did this lab require?",
-              "choices": ["A talkgroup and a matching color code", "More transmitter power only", "Calling CQ in voice"],
+              "choices": [
+                "A talkgroup and a matching color code",
+                "More transmitter power only",
+                "Calling CQ in voice"
+              ],
               "correctIndex": 0,
               "why": "Digital voice uses configuration beyond the frequency. The talkgroup selects the group. The color code is the digital access code. A code plug stores those settings."
             },
@@ -198,7 +272,11 @@
               "id": "tr04-qrm",
               "topicId": "T2B",
               "stem": "Two stations are interfering with each other on one frequency. Which Q signal names that problem?",
-              "choices": ["QRM", "QSY", "A signal that means the net is closed"],
+              "choices": [
+                "QRM",
+                "QSY",
+                "A signal that means the net is closed"
+              ],
               "correctIndex": 0,
               "why": "QRM is interference from other stations. QSY means you are changing frequency, which is often the cure."
             },
@@ -206,7 +284,11 @@
               "id": "tr04-races",
               "topicId": "T2C",
               "stem": "You earned a Technician license yesterday. Which statement matches this lab?",
-              "choices": ["The license does not enroll you in RACES or ARES", "The license makes you a civil-defense station", "Part 97 stops applying when a net uses the word emergency"],
+              "choices": [
+                "The license does not enroll you in RACES or ARES",
+                "The license makes you a civil-defense station",
+                "Part 97 stops applying when a net uses the word emergency"
+              ],
               "correctIndex": 0,
               "why": "RACES needs a civil-defense enrollment. ARES is a voluntary registration of amateurs. Part 97 still applies during the net. The license is not either membership."
             }
@@ -230,6 +312,20 @@
             "scenario": "public-service",
             "doneText": "You joined the net that existed, used the listed repeater settings, passed the message as written, and stood by for priority traffic."
           }
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "ONE MORE CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Formal voice traffic is not the only way a message moves."
+        },
+        {
+          "type": "interaction",
+          "component": "winlink-choice"
         }
       ]
     }

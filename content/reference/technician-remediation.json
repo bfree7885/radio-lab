@@ -198,6 +198,61 @@
       "id": "rf-exposure",
       "title": "RF exposure",
       "body": "Amateur RF is non-ionizing. FCC limits vary with frequency, and the VHF range is the more restrictive one. Power, duty cycle, distance, and the antenna all matter. The licensee evaluates the station using FCC guidance. The lab average is not a compliance result. Read the FCC card."
+    },
+    {
+      "id": "power-line-distance",
+      "title": "Power-line distance",
+      "body": "If the antenna falls, no part of it can come within 10 feet of the power wires. A utility pole is not an antenna support. This card does not teach climbing."
+    },
+    {
+      "id": "cw-only-slices",
+      "title": "CW-only slices",
+      "body": "50.0–50.1 MHz and 144.0–144.1 MHz are CW only in this card. Phone, including FM and SSB, does not belong there."
+    },
+    {
+      "id": "winlink",
+      "title": "Winlink",
+      "body": "Winlink relays messages using email-style addresses based on amateur call signs, over radio links where that is the path. It is not a voice net, APRS, or ordinary internet email."
+    },
+    {
+      "id": "polarization-conventions",
+      "title": "Polarization conventions",
+      "body": "A simplified ionospheric path can leave a wave elliptically polarized, so either a vertical or a horizontal antenna can be used. Irregular fading fits signals that arrive on different paths and combine. Long-distance VHF and UHF CW and SSB normally use horizontal polarization. Local FM repeaters are commonly vertical."
+    },
+    {
+      "id": "station-power",
+      "title": "Station power and bonding",
+      "body": "A typical 50-watt FM mobile needs a supply rated about 13.8 volts at 12 amperes, not the 4 amperes you get from watts divided by volts. Battery time is ampere-hours divided by average current. An RF power meter and an SWR meter belong in the feed line, and the SWR meter must be rated for the frequency and power. A digital interface carries receive audio, transmit audio, and keying. FT8 uses the computer's audio in and out. Flat copper strap is the preferred RF bond."
+    },
+    {
+      "id": "fm-and-blanker",
+      "title": "Off-frequency FM and the noise blanker",
+      "body": "An FM signal received slightly off frequency sounds distorted. A noise blanker reduces short impulse noise such as ignition pops. It does not remove another station's voice."
+    },
+    {
+      "id": "vhf-amplifier-switch",
+      "title": "VHF amplifier mode switch",
+      "body": "The SSB / CW-FM switch sets the amplifier for proper operation in the mode the radio is already using. SSB uses the SSB setting. CW and FM use the CW-FM setting. The switch does not change the radio's mode."
+    },
+    {
+      "id": "interference-first-steps",
+      "title": "Two interference checks",
+      "body": "A strong nearby commercial FM broadcast in a 2-meter receiver can be reduced with a band-reject filter. When your station interferes with cable TV, the first step is to make sure the TV feed-line connectors are installed properly."
+    },
+    {
+      "id": "dummy-load-parts",
+      "title": "What a dummy load is made of",
+      "body": "A typical RF dummy load is a 50-ohm non-inductive resistor on a heat sink. It replaces the antenna for a test. This is not a construction project."
+    },
+    {
+      "id": "meter-risk",
+      "title": "Meter damage",
+      "body": "Trying to measure voltage while the meter is on the resistance setting can damage the meter. Measure voltage on the voltage setting. Measure resistance only with the circuit unpowered."
+    },
+    {
+      "id": "satellite-operating",
+      "title": "Satellite operating details",
+      "body": "Spin fading is the signal rising and falling as the satellite and its antennas rotate. Amateur satellites use SSB, FM, and CW/data; use the mode that satellite publishes. On a linear transponder, set uplink power so your downlink is about the same strength as the beacon."
     }
   ]
 }

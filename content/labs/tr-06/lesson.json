@@ -9,10 +9,22 @@
     "pool": "2026-2030",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
-    "subelements": ["T4", "T7"],
-    "topics": ["T4A", "T4B", "T7A", "T7B", "T7C"]
+    "subelements": [
+      "T4",
+      "T7"
+    ],
+    "topics": [
+      "T4A",
+      "T4B",
+      "T7A",
+      "T7B",
+      "T7C"
+    ]
   },
-  "requires": ["simulation.receiver", "simulation.swr"],
+  "requires": [
+    "simulation.receiver",
+    "simulation.swr"
+  ],
   "hardware": [],
   "stages": [
     {
@@ -26,7 +38,9 @@
         {
           "type": "interaction",
           "component": "field-reference",
-          "config": {"file": "reference/technician-remediation.json"}
+          "config": {
+            "file": "reference/technician-remediation.json"
+          }
         },
         {
           "type": "interaction",
@@ -53,12 +67,17 @@
           "component": "hotspot-config",
           "recordsStage": false,
           "gate": "tr06-hotspot",
-          "requiresGates": ["tr06-power"]
+          "requiresGates": [
+            "tr06-power"
+          ]
         },
         {
           "type": "interaction",
           "component": "coax-cutaway",
-          "requiresGates": ["tr06-power", "tr06-hotspot"]
+          "requiresGates": [
+            "tr06-power",
+            "tr06-hotspot"
+          ]
         }
       ]
     },
@@ -81,30 +100,59 @@
           "component": "converter-blocks",
           "recordsStage": false,
           "gate": "tr06-mixer",
-          "requiresGates": ["tr06-receiver"]
+          "requiresGates": [
+            "tr06-receiver"
+          ]
         },
         {
           "type": "interaction",
           "component": "swr-read",
           "recordsStage": false,
           "gate": "tr06-swr",
-          "requiresGates": ["tr06-mixer"]
+          "requiresGates": [
+            "tr06-mixer"
+          ]
         },
         {
           "type": "interaction",
           "component": "neighbor-case",
-          "requiresGates": ["tr06-receiver", "tr06-mixer", "tr06-swr"],
+          "requiresGates": [
+            "tr06-receiver",
+            "tr06-mixer",
+            "tr06-swr"
+          ],
           "config": {
             "caseId": "neighbor-overload",
             "observations": [
-              {"id": "dummy-load", "label": "Transmit into a dummy load", "detail": "The neighbor's broadcast radio goes quiet when you transmit into the dummy load. The energy was leaving through the antenna."},
-              {"id": "local-monitor", "label": "Listen on a nearby handheld", "detail": "Your FM audio sounds clean on a receiver tuned to your frequency. You are not hearing splatter."},
-              {"id": "neighbor-radio", "label": "Look at the neighbor's radio", "detail": "It is a small broadcast receiver a few meters from your antenna. It plays your voice only while you transmit."}
+              {
+                "id": "dummy-load",
+                "label": "Transmit into a dummy load",
+                "detail": "The neighbor's broadcast radio goes quiet when you transmit into the dummy load. The energy was leaving through the antenna."
+              },
+              {
+                "id": "local-monitor",
+                "label": "Listen on a nearby handheld",
+                "detail": "Your FM audio sounds clean on a receiver tuned to your frequency. You are not hearing splatter."
+              },
+              {
+                "id": "neighbor-radio",
+                "label": "Look at the neighbor's radio",
+                "detail": "It is a small broadcast receiver a few meters from your antenna. It plays your voice only while you transmit."
+              }
             ],
             "actions": [
-              {"id": "work-with-neighbor", "label": "Work with the neighbor on separation or a filter at their receiver"},
-              {"id": "replace-transmitter", "label": "Replace your transmitter now"},
-              {"id": "ignore", "label": "Ignore the report"}
+              {
+                "id": "work-with-neighbor",
+                "label": "Work with the neighbor on separation or a filter at their receiver"
+              },
+              {
+                "id": "replace-transmitter",
+                "label": "Replace your transmitter now"
+              },
+              {
+                "id": "ignore",
+                "label": "Ignore the report"
+              }
             ]
           }
         }
@@ -142,7 +190,11 @@
               "id": "tr06-agc",
               "topicId": "T4B",
               "stem": "You turned AGC on and a loud station stopped blasting over a weak one. What did the control do?",
-              "choices": ["It reduced receiver gain when the signal was strong", "It raised transmitter power", "It changed the repeater offset"],
+              "choices": [
+                "It reduced receiver gain when the signal was strong",
+                "It raised transmitter power",
+                "It changed the repeater offset"
+              ],
               "correctIndex": 0,
               "why": "AGC evens the audio by turning the gain down for strong signals. It is not a power or offset control."
             },
@@ -150,7 +202,11 @@
               "id": "tr06-rit",
               "topicId": "T4B",
               "stem": "A station answers your CQ and the voice pitch sounds high. Which control moves the receiver a little and leaves the transmit frequency alone?",
-              "choices": ["RIT", "The scan button", "The keyer"],
+              "choices": [
+                "RIT",
+                "The scan button",
+                "The keyer"
+              ],
               "correctIndex": 0,
               "why": "Receiver incremental tuning shifts only the receive frequency. Scanning hunts through memories. A keyer times Morse from a paddle."
             },
@@ -158,7 +214,11 @@
               "id": "tr06-plug",
               "topicId": "T4B",
               "stem": "What did this lab say a DMR code plug is for?",
-              "choices": ["Storing channels, color codes, and talkgroups", "Increasing the supply voltage", "Measuring SWR"],
+              "choices": [
+                "Storing channels, color codes, and talkgroups",
+                "Increasing the supply voltage",
+                "Measuring SWR"
+              ],
               "correctIndex": 0,
               "why": "The code plug is configuration. Selecting a talkgroup chooses the group of stations. It is not a meter and not a power supply."
             },
@@ -166,7 +226,11 @@
               "id": "tr06-hotspot",
               "topicId": "T4A",
               "stem": "Which description matches the hotspot in this lab?",
-              "choices": ["A low-power access point that links nearby radios into a network", "Another name for any hilltop repeater", "The shield of a coaxial cable"],
+              "choices": [
+                "A low-power access point that links nearby radios into a network",
+                "Another name for any hilltop repeater",
+                "The shield of a coaxial cable"
+              ],
               "correctIndex": 0,
               "why": "A hotspot serves nearby radios and a network. A repeater retransmits over a service area. They can both carry digital voice and still be different stations."
             },
@@ -174,7 +238,11 @@
               "id": "tr06-fuse",
               "topicId": "T4A",
               "stem": "On the mobile diagram, where did the fuse belong?",
-              "choices": ["In the positive lead, close to the battery", "Only at the radio, so the long cable stays unfused", "In the antenna shield"],
+              "choices": [
+                "In the positive lead, close to the battery",
+                "Only at the radio, so the long cable stays unfused",
+                "In the antenna shield"
+              ],
               "correctIndex": 0,
               "why": "A short in the cable has to open a fuse before the wire can heat. The fuse near the battery does that. The negative return still goes to the battery, and the power wires stay short and heavy."
             },
@@ -182,7 +250,11 @@
               "id": "tr06-sensitivity",
               "topicId": "T7A",
               "stem": "The classroom signal is weak. One receiver copies it and another does not. What ability is that?",
-              "choices": ["Sensitivity", "The SWR of the microphone", "DTMF"],
+              "choices": [
+                "Sensitivity",
+                "The SWR of the microphone",
+                "DTMF"
+              ],
               "correctIndex": 0,
               "why": "Sensitivity is detecting a weak signal. Selectivity is separating signals. A mixer shifts frequency. A transverter moves the radio to another band. The scale in the lab is not a laboratory measurement."
             },
@@ -190,7 +262,11 @@
               "id": "tr06-swr",
               "topicId": "T7C",
               "stem": "The model shows 1:1, then 4:1. What should you take from those two readings?",
-              "choices": ["1:1 is a match and 4:1 is a large mismatch that can make a radio reduce power", "Both readings are perfect matches", "4:1 is the one safe number for every radio"],
+              "choices": [
+                "1:1 is a match and 4:1 is a large mismatch that can make a radio reduce power",
+                "Both readings are perfect matches",
+                "4:1 is the one safe number for every radio"
+              ],
               "correctIndex": 0,
               "why": "1:1 means the impedances match in this model. 4:1 is a serious mismatch. Many solid-state radios fold back as SWR rises. Lost feed-line power becomes heat. The lab does not publish one protection threshold for all equipment."
             },
@@ -198,7 +274,11 @@
               "id": "tr06-neighbor",
               "topicId": "T7B",
               "stem": "The neighbor's broadcast radio hears you, a dummy load makes that stop, and a handheld on your frequency hears clean audio. What is the fitting next step?",
-              "choices": ["Treat it as overload of their receiver and work with them", "Replace your transmitter before any check", "Decide the report cannot be real"],
+              "choices": [
+                "Treat it as overload of their receiver and work with them",
+                "Replace your transmitter before any check",
+                "Decide the report cannot be real"
+              ],
               "correctIndex": 0,
               "why": "The checks did not show a dirty transmitter. A strong fundamental can overload a nearby consumer radio. You still respond. You do not assume either station is at fault before the evidence."
             }
@@ -225,41 +305,142 @@
                 "caseId": "high-swr",
                 "prompt": "The mobile radio gets hot and quiet on transmit. The supply wires are short and heavy, and the fuse is intact.",
                 "observations": [
-                  {"id": "swr-reading", "label": "Read the SWR", "detail": "The meter in the feed line shows 4:1. The radio's output has dropped."}
+                  {
+                    "id": "swr-reading",
+                    "label": "Read the SWR",
+                    "detail": "The meter in the feed line shows 4:1. The radio's output has dropped."
+                  }
                 ],
                 "actions": [
-                  {"id": "inspect-feedline", "label": "Inspect the feed line, connectors, and antenna"},
-                  {"id": "reduce-mic-gain", "label": "Turn the microphone gain down"},
-                  {"id": "new-radio", "label": "Replace the radio without looking at the line"}
+                  {
+                    "id": "inspect-feedline",
+                    "label": "Inspect the feed line, connectors, and antenna"
+                  },
+                  {
+                    "id": "reduce-mic-gain",
+                    "label": "Turn the microphone gain down"
+                  },
+                  {
+                    "id": "new-radio",
+                    "label": "Replace the radio without looking at the line"
+                  }
                 ]
               },
               {
                 "caseId": "over-deviation",
                 "prompt": "Stations on the repeater say your audio drops out when you talk loudly. The SWR on a dummy load is fine.",
                 "observations": [
-                  {"id": "repeater-report", "label": "Read the report again", "detail": "The failure is on voice peaks. The repeater is accepting the signal the rest of the time."}
+                  {
+                    "id": "repeater-report",
+                    "label": "Read the report again",
+                    "detail": "The failure is on voice peaks. The repeater is accepting the signal the rest of the time."
+                  }
                 ],
                 "actions": [
-                  {"id": "reduce-mic-gain", "label": "Reduce microphone gain"},
-                  {"id": "inspect-feedline", "label": "Replace the coax"},
-                  {"id": "new-radio", "label": "Assume the repeater is broken"}
+                  {
+                    "id": "reduce-mic-gain",
+                    "label": "Reduce microphone gain"
+                  },
+                  {
+                    "id": "inspect-feedline",
+                    "label": "Replace the coax"
+                  },
+                  {
+                    "id": "new-radio",
+                    "label": "Assume the repeater is broken"
+                  }
                 ]
               },
               {
                 "caseId": "harmonic",
                 "prompt": "A neighbor on another band hears your transmissions. You have not checked your own station yet.",
                 "observations": [
-                  {"id": "other-band", "label": "Listen on the other band", "detail": "A receiver there hears you while you transmit."},
-                  {"id": "dummy-load", "label": "Transmit into a dummy load", "detail": "The other-band receiver goes quiet. The energy was leaving the antenna."}
+                  {
+                    "id": "other-band",
+                    "label": "Listen on the other band",
+                    "detail": "A receiver there hears you while you transmit."
+                  },
+                  {
+                    "id": "dummy-load",
+                    "label": "Transmit into a dummy load",
+                    "detail": "The other-band receiver goes quiet. The energy was leaving the antenna."
+                  }
                 ],
                 "actions": [
-                  {"id": "fix-your-station", "label": "Check your station for energy outside the frequency you meant to use"},
-                  {"id": "ignore", "label": "Tell the neighbor their receiver is the only possible cause"},
-                  {"id": "reduce-mic-gain", "label": "Turn the squelch up"}
+                  {
+                    "id": "fix-your-station",
+                    "label": "Check your station for energy outside the frequency you meant to use"
+                  },
+                  {
+                    "id": "ignore",
+                    "label": "Tell the neighbor their receiver is the only possible cause"
+                  },
+                  {
+                    "id": "reduce-mic-gain",
+                    "label": "Turn the squelch up"
+                  }
                 ]
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "ONE MORE CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "These checks were stated or skipped. Each one has to be used."
+        },
+        {
+          "type": "interaction",
+          "component": "station-power-problems",
+          "gate": "tr06-supply",
+          "recordsStage": false
+        },
+        {
+          "type": "interaction",
+          "component": "station-connect",
+          "gate": "tr06-connect",
+          "recordsStage": false
+        },
+        {
+          "type": "interaction",
+          "component": "fm-offset-listen",
+          "gate": "tr06-fm",
+          "recordsStage": false
+        },
+        {
+          "type": "interaction",
+          "component": "noise-blanker-cases",
+          "gate": "tr06-blanker",
+          "recordsStage": false
+        },
+        {
+          "type": "interaction",
+          "component": "amplifier-switch",
+          "gate": "tr06-amp",
+          "recordsStage": false
+        },
+        {
+          "type": "interaction",
+          "component": "interference-remedy",
+          "gate": "tr06-rfi",
+          "recordsStage": false
+        },
+        {
+          "type": "interaction",
+          "component": "dummy-load-parts",
+          "requiresGates": [
+            "tr06-supply",
+            "tr06-connect",
+            "tr06-fm",
+            "tr06-blanker",
+            "tr06-amp",
+            "tr06-rfi"
+          ]
         }
       ]
     }

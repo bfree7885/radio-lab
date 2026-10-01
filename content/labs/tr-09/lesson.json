@@ -9,10 +9,18 @@
     "pool": "2026-2030",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
-    "subelements": ["T0"],
-    "topics": ["T0A", "T0B", "T0C"]
+    "subelements": [
+      "T0"
+    ],
+    "topics": [
+      "T0A",
+      "T0B",
+      "T0C"
+    ]
   },
-  "requires": ["simulation.electricity"],
+  "requires": [
+    "simulation.electricity"
+  ],
   "hardware": [],
   "stages": [
     {
@@ -26,7 +34,9 @@
         {
           "type": "interaction",
           "component": "field-reference",
-          "config": {"file": "regulations/fcc-rf-exposure.json"}
+          "config": {
+            "file": "regulations/fcc-rf-exposure.json"
+          }
         },
         {
           "type": "interaction",
@@ -39,32 +49,64 @@
                 "prompt": "A 12-volt storage battery has no internal protection, and a wrench is across the terminals.",
                 "readout": "The voltage is low. The current a short can draw is not.",
                 "choices": [
-                  {"label": "A short can cause fire, burns, or an explosion", "correct": true, "why": "The hazard is the current. Charging can also release gas. Rapid charge or discharge of an unprotected battery is a fire and explosion hazard."},
-                  {"label": "12 volts is too low to matter", "correct": false, "why": "The voltage is not the whole hazard. The available current is."}
+                  {
+                    "label": "A short can cause fire, burns, or an explosion",
+                    "correct": true,
+                    "why": "The hazard is the current. Charging can also release gas. Rapid charge or discharge of an unprotected battery is a fire and explosion hazard."
+                  },
+                  {
+                    "label": "12 volts is too low to matter",
+                    "correct": false,
+                    "why": "The voltage is not the whole hazard. The available current is."
+                  }
                 ]
               },
               {
                 "prompt": "In a United States three-wire 120-volt cable, the black insulation is which conductor?",
                 "readout": "You are identifying the wire, not rewiring the house.",
                 "choices": [
-                  {"label": "The hot, ungrounded conductor", "correct": true, "why": "Black is hot in that cable. White is neutral. Green or bare is the equipment ground. A fuse or breaker belongs in the hot conductor."},
-                  {"label": "The safety ground", "correct": false, "why": "The safety ground is green or bare, not black."}
+                  {
+                    "label": "The hot, ungrounded conductor",
+                    "correct": true,
+                    "why": "Black is hot in that cable. White is neutral. Green or bare is the equipment ground. A fuse or breaker belongs in the hot conductor."
+                  },
+                  {
+                    "label": "The safety ground",
+                    "correct": false,
+                    "why": "The safety ground is green or bare, not black."
+                  }
                 ]
               },
               {
                 "prompt": "A power supply was just switched off. The meter still shows voltage on the output for a moment.",
                 "readout": "The switch is open. The capacitors have not finished.",
                 "choices": [
-                  {"label": "Stored charge", "correct": true, "why": "Capacitors can hold a charge after the supply is off. That is a shock hazard. Measuring high voltage also requires a meter and leads rated for it."},
-                  {"label": "The battery is still being charged by the radio", "correct": false, "why": "The picture is a supply that was just turned off."}
+                  {
+                    "label": "Stored charge",
+                    "correct": true,
+                    "why": "Capacitors can hold a charge after the supply is off. That is a shock hazard. Measuring high voltage also requires a meter and leads rated for it."
+                  },
+                  {
+                    "label": "The battery is still being charged by the radio",
+                    "correct": false,
+                    "why": "The picture is a supply that was just turned off."
+                  }
                 ]
               },
               {
                 "prompt": "How do you reduce the chance of a shock at the station without working on live wiring?",
                 "readout": "The cord, the case, and the covers are the things you can see.",
                 "choices": [
-                  {"label": "Use intact three-wire cords and keep covers on", "correct": true, "why": "A grounded cord and a closed cabinet are the ordinary guards. Do not bypass an interlock or work on an energized circuit to find out."},
-                  {"label": "Replace the fuse with a larger one so it never opens", "correct": false, "why": "A fuse that cannot open removes the protection."}
+                  {
+                    "label": "Use intact three-wire cords and keep covers on",
+                    "correct": true,
+                    "why": "A grounded cord and a closed cabinet are the ordinary guards. Do not bypass an interlock or work on an energized circuit to find out."
+                  },
+                  {
+                    "label": "Replace the fuse with a larger one so it never opens",
+                    "correct": false,
+                    "why": "A fuse that cannot open removes the protection."
+                  }
                 ]
               }
             ]
@@ -89,7 +131,9 @@
         {
           "type": "interaction",
           "component": "ground-lab",
-          "requiresGates": ["tr09-fuse"],
+          "requiresGates": [
+            "tr09-fuse"
+          ],
           "config": {
             "intro": "The house diagram shows the coax coming inside, a ground rod, and the radio. Lightning protection and the station ground are both in the picture.",
             "doneText": "The arrestor is at the entry, the rods are bonded, and the lightning conductors are short and direct.",
@@ -98,24 +142,48 @@
                 "prompt": "Where does the lightning arrestor go on the coax?",
                 "readout": "The cable is about to enter the building.",
                 "choices": [
-                  {"label": "Where the feed line enters the building, with a ground connection", "correct": true, "why": "The arrestor belongs at the entry so the strike current has a path to ground before the equipment. That is lightning protection, not the same thing as making the radio see 50 ohms."},
-                  {"label": "Only at the microphone plug", "correct": false, "why": "The microphone is not the feed-line entry."}
+                  {
+                    "label": "Where the feed line enters the building, with a ground connection",
+                    "correct": true,
+                    "why": "The arrestor belongs at the entry so the strike current has a path to ground before the equipment. That is lightning protection, not the same thing as making the radio see 50 ohms."
+                  },
+                  {
+                    "label": "Only at the microphone plug",
+                    "correct": false,
+                    "why": "The microphone is not the feed-line entry."
+                  }
                 ]
               },
               {
                 "prompt": "The station has two ground rods. What should be done with them?",
                 "readout": "One rod is at the shack. One is at the tower.",
                 "choices": [
-                  {"label": "Bond them together", "correct": true, "why": "External ground rods and earth connections should be bonded. A separate lonely rod can leave a voltage difference during a strike."},
-                  {"label": "Keep them separate so lightning stays outside", "correct": false, "why": "Unbonded rods are the unsafe configuration."}
+                  {
+                    "label": "Bond them together",
+                    "correct": true,
+                    "why": "External ground rods and earth connections should be bonded. A separate lonely rod can leave a voltage difference during a strike."
+                  },
+                  {
+                    "label": "Keep them separate so lightning stays outside",
+                    "correct": false,
+                    "why": "Unbonded rods are the unsafe configuration."
+                  }
                 ]
               },
               {
                 "prompt": "How should a tower's lightning ground conductor be run?",
                 "readout": "You are looking at the route, not climbing.",
                 "choices": [
-                  {"label": "Short and direct, without sharp bends", "correct": true, "why": "Lightning current wants a short direct path. Sharp bends and a long wander through the shack are worse. Local electrical and building codes set the requirements for the installation."},
-                  {"label": "Coiled neatly so the extra wire is stored", "correct": false, "why": "A coil is the opposite of a short direct path."}
+                  {
+                    "label": "Short and direct, without sharp bends",
+                    "correct": true,
+                    "why": "Lightning current wants a short direct path. Sharp bends and a long wander through the shack are worse. Local electrical and building codes set the requirements for the installation."
+                  },
+                  {
+                    "label": "Coiled neatly so the extra wire is stored",
+                    "correct": false,
+                    "why": "A coil is the opposite of a short direct path."
+                  }
                 ]
               }
             ]
@@ -144,24 +212,48 @@
                 "prompt": "The only clear spot is beside a power line. How close may the antenna be?",
                 "readout": "If the mast falls, the wire must not be able to reach the power line.",
                 "choices": [
-                  {"label": "Far enough that a falling antenna cannot reach the line", "correct": true, "why": "Plan the fall. A fallen antenna that can touch a power line is the hazard. Do not attach an amateur antenna to a utility pole. The pole carries dangerous voltage."},
-                  {"label": "Close enough that the power line can support the mast", "correct": false, "why": "The power line is not an antenna support."}
+                  {
+                    "label": "Far enough that a falling antenna cannot reach the line",
+                    "correct": true,
+                    "why": "Plan the fall. A fallen antenna that can touch a power line is the hazard. Do not attach an amateur antenna to a utility pole. The pole carries dangerous voltage."
+                  },
+                  {
+                    "label": "Close enough that the power line can support the mast",
+                    "correct": false,
+                    "why": "The power line is not an antenna support."
+                  }
                 ]
               },
               {
                 "prompt": "Someone offers to climb the tower alone while you run an errand.",
                 "readout": "A helper is not optional in this lab.",
                 "choices": [
-                  {"label": "Do not climb without a helper, a harness, and a hard hat", "correct": true, "why": "There is no safe time to climb alone. A helper watches. This lab does not teach climbing technique. A safety wire through a turnbuckle keeps a guy-line fitting from unscrewing."},
-                  {"label": "Climbing alone is fine if the weather is calm", "correct": false, "why": "Calm weather does not replace a helper."}
+                  {
+                    "label": "Do not climb without a helper, a harness, and a hard hat",
+                    "correct": true,
+                    "why": "There is no safe time to climb alone. A helper watches. This lab does not teach climbing technique. A safety wire through a turnbuckle keeps a guy-line fitting from unscrewing."
+                  },
+                  {
+                    "label": "Climbing alone is fine if the weather is calm",
+                    "correct": false,
+                    "why": "Calm weather does not replace a helper."
+                  }
                 ]
               },
               {
                 "prompt": "The crank-up tower is fully extended. Someone wants to climb the nested sections.",
                 "readout": "The tower is up. The climber would be on a raised structure.",
                 "choices": [
-                  {"label": "Lower and lock it before anyone climbs", "correct": true, "why": "Do not climb a crank-up tower while it is extended. Lower it first. Keep people out from under a tower while it is being raised or lowered."},
-                  {"label": "Climb it extended so you can see farther", "correct": false, "why": "The extended tower is the hazard, not a viewing platform."}
+                  {
+                    "label": "Lower and lock it before anyone climbs",
+                    "correct": true,
+                    "why": "Do not climb a crank-up tower while it is extended. Lower it first. Keep people out from under a tower while it is being raised or lowered."
+                  },
+                  {
+                    "label": "Climb it extended so you can see farther",
+                    "correct": false,
+                    "why": "The extended tower is the hazard, not a viewing platform."
+                  }
                 ]
               }
             ]
@@ -170,7 +262,9 @@
         {
           "type": "interaction",
           "component": "exposure-lab",
-          "requiresGates": ["tr09-site"]
+          "requiresGates": [
+            "tr09-site"
+          ]
         }
       ]
     },
@@ -206,7 +300,11 @@
               "id": "tr09-shock",
               "topicId": "T0A",
               "stem": "What hazard did the shorted 12-volt battery show?",
-              "choices": ["High current, with fire or explosion possible", "No hazard, because 12 volts cannot shock", "Ionizing radiation from the cells"],
+              "choices": [
+                "High current, with fire or explosion possible",
+                "No hazard, because 12 volts cannot shock",
+                "Ionizing radiation from the cells"
+              ],
               "correctIndex": 0,
               "why": "Current through a short, or through a person, is the hazard. Burns and heart disruption are the body hazard of shock. A battery can also release gas and explode if it is unprotected and charged or discharged hard."
             },
@@ -214,7 +312,11 @@
               "id": "tr09-fuse",
               "topicId": "T0A",
               "stem": "Why did the bench refuse a 20-ampere fuse in a circuit marked 5 amperes?",
-              "choices": ["The wiring can overheat before the fuse opens", "A larger fuse protects the wire better", "Fuses are only for RF exposure"],
+              "choices": [
+                "The wiring can overheat before the fuse opens",
+                "A larger fuse protects the wire better",
+                "Fuses are only for RF exposure"
+              ],
               "correctIndex": 0,
               "why": "The fuse has to open before the wire is damaged. A larger fuse may never open in time. The fuse belongs in the hot conductor. Black insulation marks that hot wire in a US three-wire 120-volt cable."
             },
@@ -222,7 +324,11 @@
               "id": "tr09-charge",
               "topicId": "T0A",
               "stem": "The supply was switched off and the meter still showed voltage. What was left?",
-              "choices": ["Stored charge", "A lightning arrestor in the microphone", "A duty cycle of 50 percent"],
+              "choices": [
+                "Stored charge",
+                "A lightning arrestor in the microphone",
+                "A duty cycle of 50 percent"
+              ],
               "correctIndex": 0,
               "why": "Capacitors store charge after power is removed. High-voltage measurements need a meter and leads rated for the voltage."
             },
@@ -230,7 +336,11 @@
               "id": "tr09-lightning",
               "topicId": "T0A",
               "stem": "Where did the lightning arrestor belong?",
-              "choices": ["At the feed-line entry to the building, connected to ground", "At the speaker", "In place of the antenna tuner"],
+              "choices": [
+                "At the feed-line entry to the building, connected to ground",
+                "At the speaker",
+                "In place of the antenna tuner"
+              ],
               "correctIndex": 0,
               "why": "The arrestor gives strike current a ground path at the entry. Ground rods are bonded together. Lightning conductors are short and direct. That job is not the same as an RF match."
             },
@@ -238,7 +348,11 @@
               "id": "tr09-tower",
               "topicId": "T0B",
               "stem": "Which site decision matched the lab?",
-              "choices": ["Do not climb alone, and lower a crank-up tower before anyone climbs", "Climb alone if you wear gloves", "Tie the antenna to the utility pole"],
+              "choices": [
+                "Do not climb alone, and lower a crank-up tower before anyone climbs",
+                "Climb alone if you wear gloves",
+                "Tie the antenna to the utility pole"
+              ],
               "correctIndex": 0,
               "why": "A climb needs a helper, a harness, and a hard hat, and this lab does not teach how to climb. A crank-up tower is lowered first. An antenna must be far enough from a power line that a fall cannot reach it. A utility pole is not an antenna support. A safety wire keeps a turnbuckle from loosening."
             },
@@ -246,7 +360,11 @@
               "id": "tr09-rf-type",
               "topicId": "T0C",
               "stem": "What kind of radiation is an amateur radio signal in this lab?",
-              "choices": ["Non-ionizing radio-frequency energy", "Ionizing radiation that leaves the antenna radioactive", "The same hazard as a fuse"],
+              "choices": [
+                "Non-ionizing radio-frequency energy",
+                "Ionizing radiation that leaves the antenna radioactive",
+                "The same hazard as a fuse"
+              ],
               "correctIndex": 0,
               "why": "RF does not ionize atoms the way radioactivity does, and it does not make the antenna radioactive. It can still burn and it is still subject to FCC exposure limits. Touching an antenna while transmitting can cause an RF burn."
             },
@@ -254,7 +372,11 @@
               "id": "tr09-duty",
               "topicId": "T0C",
               "stem": "On the bench, what happened to the average when duty cycle went from 100 percent to 50 percent at the same peak power?",
-              "choices": ["The average halved", "The average doubled", "The average became an FCC certificate"],
+              "choices": [
+                "The average halved",
+                "The average doubled",
+                "The average became an FCC certificate"
+              ],
               "correctIndex": 0,
               "why": "Duty cycle is the fraction of the averaging time the transmitter is producing RF. Half the on-time halves the average. FCC limits also depend on frequency. The VHF range is the more restrictive one. The bench is not a compliance calculator."
             },
@@ -262,7 +384,11 @@
               "id": "tr09-who",
               "topicId": "T0C",
               "stem": "Who is responsible for keeping people below the FCC exposure limits, and how is compliance determined?",
-              "choices": ["The station licensee, using calculation or measurement from FCC guidance", "The lab, because it showed an average", "Any neighbor with a receiver"],
+              "choices": [
+                "The station licensee, using calculation or measurement from FCC guidance",
+                "The lab, because it showed an average",
+                "Any neighbor with a receiver"
+              ],
               "correctIndex": 0,
               "why": "The licensee is responsible. FCC guidance, including OET Bulletin 65, accepts calculation and measurement. Re-evaluate when power, frequency, antenna, or location changes. Relocating the antenna, reducing power, and reducing duty cycle are ways to reduce exposure."
             }
@@ -289,44 +415,98 @@
                 "prompt": "The supply lead is fused at 5 amperes, which is the radio's rating. A spare 20-ampere fuse is in the drawer.",
                 "readout": "Leave the 20-ampere fuse in the drawer.",
                 "choices": [
-                  {"label": "Keep the 5-ampere fuse", "correct": true, "why": "The fuse matches the circuit. The larger one would let the wire heat first."},
-                  {"label": "Install the 20-ampere fuse so the radio never shuts off", "correct": false, "why": "That defeats the protection."}
+                  {
+                    "label": "Keep the 5-ampere fuse",
+                    "correct": true,
+                    "why": "The fuse matches the circuit. The larger one would let the wire heat first."
+                  },
+                  {
+                    "label": "Install the 20-ampere fuse so the radio never shuts off",
+                    "correct": false,
+                    "why": "That defeats the protection."
+                  }
                 ]
               },
               {
                 "prompt": "The battery sits under a metal shelf that can fall across the terminals.",
                 "readout": "The shelf is the short waiting to happen.",
                 "choices": [
-                  {"label": "Move the shelf or cover the terminals before you operate", "correct": true, "why": "A shorted unprotected battery is a fire and explosion hazard. You fix the situation by removing the short, not by operating anyway."},
-                  {"label": "Operate. 12 volts is safe to short", "correct": false, "why": "The current is the hazard."}
+                  {
+                    "label": "Move the shelf or cover the terminals before you operate",
+                    "correct": true,
+                    "why": "A shorted unprotected battery is a fire and explosion hazard. You fix the situation by removing the short, not by operating anyway."
+                  },
+                  {
+                    "label": "Operate. 12 volts is safe to short",
+                    "correct": false,
+                    "why": "The current is the hazard."
+                  }
                 ]
               },
               {
                 "prompt": "The coax enters through a window with no arrestor, and the ground rod at the shack is not bonded to the rod at the mast.",
                 "readout": "Lightning protection is missing. This is not an SWR problem.",
                 "choices": [
-                  {"label": "Put the arrestor at the entry and bond the rods", "correct": true, "why": "The arrestor belongs at the entry. The rods are bonded. Disconnecting equipment before a storm is a separate precaution. None of this makes the antenna resonant."},
-                  {"label": "Add an antenna tuner and call the lightning path finished", "correct": false, "why": "A tuner is a match for the transmitter, not a lightning ground."}
+                  {
+                    "label": "Put the arrestor at the entry and bond the rods",
+                    "correct": true,
+                    "why": "The arrestor belongs at the entry. The rods are bonded. Disconnecting equipment before a storm is a separate precaution. None of this makes the antenna resonant."
+                  },
+                  {
+                    "label": "Add an antenna tuner and call the lightning path finished",
+                    "correct": false,
+                    "why": "A tuner is a match for the transmitter, not a lightning ground."
+                  }
                 ]
               },
               {
                 "prompt": "The planned mast is tall enough to fall across the service drop. A friend offers to climb the crank-up tower alone while it is extended.",
                 "readout": "Two site problems are in one sentence.",
                 "choices": [
-                  {"label": "Move the mast clear of the power line, lower the tower, and do not climb alone", "correct": true, "why": "A falling antenna must not be able to reach the power line. An extended crank-up tower is lowered before a climb, and a climb is never solo."},
-                  {"label": "Let them climb. You will watch from the car", "correct": false, "why": "A helper has to be there for the climb, and the tower is still extended."}
+                  {
+                    "label": "Move the mast clear of the power line, lower the tower, and do not climb alone",
+                    "correct": true,
+                    "why": "A falling antenna must not be able to reach the power line. An extended crank-up tower is lowered before a climb, and a climb is never solo."
+                  },
+                  {
+                    "label": "Let them climb. You will watch from the car",
+                    "correct": false,
+                    "why": "A helper has to be there for the climb, and the tower is still extended."
+                  }
                 ]
               },
               {
                 "prompt": "The antenna will be close to the picnic table, the mode is FM, and the power is the handheld's few watts. What do you do about exposure?",
                 "readout": "NOT A COMPLIANCE CALCULATOR. The card lists the factors.",
                 "choices": [
-                  {"label": "Consider frequency, power, duty cycle, distance, and the antenna, and keep people away from the antenna while transmitting", "correct": true, "why": "Power alone is not the decision. FM has a high duty cycle while you talk. Distance helps. The licensee is responsible, and this simulated inspection does not certify the station."},
-                  {"label": "Ignore exposure because the lab showed a small average", "correct": false, "why": "The average on the bench is not an FCC determination."}
+                  {
+                    "label": "Consider frequency, power, duty cycle, distance, and the antenna, and keep people away from the antenna while transmitting",
+                    "correct": true,
+                    "why": "Power alone is not the decision. FM has a high duty cycle while you talk. Distance helps. The licensee is responsible, and this simulated inspection does not certify the station."
+                  },
+                  {
+                    "label": "Ignore exposure because the lab showed a small average",
+                    "correct": false,
+                    "why": "The average on the bench is not an FCC determination."
+                  }
                 ]
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "ONE MORE CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "One site rule was still a principle. Apply the distance. You are not climbing anything."
+        },
+        {
+          "type": "interaction",
+          "component": "power-line-site"
         }
       ]
     }

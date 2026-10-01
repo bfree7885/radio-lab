@@ -154,6 +154,7 @@ class SharedCoreTests(unittest.TestCase):
             "tests/remediation-04-06.test.js",
             "tests/remediation-07-09.test.js",
             "tests/rf-01.test.js",
+            "tests/gap-closure.test.js",
         ):
             result = subprocess.run(
                 ["node", script],

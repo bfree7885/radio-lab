@@ -9,10 +9,18 @@
     "pool": "2026-2030",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
-    "subelements": ["T3"],
-    "topics": ["T3A", "T3B", "T3C"]
+    "subelements": [
+      "T3"
+    ],
+    "topics": [
+      "T3A",
+      "T3B",
+      "T3C"
+    ]
   },
-  "requires": ["simulation.propagation"],
+  "requires": [
+    "simulation.propagation"
+  ],
   "hardware": [],
   "stages": [
     {
@@ -26,7 +34,9 @@
         {
           "type": "interaction",
           "component": "field-reference",
-          "config": {"file": "reference/technician-remediation.json"}
+          "config": {
+            "file": "reference/technician-remediation.json"
+          }
         },
         {
           "type": "interaction",
@@ -37,7 +47,9 @@
         {
           "type": "interaction",
           "component": "speed-lab",
-          "requiresGates": ["tr05-wave"]
+          "requiresGates": [
+            "tr05-wave"
+          ]
         }
       ]
     },
@@ -58,7 +70,9 @@
         {
           "type": "interaction",
           "component": "multipath-drive",
-          "requiresGates": ["tr05-horizon"]
+          "requiresGates": [
+            "tr05-horizon"
+          ]
         }
       ]
     },
@@ -81,19 +95,27 @@
           "component": "ionosphere-lab",
           "recordsStage": false,
           "gate": "tr05-hf",
-          "requiresGates": ["tr05-absorb"]
+          "requiresGates": [
+            "tr05-absorb"
+          ]
         },
         {
           "type": "interaction",
           "component": "propagation-gallery",
           "recordsStage": false,
           "gate": "tr05-gallery",
-          "requiresGates": ["tr05-hf"]
+          "requiresGates": [
+            "tr05-hf"
+          ]
         },
         {
           "type": "interaction",
           "component": "path-compare",
-          "requiresGates": ["tr05-absorb", "tr05-hf", "tr05-gallery"]
+          "requiresGates": [
+            "tr05-absorb",
+            "tr05-hf",
+            "tr05-gallery"
+          ]
         }
       ]
     },
@@ -129,7 +151,11 @@
               "id": "tr05-polarization",
               "topicId": "T3B",
               "stem": "In this lab's wave model, which field direction is the polarization?",
-              "choices": ["The electric field", "The direction of travel", "The color of the antenna"],
+              "choices": [
+                "The electric field",
+                "The direction of travel",
+                "The color of the antenna"
+              ],
               "correctIndex": 0,
               "why": "The electric and magnetic fields are perpendicular to each other and to the direction of travel. Polarization follows the electric field."
             },
@@ -137,7 +163,11 @@
               "id": "tr05-speed",
               "topicId": "T3B",
               "stem": "A 14 MHz wave and a 146 MHz wave are both in free space. Which one travels faster in this lab?",
-              "choices": ["Neither. They share the same free-space speed", "14 MHz, because the wavelength is longer", "146 MHz, because the frequency is higher"],
+              "choices": [
+                "Neither. They share the same free-space speed",
+                "14 MHz, because the wavelength is longer",
+                "146 MHz, because the frequency is higher"
+              ],
               "correctIndex": 0,
               "why": "Free-space speed does not depend on frequency. The higher frequency has the shorter wavelength, about 300 divided by the frequency in megahertz."
             },
@@ -145,7 +175,11 @@
               "id": "tr05-hf",
               "topicId": "T3B",
               "stem": "Which range did this lab call HF?",
-              "choices": ["3 to 30 MHz", "30 to 300 MHz", "300 to 3000 MHz"],
+              "choices": [
+                "3 to 30 MHz",
+                "30 to 300 MHz",
+                "300 to 3000 MHz"
+              ],
               "correctIndex": 0,
               "why": "HF is 3 to 30 MHz. VHF and UHF are the higher ranges Lab 01 already labeled."
             },
@@ -153,7 +187,11 @@
               "id": "tr05-horizon",
               "topicId": "T3C",
               "stem": "Why was the radio horizon farther than the visual horizon?",
-              "choices": ["The atmosphere bends VHF and UHF slightly", "The radio wave is slower than light", "Raising power extends the geometric horizon"],
+              "choices": [
+                "The atmosphere bends VHF and UHF slightly",
+                "The radio wave is slower than light",
+                "Raising power extends the geometric horizon"
+              ],
               "correctIndex": 0,
               "why": "The classroom model uses a larger factor for the radio horizon than for the visual one. It is not a coverage prediction, and extra power does not move the geometric horizon."
             },
@@ -161,7 +199,11 @@
               "id": "tr05-picket",
               "topicId": "T3A",
               "stem": "A mobile signal flutters as the car moves a short distance and several reflections are arriving. What did the lab call that flutter?",
-              "choices": ["Picket fencing from multipath", "F-region skip", "Tropospheric ducting"],
+              "choices": [
+                "Picket fencing from multipath",
+                "F-region skip",
+                "Tropospheric ducting"
+              ],
               "correctIndex": 0,
               "why": "Multipath is several paths at once. The rapid mobile flutter is picket fencing. The same collisions can garble data."
             },
@@ -169,7 +211,11 @@
               "id": "tr05-trees",
               "topicId": "T3A",
               "stem": "Leaves are in a UHF path. What did the absorption model do with that energy?",
-              "choices": ["It absorbed much of it, so the signal got weaker", "It turned the path into a reliable F-region hop", "It had the same effect as fog on a 10-meter signal"],
+              "choices": [
+                "It absorbed much of it, so the signal got weaker",
+                "It turned the path into a reliable F-region hop",
+                "It had the same effect as fog on a 10-meter signal"
+              ],
               "correctIndex": 0,
               "why": "Vegetation absorbs UHF and microwave energy. Fog and rain barely affect 10-meter and 6-meter signals in this lab, and absorption is not the same as an ionospheric return."
             },
@@ -177,7 +223,11 @@
               "id": "tr05-meteor",
               "topicId": "T3C",
               "stem": "The signal is a one-second burst on 6 meters during a meteor shower. Which path fits?",
-              "choices": ["Meteor scatter", "A temperature inversion that lasts all afternoon", "Knife-edge diffraction over a ridge"],
+              "choices": [
+                "Meteor scatter",
+                "A temperature inversion that lasts all afternoon",
+                "Knife-edge diffraction over a ridge"
+              ],
               "correctIndex": 0,
               "why": "Meteor trails scatter brief signals. Six meters is the band this lab associated with that path. A duct lasts longer, and a ridge does not need a meteor."
             },
@@ -185,7 +235,11 @@
               "id": "tr05-duct",
               "topicId": "T3C",
               "stem": "VHF stations a few hundred miles away are steady while a temperature inversion sits over the path. What is the fitting concept?",
-              "choices": ["Tropospheric ducting", "Auroral backscatter", "Daytime absorption of lower HF"],
+              "choices": [
+                "Tropospheric ducting",
+                "Auroral backscatter",
+                "Daytime absorption of lower HF"
+              ],
               "correctIndex": 0,
               "why": "An inversion can duct VHF and UHF well past the ordinary radio horizon. Aurora sounds raspy. Daytime absorption is an HF problem, not a VHF duct."
             }
@@ -212,36 +266,82 @@
                 "text": "A hiker on a ridge and a station in the valley are 20 miles apart on 2-meter FM. A hill sits between them. Raising the hiker's antenna clears the hill. The signal is steady.",
                 "context": "Band: 146 MHz. Time: afternoon. Terrain: one ridge.",
                 "choices": [
-                  {"label": "Line of sight, opened by antenna height", "correct": true, "why": "This is the VHF path Lab 07 taught and this lab kept inside the radio horizon. Height cleared the obstacle."},
-                  {"label": "F-region skip", "correct": false, "why": "Twenty miles of 2-meter FM with a ridge in the way is not an ionospheric hop."}
+                  {
+                    "label": "Line of sight, opened by antenna height",
+                    "correct": true,
+                    "why": "This is the VHF path Lab 07 taught and this lab kept inside the radio horizon. Height cleared the obstacle."
+                  },
+                  {
+                    "label": "F-region skip",
+                    "correct": false,
+                    "why": "Twenty miles of 2-meter FM with a ridge in the way is not an ionospheric hop."
+                  }
                 ]
               },
               {
                 "text": "A 6-meter operator copies half-second bursts from a station they have never heard. A meteor shower is underway.",
                 "context": "Band: 50 MHz. Path: brief. No inversion reported.",
                 "choices": [
-                  {"label": "Meteor scatter", "correct": true, "why": "The bursts and the band match meteor scatter."},
-                  {"label": "Picket fencing", "correct": false, "why": "Picket fencing is rapid flutter while a vehicle moves through local reflections, not a distant burst."}
+                  {
+                    "label": "Meteor scatter",
+                    "correct": true,
+                    "why": "The bursts and the band match meteor scatter."
+                  },
+                  {
+                    "label": "Picket fencing",
+                    "correct": false,
+                    "why": "Picket fencing is rapid flutter while a vehicle moves through local reflections, not a distant burst."
+                  }
                 ]
               },
               {
                 "text": "At noon, with high sunspot numbers, 10-meter SSB is coming in from another continent. The same band was quiet at the same hour last year when the sun was quiet.",
                 "context": "Band: 28 MHz. Time: day. Sunspots: high.",
                 "choices": [
-                  {"label": "F-region skip", "correct": true, "why": "The lab's sketch opens long 10-meter paths in the daytime when sunspots are high."},
-                  {"label": "Rain absorption", "correct": false, "why": "Rain is not what opens a worldwide 10-meter path, and this lab treats rain as a small effect on 10 meters."}
+                  {
+                    "label": "F-region skip",
+                    "correct": true,
+                    "why": "The lab's sketch opens long 10-meter paths in the daytime when sunspots are high."
+                  },
+                  {
+                    "label": "Rain absorption",
+                    "correct": false,
+                    "why": "Rain is not what opens a worldwide 10-meter path, and this lab treats rain as a small effect on 10 meters."
+                  }
                 ]
               },
               {
                 "text": "A VHF CW signal sounds like a rasp. Voice is almost unreadable. The aurora is visible to the north.",
                 "context": "Band: 144 MHz. Sound: distorted. Sky: aurora.",
                 "choices": [
-                  {"label": "Auroral propagation", "correct": true, "why": "Scattering from the aurora makes the signal sound distorted. CW survives that better than voice in this lab."},
-                  {"label": "Knife-edge diffraction", "correct": false, "why": "A ridge can weaken a signal. It does not rasp it because of an aurora."}
+                  {
+                    "label": "Auroral propagation",
+                    "correct": true,
+                    "why": "Scattering from the aurora makes the signal sound distorted. CW survives that better than voice in this lab."
+                  },
+                  {
+                    "label": "Knife-edge diffraction",
+                    "correct": false,
+                    "why": "A ridge can weaken a signal. It does not rasp it because of an aurora."
+                  }
                 ]
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "ONE MORE CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "Polarization matching is already in the course. These two conventions are additional."
+        },
+        {
+          "type": "interaction",
+          "component": "polarization-lab"
         }
       ]
     }

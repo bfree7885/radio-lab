@@ -57,7 +57,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-basics.js",
-        "remediation-01-03.js"
+        "remediation-01-03.js",
+        "gap-closure.js"
       ]
     },
     {
@@ -79,7 +80,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-basics.js",
-        "remediation-01-03.js"
+        "remediation-01-03.js",
+        "gap-closure.js"
       ]
     },
     {
@@ -100,7 +102,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-sim.js",
-        "remediation-labs.js"
+        "remediation-labs.js",
+        "gap-closure.js"
       ]
     },
     {
@@ -121,7 +124,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-sim.js",
-        "remediation-labs.js"
+        "remediation-labs.js",
+        "gap-closure.js"
       ]
     },
     {
@@ -142,7 +146,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-sim.js",
-        "remediation-labs.js"
+        "remediation-labs.js",
+        "gap-closure.js"
       ]
     },
     {
@@ -164,7 +169,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-sim.js",
-        "remediation-final.js"
+        "remediation-final.js",
+        "gap-closure.js"
       ]
     },
     {
@@ -208,7 +214,8 @@
         "reference-kit.js",
         "core-labs.js",
         "remediation-sim.js",
-        "remediation-final.js"
+        "remediation-final.js",
+        "gap-closure.js"
       ]
     }
   ]

@@ -9,10 +9,21 @@
     "pool": "2026-2030",
     "effectiveFrom": "2026-07-01",
     "effectiveThrough": "2030-06-30",
-    "subelements": ["T6", "T7"],
-    "topics": ["T6A", "T6B", "T6C", "T6D", "T7D"]
+    "subelements": [
+      "T6",
+      "T7"
+    ],
+    "topics": [
+      "T6A",
+      "T6B",
+      "T6C",
+      "T6D",
+      "T7D"
+    ]
   },
-  "requires": ["simulation.electricity"],
+  "requires": [
+    "simulation.electricity"
+  ],
   "hardware": [],
   "stages": [
     {
@@ -26,20 +37,50 @@
         {
           "type": "interaction",
           "component": "field-reference",
-          "config": {"file": "reference/technician-remediation.json"}
+          "config": {
+            "file": "reference/technician-remediation.json"
+          }
         },
         {
           "type": "interaction",
           "component": "part-bench",
           "config": {
             "parts": [
-              {"id": "pot", "name": "Potentiometer", "behavior": "A variable resistor. Turning it changes resistance, which is why it can be a volume control. It is still a resistor."},
-              {"id": "battery", "name": "Battery chemistry", "behavior": "A nickel-metal hydride or lithium-ion cell in this course is rechargeable. A carbon-zinc cell is not. The symbol is still a battery either way."},
-              {"id": "diode", "name": "Diode", "behavior": "Current passes one way, from anode to cathode. The cathode lead is often marked with a band. There is a small forward voltage drop when it conducts."},
-              {"id": "led", "name": "LED", "behavior": "A light-emitting diode. It emits light when current flows through it in the conducting direction. The electrodes are still anode and cathode."},
-              {"id": "transistor", "name": "Bipolar transistor", "behavior": "Three regions, and three electrodes: emitter, base, and collector. A small change at the base can control a larger current. That ratio is gain. It can also act as a switch."},
-              {"id": "fet", "name": "FET", "behavior": "Field-effect transistor. The electrodes are source, gate, and drain. The gate controls the current from source to drain."},
-              {"id": "switch", "name": "SPDT switch", "behavior": "Single pole, double throw: one common contact connects to either of two other contacts. An SPST switch is simpler: it only opens or closes one path."}
+              {
+                "id": "pot",
+                "name": "Potentiometer",
+                "behavior": "A variable resistor. Turning it changes resistance, which is why it can be a volume control. It is still a resistor."
+              },
+              {
+                "id": "battery",
+                "name": "Battery chemistry",
+                "behavior": "A nickel-metal hydride or lithium-ion cell in this course is rechargeable. A carbon-zinc cell is not. The symbol is still a battery either way."
+              },
+              {
+                "id": "diode",
+                "name": "Diode",
+                "behavior": "Current passes one way, from anode to cathode. The cathode lead is often marked with a band. There is a small forward voltage drop when it conducts."
+              },
+              {
+                "id": "led",
+                "name": "LED",
+                "behavior": "A light-emitting diode. It emits light when current flows through it in the conducting direction. The electrodes are still anode and cathode."
+              },
+              {
+                "id": "transistor",
+                "name": "Bipolar transistor",
+                "behavior": "Three regions, and three electrodes: emitter, base, and collector. A small change at the base can control a larger current. That ratio is gain. It can also act as a switch."
+              },
+              {
+                "id": "fet",
+                "name": "FET",
+                "behavior": "Field-effect transistor. The electrodes are source, gate, and drain. The gate controls the current from source to drain."
+              },
+              {
+                "id": "switch",
+                "name": "SPDT switch",
+                "behavior": "Single pole, double throw: one common contact connects to either of two other contacts. An SPST switch is simpler: it only opens or closes one path."
+              }
             ]
           }
         }
@@ -63,8 +104,16 @@
                 "alt": "Official NCVEC Figure T-1",
                 "ask": "Figure T-1, part 1. The zigzag in the line is which part?",
                 "choices": [
-                  {"label": "Resistor", "correct": true, "why": "The zigzag is the resistor. It opposes current."},
-                  {"label": "Battery", "correct": false, "why": "The battery is the stack of unequal lines, part 4 on this figure."}
+                  {
+                    "label": "Resistor",
+                    "correct": true,
+                    "why": "The zigzag is the resistor. It opposes current."
+                  },
+                  {
+                    "label": "Battery",
+                    "correct": false,
+                    "why": "The battery is the stack of unequal lines, part 4 on this figure."
+                  }
                 ]
               },
               {
@@ -72,8 +121,16 @@
                 "alt": "Official NCVEC Figure T-1",
                 "ask": "Figure T-1, part 2. The circle with the arrow is which part?",
                 "choices": [
-                  {"label": "Transistor", "correct": true, "why": "That symbol is the transistor. In this circuit it can control the lamp current."},
-                  {"label": "Fuse", "correct": false, "why": "A fuse is not drawn as a circle with an arrow."}
+                  {
+                    "label": "Transistor",
+                    "correct": true,
+                    "why": "That symbol is the transistor. In this circuit it can control the lamp current."
+                  },
+                  {
+                    "label": "Fuse",
+                    "correct": false,
+                    "why": "A fuse is not drawn as a circle with an arrow."
+                  }
                 ]
               },
               {
@@ -81,8 +138,16 @@
                 "alt": "Official NCVEC Figure T-1",
                 "ask": "Figure T-1, part 4. The stacked unequal lines are which part?",
                 "choices": [
-                  {"label": "Battery", "correct": true, "why": "Those lines are the battery, the source in this little circuit."},
-                  {"label": "Antenna", "correct": false, "why": "The antenna is a triangle on Figure T-3, not this stack."}
+                  {
+                    "label": "Battery",
+                    "correct": true,
+                    "why": "Those lines are the battery, the source in this little circuit."
+                  },
+                  {
+                    "label": "Antenna",
+                    "correct": false,
+                    "why": "The antenna is a triangle on Figure T-3, not this stack."
+                  }
                 ]
               },
               {
@@ -90,8 +155,16 @@
                 "alt": "Official NCVEC Figure T-2",
                 "ask": "Figure T-2, part 3. The simple break in the line is which switch?",
                 "choices": [
-                  {"label": "A single on-off switch", "correct": true, "why": "It opens or closes one path. An SPDT switch would offer two throws."},
-                  {"label": "A transformer", "correct": false, "why": "The transformer is the pair of coils, part 4."}
+                  {
+                    "label": "A single on-off switch",
+                    "correct": true,
+                    "why": "It opens or closes one path. An SPDT switch would offer two throws."
+                  },
+                  {
+                    "label": "A transformer",
+                    "correct": false,
+                    "why": "The transformer is the pair of coils, part 4."
+                  }
                 ]
               },
               {
@@ -99,8 +172,16 @@
                 "alt": "Official NCVEC Figure T-2",
                 "ask": "Figure T-2, part 4. Two coils side by side are which part?",
                 "choices": [
-                  {"label": "Transformer", "correct": true, "why": "The transformer couples the incoming side to a different AC voltage."},
-                  {"label": "Resistor", "correct": false, "why": "Resistors are the zigzags, parts 2, 7, and 9."}
+                  {
+                    "label": "Transformer",
+                    "correct": true,
+                    "why": "The transformer couples the incoming side to a different AC voltage."
+                  },
+                  {
+                    "label": "Resistor",
+                    "correct": false,
+                    "why": "Resistors are the zigzags, parts 2, 7, and 9."
+                  }
                 ]
               },
               {
@@ -108,8 +189,16 @@
                 "alt": "Official NCVEC Figure T-2",
                 "ask": "Figure T-2, part 8. The diode with the small arrows is which part?",
                 "choices": [
-                  {"label": "LED", "correct": true, "why": "The arrows mark a light-emitting diode. Part 5 is a rectifier diode without those arrows. Part 10 is a Zener diode."},
-                  {"label": "Capacitor", "correct": false, "why": "The capacitor is the two plates, part 6."}
+                  {
+                    "label": "LED",
+                    "correct": true,
+                    "why": "The arrows mark a light-emitting diode. Part 5 is a rectifier diode without those arrows. Part 10 is a Zener diode."
+                  },
+                  {
+                    "label": "Capacitor",
+                    "correct": false,
+                    "why": "The capacitor is the two plates, part 6."
+                  }
                 ]
               },
               {
@@ -117,8 +206,16 @@
                 "alt": "Official NCVEC Figure T-2",
                 "ask": "Figure T-2, part 9. The zigzag with an arrow is which part?",
                 "choices": [
-                  {"label": "Potentiometer", "correct": true, "why": "The arrow means the resistance is variable."},
-                  {"label": "Fixed resistor", "correct": false, "why": "A fixed resistor has no arrow. Part 7 is a fixed resistor in series with the LED."}
+                  {
+                    "label": "Potentiometer",
+                    "correct": true,
+                    "why": "The arrow means the resistance is variable."
+                  },
+                  {
+                    "label": "Fixed resistor",
+                    "correct": false,
+                    "why": "A fixed resistor has no arrow. Part 7 is a fixed resistor in series with the LED."
+                  }
                 ]
               },
               {
@@ -126,8 +223,16 @@
                 "alt": "Official NCVEC Figure T-3",
                 "ask": "Figure T-3, part 3. The coil with an arrow is which part?",
                 "choices": [
-                  {"label": "Variable inductor", "correct": true, "why": "A coil is an inductor. The arrow means it is adjustable. With the capacitors it forms a resonant circuit."},
-                  {"label": "Antenna", "correct": false, "why": "The antenna is the triangle, part 4."}
+                  {
+                    "label": "Variable inductor",
+                    "correct": true,
+                    "why": "A coil is an inductor. The arrow means it is adjustable. With the capacitors it forms a resonant circuit."
+                  },
+                  {
+                    "label": "Antenna",
+                    "correct": false,
+                    "why": "The antenna is the triangle, part 4."
+                  }
                 ]
               },
               {
@@ -135,8 +240,16 @@
                 "alt": "Official NCVEC Figure T-3",
                 "ask": "Figure T-3, part 4. The triangle at the top is which part?",
                 "choices": [
-                  {"label": "Antenna", "correct": true, "why": "That symbol is the antenna."},
-                  {"label": "Ground", "correct": false, "why": "Ground is the set of lines at the bottom of the coil."}
+                  {
+                    "label": "Antenna",
+                    "correct": true,
+                    "why": "That symbol is the antenna."
+                  },
+                  {
+                    "label": "Ground",
+                    "correct": false,
+                    "why": "Ground is the set of lines at the bottom of the coil."
+                  }
                 ]
               }
             ]
@@ -161,47 +274,89 @@
         {
           "type": "interaction",
           "component": "solder-lab",
-          "requiresGates": ["tr02-supply"],
+          "requiresGates": [
+            "tr02-supply"
+          ],
           "config": {
             "joints": [
               {
                 "look": "The solder is smooth, shiny, and flows onto both the lead and the pad.",
                 "picture": "Cone wetting both metals.",
                 "choices": [
-                  {"label": "A sound joint", "correct": true, "why": "The solder wetted both parts. That is the joint you want."},
-                  {"label": "A cold joint", "correct": false, "why": "A cold joint looks dull and grainy, as if the solder sat on the pad instead of joining it."}
+                  {
+                    "label": "A sound joint",
+                    "correct": true,
+                    "why": "The solder wetted both parts. That is the joint you want."
+                  },
+                  {
+                    "label": "A cold joint",
+                    "correct": false,
+                    "why": "A cold joint looks dull and grainy, as if the solder sat on the pad instead of joining it."
+                  }
                 ]
               },
               {
                 "look": "The blob is dull and grainy. It sits on the pad and the lead still looks separate.",
                 "picture": "Rough ball, poor wetting.",
                 "choices": [
-                  {"label": "A cold joint", "correct": true, "why": "Dull and grainy, without wetting, is a cold joint. It can look attached and still be a bad connection."},
-                  {"label": "The preferred radio joint", "correct": false, "why": "The preferred joint is smooth and wets both metals."}
+                  {
+                    "label": "A cold joint",
+                    "correct": true,
+                    "why": "Dull and grainy, without wetting, is a cold joint. It can look attached and still be a bad connection."
+                  },
+                  {
+                    "label": "The preferred radio joint",
+                    "correct": false,
+                    "why": "The preferred joint is smooth and wets both metals."
+                  }
                 ]
               },
               {
                 "look": "Only a speck of solder touches the lead. Most of the pad is bare.",
                 "picture": "Too little solder to bridge the lead to the pad.",
                 "choices": [
-                  {"label": "Too little solder", "correct": true, "why": "The metals are not joined by enough solder."},
-                  {"label": "A bridge of excess solder", "correct": false, "why": "Excess solder floods across pads. This joint has too little."}
+                  {
+                    "label": "Too little solder",
+                    "correct": true,
+                    "why": "The metals are not joined by enough solder."
+                  },
+                  {
+                    "label": "A bridge of excess solder",
+                    "correct": false,
+                    "why": "Excess solder floods across pads. This joint has too little."
+                  }
                 ]
               },
               {
                 "look": "A mound of solder reaches the neighboring pad.",
                 "picture": "Bridge between two pads.",
                 "choices": [
-                  {"label": "Too much solder", "correct": true, "why": "The mound connects pads that should stay separate."},
-                  {"label": "A cold joint only", "correct": false, "why": "The problem in this picture is the bridge, even before you judge the surface."}
+                  {
+                    "label": "Too much solder",
+                    "correct": true,
+                    "why": "The mound connects pads that should stay separate."
+                  },
+                  {
+                    "label": "A cold joint only",
+                    "correct": false,
+                    "why": "The problem in this picture is the bridge, even before you judge the surface."
+                  }
                 ]
               },
               {
                 "look": "The spool says acid-core solder.",
                 "picture": "Wrong material for a radio board.",
                 "choices": [
-                  {"label": "Do not use it on radio circuits", "correct": true, "why": "Acid-core solder is for other trades. It corrodes electronics. Radio work uses a rosin-type core."},
-                  {"label": "It is the best choice for a circuit board", "correct": false, "why": "The acid is the problem, not a feature."}
+                  {
+                    "label": "Do not use it on radio circuits",
+                    "correct": true,
+                    "why": "Acid-core solder is for other trades. It corrodes electronics. Radio work uses a rosin-type core."
+                  },
+                  {
+                    "label": "It is the best choice for a circuit board",
+                    "correct": false,
+                    "why": "The acid is the problem, not a feature."
+                  }
                 ]
               }
             ]
@@ -241,7 +396,11 @@
               "id": "tr02-pot",
               "topicId": "T6A",
               "stem": "What did the potentiometer do on the bench?",
-              "choices": ["It varied the resistance", "It stored energy in a magnetic field", "It emitted light"],
+              "choices": [
+                "It varied the resistance",
+                "It stored energy in a magnetic field",
+                "It emitted light"
+              ],
               "correctIndex": 0,
               "why": "A potentiometer is an adjustable resistor. Turning it changes resistance. That is why it can be a volume control."
             },
@@ -249,7 +408,11 @@
               "id": "tr02-diode",
               "topicId": "T6B",
               "stem": "Which electrodes did the diode use, and which way did current go?",
-              "choices": ["Anode to cathode, one direction", "Source, gate, and drain", "Emitter, base, and collector"],
+              "choices": [
+                "Anode to cathode, one direction",
+                "Source, gate, and drain",
+                "Emitter, base, and collector"
+              ],
               "correctIndex": 0,
               "why": "A diode has an anode and a cathode and conducts one way. The FET has source, gate, and drain. The bipolar transistor has emitter, base, and collector."
             },
@@ -257,7 +420,11 @@
               "id": "tr02-gain",
               "topicId": "T6B",
               "stem": "What did this lab mean by gain in the transistor?",
-              "choices": ["A small control change affects a larger current", "The resistor's color bands", "The battery chemistry"],
+              "choices": [
+                "A small control change affects a larger current",
+                "The resistor's color bands",
+                "The battery chemistry"
+              ],
               "correctIndex": 0,
               "why": "Gain is that control. The transistor can amplify, and it can also switch."
             },
@@ -265,7 +432,11 @@
               "id": "tr02-figure",
               "topicId": "T6C",
               "stem": "On official Figure T-1, the zigzag you named was which part?",
-              "choices": ["The resistor", "The battery", "The antenna"],
+              "choices": [
+                "The resistor",
+                "The battery",
+                "The antenna"
+              ],
               "correctIndex": 0,
               "why": "The zigzag is the resistor. The battery is the stacked lines. The antenna is on Figure T-3."
             },
@@ -273,7 +444,11 @@
               "id": "tr02-supply",
               "topicId": "T6D",
               "stem": "Which order did the supply path use?",
-              "choices": ["Transformer, rectifier, filter, regulator, load", "Load, then the transformer, then the LED", "Regulator first, because it makes the AC"],
+              "choices": [
+                "Transformer, rectifier, filter, regulator, load",
+                "Load, then the transformer, then the LED",
+                "Regulator first, because it makes the AC"
+              ],
               "correctIndex": 0,
               "why": "The transformer changes the AC voltage, the rectifier makes one-direction pulses, the filter smooths them, and the regulator steadies the voltage for the load."
             },
@@ -281,7 +456,11 @@
               "id": "tr02-resonant",
               "topicId": "T6D",
               "stem": "Figure T-3 put a variable inductor with capacitors. What kind of circuit is that pairing?",
-              "choices": ["A resonant circuit", "A solder bridge", "A carbon-zinc battery"],
+              "choices": [
+                "A resonant circuit",
+                "A solder bridge",
+                "A carbon-zinc battery"
+              ],
               "correctIndex": 0,
               "why": "An inductor combined with a capacitor is a resonant, or tuned, circuit."
             },
@@ -289,7 +468,11 @@
               "id": "tr02-solder",
               "topicId": "T7D",
               "stem": "Which joint did the lab treat as a cold joint?",
-              "choices": ["Dull, grainy, and sitting on the pad", "Smooth and wetting both metals", "A spool of rosin-core solder that was never heated"],
+              "choices": [
+                "Dull, grainy, and sitting on the pad",
+                "Smooth and wetting both metals",
+                "A spool of rosin-core solder that was never heated"
+              ],
               "correctIndex": 0,
               "why": "A cold tin-lead joint looks dull and grainy. A sound joint is smooth and wets both parts. Acid-core solder is the wrong material even before the joint's shape."
             },
@@ -297,7 +480,11 @@
               "id": "tr02-meter",
               "topicId": "T7D",
               "stem": "TC-07 measured voltage across a source and current in series. What does this lab add about an ohmmeter on a large discharged capacitor?",
-              "choices": ["The reading can start low and then rise as the meter charges the capacitor", "The ohmmeter must be used on a live power supply", "The meter should be set to amperes and connected across the battery"],
+              "choices": [
+                "The reading can start low and then rise as the meter charges the capacitor",
+                "The ohmmeter must be used on a live power supply",
+                "The meter should be set to amperes and connected across the battery"
+              ],
               "correctIndex": 0,
               "why": "A discharged capacitor looks like a low resistance at first. As it charges from the ohmmeter, the reading climbs. Resistance is still measured with the circuit unpowered."
             }
@@ -321,22 +508,52 @@
             "joints": [
               {
                 "look": "The battery measures its normal voltage. The fuse is open. The radio is dark.",
-                "picture": "Battery — open fuse — switch — regulator — radio.",
+                "picture": "Battery \u2014 open fuse \u2014 switch \u2014 regulator \u2014 radio.",
                 "choices": [
-                  {"label": "The open fuse is the break", "correct": true, "why": "Voltage is present at the battery and stops at the open fuse. Replacing the radio would leave the open fuse in the chain."},
-                  {"label": "Replace the radio first", "correct": false, "why": "The radio has not been shown to be the failed part."}
+                  {
+                    "label": "The open fuse is the break",
+                    "correct": true,
+                    "why": "Voltage is present at the battery and stops at the open fuse. Replacing the radio would leave the open fuse in the chain."
+                  },
+                  {
+                    "label": "Replace the radio first",
+                    "correct": false,
+                    "why": "The radio has not been shown to be the failed part."
+                  }
                 ]
               },
               {
                 "look": "A new fuse restores the panel, but a lead on the regulator output is a dull grainy blob and the voltage at the radio wanders.",
                 "picture": "Cold joint on the regulator output.",
                 "choices": [
-                  {"label": "The cold joint is the remaining fault", "correct": true, "why": "The fuse was the first break. The dull joint can still make a poor connection after the fuse is replaced."},
-                  {"label": "Add acid-core solder on top", "correct": false, "why": "Acid-core solder does not repair a radio joint. The joint needs to be remade so it wets both metals."}
+                  {
+                    "label": "The cold joint is the remaining fault",
+                    "correct": true,
+                    "why": "The fuse was the first break. The dull joint can still make a poor connection after the fuse is replaced."
+                  },
+                  {
+                    "label": "Add acid-core solder on top",
+                    "correct": false,
+                    "why": "Acid-core solder does not repair a radio joint. The joint needs to be remade so it wets both metals."
+                  }
                 ]
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "ONE MORE CHECK",
+      "blocks": [
+        {
+          "type": "text",
+          "body": "The meter connections you already practiced have one misuse that damages the instrument. This bench is a simulation."
+        },
+        {
+          "type": "interaction",
+          "component": "meter-risk"
         }
       ]
     }
