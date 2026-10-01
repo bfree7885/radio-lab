@@ -1,0 +1,4632 @@
+{
+  "schemaVersion": 1,
+  "id": "radio-lab-technician-readiness-v1",
+  "label": "RADIO LAB PRACTICE",
+  "mockLabel": "RADIO LAB MOCK EXAM",
+  "license": "technician",
+  "pool": "2026-2030",
+  "note": "Original Radio Lab questions for retrieval practice. Official stem ids are alignment metadata. These are not FCC or NCVEC questions, and the official answer choices are not included.",
+  "questions": [
+    {
+      "id": "rl-t1a-purpose-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1A",
+      "conceptId": "t1a-purpose",
+      "conceptLabel": "Purpose of the Amateur Service",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1A01"
+      ],
+      "stem": "Which purpose fits the Amateur Radio Service?",
+      "choices": [
+        "Self-training, intercommunication, and technical investigation",
+        "Selling broadcast time to local businesses",
+        "Providing a paid telephone substitute",
+        "Operating a commercial taxi dispatch system"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Amateur Service is for self-training, intercommunication, and technical investigation, without a pecuniary interest.",
+      "distractorNotes": [
+        "",
+        "Broadcasting for hire is not the Amateur Service.",
+        "A paid telephone service is not the Amateur Service.",
+        "Commercial dispatch is not the Amateur Service."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1a-fcc-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1A",
+      "conceptId": "t1a-fcc",
+      "conceptLabel": "Who regulates the Amateur Service",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1A02"
+      ],
+      "stem": "Which agency regulates and enforces Amateur Radio rules in the United States?",
+      "choices": [
+        "The Federal Communications Commission",
+        "The National Weather Service",
+        "A local frequency coordinator",
+        "The amateur radio club trustee"
+      ],
+      "correctIndex": 0,
+      "explanation": "The FCC regulates and enforces the Amateur Service in the United States.",
+      "distractorNotes": [
+        "",
+        "The weather service forecasts weather. It does not grant amateur licenses.",
+        "A coordinator recommends repeater pairs. The coordinator is not the regulator.",
+        "A trustee holds a club station. The trustee is not the regulator."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1a-beacon-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1A",
+      "conceptId": "t1a-beacon",
+      "conceptLabel": "Where automatic beacons are found",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1A06"
+      ],
+      "stem": "You want an automatically controlled propagation beacon. Where does the Technician reference place those beacons?",
+      "choices": [
+        "On 10 meters, between 28.200 and 28.300 MHz",
+        "On the 2-meter calling frequency, 146.520 MHz",
+        "Anywhere a Technician has phone privileges",
+        "Only on a coordinated repeater output"
+      ],
+      "correctIndex": 0,
+      "explanation": "Automatically controlled amateur propagation beacons in this pool are on 10 meters, from 28.200 to 28.300 MHz.",
+      "distractorNotes": [
+        "",
+        "146.520 MHz is the FM simplex calling frequency, not the beacon segment.",
+        "Phone privileges are not a beacon allocation.",
+        "A repeater output is not the beacon segment."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1a-races-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1A",
+      "conceptId": "t1a-races",
+      "conceptLabel": "What else a RACES operator needs",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1A10"
+      ],
+      "stem": "You have a new Technician license. A city official asks you to be the control operator of a RACES station tonight. What else is required?",
+      "choices": [
+        "Enrollment with the civil defense organization",
+        "A vanity call sign",
+        "A club trustee certificate",
+        "Permission to use any Extra class frequency"
+      ],
+      "correctIndex": 0,
+      "explanation": "A license is not enough for RACES. The operator also enrolls with the civil defense organization.",
+      "distractorNotes": [
+        "",
+        "A vanity call is optional and does not enroll you.",
+        "A club trustee certificate is a different station arrangement.",
+        "RACES does not expand your frequency privileges."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1b-cw-only-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1B",
+      "conceptId": "t1b-cw-only",
+      "conceptLabel": "CW-only VHF and UHF segments",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1B07"
+      ],
+      "stem": "A station wants to use SSB phone on 144.050 MHz. What is the decision?",
+      "choices": [
+        "Not allowed. 144.0 to 144.1 MHz is CW only",
+        "Allowed, because all of 2 meters is phone",
+        "Allowed, because SSB is a weak-signal mode",
+        "Allowed above 50 MHz with no mode limits"
+      ],
+      "correctIndex": 0,
+      "explanation": "144.0\u2013144.1 MHz and 50.0\u201350.1 MHz are limited to CW. Phone, including SSB and FM, does not belong there.",
+      "distractorNotes": [
+        "",
+        "2 meters is not all phone.",
+        "A weak-signal mode still has to fit the segment.",
+        "Bands above 50 MHz still have mode segments."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1b-cw-six-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1B",
+      "conceptId": "t1b-cw-six",
+      "conceptLabel": "The 6-meter CW-only segment",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1B07"
+      ],
+      "stem": "Is FM voice on 50.050 MHz inside the Technician privileges for that segment?",
+      "choices": [
+        "No. 50.0 to 50.1 MHz is CW only",
+        "Yes. Any mode is allowed on 6 meters",
+        "Yes, if the power stays under 200 watts PEP",
+        "Yes, because 50.050 MHz is inside a phone sub-band"
+      ],
+      "correctIndex": 0,
+      "explanation": "50.0\u201350.1 MHz is a CW-only segment. FM voice is not the emission that segment allows.",
+      "distractorNotes": [
+        "",
+        "6 meters has a CW-only slice at the bottom.",
+        "The HF power limit does not turn a CW segment into phone.",
+        "50.050 MHz is inside the CW slice, not a phone sub-band."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1b-hf-phone-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1B",
+      "conceptId": "t1b-hf-phone",
+      "conceptLabel": "Technician HF phone privileges",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1B06",
+        "T1B11"
+      ],
+      "stem": "Where may a Technician use phone on HF, and at what power?",
+      "choices": [
+        "28.300 to 28.500 MHz, at 200 watts PEP",
+        "Every HF band, at 1500 watts PEP",
+        "7.200 MHz, at 200 watts PEP",
+        "146.520 MHz only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Technician HF phone in this pool is the 10-meter segment 28.300\u201328.500 MHz, and the HF power limit is 200 watts PEP.",
+      "distractorNotes": [
+        "",
+        "Technician HF privileges are not every band at 1500 watts.",
+        "7.200 MHz is not a Technician phone privilege.",
+        "146.520 MHz is a VHF calling frequency, not the HF phone segment."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1b-iss-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1B",
+      "conceptId": "t1b-iss",
+      "conceptLabel": "Who may contact the ISS",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1B02"
+      ],
+      "stem": "Who may contact the International Space Station on a VHF frequency?",
+      "choices": [
+        "Any amateur whose license gives that frequency privilege",
+        "Only Extra class licensees",
+        "Only stations enrolled in RACES",
+        "Only the trustee of a club station"
+      ],
+      "correctIndex": 0,
+      "explanation": "Any amateur station with the frequency privilege may contact the ISS. A space station is an amateur station more than 50 km above the Earth.",
+      "distractorNotes": [
+        "",
+        "The contact is not limited to Extra class.",
+        "RACES enrollment is a separate operating arrangement.",
+        "A club trustee is not required for an ISS contact."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1c-term-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1C",
+      "conceptId": "t1c-term",
+      "conceptLabel": "License term and grace period",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1C08",
+        "T1C09",
+        "T1C11"
+      ],
+      "stem": "How long is a normal amateur license term, and what happens during the grace period after it expires?",
+      "choices": [
+        "Ten years. You may renew during the two-year grace period, and you may not transmit until the grant is renewed",
+        "Five years, with transmitting allowed through the grace period",
+        "Two years, then the call sign is reassigned the next day",
+        "Ten years, and transmitting continues until the FCC sends a letter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The normal term is ten years. The grace period lets you renew without a new exam. It does not let you transmit.",
+      "distractorNotes": [
+        "",
+        "The term is not five years, and the grace period is not permission to transmit.",
+        "The term is not two years.",
+        "An expired license does not keep transmitting authority during the grace period."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1c-grant-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1C",
+      "conceptId": "t1c-grant",
+      "conceptLabel": "When you may first transmit",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1C10"
+      ],
+      "stem": "You just passed the exam. When may you transmit?",
+      "choices": [
+        "When the FCC license grant shows in the license database",
+        "The moment the exam session ends",
+        "During the two-year grace period before any grant exists",
+        "After a club trustee approves the session"
+      ],
+      "correctIndex": 0,
+      "explanation": "You wait until the FCC grant appears in the license database. Passing the session is not itself the grant.",
+      "distractorNotes": [
+        "",
+        "The end of the session is not the grant.",
+        "A grace period applies after a license expires, not before the first grant.",
+        "A trustee is not the person who creates your first grant."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1c-group-d-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1C",
+      "conceptId": "t1c-group-d",
+      "conceptLabel": "Group D call sign shape",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1C05"
+      ],
+      "stem": "Which shape matches the Group D call sign format used for a sequential Technician grant?",
+      "choices": [
+        "Two letters, one digit, and three letters",
+        "One letter, one digit, and two letters",
+        "Three letters, one digit, and one letter",
+        "A self-assigned tactical name"
+      ],
+      "correctIndex": 0,
+      "explanation": "Group D is two letters, one digit, and three letters. You identify with the grant, not with a format you prefer.",
+      "distractorNotes": [
+        "",
+        "That shorter shape is not Group D.",
+        "That is not the Group D pattern.",
+        "A tactical name does not replace the FCC call sign."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1d-music-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1D",
+      "conceptId": "t1d-music",
+      "conceptLabel": "Music on a phone emission",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1D04"
+      ],
+      "stem": "A friend asks you to play a song on phone. What is the rule?",
+      "choices": [
+        "Music is not permitted, except when it is incidental to an authorized retransmission of a space station",
+        "Music is allowed on any simplex frequency",
+        "Music is allowed if you identify every song",
+        "Music is allowed below 30 MHz only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Phone music is prohibited except for incidental music in an authorized space-station retransmission.",
+      "distractorNotes": [
+        "",
+        "Simplex does not authorize music.",
+        "Identification does not authorize music.",
+        "The HF boundary does not authorize music."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1d-codes-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1D",
+      "conceptId": "t1d-codes",
+      "conceptLabel": "Transmissions that hide meaning",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1D03"
+      ],
+      "stem": "Which transmission is encoded to obscure its meaning?",
+      "choices": [
+        "Scrambled speech meant to hide the meaning",
+        "A plain-language schedule for a club picnic",
+        "Your call sign in English",
+        "A standard Q signal such as QRM"
+      ],
+      "correctIndex": 0,
+      "explanation": "Messages encoded to hide the meaning are prohibited, with narrow exceptions that do not include casual scrambled speech.",
+      "distractorNotes": [
+        "",
+        "A plain schedule is not obscured.",
+        "A call sign in English is identification.",
+        "A published Q signal is not a cipher."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1d-broadcast-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1D",
+      "conceptId": "t1d-broadcast",
+      "conceptLabel": "What broadcasting means here",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1D10"
+      ],
+      "stem": "Which activity fits the amateur rule against broadcasting?",
+      "choices": [
+        "Transmitting to the general public, rather than to a particular amateur station",
+        "Calling CQ to any amateur who can hear you",
+        "Sending a one-way beacon in the beacon segment",
+        "Identifying your station at the end of a contact"
+      ],
+      "correctIndex": 0,
+      "explanation": "Broadcasting, in this service, is a transmission intended for the general public rather than for particular amateur stations.",
+      "distractorNotes": [
+        "",
+        "CQ is a call to other amateurs, not a broadcast to the public.",
+        "A beacon in its segment is a recognized one-way transmission.",
+        "Identification is required. It is not broadcasting."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1e-control-op-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1E",
+      "conceptId": "t1e-control-op",
+      "conceptLabel": "A station needs a control operator",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1E01"
+      ],
+      "stem": "When may an amateur station transmit with nobody responsible as control operator?",
+      "choices": [
+        "It may not. A control operator is required",
+        "Whenever the radio is in automatic mode",
+        "During the license grace period",
+        "When a tactical name is used instead of a call sign"
+      ],
+      "correctIndex": 0,
+      "explanation": "An amateur station may not transmit without a control operator.",
+      "distractorNotes": [
+        "",
+        "Automatic control still has a control operator arrangement. It is not 'nobody responsible'.",
+        "The grace period does not remove the control operator.",
+        "A tactical name does not replace the control operator."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1e-remote-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1E",
+      "conceptId": "t1e-remote",
+      "conceptLabel": "Remote control still has you as control operator",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1E10"
+      ],
+      "stem": "You operate your home radio from a laptop elsewhere, over a control link. What kind of control is that?",
+      "choices": [
+        "Remote control, and you are still the control operator",
+        "Automatic control, because a network is involved",
+        "No control operator is required",
+        "Third-party traffic, because you are not at home"
+      ],
+      "correctIndex": 0,
+      "explanation": "Remote control means the control point is somewhere other than the radio. You remain the control operator.",
+      "distractorNotes": [
+        "",
+        "A network path does not by itself make the station automatic.",
+        "Someone is still the control operator.",
+        "Being away from home is the remote-control fact, not the definition of third-party traffic."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1e-automatic-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1E",
+      "conceptId": "t1e-automatic",
+      "conceptLabel": "What automatic control means",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1E08"
+      ],
+      "stem": "Which situation is automatic control?",
+      "choices": [
+        "A device operates the station under the rules without a person at the control point for each transmission",
+        "You are sitting at the radio with the microphone in your hand",
+        "You are at a distant control point, deciding each transmission",
+        "A friend who is not licensed picks up the microphone"
+      ],
+      "correctIndex": 0,
+      "explanation": "Automatic control is a station operating under the rules without a control operator present at a control point for each transmission.",
+      "distractorNotes": [
+        "",
+        "That is local control.",
+        "That is remote control.",
+        "An unlicensed person on the microphone is not automatic control."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1f-identify-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1F",
+      "conceptId": "t1f-identify",
+      "conceptLabel": "When to identify",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1F02",
+        "T1F03"
+      ],
+      "stem": "You are using the tactical name Race Headquarters on a phone net. How do you identify?",
+      "choices": [
+        "With your FCC call sign in English, at least every 10 minutes and at the end",
+        "With the tactical name alone for the whole net",
+        "With a self-assigned indicator instead of any call sign",
+        "Only at the beginning of the day"
+      ],
+      "correctIndex": 0,
+      "explanation": "A tactical name does not replace the FCC call sign. Identify in English at least every 10 minutes during the communication and at the end.",
+      "distractorNotes": [
+        "",
+        "The tactical name alone is not the required identification.",
+        "A self-assigned indicator is not a substitute for the call sign.",
+        "Identification is also required during the contact, not only at the start of the day."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1f-repeater-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1F",
+      "conceptId": "t1f-repeater",
+      "conceptLabel": "What a repeater station does",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1F09"
+      ],
+      "stem": "What does a repeater station do?",
+      "choices": [
+        "It retransmits another amateur station's signal on a different channel at the same time",
+        "It stores a message and forwards it the next day",
+        "It assigns vanity call signs",
+        "It coordinates band plans for the FCC"
+      ],
+      "correctIndex": 0,
+      "explanation": "A repeater simultaneously retransmits another amateur station on a different channel.",
+      "distractorNotes": [
+        "",
+        "Store-and-forward is a different kind of operation.",
+        "Call signs come from the FCC, not from a repeater.",
+        "Coordination is a recommendation service, not the definition of a repeater."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t1f-inspection-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T1",
+      "groupId": "T1F",
+      "conceptId": "t1f-inspection",
+      "conceptLabel": "When records must be available",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-03"
+      ],
+      "alignsTo": [
+        "T1F01"
+      ],
+      "stem": "The FCC asks to inspect your station and its records. What do you do?",
+      "choices": [
+        "Make the station and its records available",
+        "Offer the club call sign instead",
+        "Wait for a two-week appointment before any response",
+        "Identify with a tactical name and end the contact"
+      ],
+      "correctIndex": 0,
+      "explanation": "The station licensee makes the station and its records available for inspection when the FCC asks.",
+      "distractorNotes": [
+        "",
+        "Another call sign does not take the place of the inspection.",
+        "The rule is availability, not a delay you invent.",
+        "A tactical identification does not answer an inspection request."
+      ],
+      "review": {
+        "labId": "tr-03",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2a-offset-2m-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2A",
+      "conceptId": "t2a-offset-2m",
+      "conceptLabel": "2-meter repeater offset",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2A01"
+      ],
+      "stem": "What is a common repeater offset on 2 meters?",
+      "choices": [
+        "600 kHz",
+        "5 MHz",
+        "100 Hz",
+        "20 kHz"
+      ],
+      "correctIndex": 0,
+      "explanation": "A common 2-meter repeater offset is 600 kHz, plus or minus.",
+      "distractorNotes": [
+        "",
+        "5 MHz is the common 70-centimeter offset.",
+        "100 Hz is not a repeater split.",
+        "20 kHz is much smaller than the usual 2-meter split."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2a-offset-70-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2A",
+      "conceptId": "t2a-offset-70",
+      "conceptLabel": "70-centimeter repeater offset",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2A03"
+      ],
+      "stem": "What is a common repeater offset on 70 centimeters?",
+      "choices": [
+        "5 MHz",
+        "600 kHz",
+        "The same frequency, because 70 centimeters is simplex only",
+        "28.300 MHz"
+      ],
+      "correctIndex": 0,
+      "explanation": "A common 70-centimeter offset is 5 MHz.",
+      "distractorNotes": [
+        "",
+        "600 kHz is the common 2-meter offset.",
+        "70 centimeters uses repeaters. It is not simplex only.",
+        "28.300 MHz is a 10-meter frequency, not an offset."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2a-simplex-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2A",
+      "conceptId": "t2a-simplex",
+      "conceptLabel": "Same frequency in both directions",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2A11"
+      ],
+      "stem": "You are transmitting and receiving on 146.520 MHz. What is that called?",
+      "choices": [
+        "Simplex",
+        "A plus offset",
+        "Reverse split",
+        "A linked repeater"
+      ],
+      "correctIndex": 0,
+      "explanation": "Simplex means transmitting and receiving on the same frequency.",
+      "distractorNotes": [
+        "",
+        "An offset means the input and output differ.",
+        "Reverse swaps which side of a split you listen to.",
+        "A linked repeater connects repeaters. It is not the name for one shared frequency."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2a-calling-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2A",
+      "conceptId": "t2a-calling",
+      "conceptLabel": "2-meter FM calling frequency",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2A02"
+      ],
+      "stem": "Which frequency is the national FM simplex calling frequency on 2 meters?",
+      "choices": [
+        "146.520 MHz",
+        "144.050 MHz",
+        "147.000 MHz plus 600 kHz",
+        "28.400 MHz"
+      ],
+      "correctIndex": 0,
+      "explanation": "146.520 MHz is the national 2-meter FM simplex calling frequency.",
+      "distractorNotes": [
+        "",
+        "144.050 MHz is inside the CW-only segment.",
+        "A repeater pair is not the simplex calling frequency.",
+        "28.400 MHz is 10-meter phone."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2b-reverse-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2B",
+      "conceptId": "t2b-reverse",
+      "conceptLabel": "What reverse does",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2B01"
+      ],
+      "stem": "You can hear a repeater output, and you want to hear the station that is talking into it. Which control listens on the repeater input?",
+      "choices": [
+        "Reverse",
+        "CTCSS encode only",
+        "Scan",
+        "RIT"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reverse listens on the input of the repeater pair so you can hear the other station directly.",
+      "distractorNotes": [
+        "",
+        "A tone may be needed to access the repeater. It does not swap the frequency.",
+        "Scan looks across channels. It does not listen on the input.",
+        "RIT shifts the receiver a little for SSB. It is not the reverse function."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2b-ctcss-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2B",
+      "conceptId": "t2b-ctcss",
+      "conceptLabel": "Sub-audible access tone",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2B02"
+      ],
+      "stem": "The repeater output is strong, and your carrier does not open it. The listing shows a tone of 100.0 Hz. What is that tone for?",
+      "choices": [
+        "A sub-audible tone sent with your voice so the repeater squelch opens",
+        "A 5 MHz transmit offset",
+        "The color code of a DMR talkgroup",
+        "A request to reverse the split"
+      ],
+      "correctIndex": 0,
+      "explanation": "CTCSS is a sub-audible tone transmitted with the voice audio to open a receiver's squelch.",
+      "distractorNotes": [
+        "",
+        "The offset is the frequency split, not the tone.",
+        "A DMR color code is a digital access value, not a 100 Hz analog tone.",
+        "Reverse changes which side you listen on."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2b-q-signals-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2B",
+      "conceptId": "t2b-q-signals",
+      "conceptLabel": "QRM and QSY",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2B10",
+        "T2B11"
+      ],
+      "stem": "Another station's signal is covering the one you want. Which Q signal reports that interference, and which one says you are changing frequency?",
+      "choices": [
+        "QRM reports interference from other stations. QSY says you are changing frequency",
+        "QSY reports interference. QRM says you are changing frequency",
+        "Both mean the same thing: the repeater is linked",
+        "QRM is a CTCSS tone and QSY is a DMR color code"
+      ],
+      "correctIndex": 0,
+      "explanation": "QRM is interference from other stations. QSY means changing frequency.",
+      "distractorNotes": [
+        "",
+        "Those meanings are swapped.",
+        "Neither Q signal means a linked repeater.",
+        "They are operating signals, not a tone or a color code."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2c-winlink-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2C",
+      "conceptId": "t2c-winlink",
+      "conceptLabel": "Winlink call-sign email",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2C08"
+      ],
+      "stem": "You need to move a message by radio, addressed like email with an amateur call sign. Which system fits?",
+      "choices": [
+        "Winlink",
+        "An ordinary voice contact",
+        "APRS position beacons",
+        "A mailbox on the public internet with no radio in the path"
+      ],
+      "correctIndex": 0,
+      "explanation": "Winlink relays messages using email addresses based on amateur call signs.",
+      "distractorNotes": [
+        "",
+        "Voice is a conversation, not call-sign email.",
+        "APRS beacons a position and short data. It is not that email system.",
+        "Ordinary internet email does not use the amateur call-sign addressing this question is about."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2c-net-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2C",
+      "conceptId": "t2c-net",
+      "conceptLabel": "Directed net check-in",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2C07"
+      ],
+      "stem": "You join a directed net. What is the usual practice?",
+      "choices": [
+        "Listen, then transmit when the net control asks for your traffic or check-in",
+        "Call CQ on the net frequency until someone answers",
+        "Transmit whenever the frequency is quiet for a second",
+        "Send the message on a repeater input without checking in"
+      ],
+      "correctIndex": 0,
+      "explanation": "On a directed net you follow the net control. You check in and pass traffic when asked.",
+      "distractorNotes": [
+        "",
+        "CQ is how you seek a general contact, not how you enter a directed net.",
+        "A short pause is not an invitation to transmit over the net.",
+        "The net has a procedure. Skipping the check-in misses it."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2c-ares-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2C",
+      "conceptId": "t2c-ares",
+      "conceptLabel": "What ARES is",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2C06"
+      ],
+      "stem": "Which description fits the Amateur Radio Emergency Service?",
+      "choices": [
+        "ARES is amateur volunteers registered with ARRL for emergency communications",
+        "ARES is the FCC license database",
+        "ARES is a type of repeater offset",
+        "ARES replaces Part 97 during any public event"
+      ],
+      "correctIndex": 0,
+      "explanation": "ARES is the Amateur Radio Emergency Service, volunteers enrolled for emergency communications. Part 97 still applies.",
+      "distractorNotes": [
+        "",
+        "The license database is the FCC's, not ARES.",
+        "An offset is a frequency split.",
+        "Part 97 still applies to amateur stations in an emergency, with specific emergency provisions. ARES does not repeal it."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t2c-preamble-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T2",
+      "groupId": "T2C",
+      "conceptId": "t2c-preamble",
+      "conceptLabel": "What a preamble carries",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-04"
+      ],
+      "alignsTo": [
+        "T2C10"
+      ],
+      "stem": "A formal radiogram has a preamble. What belongs there?",
+      "choices": [
+        "The message number, precedence, handling notes, the station of origin, the check, the place, and the time",
+        "Only the recipient's phone number",
+        "The repeater offset and tone",
+        "A recording of the sender's voice"
+      ],
+      "correctIndex": 0,
+      "explanation": "The preamble carries the bookkeeping of a formal message: number, precedence, handling, origin, check, place, and time.",
+      "distractorNotes": [
+        "",
+        "A phone number may be in the address, not the whole preamble.",
+        "Offset and tone are repeater settings.",
+        "A voice recording is not the preamble."
+      ],
+      "review": {
+        "labId": "tr-04",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3a-horizontal-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3A",
+      "conceptId": "t3a-horizontal",
+      "conceptLabel": "Horizontal polarization for weak-signal VHF",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3A03"
+      ],
+      "stem": "You are setting up for a long-distance VHF CW contact. Which polarization is the usual choice?",
+      "choices": [
+        "Horizontal",
+        "Vertical, the same as the local repeater",
+        "Either, because polarization does not matter on VHF",
+        "Right-hand circular only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Long-distance CW and SSB on VHF and UHF normally use horizontal polarization. Local FM repeaters are commonly vertical.",
+      "distractorNotes": [
+        "",
+        "The repeater convention is not the weak-signal convention.",
+        "A polarization mismatch still weakens a line-of-sight signal.",
+        "Circular polarization is not the usual choice for that CW contact."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3a-elliptical-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3A",
+      "conceptId": "t3a-elliptical",
+      "conceptLabel": "Elliptical polarization after the ionosphere",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3A09"
+      ],
+      "stem": "A signal has traveled through the ionosphere and is elliptically polarized. What follows for the antennas?",
+      "choices": [
+        "Either a vertical or a horizontal antenna can be used",
+        "Only a horizontal antenna can hear it",
+        "FM voice becomes unusable",
+        "The two stations must use identical polarization or nothing is heard"
+      ],
+      "correctIndex": 0,
+      "explanation": "Elliptical polarization means either a vertically or a horizontally polarized antenna can be used. This is not the cause of irregular fading.",
+      "distractorNotes": [
+        "",
+        "Horizontal-only is the weak-signal convention, not the ionospheric result.",
+        "The polarization result is about the antenna, not a ban on FM.",
+        "The point of elliptical polarization is that a matched pair is not required."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3a-fading-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3A",
+      "conceptId": "t3a-fading",
+      "conceptLabel": "Irregular ionospheric fading",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3A08"
+      ],
+      "stem": "An HF signal propagated by the ionosphere fades irregularly. What is a likely cause?",
+      "choices": [
+        "Signals arriving by different paths combine, and the combination changes",
+        "The wave became elliptical, and that ellipse is the fade",
+        "The receiver is tuned slightly off an FM channel",
+        "The satellite is rotating"
+      ],
+      "correctIndex": 0,
+      "explanation": "Irregular ionospheric fading is a likely result of signals that arrive by different paths and combine. Elliptical polarization is a separate fact.",
+      "distractorNotes": [
+        "",
+        "Elliptical polarization explains why either antenna polarization can work. It is not this fading cause.",
+        "Off-frequency FM is a different receiving problem.",
+        "Spin fading is a satellite effect."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3a-picket-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3A",
+      "conceptId": "t3a-picket",
+      "conceptLabel": "Picket fencing",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3A06"
+      ],
+      "stem": "A mobile VHF signal flutters as the vehicle moves a short distance. What is that flutter called?",
+      "choices": [
+        "Picket fencing, from multipath reflections",
+        "F-region skip",
+        "Spin fading",
+        "Tropospheric ducting"
+      ],
+      "correctIndex": 0,
+      "explanation": "Picket fencing is the rapid flutter from multipath, often heard on a moving VHF station.",
+      "distractorNotes": [
+        "",
+        "F-region skip is an HF ionospheric path.",
+        "Spin fading comes from a satellite rotating.",
+        "Ducting can extend VHF range. It is not the name of that flutter."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3b-speed-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3B",
+      "conceptId": "t3b-speed",
+      "conceptLabel": "Speed of a radio wave in free space",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3B04",
+        "T3B11"
+      ],
+      "stem": "About how fast does a radio wave travel in free space?",
+      "choices": [
+        "300 million meters per second, the speed of light",
+        "The speed of sound",
+        "300 meters per second",
+        "It depends on the license class of the operator"
+      ],
+      "correctIndex": 0,
+      "explanation": "In free space, radio waves travel at the speed of light, about 300 million meters per second. Frequency does not change that speed.",
+      "distractorNotes": [
+        "",
+        "Sound is much slower.",
+        "300 meters per second is far too slow.",
+        "The license class does not change the speed of the wave."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3b-polarization-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3B",
+      "conceptId": "t3b-polarization",
+      "conceptLabel": "What sets polarization",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3B02"
+      ],
+      "stem": "Polarization describes which property of a radio wave?",
+      "choices": [
+        "The orientation of the electric field",
+        "The power supply voltage",
+        "The repeater offset",
+        "The call sign of the transmitting station"
+      ],
+      "correctIndex": 0,
+      "explanation": "Polarization is the orientation of the electric field.",
+      "distractorNotes": [
+        "",
+        "Supply voltage is a station fact, not the wave's polarization.",
+        "An offset is a frequency split.",
+        "The call sign identifies the station. It does not define polarization."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3b-vhf-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3B",
+      "conceptId": "t3b-vhf",
+      "conceptLabel": "Which frequencies are VHF",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3B08"
+      ],
+      "stem": "Which range is called VHF?",
+      "choices": [
+        "30 to 300 MHz",
+        "3 to 30 MHz",
+        "300 to 3000 MHz",
+        "300 to 3000 kHz"
+      ],
+      "correctIndex": 0,
+      "explanation": "VHF is 30 to 300 MHz. HF is 3 to 30 MHz. UHF is 300 to 3000 MHz.",
+      "distractorNotes": [
+        "",
+        "That is HF.",
+        "That is UHF.",
+        "That span in kilohertz is not the VHF definition."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3c-horizon-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3C",
+      "conceptId": "t3c-horizon",
+      "conceptLabel": "Why UHF simplex stops at the horizon",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3C01"
+      ],
+      "stem": "Why are simplex UHF signals rarely heard beyond the radio horizon?",
+      "choices": [
+        "UHF waves usually travel line of sight, and the horizon blocks them",
+        "UHF is absorbed by the F region every night",
+        "UHF cannot pass through air",
+        "A Technician license ends at the horizon"
+      ],
+      "correctIndex": 0,
+      "explanation": "UHF and VHF are normally line-of-sight. The radio horizon, a bit past the visual horizon, is the usual limit.",
+      "distractorNotes": [
+        "",
+        "The F region is an HF path, not a nightly UHF absorber.",
+        "Air is not a wall for UHF.",
+        "The license does not set a geographic horizon."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3c-sporadic-e-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3C",
+      "conceptId": "t3c-sporadic-e",
+      "conceptLabel": "Sporadic E on 10, 6, and 2 meters",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3C04"
+      ],
+      "stem": "Strong signals suddenly appear on 6 meters from far beyond the horizon, then fade. Which propagation fits?",
+      "choices": [
+        "Sporadic E",
+        "A repeater linked by the internet",
+        "Spin fading",
+        "A dummy load on the far station"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sporadic E is the occasional strong beyond-horizon path associated with 10, 6, and 2 meters.",
+      "distractorNotes": [
+        "",
+        "An internet link is not an ionospheric opening.",
+        "Spin fading is a satellite effect.",
+        "A dummy load is a test resistor, not a propagation path."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t3c-ducting-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3C",
+      "conceptId": "t3c-ducting",
+      "conceptLabel": "What causes tropospheric ducting",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3C06",
+        "T3C08"
+      ],
+      "stem": "VHF signals are reaching a few hundred miles, day after day, along a weather boundary. What propagation is that?",
+      "choices": [
+        "Tropospheric ducting",
+        "Meteor scatter",
+        "F-region skip at noon on 160 meters",
+        "Picket fencing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tropospheric ducting can carry VHF and UHF well beyond the horizon, on the order of 300 miles, when the atmosphere forms a duct.",
+      "distractorNotes": [
+        "",
+        "Meteor scatter is brief bursts from meteor trails.",
+        "160 meters is not the band this VHF path is about.",
+        "Picket fencing is short-range flutter."
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t4a-supply-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4A",
+      "conceptId": "t4a-supply",
+      "conceptLabel": "Current for a 50-watt mobile",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4A01"
+      ],
+      "stem": "Which supply rating fits a typical 50-watt FM mobile?",
+      "choices": [
+        "13.8 volts at 12 amperes",
+        "13.8 volts at 4 amperes, because 50 divided by 13.8 is about 4",
+        "24 volts at 4 amperes",
+        "120 volts at 1 ampere"
+      ],
+      "correctIndex": 0,
+      "explanation": "The radio is not 100 percent efficient. A typical rating for this mobile is 13.8 volts at about 12 amperes, not the RF watts divided by 13.8.",
+      "distractorNotes": [
+        "",
+        "That 4-ampere figure ignores the radio's efficiency.",
+        "24 volts is not the usual mobile supply.",
+        "120 volts is household AC, not the mobile DC connection."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t4a-meter-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4A",
+      "conceptId": "t4a-meter",
+      "conceptLabel": "Where the RF power meter goes",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4A05",
+        "T4A02"
+      ],
+      "stem": "An RF power meter is measuring transmitter output. Where does it belong in the station?",
+      "choices": [
+        "In the feed line, between the transmitter and the antenna",
+        "Across the power supply output",
+        "In parallel with the microphone plug",
+        "In the vehicle's speaker wire"
+      ],
+      "correctIndex": 0,
+      "explanation": "The RF power meter belongs in the feed line between the transmitter and the antenna. An SWR meter in that line also has to be rated for the frequency and power.",
+      "distractorNotes": [
+        "",
+        "The supply output is DC, not the RF output.",
+        "The microphone plug is audio.",
+        "The speaker wire is receive audio, not transmitted RF."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t4a-interface-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4A",
+      "conceptId": "t4a-interface",
+      "conceptLabel": "Computer audio interface",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4A06",
+        "T4A07",
+        "T4A04"
+      ],
+      "stem": "Which signals cross a computer-radio interface for digital modes?",
+      "choices": [
+        "Receive audio, transmit audio, and transmitter keying",
+        "Only the antenna connector",
+        "GPS location and DC power",
+        "The repeater tone and the color code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The interface carries receive audio, transmit audio, and transmitter keying. FT8 uses the computer's audio in and out. Line-in connects to the radio's speaker connection.",
+      "distractorNotes": [
+        "",
+        "The antenna connector is RF, not the audio interface.",
+        "GPS and DC power are not the digital-mode audio interface.",
+        "A tone and a color code are repeater access settings."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t4a-strap-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4A",
+      "conceptId": "t4a-strap",
+      "conceptLabel": "Flat strap for an RF bond",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4A08"
+      ],
+      "stem": "Which conductor is preferred for bonding at RF?",
+      "choices": [
+        "Flat copper strap",
+        "Coax braid removed from a cable",
+        "A twisted pair from a telephone cord",
+        "Copper-clad steel wire"
+      ],
+      "correctIndex": 0,
+      "explanation": "Flat copper strap is the preferred RF bonding conductor.",
+      "distractorNotes": [
+        "",
+        "Braid removed from coax is a poorer RF bond.",
+        "Twisted pair is not the preferred RF bond.",
+        "Copper-clad steel wire is not the preferred RF bond."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t4b-fm-offset-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4B",
+      "conceptId": "t4b-fm-offset",
+      "conceptLabel": "FM audio slightly off frequency",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4B04"
+      ],
+      "stem": "An FM voice sounds distorted, and the receiver is a little off the channel. What fits?",
+      "choices": [
+        "The audio is distorted because the receiver is slightly off frequency",
+        "The pitch rose, the way an SSB signal does when you are off frequency",
+        "FM audio is unchanged until the signal disappears",
+        "The noise blanker is removing the voice"
+      ],
+      "correctIndex": 0,
+      "explanation": "On frequency, FM voice is understandable. Slightly off frequency, the audio becomes distorted. It does not shift pitch the way SSB does.",
+      "distractorNotes": [
+        "",
+        "A pitch change is the SSB clue, not this FM result.",
+        "The audio does change before the signal simply vanishes.",
+        "The noise blanker is for impulse noise, not for this tuning error."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t4b-blanker-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4B",
+      "conceptId": "t4b-blanker",
+      "conceptLabel": "When a noise blanker helps",
+      "difficulty": "core",
+      "type": "diagnosis",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [],
+      "stem": "The speaker is full of short ignition-like pops. Which control is meant for that problem?",
+      "choices": [
+        "The noise blanker",
+        "More microphone gain",
+        "A wider FM filter",
+        "Reverse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The noise blanker is for short impulse noise. It does not remove another station's voice, and it does not fix over-deviation.",
+      "distractorNotes": [
+        "",
+        "Microphone gain changes your transmitted audio.",
+        "A wider filter passes more noise. It is not the blanker.",
+        "Reverse listens on a repeater input."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      },
+      "syllabusTopic": "T4B topic text names the noise blanker. The February 19, 2026 pool has no numbered stem for it."
+    },
+    {
+      "id": "rl-t4b-blanker-no-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4B",
+      "conceptId": "t4b-blanker-no",
+      "conceptLabel": "When not to use the noise blanker",
+      "difficulty": "core",
+      "type": "diagnosis",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [],
+      "stem": "Another station is talking on the same frequency as you. Will the noise blanker clear that voice?",
+      "choices": [
+        "No. The blanker is not a cure for another station",
+        "Yes. It removes any unwanted voice",
+        "Yes, if you switch it to CW-FM",
+        "Yes, if the other station is using horizontal polarization"
+      ],
+      "correctIndex": 0,
+      "explanation": "The noise blanker reduces ignition-like pops. Another station's voice needs a different response, such as changing frequency or waiting.",
+      "distractorNotes": [
+        "",
+        "It does not strip a voice out of the channel.",
+        "CW-FM is an amplifier-switch setting, not a blanker mode.",
+        "Polarization does not decide whether the blanker fits."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      },
+      "syllabusTopic": "T4B topic text names the noise blanker. The February 19, 2026 pool has no numbered stem for it."
+    },
+    {
+      "id": "rl-t4b-rit-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4B",
+      "conceptId": "t4b-rit",
+      "conceptLabel": "RIT moves the receiver, not the transmitter",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4B06"
+      ],
+      "stem": "An SSB station answers your CQ and the voice pitch sounds too high. Which control is the usual one to try?",
+      "choices": [
+        "Receiver incremental tuning (RIT)",
+        "The repeater reverse control",
+        "A DMR color code",
+        "The noise blanker"
+      ],
+      "correctIndex": 0,
+      "explanation": "RIT shifts the receiver a little so the voice pitch comes back without moving your transmit frequency off the contact.",
+      "distractorNotes": [
+        "",
+        "Reverse is a repeater split control.",
+        "A color code selects a digital repeater access value.",
+        "The blanker is for impulse noise."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5a-ampere-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5A",
+      "conceptId": "t5a-ampere",
+      "conceptLabel": "Current is measured in amperes",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5A01"
+      ],
+      "stem": "Electrical current is measured in which unit?",
+      "choices": [
+        "Amperes",
+        "Volts",
+        "Ohms",
+        "Farads"
+      ],
+      "correctIndex": 0,
+      "explanation": "Current is amperes. Voltage is volts. Resistance is ohms. Capacitance is farads.",
+      "distractorNotes": [
+        "",
+        "Volts measure electrical pressure.",
+        "Ohms measure opposition to current.",
+        "Farads measure capacitance."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5a-watt-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5A",
+      "conceptId": "t5a-watt",
+      "conceptLabel": "Power is measured in watts",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5A02"
+      ],
+      "stem": "Electrical power is measured in which unit?",
+      "choices": [
+        "Watts",
+        "Amperes",
+        "Henrys",
+        "Hertz"
+      ],
+      "correctIndex": 0,
+      "explanation": "Power is watts. It is the rate of energy use.",
+      "distractorNotes": [
+        "",
+        "Amperes measure current.",
+        "Henrys measure inductance.",
+        "Hertz measure frequency."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5a-current-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5A",
+      "conceptId": "t5a-current",
+      "conceptLabel": "Current is electron flow",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5A03"
+      ],
+      "stem": "What is the flow of electrons in a circuit called?",
+      "choices": [
+        "Current",
+        "Resistance",
+        "Capacitance",
+        "Gain"
+      ],
+      "correctIndex": 0,
+      "explanation": "Current is the flow of electrons. A difference in voltage causes that flow.",
+      "distractorNotes": [
+        "",
+        "Resistance opposes the flow.",
+        "Capacitance stores energy in an electric field.",
+        "Gain is amplification."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5b-milli-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5B",
+      "conceptId": "t5b-milli",
+      "conceptLabel": "Milliamperes from amperes",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5B02"
+      ],
+      "stem": "A circuit draws 2.2 amperes. How many milliamperes is that?",
+      "choices": [
+        "2200 milliamperes",
+        "22 milliamperes",
+        "0.22 milliamperes",
+        "2.2 milliamperes"
+      ],
+      "correctIndex": 0,
+      "explanation": "A milliampere is a thousandth of an ampere. 2.2 amperes is 2200 milliamperes.",
+      "distractorNotes": [
+        "",
+        "That divides by 100 instead of multiplying by 1,000.",
+        "That moves the prefix the wrong way.",
+        "The numbers are equal only if you ignore the prefix."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5b-db-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5B",
+      "conceptId": "t5b-db",
+      "conceptLabel": "What plus 3 dB means",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5B09"
+      ],
+      "stem": "A power change of about plus 3 dB means the power has become about how many times larger?",
+      "choices": [
+        "Twice",
+        "Ten times",
+        "Three times",
+        "Half"
+      ],
+      "correctIndex": 0,
+      "explanation": "About plus 3 dB doubles power. About plus 10 dB multiplies power by ten. About minus 3 dB cuts it in half.",
+      "distractorNotes": [
+        "",
+        "Ten times is about plus 10 dB.",
+        "The '3' is not a multiplication by three.",
+        "Half would be about minus 3 dB."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5b-micro-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5B",
+      "conceptId": "t5b-micro",
+      "conceptLabel": "A microvolt is a millionth of a volt",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5B04"
+      ],
+      "stem": "One microvolt is which fraction of a volt?",
+      "choices": [
+        "One millionth of a volt",
+        "One thousandth of a volt",
+        "One thousand volts",
+        "One million volts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Micro means one millionth. A microvolt is a millionth of a volt.",
+      "distractorNotes": [
+        "",
+        "One thousandth is milli.",
+        "One thousand volts would be a kilovolt.",
+        "One million volts is not a microvolt."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5c-power-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5C",
+      "conceptId": "t5c-power",
+      "conceptLabel": "Power is voltage times current",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5C10"
+      ],
+      "stem": "Which relationship gives electrical power?",
+      "choices": [
+        "Voltage times current",
+        "Voltage divided by resistance, then added to current",
+        "Resistance times frequency",
+        "Current divided by voltage"
+      ],
+      "correctIndex": 0,
+      "explanation": "Power in watts is voltage times current.",
+      "distractorNotes": [
+        "",
+        "That mixes two relationships.",
+        "Resistance times frequency is not power.",
+        "Current divided by voltage is not power."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5c-capacitor-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5C",
+      "conceptId": "t5c-capacitor",
+      "conceptLabel": "A capacitor stores energy in an electric field",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5C01"
+      ],
+      "stem": "Which component stores energy in an electric field?",
+      "choices": [
+        "A capacitor",
+        "An inductor",
+        "A fuse",
+        "A resistor"
+      ],
+      "correctIndex": 0,
+      "explanation": "A capacitor stores energy in an electric field. An inductor stores energy in a magnetic field.",
+      "distractorNotes": [
+        "",
+        "An inductor stores energy in a magnetic field.",
+        "A fuse opens a circuit when current is too high.",
+        "A resistor turns electrical energy into heat. It is not the storage component."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5c-frequency-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5C",
+      "conceptId": "t5c-frequency",
+      "conceptLabel": "Frequency is cycles per second",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5C05"
+      ],
+      "stem": "What does a frequency of 1 hertz mean?",
+      "choices": [
+        "One cycle per second",
+        "One volt per second",
+        "One ohm per meter",
+        "One watt per hour"
+      ],
+      "correctIndex": 0,
+      "explanation": "Frequency is cycles per second, measured in hertz.",
+      "distractorNotes": [
+        "",
+        "Volts are electrical pressure.",
+        "Ohms per meter is not frequency.",
+        "Watts are power."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5d-series-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-series",
+      "conceptLabel": "Series current is the same",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D13"
+      ],
+      "stem": "In which circuit is the current the same through every component?",
+      "choices": [
+        "A series circuit",
+        "A parallel circuit",
+        "An open circuit",
+        "A dummy load used as an antenna"
+      ],
+      "correctIndex": 0,
+      "explanation": "Series current is the same through each component. Parallel voltage is the same across each branch.",
+      "distractorNotes": [
+        "",
+        "Parallel branches share current. The voltage is what they share.",
+        "An open circuit has no current.",
+        "A dummy load is a test resistor, not a circuit topology."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5d-parallel-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-parallel",
+      "conceptLabel": "Parallel voltage is the same",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D14"
+      ],
+      "stem": "In which circuit is the voltage the same across every branch?",
+      "choices": [
+        "A parallel circuit",
+        "A series circuit",
+        "A circuit with the fuse removed",
+        "A feed line with infinite SWR only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parallel components have the same voltage across them.",
+      "distractorNotes": [
+        "",
+        "Series components share the current. Their voltages can differ.",
+        "A removed fuse opens the circuit.",
+        "SWR is a feed-line measurement, not the definition of parallel voltage."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t5d-ohm-check-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-ohm-check",
+      "conceptLabel": "A remembered Ohm's law pair",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D02"
+      ],
+      "stem": "Two amperes flow through a 25-ohm resistor. What is the voltage across the resistor?",
+      "choices": [
+        "50 volts",
+        "12.5 volts",
+        "27 volts",
+        "0.08 volts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Voltage equals current times resistance. 2 \u00d7 25 = 50 volts.",
+      "distractorNotes": [
+        "",
+        "12.5 would be 25 divided by 2.",
+        "27 adds the numbers.",
+        "0.08 divides current by resistance."
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6a-resistor-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6A",
+      "conceptId": "t6a-resistor",
+      "conceptLabel": "A resistor opposes current",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6A01"
+      ],
+      "stem": "Which component opposes the flow of current in a DC circuit?",
+      "choices": [
+        "A resistor",
+        "An antenna",
+        "A microphone",
+        "A call sign"
+      ],
+      "correctIndex": 0,
+      "explanation": "A resistor opposes current. Its value is in ohms.",
+      "distractorNotes": [
+        "",
+        "An antenna radiates or receives. It is not the DC opposition component.",
+        "A microphone turns sound into an electrical signal.",
+        "A call sign identifies a station."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6a-pot-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6A",
+      "conceptId": "t6a-pot",
+      "conceptLabel": "A potentiometer is a variable resistor",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6A02"
+      ],
+      "stem": "Which part is often used as a volume control?",
+      "choices": [
+        "A potentiometer",
+        "A fuse",
+        "A fixed capacitor",
+        "A light-emitting diode"
+      ],
+      "correctIndex": 0,
+      "explanation": "A potentiometer is a variable resistor, often used as a volume control.",
+      "distractorNotes": [
+        "",
+        "A fuse protects a circuit.",
+        "A fixed capacitor does not give a volume adjustment.",
+        "An LED is an indicator."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6a-battery-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6A",
+      "conceptId": "t6a-battery",
+      "conceptLabel": "Which battery chemistry is rechargeable",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6A10"
+      ],
+      "stem": "Which battery chemistry is rechargeable?",
+      "choices": [
+        "A nickel-metal hydride or lithium-ion pack",
+        "A carbon-zinc cell",
+        "An alkaline cell used as a primary battery",
+        "A fuse rated in amperes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Nickel-metal hydride and lithium-ion cells are rechargeable. Carbon-zinc and ordinary alkaline cells are primary cells.",
+      "distractorNotes": [
+        "",
+        "Carbon-zinc is a primary chemistry.",
+        "An alkaline primary cell is not the rechargeable example.",
+        "A fuse is not a battery."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6b-diode-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6B",
+      "conceptId": "t6b-diode",
+      "conceptLabel": "A diode conducts one way",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6B02"
+      ],
+      "stem": "Which component lets current flow in only one direction?",
+      "choices": [
+        "A diode",
+        "A resistor",
+        "A fuse",
+        "A potentiometer"
+      ],
+      "correctIndex": 0,
+      "explanation": "A diode conducts one way. The electrodes are the anode and the cathode.",
+      "distractorNotes": [
+        "",
+        "A resistor opposes current in either direction.",
+        "A fuse opens on excess current. It is not a one-way conductor.",
+        "A potentiometer is a variable resistor."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6b-fet-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6B",
+      "conceptId": "t6b-fet",
+      "conceptLabel": "A FET has gate, drain, and source",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6B05"
+      ],
+      "stem": "Which transistor has a gate, a drain, and a source?",
+      "choices": [
+        "A field-effect transistor",
+        "A bipolar junction transistor",
+        "A diode",
+        "A relay"
+      ],
+      "correctIndex": 0,
+      "explanation": "A FET uses gate, drain, and source. A bipolar transistor uses emitter, base, and collector.",
+      "distractorNotes": [
+        "",
+        "A bipolar transistor uses emitter, base, and collector.",
+        "A diode has an anode and a cathode.",
+        "A relay is a switch operated by a coil."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6b-gain-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6B",
+      "conceptId": "t6b-gain",
+      "conceptLabel": "Gain means amplification",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6B11"
+      ],
+      "stem": "What does gain mean in an amplifier?",
+      "choices": [
+        "The amplifier makes the signal larger",
+        "The amplifier identifies the station",
+        "The amplifier changes a call sign into a grid square",
+        "The amplifier measures SWR by itself"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gain means the output is larger than the input. Power gain is one form of that.",
+      "distractorNotes": [
+        "",
+        "Identification is a station practice, not gain.",
+        "A grid square is a location name.",
+        "An SWR meter measures the match. Gain is amplification."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6c-schematic-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6C",
+      "conceptId": "t6c-schematic",
+      "conceptLabel": "A schematic uses symbols",
+      "difficulty": "core",
+      "type": "figure",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6C01"
+      ],
+      "stem": "What is a drawing that uses standard symbols for electrical parts called?",
+      "choices": [
+        "A schematic",
+        "A band plan",
+        "A radiogram preamble",
+        "A color code"
+      ],
+      "correctIndex": 0,
+      "explanation": "A schematic is the diagram of symbols. It shows the electrical jobs, not a photograph of the parts.",
+      "distractorNotes": [
+        "",
+        "A band plan is a frequency agreement.",
+        "A preamble is message bookkeeping.",
+        "A color code is a digital access number or a wire color."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "see",
+        "curriculumId": "technician-remediation"
+      },
+      "figure": {
+        "id": "T-1",
+        "src": "exam/sources/technician-2026-2030/diagrams/technician-diagram-t1.jpg",
+        "alt": "Official NCVEC Figure T-1"
+      }
+    },
+    {
+      "id": "rl-t6c-zigzag-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6C",
+      "conceptId": "t6c-zigzag",
+      "conceptLabel": "The zigzag is a resistor",
+      "difficulty": "core",
+      "type": "figure",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6C02"
+      ],
+      "stem": "On official Figure T-1, the zigzag in the line is which part?",
+      "choices": [
+        "A resistor",
+        "A battery",
+        "An antenna",
+        "A microphone"
+      ],
+      "correctIndex": 0,
+      "explanation": "The zigzag is the resistor. The battery is the stacked lines. The antenna symbol is the triangle on Figure T-3.",
+      "distractorNotes": [
+        "",
+        "The battery is the stack of unequal lines.",
+        "The antenna is the triangle on Figure T-3.",
+        "A microphone is not that zigzag."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "see",
+        "curriculumId": "technician-remediation"
+      },
+      "figure": {
+        "id": "T-1",
+        "src": "exam/sources/technician-2026-2030/diagrams/technician-diagram-t1.jpg",
+        "alt": "Official NCVEC Figure T-1"
+      }
+    },
+    {
+      "id": "rl-t6c-antenna-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6C",
+      "conceptId": "t6c-antenna",
+      "conceptLabel": "The triangle on Figure T-3",
+      "difficulty": "core",
+      "type": "figure",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6C11"
+      ],
+      "stem": "On official Figure T-3, the triangle at the top of the drawing is which part?",
+      "choices": [
+        "An antenna",
+        "A fuse",
+        "A speaker",
+        "A relay coil"
+      ],
+      "correctIndex": 0,
+      "explanation": "The triangle on Figure T-3 is the antenna.",
+      "distractorNotes": [
+        "",
+        "A fuse has its own symbol. It is not that triangle.",
+        "A speaker is not the antenna triangle.",
+        "A relay coil is a coil symbol."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "see",
+        "curriculumId": "technician-remediation"
+      },
+      "figure": {
+        "id": "T-3",
+        "src": "exam/sources/technician-2026-2030/diagrams/technician-diagram-t3.jpg",
+        "alt": "Official NCVEC Figure T-3"
+      }
+    },
+    {
+      "id": "rl-t6c-t2-transformer-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6C",
+      "conceptId": "t6c-t2-transformer",
+      "conceptLabel": "Figure T-2 coils are a transformer",
+      "difficulty": "core",
+      "type": "figure",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6C09"
+      ],
+      "stem": "On official Figure T-2, component 4 is two coils side by side. Which part is that?",
+      "choices": [
+        "A transformer",
+        "A fixed resistor",
+        "An antenna",
+        "A battery"
+      ],
+      "correctIndex": 0,
+      "explanation": "The pair of coils is the transformer. A fixed resistor is a zigzag without an arrow.",
+      "distractorNotes": [
+        "",
+        "A resistor is a zigzag.",
+        "The antenna is the triangle on Figure T-3.",
+        "The battery is the stacked lines on Figure T-1."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "see",
+        "curriculumId": "technician-remediation"
+      },
+      "figure": {
+        "id": "T-2",
+        "src": "exam/sources/technician-2026-2030/diagrams/technician-diagram-t2.jpg",
+        "alt": "Official NCVEC Figure T-2"
+      }
+    },
+    {
+      "id": "rl-t6a-t2-switch-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6A",
+      "conceptId": "t6a-t2-switch",
+      "conceptLabel": "Figure T-2 break is a single on-off switch",
+      "difficulty": "core",
+      "type": "figure",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6A09"
+      ],
+      "stem": "On official Figure T-2, component 3 is a simple break in the line. Which switch is that?",
+      "choices": [
+        "A single on-off switch",
+        "A transformer",
+        "A light-emitting diode",
+        "A variable resistor"
+      ],
+      "correctIndex": 0,
+      "explanation": "That break opens or closes one path. It is a single on-off switch. A switch with two throws would show two destinations.",
+      "distractorNotes": [
+        "",
+        "The transformer is the pair of coils, component 4.",
+        "The light-emitting diode is the diode with arrows, component 8.",
+        "The variable resistor is the zigzag with an arrow, component 9."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      },
+      "figure": {
+        "id": "T-2",
+        "src": "exam/sources/technician-2026-2030/diagrams/technician-diagram-t2.jpg",
+        "alt": "Official NCVEC Figure T-2"
+      }
+    },
+    {
+      "id": "rl-t6d-rectifier-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6D",
+      "conceptId": "t6d-rectifier",
+      "conceptLabel": "A rectifier changes AC to pulses of one direction",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6D01"
+      ],
+      "stem": "Which job does a rectifier do?",
+      "choices": [
+        "It changes alternating current into pulses of one direction",
+        "It raises transmitter power by 10 dB",
+        "It assigns a vanity call sign",
+        "It measures SWR"
+      ],
+      "correctIndex": 0,
+      "explanation": "A rectifier changes AC into pulses of one polarity. A following filter and regulator can turn that into a steadier DC supply.",
+      "distractorNotes": [
+        "",
+        "A 10 dB change is a power ratio, not the rectifier's job.",
+        "Call signs come from the FCC.",
+        "An SWR meter measures the feed line."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6d-relay-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6D",
+      "conceptId": "t6d-relay",
+      "conceptLabel": "A relay is a switched contact",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6D02"
+      ],
+      "stem": "Which description fits a relay?",
+      "choices": [
+        "A switch operated by a coil",
+        "A rechargeable battery chemistry",
+        "A type of coaxial connector",
+        "The preamble of a radiogram"
+      ],
+      "correctIndex": 0,
+      "explanation": "A relay uses a coil to operate switch contacts.",
+      "distractorNotes": [
+        "",
+        "Battery chemistry is not a relay.",
+        "A connector joins cables.",
+        "A preamble is message header information."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t6d-shield-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T6",
+      "groupId": "T6D",
+      "conceptId": "t6d-shield",
+      "conceptLabel": "Shielded wire keeps energy in or out",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T6D03"
+      ],
+      "stem": "Why would you choose shielded wire?",
+      "choices": [
+        "To keep unwanted energy from getting in or out of the conductor",
+        "To increase the license term",
+        "To change USB into LSB",
+        "To remove the need for a control operator"
+      ],
+      "correctIndex": 0,
+      "explanation": "Shielding reduces coupling of unwanted energy into or out of the wire.",
+      "distractorNotes": [
+        "",
+        "The license term is ten years regardless of the wire.",
+        "Sideband selection is a mode choice.",
+        "Shielding does not remove the control operator."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7a-sensitivity-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7A",
+      "conceptId": "t7a-sensitivity",
+      "conceptLabel": "Sensitivity is hearing a weak signal",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7A01"
+      ],
+      "stem": "Which word means a receiver can detect a weak signal?",
+      "choices": [
+        "Sensitivity",
+        "Selectivity",
+        "Offset",
+        "Check"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sensitivity is the ability to detect a signal. Selectivity is the ability to separate signals.",
+      "distractorNotes": [
+        "",
+        "Selectivity is discrimination between signals.",
+        "Offset is a repeater split.",
+        "The check is the word count in a formal message."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7a-mixer-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7A",
+      "conceptId": "t7a-mixer",
+      "conceptLabel": "A mixer changes frequency",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7A03"
+      ],
+      "stem": "Which circuit converts a signal from one frequency to another?",
+      "choices": [
+        "A mixer",
+        "A fuse",
+        "A dummy load",
+        "A noise blanker"
+      ],
+      "correctIndex": 0,
+      "explanation": "A mixer combines signals to produce a new frequency.",
+      "distractorNotes": [
+        "",
+        "A fuse protects against too much current.",
+        "A dummy load absorbs RF in a test.",
+        "A noise blanker reduces impulse noise."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7a-amp-switch-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7A",
+      "conceptId": "t7a-amp-switch",
+      "conceptLabel": "The VHF amplifier mode switch",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7A09"
+      ],
+      "stem": "A VHF power amplifier has a switch marked SSB and CW-FM. The radio is on FM. What does the matching switch position do?",
+      "choices": [
+        "It sets the amplifier for proper operation in the selected mode",
+        "It changes the radio from FM to SSB",
+        "It moves the radio to a different part of the band",
+        "It reduces received noise"
+      ],
+      "correctIndex": 0,
+      "explanation": "The switch sets the amplifier for the mode the radio is already using. FM and CW use CW-FM. SSB uses SSB. The switch does not retune the radio.",
+      "distractorNotes": [
+        "",
+        "The radio's mode stays what you set.",
+        "The switch does not change the frequency range.",
+        "Received noise is a receiver issue, not this switch."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7a-transverter-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7A",
+      "conceptId": "t7a-transverter",
+      "conceptLabel": "A transverter moves the radio to another band",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7A06"
+      ],
+      "stem": "What can move the RF input and output of a transceiver to another band?",
+      "choices": [
+        "A transverter",
+        "A noise blanker",
+        "A Group D call sign",
+        "A radiogram check"
+      ],
+      "correctIndex": 0,
+      "explanation": "A transverter converts the transceiver's RF to another band.",
+      "distractorNotes": [
+        "",
+        "A noise blanker is a receiver control.",
+        "A call sign identifies a station.",
+        "The check counts words in a message."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7b-deviation-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7B",
+      "conceptId": "t7b-deviation",
+      "conceptLabel": "Over-deviation is too much FM swing",
+      "difficulty": "core",
+      "type": "diagnosis",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7B01"
+      ],
+      "stem": "Listeners say your FM audio is loud and breaking up, and the signal is wider than it should be. What do you check first?",
+      "choices": [
+        "Microphone gain, because the radio is over-deviating",
+        "A band-reject filter on a neighbor's television",
+        "The satellite beacon level",
+        "Whether the call sign is Group D"
+      ],
+      "correctIndex": 0,
+      "explanation": "Too much microphone gain can over-deviate an FM transmitter. Turn the gain down.",
+      "distractorNotes": [
+        "",
+        "A band-reject filter addresses a strong broadcast signal in your receiver.",
+        "The beacon comparison is a satellite uplink check.",
+        "Call sign format is not the cause of wide FM audio."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7b-band-reject-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7B",
+      "conceptId": "t7b-band-reject",
+      "conceptLabel": "Band-reject filter for nearby broadcast FM",
+      "difficulty": "core",
+      "type": "diagnosis",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7B07"
+      ],
+      "stem": "A strong nearby commercial FM broadcast is getting into your 2-meter receiver. Which part can reduce that interference?",
+      "choices": [
+        "A band-reject filter",
+        "An RF preamplifier ahead of the receiver",
+        "More microphone gain",
+        "A noise blanker aimed at the broadcast voice"
+      ],
+      "correctIndex": 0,
+      "explanation": "A band-reject filter can reduce interference from a nearby commercial FM station. A preamplifier would make the strong signal stronger.",
+      "distractorNotes": [
+        "",
+        "A preamplifier strengthens signals, including the unwanted one.",
+        "Microphone gain changes your transmitted audio.",
+        "The noise blanker is for impulse noise, not a broadcast station."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7b-cable-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7B",
+      "conceptId": "t7b-cable",
+      "conceptLabel": "First check for cable-TV interference",
+      "difficulty": "core",
+      "type": "next-step",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7B09"
+      ],
+      "stem": "A neighbor's non-fiber cable-TV picture breaks up when you transmit. What is the first step?",
+      "choices": [
+        "Be sure all TV feed-line connectors are installed properly",
+        "Add a low-pass filter to the TV antenna input",
+        "Open the cable company's line and retune it",
+        "Install a preamplifier on the television"
+      ],
+      "correctIndex": 0,
+      "explanation": "The first step is the simple connector check. Do not start by adding filters, and do not open the cable company's line.",
+      "distractorNotes": [
+        "",
+        "A filter is not the first step in this report.",
+        "You do not interfere with the cable system.",
+        "A preamplifier is not the first check."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7c-dummy-job-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7C",
+      "conceptId": "t7c-dummy-job",
+      "conceptLabel": "Why a dummy load is used",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7C01"
+      ],
+      "stem": "Why connect a dummy load when you test a transmitter?",
+      "choices": [
+        "So you can test without radiating a signal from an antenna",
+        "So the transmitter can reach a satellite",
+        "So the license term becomes ten years",
+        "So the receiver hears weaker signals"
+      ],
+      "correctIndex": 0,
+      "explanation": "A dummy load takes the transmitter output in place of the antenna, so the test does not radiate.",
+      "distractorNotes": [
+        "",
+        "A dummy load is not an uplink path.",
+        "The license term does not depend on the load.",
+        "The load is on the transmitter test, not a receive preamplifier."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7c-dummy-parts-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7C",
+      "conceptId": "t7c-dummy-parts",
+      "conceptLabel": "What a dummy load is made of",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7C03"
+      ],
+      "stem": "Which parts make up a typical RF dummy load?",
+      "choices": [
+        "A 50-ohm non-inductive resistor on a heat sink",
+        "A low-voltage supply and a relay",
+        "A 50-ohm inductive coil in a box",
+        "An antenna tuner set to bypass"
+      ],
+      "correctIndex": 0,
+      "explanation": "A typical RF dummy load is a 50-ohm non-inductive resistor mounted on a heat sink. This is recognition, not a construction project.",
+      "distractorNotes": [
+        "",
+        "A supply and a relay are not the load.",
+        "An inductive coil is not the non-inductive resistor.",
+        "A tuner does not replace the dummy load."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7c-swr-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7C",
+      "conceptId": "t7c-swr",
+      "conceptLabel": "What 1 to 1 and 4 to 1 mean",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T7C04",
+        "T7C06"
+      ],
+      "stem": "An SWR meter reads 4:1. What does that tell you, compared with 1:1?",
+      "choices": [
+        "1:1 is a match. 4:1 is a poor match, and many radios then reduce power",
+        "4:1 is a perfect match",
+        "1:1 means the feed line is open",
+        "4:1 means the battery will last four hours"
+      ],
+      "correctIndex": 0,
+      "explanation": "1:1 indicates a match. A high SWR such as 4:1 means a poor match, and solid-state radios often fold back power as SWR rises.",
+      "distractorNotes": [
+        "",
+        "4:1 is not a perfect match.",
+        "1:1 is a match, not an open line.",
+        "SWR is not battery time."
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7d-voltmeter-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7D",
+      "conceptId": "t7d-voltmeter",
+      "conceptLabel": "A voltmeter connects across the part",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T7D02"
+      ],
+      "stem": "How do you connect a voltmeter to measure the voltage across a component?",
+      "choices": [
+        "In parallel with the component",
+        "In series, so all the current flows through the meter",
+        "Across the antenna connector while transmitting full power into the meter",
+        "In place of the ground wire only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Voltage is measured in parallel, across the component. Current is measured in series.",
+      "distractorNotes": [
+        "",
+        "Series connection is how you measure current.",
+        "The antenna connector is not a voltmeter port.",
+        "Removing the ground is not how a voltmeter is connected."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7d-damage-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7D",
+      "conceptId": "t7d-damage",
+      "conceptLabel": "Resistance mode on a live voltage",
+      "difficulty": "core",
+      "type": "diagnosis",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T7D06"
+      ],
+      "stem": "Which action can damage a multimeter?",
+      "choices": [
+        "Trying to measure voltage while the meter is set to resistance",
+        "Measuring voltage with the meter set to voltage, across the source",
+        "Measuring an unpowered resistor on the resistance setting",
+        "Reading a schematic before you touch the meter"
+      ],
+      "correctIndex": 0,
+      "explanation": "Attempting to measure voltage on the resistance setting can damage the meter. Voltage belongs on the voltage setting. Resistance belongs on an unpowered part.",
+      "distractorNotes": [
+        "",
+        "That is the safe voltage measurement.",
+        "That is the safe resistance measurement.",
+        "Reading a drawing does not stress the meter."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t7d-solder-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T7",
+      "groupId": "T7D",
+      "conceptId": "t7d-solder",
+      "conceptLabel": "A cold joint looks dull and grainy",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-02"
+      ],
+      "alignsTo": [
+        "T7D09"
+      ],
+      "stem": "What does a cold tin-lead solder joint look like?",
+      "choices": [
+        "Dull and grainy, rather than smooth and shiny",
+        "A bright smooth fillet",
+        "A length of flat copper strap",
+        "A 50-ohm non-inductive resistor"
+      ],
+      "correctIndex": 0,
+      "explanation": "A good tin-lead joint is smooth and shiny. A cold joint looks dull or grainy.",
+      "distractorNotes": [
+        "",
+        "A bright smooth fillet is the good joint.",
+        "Flat strap is an RF bonding conductor.",
+        "The resistor is a dummy-load part, not a solder appearance."
+      ],
+      "review": {
+        "labId": "tr-02",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8a-fm-repeater-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8A",
+      "conceptId": "t8a-fm-repeater",
+      "conceptLabel": "FM is the usual repeater voice mode",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8A04"
+      ],
+      "stem": "Which voice mode is commonly used on VHF and UHF repeaters?",
+      "choices": [
+        "FM",
+        "LSB on 160 meters",
+        "Fast-scan television",
+        "A radiogram preamble"
+      ],
+      "correctIndex": 0,
+      "explanation": "FM is the usual voice mode on VHF and UHF repeaters. It is also common for VHF packet.",
+      "distractorNotes": [
+        "",
+        "LSB is the lower-HF sideband convention, not the repeater voice mode.",
+        "Fast-scan television is a wide picture emission.",
+        "A preamble is message header text."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8a-ssb-weak-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8A",
+      "conceptId": "t8a-ssb-weak",
+      "conceptLabel": "SSB for weak-signal VHF",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8A03"
+      ],
+      "stem": "Which voice mode is often used for weak-signal VHF and UHF contacts?",
+      "choices": [
+        "SSB",
+        "Wide FM through a local repeater",
+        "AM broadcast",
+        "DMR color code 1"
+      ],
+      "correctIndex": 0,
+      "explanation": "SSB is the weak-signal voice mode on VHF and UHF. Those contacts normally use horizontal polarization.",
+      "distractorNotes": [
+        "",
+        "Wide FM is the local repeater mode.",
+        "AM broadcast is not the amateur weak-signal choice.",
+        "A color code is a digital access setting, not the weak-signal voice mode."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8a-usb-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8A",
+      "conceptId": "t8a-usb",
+      "conceptLabel": "USB above 10 meters",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8A06"
+      ],
+      "stem": "Which sideband is normally used for SSB on 10 meters, VHF, and UHF?",
+      "choices": [
+        "Upper sideband",
+        "Lower sideband",
+        "Either, if the repeater offset is 600 kHz",
+        "Neither. Those bands are CW only"
+      ],
+      "correctIndex": 0,
+      "explanation": "USB is the normal sideband on 10 meters and on VHF and UHF SSB. LSB is the usual choice on 40 meters and below.",
+      "distractorNotes": [
+        "",
+        "Lower sideband is the lower-HF convention.",
+        "The offset does not choose the sideband.",
+        "Those bands are not CW only."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8a-bandwidth-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8A",
+      "conceptId": "t8a-bandwidth",
+      "conceptLabel": "CW is narrower than FM",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8A05"
+      ],
+      "stem": "Which emission usually occupies the narrowest bandwidth?",
+      "choices": [
+        "CW",
+        "FM voice",
+        "AM fast-scan television",
+        "SSB voice"
+      ],
+      "correctIndex": 0,
+      "explanation": "CW is the narrowest of these. SSB is a few kilohertz. FM voice is wider. Fast-scan television is very wide.",
+      "distractorNotes": [
+        "",
+        "FM voice is wider than CW.",
+        "Fast-scan television is the widest of these.",
+        "SSB is wider than CW."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8b-spin-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8B",
+      "conceptId": "t8b-spin",
+      "conceptLabel": "Spin fading",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8B09"
+      ],
+      "stem": "A satellite signal rises and falls in a regular way while Doppler is not the thing changing. What is that called?",
+      "choices": [
+        "Spin fading, from the satellite and its antennas rotating",
+        "Picket fencing from a moving car",
+        "F-region skip",
+        "Over-deviation"
+      ],
+      "correctIndex": 0,
+      "explanation": "Spin fading comes from rotation of the satellite and its antennas. Doppler is the frequency shift, not this level change.",
+      "distractorNotes": [
+        "",
+        "Picket fencing is terrestrial multipath.",
+        "F-region skip is an HF path.",
+        "Over-deviation is an FM transmitter problem."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8b-modes-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8B",
+      "conceptId": "t8b-modes",
+      "conceptLabel": "Satellites use more than one mode",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8B04"
+      ],
+      "stem": "Three amateur satellites publish SSB, FM, and CW/data. Which conclusion fits?",
+      "choices": [
+        "Read the mode the satellite publishes. Satellites do not all use one mode",
+        "Every satellite is FM, so ignore the published mode",
+        "Every satellite is USB on 14.300 MHz",
+        "A satellite contact does not need a mode"
+      ],
+      "correctIndex": 0,
+      "explanation": "SSB, FM, and CW/data are all commonly used. Use the mode that satellite publishes.",
+      "distractorNotes": [
+        "",
+        "FM is common. It is not universal.",
+        "14.300 MHz is not a satellite rule.",
+        "The contact still has a mode."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8b-beacon-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8B",
+      "conceptId": "t8b-beacon",
+      "conceptLabel": "Compare your downlink with the beacon",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8B12"
+      ],
+      "stem": "You are setting uplink power into a linear transponder. How do you tell that your power is neither too low nor too high?",
+      "choices": [
+        "Your downlink should be about the same strength as the beacon",
+        "Your downlink should be as strong as you can make it",
+        "Turn the uplink up until the beacon disappears",
+        "Match the uplink to a 1500-watt HF limit"
+      ],
+      "correctIndex": 0,
+      "explanation": "Your signal on the downlink should be about the same strength as the beacon. Much stronger wastes the transponder and hurts other users.",
+      "distractorNotes": [
+        "",
+        "Maximum strength is too much.",
+        "Burying the beacon is the overload you are trying to avoid.",
+        "The HF power limit is not the satellite uplink setting."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8b-doppler-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8B",
+      "conceptId": "t8b-doppler",
+      "conceptLabel": "Doppler raises the frequency on approach",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8B07"
+      ],
+      "stem": "A LEO satellite is approaching. What does Doppler do to the received frequency?",
+      "choices": [
+        "The frequency sounds higher while the satellite approaches, then lower as it leaves",
+        "The frequency stays fixed because LEO satellites do not move",
+        "The frequency drops to audio",
+        "The frequency becomes the repeater offset"
+      ],
+      "correctIndex": 0,
+      "explanation": "Doppler shift raises the apparent frequency on approach and lowers it as the satellite leaves. LEO means a low Earth orbit, so the pass is short.",
+      "distractorNotes": [
+        "",
+        "The satellite is moving. That motion is the Doppler.",
+        "The RF carrier does not become audio.",
+        "An offset is a repeater split, not Doppler."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8c-contest-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8C",
+      "conceptId": "t8c-contest",
+      "conceptLabel": "A contest is many contacts in a period",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8C03"
+      ],
+      "stem": "Which activity asks you to contact as many stations as possible in a set time?",
+      "choices": [
+        "A contest",
+        "A noise-blanker adjustment",
+        "A license grace period",
+        "A dummy-load test"
+      ],
+      "correctIndex": 0,
+      "explanation": "A contest is an operating event built around many contacts in a limited time.",
+      "distractorNotes": [
+        "",
+        "The blanker is a receiver control.",
+        "The grace period is a license renewal window.",
+        "A dummy load is a bench test."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8c-grid-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8C",
+      "conceptId": "t8c-grid",
+      "conceptLabel": "A grid locator names a place",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8C05"
+      ],
+      "stem": "In a VHF contact, what is a grid locator used for?",
+      "choices": [
+        "A compact name for a place on Earth, used in contacts and contests",
+        "The FCC call sign database",
+        "A DMR color code",
+        "The SWR of a feed line"
+      ],
+      "correctIndex": 0,
+      "explanation": "A grid locator identifies a location. Operators exchange them, especially in VHF work and contests.",
+      "distractorNotes": [
+        "",
+        "The call sign database is the license record.",
+        "A color code is digital repeater access.",
+        "SWR is a match measurement."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8c-irlp-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8C",
+      "conceptId": "t8c-irlp",
+      "conceptLabel": "IRLP is reached with DTMF",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8C06"
+      ],
+      "stem": "How do you reach an IRLP node over the air?",
+      "choices": [
+        "Send DTMF tones from the radio",
+        "Mail a radiogram to the node",
+        "Change the license class to Extra",
+        "Connect a dummy load to the node"
+      ],
+      "correctIndex": 0,
+      "explanation": "IRLP nodes are accessed over the air with DTMF. EchoLink, by contrast, checks a call sign before use.",
+      "distractorNotes": [
+        "",
+        "A radiogram is formal traffic, not the IRLP access method.",
+        "License class is not the access method.",
+        "A dummy load does not connect you to a node."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8d-ft8-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8D",
+      "conceptId": "t8d-ft8",
+      "conceptLabel": "FT8 is a digital mode",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8D02"
+      ],
+      "stem": "Which description fits the FT8 mode?",
+      "choices": [
+        "A digital mode that exchanges structured messages with a computer",
+        "A 600 kHz repeater offset",
+        "A rechargeable battery chemistry",
+        "A tower-climbing harness"
+      ],
+      "correctIndex": 0,
+      "explanation": "FT8 is a digital mode. The station connects the radio's audio to a computer running the software.",
+      "distractorNotes": [
+        "",
+        "600 kHz is a 2-meter offset.",
+        "Battery chemistry is not a mode.",
+        "A harness is safety gear."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8d-aprs-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8D",
+      "conceptId": "t8d-aprs",
+      "conceptLabel": "APRS can carry position",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8D03"
+      ],
+      "stem": "Which data can APRS carry?",
+      "choices": [
+        "A station's position, along with short status or messages",
+        "A continuous fast-scan television picture",
+        "The text of Part 97",
+        "A replacement for the FCC call sign"
+      ],
+      "correctIndex": 0,
+      "explanation": "APRS commonly carries position and short related data for other stations to see.",
+      "distractorNotes": [
+        "",
+        "Fast-scan television is a wide picture emission.",
+        "APRS is not the rulebook.",
+        "You still identify with your call sign."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t8d-arq-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T8",
+      "groupId": "T8D",
+      "conceptId": "t8d-arq",
+      "conceptLabel": "ARQ asks for a repeat",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-07"
+      ],
+      "alignsTo": [
+        "T8D11"
+      ],
+      "stem": "What does ARQ do in a digital contact?",
+      "choices": [
+        "It detects an error and asks for the data to be sent again",
+        "It chooses horizontal polarization",
+        "It sets a 5 MHz repeater offset",
+        "It enrolls you in RACES"
+      ],
+      "correctIndex": 0,
+      "explanation": "ARQ is automatic repeat request. The system asks for a retransmission when it finds an error.",
+      "distractorNotes": [
+        "",
+        "Polarization is an antenna choice.",
+        "The offset is a repeater split.",
+        "RACES enrollment is a civil-defense step."
+      ],
+      "review": {
+        "labId": "tr-07",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9a-dipole-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9A",
+      "conceptId": "t9a-dipole",
+      "conceptLabel": "A dipole radiates broadside",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9A10"
+      ],
+      "stem": "In which direction does a half-wave dipole radiate the strongest signal?",
+      "choices": [
+        "Broadside to the wire",
+        "Off the ends of the wire",
+        "Straight down the feed line only",
+        "Only toward the north magnetic pole"
+      ],
+      "correctIndex": 0,
+      "explanation": "A half-wave dipole radiates best broadside to the wire, not off the ends.",
+      "distractorNotes": [
+        "",
+        "The ends are the weaker directions.",
+        "The feed line is not the radiation direction.",
+        "The pattern is about the wire, not the magnetic pole."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9a-rubber-duck-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9A",
+      "conceptId": "t9a-rubber-duck",
+      "conceptLabel": "A short handheld antenna is a compromise",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9A04"
+      ],
+      "stem": "What is a disadvantage of the short flexible antenna on a handheld, compared with a full-size quarter-wave?",
+      "choices": [
+        "It is less efficient, so the signal is weaker",
+        "It raises the license power limit",
+        "It converts FM into SSB",
+        "It removes feed-line loss"
+      ],
+      "correctIndex": 0,
+      "explanation": "A short rubber-duck antenna is a compromise. It is generally less efficient than a full-size quarter-wave.",
+      "distractorNotes": [
+        "",
+        "The antenna does not change the license power limit.",
+        "It does not change the emission mode.",
+        "A short antenna does not remove feed-line loss."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9a-loading-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9A",
+      "conceptId": "t9a-loading",
+      "conceptLabel": "A loading coil shortens an antenna",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9A02"
+      ],
+      "stem": "What does a loading coil do for a mobile antenna?",
+      "choices": [
+        "It electrically lengthens an antenna that is physically short",
+        "It measures SWR",
+        "It identifies the station every 10 minutes",
+        "It selects USB or LSB"
+      ],
+      "correctIndex": 0,
+      "explanation": "A loading coil lets a physically short antenna resonate as if it were longer.",
+      "distractorNotes": [
+        "",
+        "An SWR meter measures the match.",
+        "Identification is an operating rule.",
+        "Sideband choice is a mode decision."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9b-impedance-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9B",
+      "conceptId": "t9b-impedance",
+      "conceptLabel": "Amateur coax is usually 50 ohms",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9B02"
+      ],
+      "stem": "What is the most common impedance of coaxial cable used in amateur stations?",
+      "choices": [
+        "50 ohms",
+        "300 ohms",
+        "600 ohms",
+        "12 ohms"
+      ],
+      "correctIndex": 0,
+      "explanation": "Amateur coaxial feed line is usually 50 ohms.",
+      "distractorNotes": [
+        "",
+        "300 ohms is a common twin-lead value, not the usual coax.",
+        "600 ohms is a ladder-line neighborhood, not the usual coax.",
+        "12 ohms is not the standard amateur coax impedance."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9b-loss-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9B",
+      "conceptId": "t9b-loss",
+      "conceptLabel": "Loss rises with frequency and length",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9B05"
+      ],
+      "stem": "What happens to loss in coaxial cable as the frequency goes up?",
+      "choices": [
+        "Loss increases",
+        "Loss falls to zero",
+        "Loss is unchanged at any frequency",
+        "Loss becomes the license power limit"
+      ],
+      "correctIndex": 0,
+      "explanation": "Coax loss increases as frequency increases. A longer cable also loses more. RG-58 loses more than larger cable such as RG-213 at the same frequency.",
+      "distractorNotes": [
+        "",
+        "Loss does not disappear.",
+        "Frequency does change the loss.",
+        "The power limit is a license rule, not a cable loss."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9b-tuner-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9B",
+      "conceptId": "t9b-tuner",
+      "conceptLabel": "A tuner does not reduce feed-line loss",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9B04"
+      ],
+      "stem": "What is the main job of an antenna tuner?",
+      "choices": [
+        "To present a match the transmitter will accept",
+        "To make a lossy feed line lossless",
+        "To increase the legal power limit",
+        "To change a CW segment into a phone segment"
+      ],
+      "correctIndex": 0,
+      "explanation": "A tuner matches the transmitter to the load it sees. It does not remove loss in the feed line, and it does not change the license.",
+      "distractorNotes": [
+        "",
+        "Loss in the cable is still loss.",
+        "The power limit is set by the license.",
+        "A tuner does not rewrite the band plan."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t9b-connector-04",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T9",
+      "groupId": "T9B",
+      "conceptId": "t9b-connector",
+      "conceptLabel": "N connectors above 400 MHz",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-08"
+      ],
+      "alignsTo": [
+        "T9B06"
+      ],
+      "stem": "Which connector is the better RF choice above 400 MHz?",
+      "choices": [
+        "A type N connector",
+        "A PL-259 left loose so it can drip",
+        "An unshielded twisted pair",
+        "A microphone plug"
+      ],
+      "correctIndex": 0,
+      "explanation": "Type N connectors are the usual choice above 400 MHz. A PL-259 is common at lower frequencies and should be kept weather-tight outdoors.",
+      "distractorNotes": [
+        "",
+        "A loose connector is a water path, not a better RF joint.",
+        "Twisted pair is not a constant-impedance RF connector.",
+        "A microphone plug is audio."
+      ],
+      "review": {
+        "labId": "tr-08",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0a-shock-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0A",
+      "conceptId": "t0a-shock",
+      "conceptLabel": "Current through the body is the hazard",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0A02"
+      ],
+      "stem": "What injures a person in an electrical shock?",
+      "choices": [
+        "Current flowing through the body",
+        "The color of the wire insulation by itself",
+        "The call sign printed on the radio",
+        "A low SWR reading"
+      ],
+      "correctIndex": 0,
+      "explanation": "Shock injury comes from current through the body. Even a 12-volt system can be dangerous in the wrong conditions, and higher voltages are more able to push that current.",
+      "distractorNotes": [
+        "",
+        "Insulation color identifies a conductor. The color itself is not the injury.",
+        "The call sign does not shock anyone.",
+        "SWR is a match reading."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0a-fuse-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0A",
+      "conceptId": "t0a-fuse",
+      "conceptLabel": "Do not replace a fuse with a larger one",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0A05"
+      ],
+      "stem": "Why should a 5-ampere fuse not be replaced with a 20-ampere fuse?",
+      "choices": [
+        "The larger fuse may not open before the wiring overheats",
+        "The larger fuse lowers the station's SWR",
+        "The larger fuse changes USB to LSB",
+        "The larger fuse extends the license term"
+      ],
+      "correctIndex": 0,
+      "explanation": "A fuse protects the wiring. A much larger fuse can let damaging current flow.",
+      "distractorNotes": [
+        "",
+        "SWR is not set by the fuse rating.",
+        "Sideband is not set by the fuse.",
+        "The license term is not set by the fuse."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0a-black-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0A",
+      "conceptId": "t0a-black",
+      "conceptLabel": "Black wire in US 120-volt cable",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0A03"
+      ],
+      "stem": "In a US three-wire 120-volt cable, what does black insulation usually indicate?",
+      "choices": [
+        "The hot conductor",
+        "The safety ground",
+        "The antenna",
+        "The neutral only, in every country"
+      ],
+      "correctIndex": 0,
+      "explanation": "In US house wiring, black is the hot conductor, white is neutral, and green or bare is the equipment ground. The fuse belongs in the hot side.",
+      "distractorNotes": [
+        "",
+        "Safety ground is green or bare.",
+        "The antenna is not the black house wire.",
+        "Neutral is white in this US convention, and the convention is not universal."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0b-distance-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0B",
+      "conceptId": "t0b-distance",
+      "conceptLabel": "Ten feet from a power line",
+      "difficulty": "core",
+      "type": "decision",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0B06"
+      ],
+      "stem": "You are placing a mast near a power line. A fall at one site would stop 4 feet from the wires, another would stop at 10 feet, and a third would stop at 18 feet. Which site follows the rule?",
+      "choices": [
+        "The 18-foot site, so no part of a falling antenna comes within 10 feet of the wires",
+        "The 4-foot site, because the mast is still on your property",
+        "The 10-foot site, because 10 feet is close enough",
+        "Any site, if you climb the tower alone"
+      ],
+      "correctIndex": 0,
+      "explanation": "If the antenna falls, no part of it may come within 10 feet of the power wires. Four feet and ten feet both fail that test. This check is not a climbing lesson.",
+      "distractorNotes": [
+        "",
+        "Property lines do not replace the 10-foot fall clearance.",
+        "Stopping at 10 feet still comes within 10 feet.",
+        "Climbing alone is a separate hazard, and it does not fix the power-line distance."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0b-pole-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0B",
+      "conceptId": "t0b-pole",
+      "conceptLabel": "Do not use a utility pole as an antenna support",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0B09"
+      ],
+      "stem": "What is the hazard in using a utility pole as an antenna support?",
+      "choices": [
+        "The pole carries power wiring, and the antenna can contact it",
+        "Utility poles are required antenna supports",
+        "The pole cancels feed-line loss",
+        "The pole extends a Technician license to Extra privileges"
+      ],
+      "correctIndex": 0,
+      "explanation": "A utility pole is not an antenna support. The wires on it are the hazard.",
+      "distractorNotes": [
+        "",
+        "They are not required supports.",
+        "A pole does not remove cable loss.",
+        "A pole does not change the license."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0b-crank-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0B",
+      "conceptId": "t0b-crank",
+      "conceptLabel": "Lower a crank-up tower before climbing",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0B07"
+      ],
+      "stem": "What is the safety rule for climbing a crank-up tower?",
+      "choices": [
+        "Do not climb it unless it is retracted or the safety locks are in place",
+        "Climb it fully extended so you can reach farther",
+        "Climb it alone so nobody is in the way",
+        "Paint it before every climb and skip the ground"
+      ],
+      "correctIndex": 0,
+      "explanation": "A crank-up tower is climbed only when it is retracted or mechanically locked. You do not climb alone.",
+      "distractorNotes": [
+        "",
+        "Climbing it extended is the hazard.",
+        "Climbing alone removes the person who could help.",
+        "Paint and an ungrounded tower are not the climbing rule."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0c-exposure-01",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0C",
+      "conceptId": "t0c-exposure",
+      "conceptLabel": "Exposure depends on power, distance, and duty cycle",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0C04"
+      ],
+      "stem": "Which factors affect RF exposure near an amateur antenna?",
+      "choices": [
+        "Power, distance, frequency, and duty cycle",
+        "Only the color of the coaxial jacket",
+        "Only the operator's call sign group",
+        "Only the repeater offset"
+      ],
+      "correctIndex": 0,
+      "explanation": "Exposure depends on power, distance, frequency, and how much of the time you are transmitting. The exposure bench is an educational model, not an MPE certificate.",
+      "distractorNotes": [
+        "",
+        "Jacket color does not set exposure.",
+        "The call sign format does not set exposure.",
+        "The offset does not set exposure."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0c-duty-02",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0C",
+      "conceptId": "t0c-duty",
+      "conceptLabel": "A lower duty cycle lowers average exposure",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0C03",
+        "T0C10"
+      ],
+      "stem": "If the duty cycle drops from 100 percent to 50 percent, and nothing else changes, what happens to the average exposure?",
+      "choices": [
+        "It is about half",
+        "It doubles",
+        "It becomes ionizing radiation",
+        "It is unchanged because duty cycle is not an exposure factor"
+      ],
+      "correctIndex": 0,
+      "explanation": "Average exposure follows the fraction of time you transmit. Half the duty cycle is about half the average, for the same power.",
+      "distractorNotes": [
+        "",
+        "Less transmitting does not increase the average.",
+        "RF from the station is non-ionizing. Duty cycle does not make it radioactive.",
+        "Duty cycle is one of the exposure factors."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-t0c-burn-03",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T0",
+      "groupId": "T0C",
+      "conceptId": "t0c-burn",
+      "conceptLabel": "Touching an antenna while transmitting",
+      "difficulty": "core",
+      "type": "choice",
+      "sourceLessons": [
+        "tr-09"
+      ],
+      "alignsTo": [
+        "T0C07"
+      ],
+      "stem": "What hazard comes from touching an antenna while it is transmitting?",
+      "choices": [
+        "An RF burn",
+        "A change in the license term",
+        "A lower SWR",
+        "A new Group D call sign"
+      ],
+      "correctIndex": 0,
+      "explanation": "Touching an antenna during transmission can cause an RF burn.",
+      "distractorNotes": [
+        "",
+        "The license term does not change.",
+        "Touching the antenna is not an SWR adjustment.",
+        "Call signs are not assigned by touching an antenna."
+      ],
+      "review": {
+        "labId": "tr-09",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-ohms-voltage",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-ohm-v",
+      "conceptLabel": "Voltage from current and resistance",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "ohms-voltage",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D01",
+        "T5D02",
+        "T5D10"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-ohms-current",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-ohm-i",
+      "conceptLabel": "Current from voltage and resistance",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "ohms-current",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D01",
+        "T5D04"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-power-product",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5C",
+      "conceptId": "t5c-power-vi",
+      "conceptLabel": "Power from voltage and current",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "power-product",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5C10"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-series-resistance",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-series-r",
+      "conceptLabel": "Series resistors add",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "series-resistance",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D13"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-parallel-resistance",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5D",
+      "conceptId": "t5d-parallel-r",
+      "conceptLabel": "Parallel resistors combine by product over sum",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "parallel-resistance",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5D14"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-frequency-units",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5B",
+      "conceptId": "t5b-hz-units",
+      "conceptLabel": "Kilohertz and megahertz",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "frequency-units",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5B07"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-wavelength",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T3",
+      "groupId": "T3B",
+      "conceptId": "t3b-wavelength",
+      "conceptLabel": "Wavelength from frequency",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "wavelength",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-05"
+      ],
+      "alignsTo": [
+        "T3B06"
+      ],
+      "review": {
+        "labId": "tr-05",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-battery-time",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T4",
+      "groupId": "T4A",
+      "conceptId": "t4a-battery",
+      "conceptLabel": "Battery time from ampere-hours and current",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "battery-time",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-06"
+      ],
+      "alignsTo": [
+        "T4A09"
+      ],
+      "review": {
+        "labId": "tr-06",
+        "stageId": "close",
+        "curriculumId": "technician-remediation"
+      }
+    },
+    {
+      "id": "rl-gen-decibels",
+      "license": "technician",
+      "pool": "2026-2030",
+      "subelement": "T5",
+      "groupId": "T5B",
+      "conceptId": "t5b-db-power",
+      "conceptLabel": "Decibel power ratios",
+      "difficulty": "core",
+      "type": "calculation",
+      "generator": "decibels",
+      "seedCount": 6,
+      "sourceLessons": [
+        "tr-01"
+      ],
+      "alignsTo": [
+        "T5B09",
+        "T5B10"
+      ],
+      "review": {
+        "labId": "tr-01",
+        "stageId": "do",
+        "curriculumId": "technician-remediation"
+      }
+    }
+  ]
+}

@@ -19,6 +19,7 @@
       <ul>
         <li><a href="{{ url_for('dashboard') }}" {% if request.endpoint == 'dashboard' %}aria-current="page"{% endif %}>DASHBOARD</a></li>
         <li><a href="{{ url_for('labs_index') }}" {% if request.endpoint == 'labs_index' %}aria-current="page"{% endif %}>LABS</a></li>
+        <li><a href="{{ url_for('readiness_page') }}" {% if request.endpoint == 'readiness_page' %}aria-current="page"{% endif %}>EXAM</a></li>
         <li><a href="{{ url_for('progress_page') }}" {% if request.endpoint == 'progress_page' %}aria-current="page"{% endif %}>PROGRESS</a></li>
         <li><a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}aria-current="page"{% endif %}>ABOUT</a></li>
       </ul>

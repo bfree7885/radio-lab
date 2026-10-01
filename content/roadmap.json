@@ -35,9 +35,9 @@
         {
           "id": "technician-exam",
           "title": "Exam Readiness",
-          "status": "planned",
-          "statusLabel": "PLANNED",
-          "content": null
+          "status": "available",
+          "statusLabel": "AVAILABLE",
+          "content": "exam/technician-readiness-v1.json"
         }
       ]
     },

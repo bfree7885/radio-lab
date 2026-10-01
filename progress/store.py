@@ -17,6 +17,7 @@ when a test needs an isolated file. No home directory or machine name is used.
 
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 from datetime import datetime, timezone
@@ -89,6 +90,13 @@ CREATE TABLE IF NOT EXISTS concept_progress (
     status TEXT NOT NULL CHECK (status IN ('not_started', 'in_progress', 'complete')),
     updated_at TEXT NOT NULL,
     PRIMARY KEY (curriculum_id, concept_id)
+);
+
+CREATE TABLE IF NOT EXISTS readiness_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    kind TEXT NOT NULL CHECK (kind IN ('practice', 'mock')),
+    payload TEXT NOT NULL,
+    recorded_at TEXT NOT NULL
 );
 """
 
@@ -550,3 +558,47 @@ def progress_snapshot(lab_id: str, stage_ids: list[str], curriculum_id: str = FO
             for row in exams
         ],
     }
+
+
+def list_readiness_events() -> list[dict]:
+    """Exam-readiness practice and mock records. Separate from lesson progress."""
+    with connect() as conn:
+        rows = conn.execute(
+            """
+            SELECT id, kind, payload, recorded_at
+            FROM readiness_events
+            ORDER BY id ASC
+            """
+        ).fetchall()
+    events = []
+    for row in rows:
+        payload = json.loads(row["payload"])
+        payload["id"] = row["id"]
+        payload["kind"] = row["kind"]
+        payload["recordedAt"] = row["recorded_at"]
+        events.append(payload)
+    return events
+
+
+def record_readiness_event(kind: str, payload: dict) -> dict:
+    if kind not in ("practice", "mock"):
+        raise ValueError(f"Unknown readiness event: {kind}")
+    if not isinstance(payload, dict):
+        raise ValueError("payload")
+    recorded_at = _now()
+    stored = dict(payload)
+    stored.pop("id", None)
+    stored.pop("recordedAt", None)
+    with connect() as conn:
+        cursor = conn.execute(
+            """
+            INSERT INTO readiness_events (kind, payload, recorded_at)
+            VALUES (?, ?, ?)
+            """,
+            (kind, json.dumps(stored, separators=(",", ":")), recorded_at),
+        )
+        event_id = int(cursor.lastrowid)
+    stored["id"] = event_id
+    stored["kind"] = kind
+    stored["recordedAt"] = recorded_at
+    return stored

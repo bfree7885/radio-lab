@@ -52,6 +52,6 @@ Regenerate after replacing the PDF:
 | Radio Lab teaching | `content/labs/` and `content/curriculum.json` | What the learner actually does |
 | Coverage audit | not produced by this import | A later comparison of teaching against the official topic text |
 
-`content/exam/model.json` points at the Technician source, syllabus, and question index. `questionsImported` stays false because the answer key is not loaded and exam readiness is not built. `questionIdsIndexed` means the ids and stems exist for traceability.
+`content/exam/model.json` points at the Technician source, syllabus, and question index. `questionsImported` stays false because the official answer key is not loaded. Exam Readiness uses original Radio Lab questions in `content/exam/technician-readiness-v1.json`. Official stem ids on those questions are alignment only. `questionIdsIndexed` means the ids and stems exist for traceability.
 
 The local app serves JSON under `/content/`. It does not serve the PDF. No learning screen lists official answers.

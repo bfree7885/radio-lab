@@ -38,7 +38,7 @@ function main() {
 
   const technician = roadmap.tracks.find(function (track) { return track.id === "technician"; });
   const general = roadmap.tracks.find(function (track) { return track.id === "general"; });
-  assert.equal(technician.phases.find(function (phase) { return phase.id === "technician-exam"; }).status, "planned");
+  assert.equal(technician.phases.find(function (phase) { return phase.id === "technician-exam"; }).status, "available");
   general.phases.forEach(function (phase) { assert.equal(phase.status, "planned"); });
 
   ["tr-02", "tr-03", "tr-04", "tr-05", "tr-06", "tr-07", "tr-09"].forEach(function (id) {

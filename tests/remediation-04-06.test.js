@@ -60,7 +60,7 @@ function main() {
   const remediationPhase = technician.phases.find(function (phase) { return phase.id === "technician-remediation"; });
   assert.equal(remediationPhase.status, "available");
   assert.equal(remediationPhase.content, "technician-remediation.json");
-  assert.equal(technician.phases.find(function (phase) { return phase.id === "technician-exam"; }).status, "planned");
+  assert.equal(technician.phases.find(function (phase) { return phase.id === "technician-exam"; }).status, "available");
 
   assert.equal(audit.metric.complete, 0);
   assert.equal(audit.metric.partial, 34);

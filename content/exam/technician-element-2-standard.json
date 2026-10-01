@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "role": "element-standard",
+  "license": "technician",
+  "element": "2",
+  "questionCount": 35,
+  "minimumCorrect": 26,
+  "citation": "47 CFR § 97.503(a)",
+  "sourceName": "Cornell Legal Information Institute reproduction of the eCFR",
+  "sourceUrl": "https://www.law.cornell.edu/cfr/text/47/97.503",
+  "retrieved": "2026-10-01",
+  "text": "Element 2: 35 questions concerning the privileges of a Technician Class operator license. The minimum passing score is 26 questions answered correctly.",
+  "blueprint": "The NCVEC February 19, 2026 syllabus header gives the exam question count for each subelement and says that count equals the number of groups. The imported syllabus stores those counts. One question is drawn from each of the 35 groups.",
+  "note": "This is the FCC written-element mark used to score a Radio Lab mock exam. A mock result is not an FCC exam result and does not grant a license."
+}

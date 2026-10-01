@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Technician Exam Readiness · Waypoint Radio Lab{% endblock %}
+{% block content %}
+  <header class="page-head">
+    <p class="eyebrow">TECHNICIAN // EXAM READINESS</p>
+    <h1>TECHNICIAN EXAM READINESS</h1>
+    <p class="lede">Retrieval practice. Lesson completion, concept mastery, syllabus coverage, practice performance, mock-exam performance, and the readiness trend stay separate.</p>
+  </header>
+
+  <section class="panel" aria-labelledby="distinction-heading">
+    <h2 id="distinction-heading">Official syllabus and original questions</h2>
+    <p>The groups and the 35-question blueprint come from the NCVEC 2026–2030 Technician syllabus, FCC Element 2. The questions on this page are original Radio Lab questions. They are labeled RADIO LAB PRACTICE or RADIO LAB MOCK EXAM. They are not FCC or NCVEC questions, and this page does not show an official answer key.</p>
+    <p>A full mock exam is scored against 47 CFR § 97.503(a): 26 correct out of 35. Meeting that mark here is practice performance. It does not grant a license and it does not guarantee a result on the real exam.</p>
+  </section>
+
+  <div id="readiness-root" aria-live="polite">
+    <p>Loading Exam Readiness.</p>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ url_for('web_file', filename='readiness-engine.js') }}" defer></script>
+  <script src="{{ url_for('web_file', filename='readiness-store.js') }}" defer></script>
+  <script src="{{ url_for('web_file', filename='readiness-ui.js') }}" defer></script>
+{% endblock %}

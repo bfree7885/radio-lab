@@ -785,6 +785,73 @@ section > h2 {
   min-height: 3rem;
 }
 
+.readiness-actions,
+.readiness-nav,
+.readiness-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.readiness-actions select {
+  min-height: 3rem;
+  font: inherit;
+  background: var(--bg-inset);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.6rem;
+}
+
+.button-quiet,
+.readiness-choice {
+  background: var(--bg-inset);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  font: inherit;
+}
+
+.button-quiet {
+  min-height: 2.75rem;
+  padding: 0.4rem 0.75rem;
+}
+
+.readiness-choice {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 0.4rem 0;
+  padding: 0.75rem 0.9rem;
+  min-height: 3rem;
+}
+
+.readiness-choice[aria-pressed="true"],
+.readiness-nav [aria-current="true"] {
+  border-color: var(--amber);
+}
+
+.readiness-answered {
+  border-color: var(--teal);
+}
+
+.readiness-figure {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.8rem 0;
+  background: #f7f4ee;
+  padding: 0.5rem;
+}
+
+.readiness-miss {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

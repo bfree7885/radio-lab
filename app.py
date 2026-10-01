@@ -34,10 +34,12 @@ from progress.store import (
     concept_count,
     exam_readiness,
     init_db,
+    list_readiness_events,
     note_activity,
     progress_snapshot,
     progress_summary,
     record_exam,
+    record_readiness_event,
     set_concept_status,
     set_field_task,
     set_stage_completed,
@@ -311,6 +313,25 @@ def progress_page():
         rf_summary=rf_summary,
         coverage=syllabus_coverage(),
     )
+
+
+@app.route("/readiness")
+def readiness_page():
+    return render_template("readiness.html")
+
+
+@app.route("/api/readiness", methods=["GET", "POST"])
+def readiness_api():
+    if request.method == "GET":
+        return jsonify({"events": list_readiness_events()})
+    body = request.get_json(silent=True)
+    if not isinstance(body, dict):
+        abort(400)
+    try:
+        event = record_readiness_event(body.get("kind"), body.get("payload"))
+    except ValueError:
+        abort(400)
+    return jsonify(event)
 
 
 @app.route("/about")

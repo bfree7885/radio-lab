@@ -33,7 +33,7 @@ function main() {
   const general = roadmap.tracks.find(function (track) { return track.id === "general"; });
   general.phases.forEach(function (phase) { assert.equal(phase.status, "planned"); });
   const technician = roadmap.tracks.find(function (track) { return track.id === "technician"; });
-  assert.equal(technician.phases.find(function (phase) { return phase.id === "technician-exam"; }).status, "planned");
+  assert.equal(technician.phases.find(function (phase) { return phase.id === "technician-exam"; }).status, "available");
   assert.equal(roadmap.tracks.find(function (track) { return track.id === "rf-labs"; }).phases[0].status, "available");
 
   assert.equal(sha("content/exam/technician-2026-2030-coverage.json"), "d8a7e8e0cbdc6a481c3da955e60e8ba42b33119d2758340744da6234fffc5f1e");

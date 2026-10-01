@@ -49,7 +49,7 @@ function main() {
     assert.equal(phase.status, "planned");
   });
   var examPhase = roadmap.tracks[0].phases.find(function (phase) { return phase.id === "technician-exam"; });
-  assert.equal(examPhase.status, "planned");
+  assert.equal(examPhase.status, "available");
 
   [lab05, lab06, lab07].forEach(function (lesson) {
     var exam = examOf(lesson);

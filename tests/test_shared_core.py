@@ -155,6 +155,7 @@ class SharedCoreTests(unittest.TestCase):
             "tests/remediation-07-09.test.js",
             "tests/rf-01.test.js",
             "tests/gap-closure.test.js",
+            "tests/readiness.test.js",
         ):
             result = subprocess.run(
                 ["node", script],
@@ -217,7 +218,8 @@ class SharedCoreTests(unittest.TestCase):
         self.assertEqual(foundations["content"], "curriculum.json")
         self.assertEqual(phase_by_id("technician-core")["status"], "available")
         self.assertEqual(phase_by_id("technician-core")["content"], "technician-core.json")
-        self.assertEqual(phase_by_id("technician-exam")["status"], "planned")
+        self.assertEqual(phase_by_id("technician-exam")["status"], "available")
+        self.assertEqual(phase_by_id("technician-exam")["content"], "exam/technician-readiness-v1.json")
         self.assertEqual(phase_by_id("general-bridge")["status"], "planned")
         self.assertEqual(phase_by_id("general-core")["status"], "planned")
         self.assertEqual(phase_by_id("general-exam")["status"], "planned")
@@ -565,7 +567,7 @@ class SharedCoreTests(unittest.TestCase):
         self.assertTrue(all(phase["status"] == "planned" for phase in general["phases"]))
         technician = next(track for track in roadmap["tracks"] if track["id"] == "technician")
         exam_phase = next(phase for phase in technician["phases"] if phase["id"] == "technician-exam")
-        self.assertEqual(exam_phase["status"], "planned")
+        self.assertEqual(exam_phase["status"], "available")
 
         progress = self.client.get("/progress")
         self.assertIn(b"35 of 35", progress.data)
@@ -695,7 +697,7 @@ class SharedCoreTests(unittest.TestCase):
         self.assertTrue(all(phase["status"] == "planned" for phase in general["phases"]))
         self.assertEqual(
             next(phase["status"] for phase in technician["phases"] if phase["id"] == "technician-exam"),
-            "planned",
+            "available",
         )
         self.assertEqual(rf["phases"][0]["status"], "available")
         coverage = syllabus_coverage()
