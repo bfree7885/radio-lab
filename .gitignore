@@ -36,3 +36,7 @@ tmp/
 .env.*
 *.pem
 credentials.json
+
+# Local NCVEC source PDFs. Question stems and official diagrams are tracked.
+# The PDF stays on the development machine and is not part of the public repository.
+content/exam/sources/**/*.pdf

@@ -8,9 +8,13 @@ Each license level can have its own directory under `content/exam/sources/`. Tec
 
 `content/exam/sources/technician-2026-2030/`
 
-That directory holds the unchanged NCVEC document and `provenance.json`. General is not imported. When it is, it gets its own directory, its own NCVEC file, and its own errata date. It does not reuse the Technician file.
+That directory holds `provenance.json` and, on a development machine, the local NCVEC PDF. The PDF is listed in `.gitignore`. It is not in the git repository and it is not copied into the hosted learner site. General is not imported. When it is, it gets its own directory, its own local NCVEC file, and its own errata date. It does not reuse the Technician file.
 
-The current Technician document is the NCVEC Question Pool Committee public release that incorporates the February 19, 2026 errata. It supersedes the December 18, 2025 public release for Radio Lab. The page that identifies that release is:
+The Technician source is the NCVEC Question Pool Committee 2026–2030 Technician Class pool, FCC Element 2, February 19, 2026 release. It is effective July 1, 2026 through June 30, 2030. It supersedes the December 18, 2025 public release for Radio Lab.
+
+NCVEC states, on the release page: "The NCVEC Question Pool Committee (QPC) hereby releases the 2026-2030 Technician Class (Element 2) Question Pool into the public domain."
+
+The page where that source can be obtained is:
 
 https://ncvec.org/index.php/2026-2030-technician-question-pool
 
@@ -45,7 +49,7 @@ Regenerate after replacing the PDF:
 
 | Layer | File | What it is |
 | --- | --- | --- |
-| Authoritative source | `content/exam/sources/technician-2026-2030/` | Unchanged NCVEC PDF and provenance |
+| Authoritative source | NCVEC release page, plus a local ignored PDF and `provenance.json` | February 19, 2026 Technician Class / Element 2 pool. Public domain. The PDF is not in git. |
 | Official syllabus | `content/exam/technician-2026-2030.json` | Group topic text derived from that PDF |
 | Official question metadata | `content/exam/technician-2026-2030-questions.json` | Ids and stems for traceability. No answer key |
 | Radio Lab alignment | lesson `alignment` blocks | Which labs relate to which group ids |

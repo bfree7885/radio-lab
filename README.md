@@ -43,7 +43,7 @@ RADIO LAB CORE
            LIVE LAB when hardware is actually available
 ```
 
-**Hosted mode** is for anyone in a normal browser, including people who are not the owner. It will be published through Waypoint Studio. The visitor does not install Python or Flask. No radio hardware is required. Progress stays in that browser. This mode is not published yet, and Waypoint Studio is not wired up yet.
+**Hosted mode** is the public learner site. It is a static site generated from this repository. The visitor does not install Python or Flask. No radio hardware is required. Progress stays in that browser. No account is required. Export and import on the Progress page are the backup and transfer path. Clearing the browser's site data erases that progress.
 
 **Local mode** is this Flask application. It runs on the owner's Linux computers: a Linux Mint laptop, the Meerkat running Pop!_OS, and eventually Waypoint Deck. It teaches the same lessons. It may later add a live lab when compatible hardware is attached. Hardware is never required for the core curriculum.
 
@@ -140,29 +140,17 @@ No adapter detects devices. Missing hardware is the normal case. Local mode may 
 
 Short names such as `rtl_sdr` still resolve to `hardware.rtl_sdr` in the local adapter.
 
-## Future hosted mount
+## Hosted site
 
-Do not publish this yet. Do not point Waypoint Studio at it yet.
+Build the static learner site from this repository:
 
-When Studio hosts Radio Lab, it should serve these paths itself. The public site does not call the owner's Flask process.
+```bash
+python -m labs.build_hosted
+```
 
-Include:
+That writes `dist/learner/`. Serve that directory as the site root so `/labs/`, `/content/`, and `/web/` resolve. The build copies the learner pages, browser scripts, styles, lesson JSON, readiness questions, and the official diagrams the labs display. It does not copy Flask, Python, SQLite, hardware code, or the local NCVEC PDF.
 
-- `content/` — curriculum, lesson JSON, capability ids
-- `web/radiollab.js`
-- `web/progress-browser.js`
-- `web/capabilities-public.js`
-- `web/boot-hosted.js`
-- `static/css/lab.css` and `static/favicon.svg`
-
-Leave on the local machine:
-
-- `app.py`, `templates/`, and `static/js/lab.js` (the local page shell)
-- `progress/store.py` and `data/`
-- `hardware/capabilities.py` and `web/capabilities-local.js`
-- `.venv`
-
-Set `data-delivery="hosted"` and `data-content-base` to the URL where Studio serves `content/`. Simulations, when they exist, should be scripts or components named by lesson blocks, shared by both modes, not copied into a second lesson tree.
+GitHub Actions publishes `dist/learner` when `master` is pushed. Waypoint Studio links to that site. It does not host a second copy of the curriculum.
 
 ## Technician and General
 
