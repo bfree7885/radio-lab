@@ -19,6 +19,20 @@
     var base = contentBase();
     RadioLab.configure({ contentBase: base });
     RadioLab.useProgress(RadioLabBrowserProgress.create());
+    var manifestNode = document.getElementById("radio-lab-capability-manifest");
+    if (manifestNode) {
+      try {
+        RadioLab.useCapabilities(RadioLabPublicCapabilities.create(JSON.parse(manifestNode.textContent)));
+      } catch (error) {
+        /* A later fetch can still install capabilities. */
+      }
+    }
+    if (RadioLab.capabilities) {
+      RadioLab.curriculum.load().then(function () {
+        return RadioLab.roadmap.load();
+      }).catch(function () {});
+      return;
+    }
     var get = typeof fetch === "function" ? fetch : null;
     if (!get) {
       return;

@@ -5,22 +5,44 @@
     <p class="eyebrow">{{ curriculum.title | upper }} // {{ curriculum.version }}</p>
     <h1>Progress</h1>
     <p class="lede">These counts are Technician Foundations only. General will be tracked separately. Empty areas stay empty until there is something to record.</p>
+    {% if delivery == 'hosted' %}
+      <p>These counts come from this browser. They are not the development database.</p>
+    {% endif %}
   </header>
+
+  {% if delivery == 'hosted' %}
+  <section class="panel" id="learner-data" aria-labelledby="learner-data-heading">
+    <h2 id="learner-data-heading">Export and import</h2>
+    <p>One JSON file holds lab progress and Exam Readiness history for this browser. Import replaces what is stored here. It does not merge, and it does not run until you confirm.</p>
+    <div class="readiness-actions">
+      <button type="button" class="button" id="learner-export">Export progress</button>
+      <label class="button-quiet" for="learner-import-file">Choose a file to import</label>
+      <input id="learner-import-file" type="file" accept="application/json,.json">
+    </div>
+    <div id="learner-import-preview" hidden>
+      <h3>Import preview</h3>
+      <p id="learner-import-summary"></p>
+      <p>Replacing progress removes the lab record and Exam Readiness history currently in this browser, then writes the file in their place.</p>
+      <button type="button" class="button" id="learner-import-confirm">Replace progress in this browser</button>
+    </div>
+    <p id="learner-data-message" role="status"></p>
+  </section>
+  {% endif %}
 
   <section class="panel" aria-labelledby="foundations-heading">
     <h2 id="foundations-heading">Technician Foundations</h2>
     <dl class="stat-grid">
       <div>
         <dt>Labs complete</dt>
-        <dd>{{ summary.completed }}</dd>
+        <dd data-track-field="completed" data-curriculum-id="technician-foundations">{{ summary.completed }}</dd>
       </div>
       <div>
         <dt>Labs remaining</dt>
-        <dd>{{ summary.remaining }}</dd>
+        <dd data-track-field="remaining" data-curriculum-id="technician-foundations">{{ summary.remaining }}</dd>
       </div>
       <div>
         <dt>In progress</dt>
-        <dd>{{ summary.in_progress }}</dd>
+        <dd data-track-field="in_progress" data-curriculum-id="technician-foundations">{{ summary.in_progress }}</dd>
       </div>
       <div>
         <dt>In this track</dt>
@@ -34,6 +56,7 @@
       aria-valuemax="{{ summary.total }}"
       aria-valuenow="{{ summary.completed }}"
       aria-valuetext="{{ summary.completed }} of {{ summary.total }} labs complete"
+      data-track-meter="technician-foundations"
     >
       <span class="meter-fill" style="width: {{ summary.percent }}%;"></span>
     </div>
@@ -44,15 +67,15 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="core-progress-heading">
+  <section class="panel" aria-labelledby="core-progress-heading" data-weak-slot="technician-core">
     <h2 id="core-progress-heading">Technician Core</h2>
-    <p>{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. Lesson completion, concept checks, and practice results are separate. None of them is Technician exam readiness.</p>
+    <p data-track-line="technician-core">{{ core_summary.completed }} of {{ core_summary.total }} core labs complete. Lesson completion, concept checks, and practice results are separate. None of them is Technician exam readiness.</p>
     <ol class="status-list">
       {% for lab in core_labs %}
         <li>
           <span class="lab-number">{{ lab.number }}</span>
           <span class="status-title">{{ lab.title }}</span>
-          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+          <span class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</span>
         </li>
       {% endfor %}
     </ol>
@@ -66,7 +89,7 @@
     {% else %}
       <p>No core practice topic is behind. A topic appears here only when misses outnumber correct answers. That list is practice performance, not concept mastery.</p>
     {% endif %}
-    <p>{% if core_concepts %}{{ core_concepts }} concept checks recorded for Technician Core.{% else %}No Technician Core concept checks recorded yet.{% endif %}</p>
+    <p data-concept-count="technician-core">{% if core_concepts %}{{ core_concepts }} concept checks recorded for Technician Core.{% else %}No Technician Core concept checks recorded yet.{% endif %}</p>
     {% if core_summary.completed == core_summary.total and core_summary.total %}
       <p class="stat-line">TECHNICIAN CORE — CURRENT LABS COMPLETE</p>
       <p class="stat-line">NEXT: TECHNICIAN REMEDIATION</p>
@@ -74,9 +97,9 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="remediation-progress-heading">
+  <section class="panel" aria-labelledby="remediation-progress-heading" data-weak-slot="technician-remediation">
     <h2 id="remediation-progress-heading">Technician Remediation</h2>
-    <p>{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. Lesson completion, concept checks, practice results, and the historical coverage audit are separate. None of them is Technician exam readiness.</p>
+    <p data-track-line="technician-remediation">{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. Lesson completion, concept checks, practice results, and the historical coverage audit are separate. None of them is Technician exam readiness.</p>
     {% if remediation_summary.completed == remediation_summary.total and remediation_summary.total %}
       <p class="stat-line">TECHNICIAN REMEDIATION COMPLETE</p>
       <p class="stat-line">COVERAGE VERIFICATION REQUIRED</p>
@@ -86,7 +109,7 @@
         <li>
           <span class="lab-number">{{ lab.number }}</span>
           <span class="status-title">{{ lab.title }}</span>
-          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+          <span class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</span>
         </li>
       {% endfor %}
     </ol>
@@ -100,18 +123,18 @@
     {% else %}
       <p>No remediation practice topic is behind. That list is practice performance, not concept mastery, and it is not the historical coverage audit.</p>
     {% endif %}
-    <p>{% if remediation_concepts %}{{ remediation_concepts }} concept checks recorded for Technician Remediation.{% else %}No Technician Remediation concept checks recorded yet.{% endif %}</p>
+    <p data-concept-count="technician-remediation">{% if remediation_concepts %}{{ remediation_concepts }} concept checks recorded for Technician Remediation.{% else %}No Technician Remediation concept checks recorded yet.{% endif %}</p>
   </section>
 
   <section class="panel" aria-labelledby="rf-progress-heading">
     <h2 id="rf-progress-heading">RF Labs</h2>
-    <p>{{ rf_summary.completed }} of {{ rf_summary.total }} RF labs complete. Tracked separately from Technician syllabus coverage. Not exam readiness.</p>
+    <p data-track-line="rf-labs">{{ rf_summary.completed }} of {{ rf_summary.total }} RF labs complete. Tracked separately from Technician syllabus coverage. Not exam readiness.</p>
     <ol class="status-list">
       {% for lab in rf_labs %}
         <li>
           <span class="lab-number">{{ lab.number }}</span>
           <span class="status-title">{{ lab.title }}</span>
-          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+          <span class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</span>
         </li>
       {% endfor %}
     </ol>
@@ -146,7 +169,7 @@
         <li>
           <span class="lab-number">{{ lab.number }}</span>
           <span class="status-title">{{ lab.title }}</span>
-          <span class="status status-{{ lab.status }}">{{ lab.status_label }}</span>
+          <span class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</span>
           {% if not lab.available %}
             <span class="coming-soon">COMING SOON</span>
           {% endif %}
@@ -155,7 +178,7 @@
     </ol>
   </section>
 
-  <section class="panel" aria-labelledby="weak-heading">
+  <section class="panel" aria-labelledby="weak-heading" data-weak-slot="technician-foundations">
     <h2 id="weak-heading">Weak topics</h2>
     {% if topics %}
       <ul>
@@ -170,13 +193,13 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="exam-heading">
+  <section class="panel" aria-labelledby="exam-heading" data-pool-slot="technician-foundations">
     <h2 id="exam-heading">Exam readiness</h2>
     {% if exam.has_evidence %}
       <p>{{ exam.correct }} correct out of {{ exam.recorded }} recorded practice items. This is question performance for Technician Foundations, not concept mastery, and it is not an official exam score.</p>
     {% else %}
       <p>Not enough evidence yet. Readiness here is question-pool performance for Technician Foundations. It is not a concept-mastery score, and it does not include General. No readiness score is shown until then.</p>
     {% endif %}
-    <p>{% if concepts == 1 %}1 concept check recorded for this track.{% elif concepts %}{{ concepts }} concept checks recorded for this track.{% else %}No concept checks recorded yet.{% endif %}</p>
+    <p data-concept-count="technician-foundations">{% if concepts == 1 %}1 concept check recorded for this track.{% elif concepts %}{{ concepts }} concept checks recorded for this track.{% else %}No concept checks recorded yet.{% endif %}</p>
   </section>
 {% endblock %}

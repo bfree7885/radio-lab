@@ -8,6 +8,8 @@ Start it with ./run.sh.
 
 from __future__ import annotations
 
+import json
+import os
 from pathlib import Path
 
 import re
@@ -68,15 +70,29 @@ def _ensure_db() -> None:
         _db_ready = True
 
 
+def _delivery() -> str:
+    value = os.environ.get("RADIO_LAB_DELIVERY", "local")
+    if value in ("local", "hosted"):
+        return value
+    return "local"
+
+
+def _capability_manifest() -> dict:
+    return json.loads((CONTENT / "capabilities.json").read_text(encoding="utf-8"))
+
+
 @app.context_processor
 def _inject_globals() -> dict:
     content_url = url_for("content_file", filename="curriculum.json")
+    delivery = _delivery()
     return {
         "curriculum": curriculum_meta(),
         "lab_mode": lab_mode(),
         "live_lab": live_lab_available(),
         "content_base": content_url[: -len("curriculum.json")],
         "capability_snapshot": capability_snapshot(),
+        "capability_manifest": _capability_manifest() if delivery == "hosted" else None,
+        "delivery": delivery,
     }
 
 

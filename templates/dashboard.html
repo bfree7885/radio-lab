@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Dashboard · Waypoint Radio Lab{% endblock %}
 {% block content %}
+  {% if delivery == 'hosted' %}
+  <section class="panel" aria-labelledby="browser-store-heading">
+    <h2 id="browser-store-heading">This browser</h2>
+    <p>Progress is stored in this browser on this device. It is not sent to an account, and it is not combined with the development database on the computer where Radio Lab is built. Export a copy from Progress before you clear this browser.</p>
+  </section>
+  {% endif %}
+
   <header class="page-head">
     <p class="eyebrow">{{ curriculum.title | upper }} // {{ curriculum.version }}</p>
     <h1>WAYPOINT RADIO LAB</h1>
@@ -53,13 +60,13 @@
         </p>
       </div>
       {% if continue_lab %}
-        <a class="button" href="{{ url_for('lab_workspace', lab_id=continue_lab.id) }}">Continue Learning</a>
+        <a class="button" data-continue-for="technician-foundations" href="{{ url_for('lab_workspace', lab_id=continue_lab.id) }}">Continue Learning</a>
       {% else %}
         <p class="stat-line">TECHNICIAN FOUNDATIONS COMPLETE</p>
         <p class="stat-line">NEXT: TECHNICIAN CORE</p>
         <p>These eight labs are the foundation. They are not Technician exam readiness.</p>
         {% if core_continue %}
-          <a class="button" href="{{ url_for('lab_workspace', lab_id=core_continue.id) }}">Open Technician Core</a>
+          <a class="button" data-continue-for="technician-core" href="{{ url_for('lab_workspace', lab_id=core_continue.id) }}">Open Technician Core</a>
         {% endif %}
       {% endif %}
     </div>
@@ -82,7 +89,7 @@
         <li class="card">
           <p class="lab-number">Lab {{ lab.number }}</p>
           <h3>{{ lab.title }}</h3>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
           {% if not lab.available %}
             <p class="coming-soon">COMING SOON</p>
           {% endif %}
@@ -107,7 +114,7 @@
         <li class="card">
           <p class="lab-number">{{ lab.number }}</p>
           <h3>{{ lab.title }}</h3>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
           {% if lab.available %}
             <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
           {% endif %}
@@ -120,7 +127,7 @@
     <h2 id="remediation-heading">Technician Remediation</h2>
     <p class="lede">{{ remediation_summary.completed }} of {{ remediation_summary.total }} remediation labs complete. TR-01 through TR-09 are open. Finishing them is not exam readiness. A coverage verification still has to be done.</p>
     {% if remediation_continue %}
-      <a class="button" href="{{ url_for('lab_workspace', lab_id=remediation_continue.id) }}">Continue remediation</a>
+      <a class="button" data-continue-for="technician-remediation" href="{{ url_for('lab_workspace', lab_id=remediation_continue.id) }}">Continue remediation</a>
     {% elif remediation_summary.total and remediation_summary.completed == remediation_summary.total %}
       <p class="stat-line">TECHNICIAN REMEDIATION COMPLETE</p>
       <p class="stat-line">COVERAGE VERIFICATION REQUIRED</p>
@@ -131,7 +138,7 @@
         <li class="card">
           <p class="lab-number">{{ lab.number }}</p>
           <h3>{{ lab.title }}</h3>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
           {% if not lab.available %}
             <p class="coming-soon">COMING SOON</p>
           {% endif %}
@@ -152,7 +159,7 @@
           <p class="lab-number">{{ lab.number }}</p>
           <h3>{{ lab.title }}</h3>
           <p>{{ lab.prerequisiteNote }}</p>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
           {% if lab.available %}
             <a class="text-action" href="{{ url_for('lab_workspace', lab_id=lab.id) }}">Open lab</a>
           {% endif %}

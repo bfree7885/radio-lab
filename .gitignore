@@ -16,6 +16,9 @@ data/*.db
 logs/
 *.log
 
+# Generated learner site
+dist/
+
 # Temporary files
 tmp/
 .tmp/

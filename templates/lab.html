@@ -5,7 +5,7 @@
     <p class="eyebrow">{% if lab.phaseTitle %}{{ lab.phaseTitle }} · {% endif %}<a href="{{ url_for('labs_index') }}">Labs</a> · {{ lab.number }}</p>
     <h1>{{ lab.title }}</h1>
     <p class="lede">{{ lab.description }}</p>
-    <p id="lab-status" class="status status-{{ status }}">{{ status_label }}</p>
+    <p id="lab-status" class="status status-{{ status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ status_label }}</p>
     {% if not lab.available %}
       <p class="coming-soon">COMING SOON</p>
     {% endif %}
@@ -54,45 +54,61 @@
 {% endblock %}
 {% block scripts %}
   {% if lab.available and lab.id == "01" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab01.js') }}" defer></script>
   {% elif lab.available and lab.id == "02" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='handheld.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab02.js') }}" defer></script>
   {% elif lab.available and lab.id == "03" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab03.js') }}" defer></script>
   {% elif lab.available and lab.id == "04" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab04.js') }}" defer></script>
   {% elif lab.available and lab.id == "05" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab05.js') }}" defer></script>
   {% elif lab.available and lab.id == "06" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab06.js') }}" defer></script>
   {% elif lab.available and lab.id == "07" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lesson-kit.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='lab07.js') }}" defer></script>
   {% elif lab.available and lab.id == "08" %}
+    {% if delivery != 'hosted' %}
     <script src="{{ url_for('web_file', filename='progress-local.js') }}" defer></script>
+    {% endif %}
     <script src="{{ url_for('web_file', filename='radio-sim.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='radio-controls.js') }}" defer></script>
     <script src="{{ url_for('web_file', filename='foundations-sim.js') }}" defer></script>
@@ -102,7 +118,9 @@
     <script src="{{ url_for('web_file', filename='lab08.js') }}" defer></script>
   {% elif lab.available and lab.scripts %}
     {% for name in lab.scripts %}
+      {% if not (delivery == 'hosted' and name == 'progress-local.js') %}
       <script src="{{ url_for('web_file', filename=name) }}" defer></script>
+      {% endif %}
     {% endfor %}
   {% endif %}
 {% endblock %}

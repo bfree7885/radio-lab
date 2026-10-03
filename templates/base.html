@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-delivery="local" data-lab-mode="{{ lab_mode }}" data-content-base="{{ content_base }}">
+<html lang="en" data-delivery="{{ delivery }}" data-lab-mode="{{ lab_mode }}" data-content-base="{{ content_base }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Waypoint Radio Lab{% endblock %}</title>
   <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/lab.css') }}">
-  <script type="application/json" id="radio-lab-capabilities">{{ capability_snapshot | tojson }}</script>
+  {% if delivery == 'hosted' %}
+    <script type="application/json" id="radio-lab-capability-manifest">{{ capability_manifest | tojson }}</script>
+  {% else %}
+    <script type="application/json" id="radio-lab-capabilities">{{ capability_snapshot | tojson }}</script>
+  {% endif %}
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -32,17 +36,28 @@
         <span class="mode-dot" aria-hidden="true"></span>
         Simulation · no radio required
       {% endif %}
+      {% if delivery == 'hosted' %}
+        · progress stays in this browser
+      {% endif %}
     </p>
   </header>
   <main id="content" class="site-main">
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
-    <p>{{ curriculum.title }} // {{ curriculum.version }} · local mode</p>
+    <p>{{ curriculum.title }} // {{ curriculum.version }} · {% if delivery == 'hosted' %}this browser{% else %}local mode{% endif %}</p>
   </footer>
   <script src="{{ url_for('web_file', filename='radiollab.js') }}" defer></script>
-  <script src="{{ url_for('web_file', filename='capabilities-local.js') }}" defer></script>
-  <script src="{{ url_for('static', filename='js/lab.js') }}" defer></script>
+  {% if delivery == 'hosted' %}
+    <script src="{{ url_for('web_file', filename='progress-browser.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='capabilities-public.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='learner-data.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='boot-hosted.js') }}" defer></script>
+    <script src="{{ url_for('web_file', filename='hosted-shell.js') }}" defer></script>
+  {% else %}
+    <script src="{{ url_for('web_file', filename='capabilities-local.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/lab.js') }}" defer></script>
+  {% endif %}
   {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -14,7 +14,7 @@
         <div class="lab-copy">
           <h2>{{ lab.title }}</h2>
           <p>{{ lab.description }}</p>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
           {% if not lab.available %}
             <p class="coming-soon">COMING SOON</p>
           {% endif %}
@@ -39,7 +39,7 @@
         <div class="lab-copy">
           <h2>{{ lab.title }}</h2>
           <p>{{ lab.description }}</p>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
         </div>
         <div class="lab-action">
           {% if lab.available %}
@@ -59,7 +59,7 @@
         <div class="lab-copy">
           <h2>{{ lab.title }}</h2>
           <p>{{ lab.description }}</p>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
         </div>
         <div class="lab-action">
           {% if not lab.available %}
@@ -82,7 +82,7 @@
         <div class="lab-copy">
           <h2>{{ lab.title }}</h2>
           <p>{{ lab.description }}</p>
-          <p class="status status-{{ lab.status }}">{{ lab.status_label }}</p>
+          <p class="status status-{{ lab.status }}" data-lab-status="{{ lab.id }}" data-curriculum-id="{{ lab.curriculumId|default('technician-foundations') }}">{{ lab.status_label }}</p>
         </div>
         <div class="lab-action">
           {% if lab.available %}
