@@ -217,6 +217,12 @@ def _migrate_legacy(conn: sqlite3.Connection) -> None:
     conn.execute("PRAGMA foreign_keys = ON")
 
 
+def _ensure_stage_revision(conn: sqlite3.Connection) -> None:
+    """Lab revisions are optional. Older rows stay NULL and still count for labs that do not ask for one."""
+    if _table_exists(conn, "stage_progress") and "revision" not in _columns(conn, "stage_progress"):
+        conn.execute("ALTER TABLE stage_progress ADD COLUMN revision INTEGER")
+
+
 def init_db() -> None:
     with connect() as conn:
         conn.execute(
@@ -229,6 +235,7 @@ def init_db() -> None:
         )
         _migrate_legacy(conn)
         conn.executescript(SCHEMA)
+        _ensure_stage_revision(conn)
         conn.execute(
             """
             INSERT INTO schema_meta (key, value) VALUES ('schema_version', '2')
@@ -336,18 +343,25 @@ def exam_readiness(curriculum_id: str | None = FOUNDATIONS_ID) -> dict:
     }
 
 
-def stage_completed(lab_id: str, stage_id: str, curriculum_id: str = FOUNDATIONS_ID) -> bool:
+def stage_completed(
+    lab_id: str,
+    stage_id: str,
+    curriculum_id: str = FOUNDATIONS_ID,
+    revision: int | None = None,
+) -> bool:
     with connect() as conn:
         row = conn.execute(
             """
-            SELECT completed FROM stage_progress
+            SELECT completed, revision FROM stage_progress
             WHERE curriculum_id = ? AND lab_id = ? AND stage_id = ?
             """,
             (curriculum_id, lab_id, stage_id),
         ).fetchone()
-    if row is None:
+    if row is None or not row["completed"]:
         return False
-    return bool(row["completed"])
+    if revision is None:
+        return True
+    return row["revision"] == revision
 
 
 def set_stage_completed(
@@ -355,18 +369,20 @@ def set_stage_completed(
     stage_id: str,
     completed: bool,
     curriculum_id: str = FOUNDATIONS_ID,
+    revision: int | None = None,
 ) -> None:
     with connect() as conn:
         conn.execute(
             """
             INSERT INTO stage_progress
-                (curriculum_id, lab_id, stage_id, completed, updated_at)
-            VALUES (?, ?, ?, ?, ?)
+                (curriculum_id, lab_id, stage_id, completed, updated_at, revision)
+            VALUES (?, ?, ?, ?, ?, ?)
             ON CONFLICT(curriculum_id, lab_id, stage_id) DO UPDATE SET
                 completed = excluded.completed,
-                updated_at = excluded.updated_at
+                updated_at = excluded.updated_at,
+                revision = excluded.revision
             """,
-            (curriculum_id, lab_id, stage_id, 1 if completed else 0, _now()),
+            (curriculum_id, lab_id, stage_id, 1 if completed else 0, _now(), revision),
         )
 
 
@@ -503,20 +519,37 @@ def note_activity(lab_id: str, curriculum_id: str = FOUNDATIONS_ID) -> str:
     return current
 
 
-def sync_lab_status(lab_id: str, stage_ids: list[str], curriculum_id: str = FOUNDATIONS_ID) -> str:
-    """Derive lab status from stage completion. Does not erase other curricula."""
-    done = [stage_completed(lab_id, stage_id, curriculum_id) for stage_id in stage_ids]
+def sync_lab_status(
+    lab_id: str,
+    stage_ids: list[str],
+    curriculum_id: str = FOUNDATIONS_ID,
+    revision: int | None = None,
+) -> str:
+    """Derive lab status from stage completion. Does not erase other curricula.
+
+    When revision is set, only stage rows stored at that revision count.
+    A lab that asks for a new revision therefore does not stay complete
+    just because an older edition of the same stages was finished.
+    """
+    done = [stage_completed(lab_id, stage_id, curriculum_id, revision) for stage_id in stage_ids]
     if done and all(done):
         status = COMPLETE
     elif any(done):
         status = IN_PROGRESS
+    elif revision is not None:
+        status = NOT_STARTED
     else:
         return get_lab_status(lab_id, curriculum_id)
     set_lab_status(lab_id, status, curriculum_id)
     return status
 
 
-def progress_snapshot(lab_id: str, stage_ids: list[str], curriculum_id: str = FOUNDATIONS_ID) -> dict:
+def progress_snapshot(
+    lab_id: str,
+    stage_ids: list[str],
+    curriculum_id: str = FOUNDATIONS_ID,
+    revision: int | None = None,
+) -> dict:
     with connect() as conn:
         exams = conn.execute(
             """
@@ -545,7 +578,9 @@ def progress_snapshot(lab_id: str, stage_ids: list[str], curriculum_id: str = FO
         "curriculumId": curriculum_id,
         "labId": lab_id,
         "status": get_lab_status(lab_id, curriculum_id),
-        "stages": {stage_id: stage_completed(lab_id, stage_id, curriculum_id) for stage_id in stage_ids},
+        "stages": {
+            stage_id: stage_completed(lab_id, stage_id, curriculum_id, revision) for stage_id in stage_ids
+        },
         "concepts": {row["concept_id"]: row["status"] for row in concepts},
         "fieldTasks": {row["task_id"]: row["status"] for row in fields},
         "exams": [

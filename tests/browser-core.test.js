@@ -24,9 +24,13 @@ async function main() {
   assert.equal(RadioLab.curriculum.lab("99"), null);
 
   RadioLab.lesson.use("01", lesson);
+  assert.equal(lesson.revision, 2);
+  assert.equal(RadioLab.lesson.stage("01", "learn").blocks[1].component, "signal-bench");
   assert.equal(RadioLab.lesson.stage("01", "see").blocks[0].type, "simulation");
+  assert.equal(RadioLab.lesson.stage("01", "see").blocks[0].component, "cycle-bench");
   assert.equal(RadioLab.lesson.stage("01", "do").blocks[0].type, "interaction");
-  assert.equal(RadioLab.lesson.stage("01", "explain").blocks[0].type, "explain");
+  assert.equal(RadioLab.lesson.stage("01", "do").blocks[0].component, "unit-bench");
+  assert.equal(RadioLab.lesson.stage("01", "explain").blocks[0].component, "scenario-bench");
   assert.equal(RadioLab.lesson.stage("01", "exam").blocks[0].type, "exam");
   assert.equal(RadioLab.lesson.stage("01", "field").blocks[0].type, "fieldTask");
 

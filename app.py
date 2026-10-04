@@ -209,14 +209,34 @@ def _curriculum_id(value: str | None) -> str:
     return FOUNDATIONS_ID
 
 
-def _apply_progress(lab_id: str, curriculum_id: str, stage_ids: list[str], payload: dict) -> None:
+def _optional_revision(value: object) -> int | None:
+    if value is None or value == "":
+        return None
+    if type(value) is bool:
+        raise ValueError("revision")
+    if isinstance(value, str):
+        if not value.isdigit():
+            raise ValueError("revision")
+        value = int(value)
+    if type(value) is not int or value < 1 or value > 99:
+        raise ValueError("revision")
+    return value
+
+
+def _apply_progress(
+    lab_id: str,
+    curriculum_id: str,
+    stage_ids: list[str],
+    payload: dict,
+    revision: int | None = None,
+) -> None:
     op = payload.get("op")
     if op == "stage":
         stage_id = payload.get("stageId")
         if stage_id not in stage_ids or not isinstance(payload.get("completed"), bool):
             raise ValueError("stage")
-        set_stage_completed(lab_id, stage_id, payload["completed"], curriculum_id)
-        sync_lab_status(lab_id, stage_ids, curriculum_id)
+        set_stage_completed(lab_id, stage_id, payload["completed"], curriculum_id, revision)
+        sync_lab_status(lab_id, stage_ids, curriculum_id, revision)
         return
     if op == "activity":
         note_activity(lab_id, curriculum_id)
@@ -274,17 +294,22 @@ def progress_api(lab_id: str):
     stage_ids = [stage["id"] for stage in stages_for_lab(lab_id)]
     if request.method == "GET":
         curriculum_id = _curriculum_id(request.args.get("curriculumId"))
-        sync_lab_status(lab_id, stage_ids, curriculum_id)
-        return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id))
+        try:
+            revision = _optional_revision(request.args.get("revision")) if "revision" in request.args else None
+        except ValueError:
+            abort(400)
+        sync_lab_status(lab_id, stage_ids, curriculum_id, revision)
+        return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id, revision))
     payload = request.get_json(silent=True)
     if not isinstance(payload, dict):
         abort(400)
     curriculum_id = _curriculum_id(payload.get("curriculumId") or request.args.get("curriculumId"))
     try:
-        _apply_progress(lab_id, curriculum_id, stage_ids, payload)
+        revision = _optional_revision(payload.get("revision")) if "revision" in payload else None
+        _apply_progress(lab_id, curriculum_id, stage_ids, payload, revision)
     except ValueError:
         abort(400)
-    return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id))
+    return jsonify(progress_snapshot(lab_id, stage_ids, curriculum_id, revision))
 
 
 @app.route("/labs/<lab_id>")

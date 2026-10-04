@@ -114,15 +114,22 @@
         };
         write(data);
       },
-      stageCompleted: function (labId, stageId, curriculumId) {
+      stageCompleted: function (labId, stageId, curriculumId, revision) {
         var row = bucket(read(), curriculumId).stages[stageKey(labId, stageId)];
-        return !!(row && row.completed);
+        if (!row || !row.completed) {
+          return false;
+        }
+        if (revision == null) {
+          return true;
+        }
+        return row.revision === revision;
       },
-      setStageCompleted: function (labId, stageId, completed, curriculumId) {
+      setStageCompleted: function (labId, stageId, completed, curriculumId, revision) {
         var data = read();
         bucket(data, curriculumId).stages[stageKey(labId, stageId)] = {
           completed: !!completed,
           updatedAt: new Date().toISOString(),
+          revision: revision == null ? null : revision,
         };
         write(data);
       },

@@ -1,25 +1,440 @@
 /* Lab 01 — What Is Radio?
 
-   Renders the shared lesson file. Simulation runs in the browser.
-   Progress goes through whichever adapter the page installed.
+   One lesson for the local app and the public learner site.
+   Revision 2 stage rows are the only Lab 01 stage completions that count.
+   Older Lab 01 stage rows stay stored and do not mark these activities done.
 */
-(function () {
+(function (root) {
   var STAGE_IDS = ["learn", "see", "do", "explain", "exam", "field"];
   var WINDOW_KHZ = 400;
+  var UNIT_IDS = ["mhz-khz", "mhz-hz", "khz-mhz", "hz-mhz"];
+  var VISIT_IDS = ["98", "146", "446"];
+  var CALC_IDS = ["wave-146", "wave-446"];
+  var SCENARIO_IDS = ["tuned", "meaning", "converted", "compare", "away"];
+  var CHECK_IDS = ["what-changed", "what-stayed", "why-shorter"];
+
+  function clone(state) {
+    return JSON.parse(JSON.stringify(state));
+  }
+
+  function copySignals(signals) {
+    return (signals || []).map(function (signal) {
+      return { id: signal.id, khz: signal.khz };
+    });
+  }
+
+  function khzOf(signals, id, fallback) {
+    var match = (signals || []).filter(function (signal) {
+      return signal.id === id;
+    })[0];
+    return match ? match.khz : fallback;
+  }
+
+  function near(a, b) {
+    return Math.abs(a - b) <= 10;
+  }
+
+  function parsePlain(raw) {
+    if (raw == null) {
+      return null;
+    }
+    var text = String(raw).replace(/,/g, "").trim();
+    if (!text) {
+      return null;
+    }
+    var n = Number(text);
+    return isFinite(n) ? n : null;
+  }
+
+  function nearNumber(a, b) {
+    var scale = Math.max(Math.abs(a), Math.abs(b), 1);
+    return Math.abs(a - b) <= scale * 0.002;
+  }
+
+  function gradeConversion(raw, correct) {
+    var n = parsePlain(raw);
+    if (n === null) {
+      return { ok: false, code: "blank" };
+    }
+    if (nearNumber(n, correct)) {
+      return { ok: true, code: "ok" };
+    }
+    if (nearNumber(n, correct / 1000)) {
+      return { ok: false, code: "thousand-low" };
+    }
+    if (nearNumber(n, correct * 1000)) {
+      return { ok: false, code: "thousand-high" };
+    }
+    if (nearNumber(n, correct / 1000000)) {
+      return { ok: false, code: "million-low" };
+    }
+    if (nearNumber(n, correct * 1000000)) {
+      return { ok: false, code: "million-high" };
+    }
+    if (nearNumber(n, correct / 100) || nearNumber(n, correct * 100)) {
+      return { ok: false, code: "hundred" };
+    }
+    return { ok: false, code: "other" };
+  }
+
+  function conversionFeedback(code) {
+    var messages = {
+      ok: "That matches.",
+      blank: "Enter a number.",
+      "thousand-low": "That is 1,000 times too small. Each step from MHz to kHz, or from kHz to Hz, multiplies by 1,000.",
+      "thousand-high": "That is 1,000 times too large. Each step from Hz to kHz, or from kHz to MHz, divides by 1,000.",
+      "million-low": "That is 1,000,000 times too small. 1 MHz = 1,000,000 Hz.",
+      "million-high": "That is 1,000,000 times too large. Divide by 1,000,000 to go from Hz to MHz.",
+      hundred: "Check the decimal place. The step between these units is 1,000, not 100.",
+      other: "Compare the units. 1 kHz = 1,000 Hz. 1 MHz = 1,000 kHz. 1 MHz = 1,000,000 Hz.",
+    };
+    return messages[code] || messages.other;
+  }
+
+  function gradeWavelength(raw, mhz) {
+    var correct = 300 / mhz;
+    var n = parsePlain(raw);
+    if (n === null) {
+      return { ok: false, code: "blank", correct: correct };
+    }
+    var tol = Math.max(0.05, Math.abs(correct) * 0.03);
+    if (Math.abs(n - correct) <= tol) {
+      return { ok: true, code: "ok", correct: correct };
+    }
+    if (nearNumber(n, mhz * 300)) {
+      return { ok: false, code: "times", correct: correct };
+    }
+    if (nearNumber(n, mhz)) {
+      return { ok: false, code: "echo-frequency", correct: correct };
+    }
+    return { ok: false, code: "other", correct: correct };
+  }
+
+  function wavelengthFeedback(code, mhz) {
+    var correct = (300 / mhz).toFixed(2);
+    if (code === "ok") {
+      return "About " + correct + " m. Wavelength in meters is about 300 divided by the frequency in MHz.";
+    }
+    if (code === "times") {
+      return "That multiplied the frequency by 300. Use 300 divided by the frequency in MHz.";
+    }
+    if (code === "echo-frequency") {
+      return "That repeated the frequency. Wavelength in meters is about 300 divided by the frequency in MHz.";
+    }
+    if (code === "blank") {
+      return "Enter the wavelength in meters.";
+    }
+    return "Use wavelength in meters ≈ 300 / frequency in MHz. For " + mhz + " MHz that is about " + correct + " m.";
+  }
+
+  function initial(signals) {
+    return {
+      signals: copySignals(signals),
+      weatherKhz: khzOf(signals, "weather", 162550),
+      twoMeterKhz: khzOf(signals, "two-meter", 146520),
+      listeningKhz: 120000,
+      foundWeather: false,
+      foundTwoMeter: false,
+      prediction: null,
+      leftTwoMeter: false,
+      returned: false,
+      rate: 1,
+      triedLow: false,
+      triedHigh: false,
+      cycleChoice: null,
+      units: {},
+      wavePrediction: null,
+      visited: {},
+      waves: {},
+      scenario: {},
+      scenarioKhz: 120000,
+      checks: {},
+      exam: {},
+      fieldKhz: 120000,
+      fieldTuned: false,
+      fieldChoice: null,
+    };
+  }
+
+  function learnTune(state, khz) {
+    var next = clone(state);
+    next.listeningKhz = khz;
+    next.signals = copySignals(state.signals);
+    if (near(khz, state.weatherKhz)) {
+      next.foundWeather = true;
+    }
+    if (near(khz, state.twoMeterKhz)) {
+      next.foundTwoMeter = true;
+    }
+    if (next.prediction === "correct" && Math.abs(khz - state.twoMeterKhz) >= 1000) {
+      next.leftTwoMeter = true;
+    }
+    if (next.leftTwoMeter && near(khz, state.twoMeterKhz)) {
+      next.returned = true;
+    }
+    return next;
+  }
+
+  function predictSignal(state, correct) {
+    var next = clone(state);
+    if (!near(state.listeningKhz, state.twoMeterKhz)) {
+      next.predictionNote = "Center the receiver on 146.520 MHz before you answer. Then move away and come back.";
+      return next;
+    }
+    next.prediction = correct ? "correct" : "wrong";
+    next.predictionNote = correct
+      ? "Now tune at least 1 MHz away. The 146.520 MHz signal should stay where it is."
+      : "The dial does not move that signal. Look at the signals-present list, then try the prediction again.";
+    return next;
+  }
+
+  function setRate(state, cycles) {
+    var next = clone(state);
+    next.rate = cycles;
+    if (cycles <= 2) {
+      next.triedLow = true;
+    }
+    if (cycles >= 8) {
+      next.triedHigh = true;
+    }
+    return next;
+  }
+
+  function answerCycle(state, correct) {
+    var next = clone(state);
+    if (!state.triedLow || !state.triedHigh) {
+      next.cycleNote = "Try 1 cycle and 8 cycles in the same window before you answer.";
+      return next;
+    }
+    next.cycleChoice = correct ? "correct" : "wrong";
+    next.cycleNote = correct
+      ? "Frequency is how many cycles happen each second. 1 cycle per second is 1 hertz."
+      : "Count the repeats in the same window. More repeats means a higher frequency.";
+    return next;
+  }
+
+  function answerUnit(state, id, raw, correct) {
+    var next = clone(state);
+    var graded = gradeConversion(raw, correct);
+    next.units[id] = graded.ok ? "correct" : graded.code;
+    next.unitNote = { id: id, text: conversionFeedback(graded.code) };
+    return next;
+  }
+
+  function predictWave(state, correct) {
+    var next = clone(state);
+    next.wavePrediction = correct ? "correct" : "wrong";
+    next.waveNote = correct
+      ? "Test it. Compare about 98 MHz, 146 MHz, and 446 MHz."
+      : "Try the frequency buttons and compare how tightly the wave repeats. Then answer again.";
+    return next;
+  }
+
+  function visitWave(state, id) {
+    var next = clone(state);
+    if (!state.wavePrediction) {
+      next.waveNote = "Answer the prediction first. Then test it on the wave model.";
+      return next;
+    }
+    next.visited[id] = true;
+    next.waveFocus = id;
+    return next;
+  }
+
+  function formulaReady(state) {
+    return !!state.wavePrediction && VISIT_IDS.every(function (id) {
+      return !!state.visited[id];
+    });
+  }
+
+  function answerWave(state, id, raw, mhz) {
+    var next = clone(state);
+    if (!formulaReady(state)) {
+      next.waveCalcNote = { id: id, text: "Compare the three frequencies before you use the formula." };
+      return next;
+    }
+    var graded = gradeWavelength(raw, mhz);
+    next.waves[id] = graded.ok ? "correct" : graded.code;
+    next.waveCalcNote = { id: id, text: wavelengthFeedback(graded.code, mhz) };
+    return next;
+  }
+
+  function scenarioTune(state, khz) {
+    var next = clone(state);
+    next.scenarioKhz = khz;
+    next.signals = copySignals(state.signals);
+    if (near(khz, state.weatherKhz)) {
+      next.scenario.tuned = "correct";
+    }
+    return next;
+  }
+
+  function scenarioAnswer(state, step, correct) {
+    var next = clone(state);
+    var index = SCENARIO_IDS.indexOf(step);
+    var earlier = SCENARIO_IDS.slice(0, index);
+    var blocked = earlier.some(function (id) {
+      return state.scenario[id] !== "correct";
+    });
+    if (blocked) {
+      next.scenarioNote = "Finish the earlier step first. The readout has to be on 162.550 MHz before the questions count.";
+      return next;
+    }
+    next.scenario[step] = correct ? "correct" : "wrong";
+    next.scenarioNote = "";
+    return next;
+  }
+
+  function answerCheck(state, id, correct) {
+    var next = clone(state);
+    next.checks[id] = correct ? "correct" : "wrong";
+    return next;
+  }
+
+  function answerExam(state, id, correct) {
+    var next = clone(state);
+    next.exam[id] = correct ? "correct" : "wrong";
+    return next;
+  }
+
+  function fieldTune(state, khz) {
+    var next = clone(state);
+    next.fieldKhz = khz;
+    next.signals = copySignals(state.signals);
+    if (near(khz, state.weatherKhz)) {
+      next.fieldTuned = true;
+    }
+    return next;
+  }
+
+  function answerField(state, correct) {
+    var next = clone(state);
+    if (!state.fieldTuned) {
+      next.fieldNote = "Item 1 is still open. Set this receiver's readout to 162.550 MHz. Then the question counts.";
+      return next;
+    }
+    next.fieldChoice = correct ? "correct" : "wrong";
+    next.fieldNote = correct
+      ? "Both checklist items are done."
+      : "You changed the receiver's selected frequency. The weather signal is still at 162.550 MHz.";
+    return next;
+  }
+
+  function learnDone(state) {
+    return !!(
+      state.foundWeather &&
+      state.foundTwoMeter &&
+      state.prediction === "correct" &&
+      state.leftTwoMeter &&
+      state.returned
+    );
+  }
+
+  function seeDone(state) {
+    return state.cycleChoice === "correct";
+  }
+
+  function doDone(state) {
+    var units = UNIT_IDS.every(function (id) {
+      return state.units[id] === "correct";
+    });
+    var calcs = CALC_IDS.every(function (id) {
+      return state.waves[id] === "correct";
+    });
+    return units && state.wavePrediction === "correct" && formulaReady(state) && calcs;
+  }
+
+  function explainDone(state) {
+    var scenario = SCENARIO_IDS.every(function (id) {
+      return state.scenario[id] === "correct";
+    });
+    var checks = CHECK_IDS.every(function (id) {
+      return state.checks[id] === "correct";
+    });
+    return scenario && checks;
+  }
+
+  function examDone(state, examIds) {
+    return (examIds || []).length > 0 && examIds.every(function (id) {
+      return state.exam[id] === "correct";
+    });
+  }
+
+  function fieldDone(state) {
+    return !!(state.fieldTuned && state.fieldChoice === "correct");
+  }
+
+  function stageDone(state, stageId, examIds) {
+    if (stageId === "learn") {
+      return learnDone(state);
+    }
+    if (stageId === "see") {
+      return seeDone(state);
+    }
+    if (stageId === "do") {
+      return doDone(state);
+    }
+    if (stageId === "explain") {
+      return explainDone(state);
+    }
+    if (stageId === "exam") {
+      return examDone(state, examIds);
+    }
+    if (stageId === "field") {
+      return fieldDone(state);
+    }
+    return false;
+  }
+
+  var Rules = {
+    STAGE_IDS: STAGE_IDS,
+    UNIT_IDS: UNIT_IDS,
+    VISIT_IDS: VISIT_IDS,
+    CALC_IDS: CALC_IDS,
+    SCENARIO_IDS: SCENARIO_IDS,
+    CHECK_IDS: CHECK_IDS,
+    initial: initial,
+    copySignals: copySignals,
+    learnTune: learnTune,
+    predictSignal: predictSignal,
+    setRate: setRate,
+    answerCycle: answerCycle,
+    answerUnit: answerUnit,
+    predictWave: predictWave,
+    visitWave: visitWave,
+    formulaReady: formulaReady,
+    answerWave: answerWave,
+    scenarioTune: scenarioTune,
+    scenarioAnswer: scenarioAnswer,
+    answerCheck: answerCheck,
+    answerExam: answerExam,
+    fieldTune: fieldTune,
+    answerField: answerField,
+    gradeConversion: gradeConversion,
+    conversionFeedback: conversionFeedback,
+    gradeWavelength: gradeWavelength,
+    wavelengthFeedback: wavelengthFeedback,
+    stageDone: stageDone,
+  };
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = Rules;
+  }
+  root.RadioLab01 = Rules;
 
   function boot() {
     var session = document.getElementById("lab-session");
-    if (!session || !window.RadioLab || !window.RadioLabSim) {
+    if (!session || !root.RadioLab || !root.RadioLabSim) {
       return;
     }
     var delivery = document.documentElement.getAttribute("data-delivery");
-    if (delivery !== "hosted" && window.RadioLabLocalProgress && !RadioLab.progress) {
-      RadioLab.useProgress(RadioLabLocalProgress.create());
+    if (delivery !== "hosted" && root.RadioLabLocalProgress && !root.RadioLab.progress) {
+      root.RadioLab.useProgress(root.RadioLabLocalProgress.create());
     }
     var labId = session.getAttribute("data-lab-id");
-    RadioLab.curriculum.load()
+    root.RadioLab.curriculum.load()
       .then(function () {
-        return RadioLab.lesson.load(labId);
+        return root.RadioLab.lesson.load(labId);
       })
       .then(function (lesson) {
         return readProgress(lesson)
@@ -41,33 +456,65 @@
     return { status: "not_started", stages: {}, concepts: {}, exams: [], fieldTasks: {} };
   }
 
+  function fieldTaskId(lesson) {
+    var id = "lab01-weather-listen";
+    (lesson.stages || []).forEach(function (stage) {
+      (stage.blocks || []).forEach(function (block) {
+        if (block.type === "fieldTask" && block.taskId) {
+          id = block.taskId;
+        }
+      });
+    });
+    return id;
+  }
+
+  function examIds(lesson) {
+    var ids = [];
+    (lesson.stages || []).forEach(function (stage) {
+      (stage.blocks || []).forEach(function (block) {
+        if (block.type === "exam") {
+          (block.questions || []).forEach(function (question) {
+            ids.push(question.id);
+          });
+        }
+      });
+    });
+    return ids;
+  }
+
   function readProgress(lesson) {
-    var progress = RadioLab.progress;
+    var progress = root.RadioLab.progress;
+    var revision = lesson.revision;
     if (!progress) {
       return Promise.resolve(emptySaved());
     }
     if (typeof progress.load === "function") {
-      return progress.load(lesson.labId, lesson.curriculumId);
+      return progress.load(lesson.labId, lesson.curriculumId, revision);
     }
     var saved = emptySaved();
     saved.status = progress.getLabStatus(lesson.labId, lesson.curriculumId);
     STAGE_IDS.forEach(function (stageId) {
-      saved.stages[stageId] = !!progress.stageCompleted(lesson.labId, stageId, lesson.curriculumId);
+      saved.stages[stageId] = !!progress.stageCompleted(lesson.labId, stageId, lesson.curriculumId, revision);
     });
-    if (typeof progress.getConceptStatus === "function") {
-      saved.concepts["tuning-selects-frequency"] = progress.getConceptStatus(
-        "tuning-selects-frequency",
-        lesson.curriculumId
-      );
-    }
     if (typeof progress.examLog === "function") {
       saved.exams = progress.examLog(lesson.labId, lesson.curriculumId);
     }
     if (typeof progress.getFieldTask === "function") {
-      var task = progress.getFieldTask("lab01-simplex-146520", lesson.curriculumId);
+      var task = progress.getFieldTask(fieldTaskId(lesson), lesson.curriculumId);
       if (task) {
-        saved.fieldTasks[task.taskId || "lab01-simplex-146520"] = task.status;
+        saved.fieldTasks[task.taskId || fieldTaskId(lesson)] = task.status;
       }
+    }
+    if (typeof progress.setLabStatus === "function") {
+      var done = STAGE_IDS.every(function (stageId) {
+        return saved.stages[stageId];
+      });
+      var any = STAGE_IDS.some(function (stageId) {
+        return saved.stages[stageId];
+      });
+      var status = done ? "complete" : any ? "in_progress" : "not_started";
+      progress.setLabStatus(lesson.labId, status, lesson.curriculumId);
+      saved.status = status;
     }
     return Promise.resolve(saved);
   }
@@ -77,7 +524,15 @@
       lesson: lesson,
       saved: saved,
       signals: lesson.signals || [],
+      examIds: examIds(lesson),
+      state: Rules.initial(lesson.signals),
+      panels: [],
     };
+    (saved.exams || []).forEach(function (row) {
+      if (row.correct && book.examIds.indexOf(row.questionId) !== -1) {
+        book.state.exam[row.questionId] = "correct";
+      }
+    });
     lesson.stages.forEach(function (stage) {
       var mount = session.querySelector('[data-stage-mount="' + stage.id + '"]');
       if (!mount) {
@@ -90,27 +545,27 @@
       paintStage(stage.id, !!(saved.stages && saved.stages[stage.id]));
     });
     paintLabStatus(saved.status || "not_started");
+    sync(book);
   }
 
   function renderBlock(book, stage, block) {
     if (block.type === "text") {
       return paragraph(block.body);
     }
-    if (block.type === "interaction" && block.component === "unit-converter") {
-      return unitConverter(book, block.config || {});
+    if (block.component === "signal-bench") {
+      return signalBench(book, block.config || {});
     }
-    if (block.type === "simulation" && block.component === "spectrum-receiver") {
-      return spectrumSection(book, block.config || {}, function (fromUser, state) {
-        if (fromUser && state.centered) {
-          completeStage(book, "see");
-        }
-      });
+    if (block.component === "cycle-bench") {
+      return cycleBench(book, block);
     }
-    if (block.type === "interaction" && block.component === "tuning-challenges") {
-      return challenges(book, block.config || {});
+    if (block.component === "unit-bench") {
+      return unitBench(book, block.config || {});
     }
-    if (block.type === "interaction" && block.component === "wavelength") {
-      return wavelengthLab(book, block.config || {});
+    if (block.component === "wave-bench") {
+      return waveBench(book, block.config || {});
+    }
+    if (block.component === "scenario-bench") {
+      return scenarioBench(book, block);
     }
     if (block.type === "explain") {
       return explainPanel(book, block);
@@ -124,6 +579,569 @@
     return paragraph("This part of the lab is missing a viewer.");
   }
 
+  function sync(book) {
+    book.panels.forEach(function (panel) {
+      panel();
+    });
+    if (book.rendering) {
+      return;
+    }
+    STAGE_IDS.forEach(function (stageId) {
+      if (Rules.stageDone(book.state, stageId, book.examIds)) {
+        completeStage(book, stageId);
+      }
+    });
+    if (Rules.stageDone(book.state, "field", book.examIds)) {
+      setField(book, fieldTaskId(book.lesson), "complete");
+    }
+  }
+
+  function signalBench(book, config) {
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "Signals are already there";
+    wrap.appendChild(title);
+    if (!simulationAllowed()) {
+      wrap.appendChild(heldNotice());
+      return wrap;
+    }
+    var split = document.createElement("div");
+    split.className = "present-split";
+    var present = document.createElement("div");
+    var presentLabel = document.createElement("p");
+    presentLabel.className = "sim-flag";
+    presentLabel.textContent = "SIGNALS PRESENT";
+    present.appendChild(presentLabel);
+    var list = document.createElement("ul");
+    list.className = "signal-legend";
+    book.signals.forEach(function (signal) {
+      var item = document.createElement("li");
+      item.textContent = signal.name + " stays at " + root.RadioLabSim.formatMhz(signal.khz) + " MHz. " + signal.blurb;
+      list.appendChild(item);
+    });
+    present.appendChild(list);
+    var listen = document.createElement("div");
+    var listenLabel = document.createElement("p");
+    listenLabel.className = "sim-flag";
+    listenLabel.textContent = "RECEIVER LISTENING HERE";
+    var listenValue = document.createElement("p");
+    listenValue.className = "freq-readout";
+    listen.appendChild(listenLabel);
+    listen.appendChild(listenValue);
+    split.appendChild(present);
+    split.appendChild(listen);
+    wrap.appendChild(split);
+
+    var tasks = checklist([
+      { id: "weather", label: "Find the weather signal. Set the readout to 162.550 MHz." },
+      { id: "two", label: "Find the 2-meter amateur signal. Set the readout to 146.520 MHz." },
+      { id: "predict", label: "While the readout is on 146.520 MHz, predict what the signal does if you tune away." },
+      { id: "away", label: "After that prediction, tune at least 1 MHz away from 146.520 MHz." },
+      { id: "back", label: "Tune back to 146.520 MHz. The signal should still be there." },
+    ]);
+    wrap.appendChild(tasks.list);
+
+    var receiver = createReceiver(book.signals, { startKhz: config.startKhz || 120000 }, function (fromUser, khz) {
+      if (!fromUser) {
+        return;
+      }
+      book.state = Rules.learnTune(book.state, khz);
+      noteActivity(book);
+      sync(book);
+    });
+    wrap.appendChild(receiver.root);
+
+    var ask = choiceBox(config.prompt, config.choices, config.choiceNotes, config.correctIndex, function (ok) {
+      book.state = Rules.predictSignal(book.state, ok);
+      ask.feedback.textContent = book.state.predictionNote || "";
+      sync(book);
+    });
+    wrap.appendChild(ask.root);
+    book.panels.push(function () {
+      var state = book.state;
+      listenValue.textContent = root.RadioLabSim.formatMhz(state.listeningKhz) + " MHz";
+      var settled = !!(book.saved.stages && book.saved.stages.learn);
+      tasks.sync({
+        weather: settled || state.foundWeather,
+        two: settled || state.foundTwoMeter,
+        predict: settled || state.prediction === "correct",
+        away: settled || state.leftTwoMeter,
+        back: settled || state.returned,
+      });
+    });
+    return wrap;
+  }
+
+  function cycleBench(book, block) {
+    var config = block.config || {};
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "What frequency means";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph(block.prompt));
+    var board = document.createElement("div");
+    board.className = "wave-board";
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 320 90");
+    svg.setAttribute("class", "spectrum-svg");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Teaching model of a repeating wave");
+    board.appendChild(svg);
+    var caption = document.createElement("p");
+    caption.className = "feedback";
+    board.appendChild(caption);
+    wrap.appendChild(board);
+    var pad = document.createElement("div");
+    pad.className = "tune-pad";
+    [1, 4, 8].forEach(function (cycles) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.textContent = cycles + (cycles === 1 ? " cycle" : " cycles");
+      button.addEventListener("click", function () {
+        book.state = Rules.setRate(book.state, cycles);
+        noteActivity(book);
+        sync(book);
+      });
+      pad.appendChild(button);
+    });
+    wrap.appendChild(pad);
+    var ask = choiceBox(config.prompt, config.choices, config.choiceNotes, config.correctIndex, function (ok) {
+      book.state = Rules.answerCycle(book.state, ok);
+      ask.feedback.textContent = book.state.cycleNote || "";
+      sync(book);
+    });
+    wrap.appendChild(ask.root);
+    book.panels.push(function () {
+      drawCycles(svg, book.state.rate);
+      caption.textContent = book.state.rate + (book.state.rate === 1 ? " cycle" : " cycles") + " in this same window. Fewer cycles is a lower frequency. More cycles is a higher frequency.";
+    });
+    return wrap;
+  }
+
+  function unitBench(book, config) {
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "Hertz, kilohertz, megahertz";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph("1 kHz = 1,000 Hz. 1 MHz = 1,000 kHz. 1 MHz = 1,000,000 Hz. Work each conversion yourself."));
+    (config.problems || []).forEach(function (problem) {
+      wrap.appendChild(numericBox(problem.prompt, function (raw, feedback) {
+        book.state = Rules.answerUnit(book.state, problem.id, raw, problem.correct);
+        feedback.textContent = (book.state.unitNote && book.state.unitNote.text) || "";
+        noteActivity(book);
+        sync(book);
+      }));
+    });
+    var tool = document.createElement("div");
+    tool.hidden = true;
+    tool.appendChild(paragraph("You can use the converter below to check other frequencies. It does not finish this stage by itself."));
+    tool.appendChild(unitTool());
+    wrap.appendChild(tool);
+    book.panels.push(function () {
+      var done = UNIT_IDS.every(function (id) {
+        return book.state.units[id] === "correct";
+      });
+      tool.hidden = !done;
+    });
+    return wrap;
+  }
+
+  function waveBench(book, config) {
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "Wavelength";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph("Teaching model. The drawing shows how tightly a wave repeats. It is not a radio wave traveling across the room."));
+    var ask = choiceBox(config.prompt, config.choices, config.choiceNotes, config.correctIndex, function (ok) {
+      book.state = Rules.predictWave(book.state, ok);
+      ask.feedback.textContent = book.state.waveNote || "";
+      noteActivity(book);
+      sync(book);
+    });
+    wrap.appendChild(ask.root);
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 320 90");
+    svg.setAttribute("class", "spectrum-svg");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Teaching model comparing wavelength");
+    var caption = document.createElement("p");
+    caption.className = "feedback";
+    var pad = document.createElement("div");
+    pad.className = "tune-pad";
+    (config.visits || []).forEach(function (visit) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.textContent = visit.label;
+      button.addEventListener("click", function () {
+        book.state = Rules.visitWave(book.state, visit.id);
+        book.waveMhz = visit.mhz;
+        if (book.state.waveNote) {
+          ask.feedback.textContent = book.state.waveNote;
+        }
+        sync(book);
+      });
+      pad.appendChild(button);
+    });
+    wrap.appendChild(pad);
+    wrap.appendChild(svg);
+    wrap.appendChild(caption);
+    var formula = document.createElement("div");
+    formula.hidden = true;
+    formula.appendChild(paragraph("Wavelength in meters is about 300 divided by the frequency in MHz. Now use that."));
+    (config.calculations || []).forEach(function (item) {
+      formula.appendChild(numericBox(item.prompt, function (raw, feedback) {
+        book.state = Rules.answerWave(book.state, item.id, raw, item.mhz);
+        feedback.textContent = (book.state.waveCalcNote && book.state.waveCalcNote.text) || "";
+        sync(book);
+      }));
+    });
+    wrap.appendChild(formula);
+    book.waveMhz = 146;
+    book.panels.push(function () {
+      var mhz = book.waveMhz || 146;
+      if (book.state.waveFocus) {
+        drawCycles(svg, Math.max(1, mhz / 70));
+        if (mhz >= 400) {
+          caption.textContent = "Higher frequency. The repeats sit closer together, so the wavelength is shorter.";
+        } else if (mhz <= 100) {
+          caption.textContent = "Lower frequency. Fewer repeats in this window, so the wavelength is longer.";
+        } else {
+          caption.textContent = "About 146 MHz sits between the other two. Its repeats are wider than 446 MHz.";
+        }
+      } else {
+        caption.textContent = "Choose a frequency after your prediction to compare the spacing.";
+      }
+      formula.hidden = !Rules.formulaReady(book.state);
+    });
+    return wrap;
+  }
+
+  function scenarioBench(book, block) {
+    var config = block.config || {};
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "Put it together";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph(block.prompt));
+    if (!simulationAllowed()) {
+      wrap.appendChild(heldNotice());
+      return wrap;
+    }
+    var readout = document.createElement("p");
+    readout.className = "freq-readout";
+    wrap.appendChild(readout);
+    wrap.appendChild(createReceiver(book.signals, { startKhz: config.startKhz || 120000 }, function (fromUser, khz) {
+      if (!fromUser) {
+        return;
+      }
+      book.state = Rules.scenarioTune(book.state, khz);
+      noteActivity(book);
+      sync(book);
+    }).root);
+    var meaning = choiceBox(config.meaningPrompt, config.meaningChoices, config.meaningNotes, config.meaningCorrect, function (ok) {
+      book.state = Rules.scenarioAnswer(book.state, "meaning", ok);
+      meaning.feedback.textContent = book.state.scenarioNote || (config.meaningNotes || [])[ok ? config.meaningCorrect : meaning.last] || "";
+      if (!ok && book.state.scenario.meaning === "wrong") {
+        meaning.feedback.textContent = (config.meaningNotes || [])[meaning.last] || "";
+      }
+      sync(book);
+    });
+    var convert = numericBox(config.convertPrompt, function (raw, feedback) {
+      var graded = Rules.gradeConversion(raw, config.convertCorrect);
+      book.state = Rules.scenarioAnswer(book.state, "converted", graded.ok);
+      feedback.textContent = book.state.scenarioNote || Rules.conversionFeedback(graded.code);
+      if (book.state.scenario.converted === "correct" || book.state.scenario.converted === "wrong") {
+        sync(book);
+      }
+    });
+    var compare = choiceBox(config.comparePrompt, config.compareChoices, config.compareNotes, config.compareCorrect, function (ok) {
+      book.state = Rules.scenarioAnswer(book.state, "compare", ok);
+      compare.feedback.textContent = book.state.scenarioNote || (config.compareNotes || [])[compare.last] || "";
+      sync(book);
+    });
+    var away = choiceBox(config.awayPrompt, config.awayChoices, config.awayNotes, config.awayCorrect, function (ok) {
+      book.state = Rules.scenarioAnswer(book.state, "away", ok);
+      away.feedback.textContent = book.state.scenarioNote || (config.awayNotes || [])[away.last] || "";
+      sync(book);
+    });
+    wrap.appendChild(meaning.root);
+    wrap.appendChild(convert);
+    wrap.appendChild(compare.root);
+    wrap.appendChild(away.root);
+    book.panels.push(function () {
+      readout.textContent = "Receiver listening here: " + root.RadioLabSim.formatMhz(book.state.scenarioKhz) + " MHz";
+      var ready = book.state.scenario.tuned === "correct";
+      meaning.root.hidden = !ready;
+      convert.hidden = book.state.scenario.meaning !== "correct";
+      compare.root.hidden = book.state.scenario.converted !== "correct";
+      away.root.hidden = book.state.scenario.compare !== "correct";
+    });
+    return wrap;
+  }
+
+  function explainPanel(book, block) {
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "Explain it";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph(block.prompt));
+    (block.checks || []).forEach(function (check) {
+      var box = choiceBox(check.prompt, check.choices, check.choiceNotes, check.correctIndex, function (ok) {
+        book.state = Rules.answerCheck(book.state, check.id, ok);
+        box.feedback.textContent = (check.choiceNotes || [])[box.last] || "";
+        noteActivity(book);
+        sync(book);
+      });
+      wrap.appendChild(box.root);
+    });
+    wrap.appendChild(paragraph("How sure do you feel? This note does not finish the stage."));
+    var pad = document.createElement("div");
+    pad.className = "tune-pad";
+    [
+      ["I get it", "complete"],
+      ["I'm not sure yet", "in_progress"],
+    ].forEach(function (pair) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.textContent = pair[0];
+      button.addEventListener("click", function () {
+        setConcept(book, block.conceptId || "tuning-selects-frequency", pair[1]);
+        var note = paragraph(pair[1] === "complete"
+          ? "Saved as a confidence note. The questions above are what finish this stage."
+          : "Saved. Stay with the questions above until the pattern is clear.");
+        note.className = "feedback";
+        pad.appendChild(note);
+      });
+      pad.appendChild(button);
+    });
+    wrap.appendChild(pad);
+    return wrap;
+  }
+
+  function examPanel(book, block) {
+    var wrap = document.createElement("div");
+    var title = document.createElement("h3");
+    title.textContent = block.label || "RADIO LAB PRACTICE";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph("These questions use mistakes this lab is meant to catch. A correct answer is recorded only when you choose it. You can try again after a miss."));
+    (block.questions || []).forEach(function (question) {
+      var box = choiceBox(question.stem, question.choices, question.choiceNotes, question.correctIndex, function (ok) {
+        book.state = Rules.answerExam(book.state, question.id, ok);
+        box.feedback.textContent = (question.choiceNotes || [])[box.last] || "";
+        recordExam(book, block, question, ok);
+        sync(book);
+      });
+      wrap.appendChild(box.root);
+      book.panels.push(function () {
+        if (book.state.exam[question.id] === "correct") {
+          box.feedback.textContent = (question.choiceNotes || [])[question.correctIndex] || "";
+        }
+      });
+    });
+    return wrap;
+  }
+
+  function fieldPanel(book, block) {
+    var config = block.config || {};
+    var wrap = document.createElement("div");
+    wrap.className = "instrument";
+    var title = document.createElement("h3");
+    title.textContent = "Field task";
+    wrap.appendChild(title);
+    wrap.appendChild(paragraph(block.prompt));
+    if (!simulationAllowed()) {
+      wrap.appendChild(heldNotice());
+      return wrap;
+    }
+    var tasks = checklist([
+      { id: "tune", label: "Set this receiver so the readout shows 162.550 MHz." },
+      { id: "answer", label: "Answer the question that appears under the receiver." },
+    ]);
+    wrap.appendChild(tasks.list);
+    var readout = document.createElement("p");
+    readout.className = "freq-readout";
+    wrap.appendChild(readout);
+    wrap.appendChild(createReceiver(book.signals, { startKhz: config.startKhz || 120000 }, function (fromUser, khz) {
+      if (!fromUser) {
+        return;
+      }
+      book.state = Rules.fieldTune(book.state, khz);
+      noteActivity(book);
+      sync(book);
+    }).root);
+    var ask = choiceBox(config.prompt, config.choices, config.choiceNotes, config.correctIndex, function (ok) {
+      if (book.saved.stages && book.saved.stages.field) {
+        ask.feedback.textContent = (config.choiceNotes || [])[ask.last] || "";
+        return;
+      }
+      book.state = Rules.answerField(book.state, ok);
+      if (book.state.fieldChoice === "correct" || book.state.fieldChoice === "wrong") {
+        ask.feedback.textContent = (config.choiceNotes || [])[ask.last] || book.state.fieldNote || "";
+      } else {
+        ask.feedback.textContent = book.state.fieldNote || "";
+      }
+      sync(book);
+    });
+    wrap.appendChild(ask.root);
+    var status = document.createElement("p");
+    status.className = "feedback";
+    status.setAttribute("aria-live", "polite");
+    wrap.appendChild(status);
+    book.panels.push(function () {
+      var state = book.state;
+      var settled = !!(book.saved.stages && book.saved.stages.field);
+      readout.textContent = "Receiver listening here: " + root.RadioLabSim.formatMhz(state.fieldKhz) + " MHz";
+      var tuned = settled || state.fieldTuned;
+      var answered = settled || state.fieldChoice === "correct";
+      tasks.sync({ tune: tuned, answer: answered });
+      ask.root.hidden = !tuned;
+      if (answered) {
+        status.textContent = "Field task complete. Both checklist items are done.";
+      } else if (!tuned) {
+        status.textContent = "Still to do: set the readout to 162.550 MHz. The question stays hidden until then.";
+      } else {
+        status.textContent = "Still to do: answer the question about the weather signal.";
+      }
+    });
+    return wrap;
+  }
+
+  function checklist(items) {
+    var list = document.createElement("ul");
+    list.className = "task-check";
+    items.forEach(function (item) {
+      var li = document.createElement("li");
+      li.setAttribute("data-check", item.id);
+      list.appendChild(li);
+    });
+    return {
+      list: list,
+      sync: function (flags) {
+        items.forEach(function (item) {
+          var li = list.querySelector('[data-check="' + item.id + '"]');
+          var done = !!flags[item.id];
+          li.classList.toggle("done", done);
+          li.textContent = (done ? "Done. " : "Still to do. ") + item.label;
+        });
+      },
+    };
+  }
+
+  function choiceBox(prompt, choices, notes, correctIndex, onPick) {
+    var rootNode = document.createElement("div");
+    rootNode.className = "choice-stack";
+    var lead = paragraph(prompt);
+    lead.className = "challenge-prompt";
+    rootNode.appendChild(lead);
+    var feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("aria-live", "polite");
+    var box = { root: rootNode, feedback: feedback, last: correctIndex };
+    (choices || []).forEach(function (label, index) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.textContent = label;
+      button.addEventListener("click", function () {
+        box.last = index;
+        onPick(index === correctIndex, index);
+      });
+      rootNode.appendChild(button);
+    });
+    rootNode.appendChild(feedback);
+    return box;
+  }
+
+  function numericBox(prompt, onSubmit) {
+    var form = document.createElement("form");
+    form.className = "tune-form";
+    var label = document.createElement("label");
+    label.textContent = prompt;
+    var input = document.createElement("input");
+    input.type = "text";
+    input.inputMode = "decimal";
+    input.autocomplete = "off";
+    input.setAttribute("aria-label", prompt);
+    label.appendChild(input);
+    var button = document.createElement("button");
+    button.type = "submit";
+    button.textContent = "Check";
+    var feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("aria-live", "polite");
+    form.appendChild(label);
+    form.appendChild(button);
+    form.appendChild(feedback);
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      onSubmit(input.value, feedback);
+    });
+    return form;
+  }
+
+  function unitTool() {
+    var sim = root.RadioLabSim;
+    var form = document.createElement("form");
+    form.className = "tune-form";
+    var value = document.createElement("input");
+    value.type = "text";
+    value.inputMode = "decimal";
+    value.value = "146.520";
+    value.setAttribute("aria-label", "Converter frequency");
+    var unit = document.createElement("select");
+    unit.setAttribute("aria-label", "Converter unit");
+    ["MHz", "kHz", "Hz"].forEach(function (name) {
+      var option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      unit.appendChild(option);
+    });
+    var live = document.createElement("p");
+    live.className = "freq-equal";
+    live.setAttribute("aria-live", "polite");
+    function show() {
+      var khz = sim.parseFrequency(value.value, unit.value);
+      live.textContent = khz === null
+        ? "Enter a frequency this dial can hold, from 88.000 MHz to 450.000 MHz."
+        : sim.formatHz(khz) + " Hz = " + sim.formatKhz(khz) + " kHz = " + sim.formatMhz(khz) + " MHz";
+    }
+    form.appendChild(value);
+    form.appendChild(unit);
+    form.appendChild(live);
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      show();
+    });
+    value.addEventListener("input", show);
+    unit.addEventListener("change", show);
+    show();
+    return form;
+  }
+
+  function drawCycles(svg, cycles) {
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
+    var d = "";
+    var steps = 96;
+    for (var i = 0; i <= steps; i += 1) {
+      var x = (i / steps) * 320;
+      var y = 45 - Math.sin((i / steps) * cycles * Math.PI * 2) * 28;
+      d += (i === 0 ? "M" : " L") + x.toFixed(1) + " " + y.toFixed(1);
+    }
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "#8fd0c6");
+    path.setAttribute("stroke-width", "2");
+    svg.appendChild(path);
+  }
+
   function paragraph(text) {
     var node = document.createElement("p");
     node.textContent = text || "";
@@ -131,7 +1149,7 @@
   }
 
   function simulationAllowed() {
-    var caps = RadioLab.capabilities;
+    var caps = root.RadioLab.capabilities;
     if (!caps || typeof caps.available !== "function") {
       return true;
     }
@@ -142,163 +1160,21 @@
     return paragraph("The frequency simulation is turned off in this session, so the receiver stays hidden. No radio hardware is required for this lab.");
   }
 
-  function unitConverter(book, config) {
-    var wrap = document.createElement("div");
-    wrap.className = "instrument";
-    var signals = document.createElement("ul");
-    signals.className = "signal-legend";
-    book.signals.forEach(function (signal) {
-      var item = document.createElement("li");
-      var name = document.createElement("strong");
-      name.textContent = signal.name + " · " + RadioLabSim.formatMhz(signal.khz) + " MHz";
-      item.appendChild(name);
-      item.appendChild(document.createTextNode(" " + signal.blurb));
-      signals.appendChild(item);
-    });
-    wrap.appendChild(signals);
-
-    var intro = paragraph("The same frequency can be written in hertz, kilohertz, or megahertz. Change the value and watch all three stay equal.");
-    wrap.appendChild(intro);
-
-    var form = document.createElement("form");
-    form.className = "tune-form";
-    var valueLabel = document.createElement("label");
-    valueLabel.textContent = "Frequency value";
-    var value = document.createElement("input");
-    value.type = "text";
-    value.inputMode = "decimal";
-    value.value = config.start || "146.520";
-    value.setAttribute("aria-label", "Frequency value");
-    valueLabel.appendChild(value);
-    var unitLabel = document.createElement("label");
-    unitLabel.textContent = "Unit";
-    var unit = document.createElement("select");
-    unit.setAttribute("aria-label", "Frequency unit");
-    ["MHz", "kHz", "Hz"].forEach(function (name) {
-      var option = document.createElement("option");
-      option.value = name;
-      option.textContent = name;
-      if (name === (config.unit || "MHz")) {
-        option.selected = true;
-      }
-      unit.appendChild(option);
-    });
-    unitLabel.appendChild(unit);
-    form.appendChild(valueLabel);
-    form.appendChild(unitLabel);
-    wrap.appendChild(form);
-
-    var presets = document.createElement("div");
-    presets.className = "tune-pad";
-    (config.presets || []).forEach(function (preset) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.textContent = preset.label;
-      button.addEventListener("click", function () {
-        touched = true;
-        value.value = preset.value;
-        unit.value = preset.unit;
-        show();
-      });
-      presets.appendChild(button);
-    });
-    wrap.appendChild(presets);
-
-    var live = document.createElement("p");
-    live.className = "freq-equal";
-    live.setAttribute("aria-live", "polite");
-    wrap.appendChild(live);
-    var hint = paragraph(config.hint || "");
-    hint.className = "feedback";
-    wrap.appendChild(hint);
-    var touched = false;
-
-    function show() {
-      var khz = RadioLabSim.parseFrequency(value.value, unit.value);
-      if (khz === null) {
-        live.textContent = "Enter a frequency above zero. This receiver's dial runs from 88.000 MHz to 450.000 MHz.";
-        return;
-      }
-      live.textContent =
-        RadioLabSim.formatMhz(khz) +
-        " MHz = " +
-        RadioLabSim.formatKhz(khz) +
-        " kHz = " +
-        RadioLabSim.formatHz(khz) +
-        " Hz. One hertz is one wave cycle each second. A kilohertz is one thousand hertz. A megahertz is one thousand kilohertz.";
-      if (touched) {
-        completeStage(book, "learn");
-      }
-    }
-
-    value.addEventListener("input", function () {
-      touched = true;
-      show();
-    });
-    unit.addEventListener("change", function () {
-      touched = true;
-      show();
-    });
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      show();
-    });
-    show();
-    return wrap;
-  }
-
-  function spectrumSection(book, config, onTune) {
-    if (!simulationAllowed()) {
-      return heldNotice();
-    }
-    var wrap = document.createElement("div");
-    var lead = paragraph("Move the tuning control. The example signals stay put. Only the frequency this receiver is listening to changes.");
-    wrap.appendChild(lead);
-    var note = paragraph("VHF in this lab means about 30 to 300 MHz. UHF means about 300 to 3000 MHz. 146.520 MHz and 162.550 MHz are VHF. 446.000 MHz is UHF. Those names are ranges. They do not, by themselves, tell you how far a signal will travel.");
-    wrap.appendChild(note);
-    wrap.appendChild(createReceiver(book.signals, config, onTune).root);
-    wrap.appendChild(paragraph(config.caption || ""));
-    return wrap;
-  }
-
   function createReceiver(signals, config, onTune) {
-    var sim = RadioLabSim;
+    var sim = root.RadioLabSim;
     var khz = config.startKhz || 120000;
-    var root = document.createElement("div");
-    root.className = "instrument";
-
+    var receiver = document.createElement("div");
+    receiver.className = "instrument";
     var flag = document.createElement("p");
     flag.className = "sim-flag";
     flag.textContent = "SIMULATION";
-    root.appendChild(flag);
-
+    receiver.appendChild(flag);
     var readout = document.createElement("p");
     readout.className = "freq-readout";
-    root.appendChild(readout);
+    receiver.appendChild(readout);
     var units = document.createElement("p");
     units.className = "freq-units";
-    root.appendChild(units);
-
-    var regionLabel = document.createElement("label");
-    regionLabel.textContent = "Move along the spectrum";
-    var region = document.createElement("input");
-    region.type = "range";
-    region.min = "88";
-    region.max = "449";
-    region.step = "1";
-    regionLabel.appendChild(region);
-    root.appendChild(regionLabel);
-
-    var fineLabel = document.createElement("label");
-    fineLabel.textContent = "Fine tune within that megahertz";
-    var fine = document.createElement("input");
-    fine.type = "range";
-    fine.min = "0";
-    fine.max = "995";
-    fine.step = "5";
-    fineLabel.appendChild(fine);
-    root.appendChild(fineLabel);
-
+    receiver.appendChild(units);
     var pad = document.createElement("div");
     pad.className = "tune-pad";
     [
@@ -319,8 +1195,7 @@
       });
       pad.appendChild(button);
     });
-    root.appendChild(pad);
-
+    receiver.appendChild(pad);
     var typed = document.createElement("form");
     typed.className = "tune-form";
     var typeLabel = document.createElement("label");
@@ -344,8 +1219,7 @@
       }
       setKhz(parsed, true);
     });
-    root.appendChild(typed);
-
+    receiver.appendChild(typed);
     var map = document.createElement("div");
     map.className = "band-map";
     map.setAttribute("aria-hidden", "true");
@@ -356,53 +1230,19 @@
       var tick = document.createElement("span");
       tick.className = "band-tick";
       tick.style.left = mapPercent(signal.khz) + "%";
-      tick.title = signal.name;
+      tick.title = signal.name + " " + sim.formatMhz(signal.khz) + " MHz";
       map.appendChild(tick);
     });
-    root.appendChild(map);
-
+    receiver.appendChild(map);
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 640 160");
     svg.setAttribute("class", "spectrum-svg");
     svg.setAttribute("aria-hidden", "true");
-    root.appendChild(svg);
-
-    var meter = document.createElement("div");
-    meter.className = "strength";
-    meter.setAttribute("aria-hidden", "true");
-    var fill = document.createElement("span");
-    fill.className = "strength-fill";
-    meter.appendChild(fill);
-    root.appendChild(meter);
-
+    receiver.appendChild(svg);
     var live = document.createElement("p");
     live.className = "signal-readout";
     live.setAttribute("aria-live", "polite");
-    root.appendChild(live);
-
-    var legend = document.createElement("ul");
-    legend.className = "signal-legend";
-    signals.forEach(function (signal) {
-      var item = document.createElement("li");
-      item.textContent = signal.name + " · " + sim.formatMhz(signal.khz) + " MHz · " + signal.range;
-      legend.appendChild(item);
-    });
-    root.appendChild(legend);
-
-    var reset = document.createElement("button");
-    reset.type = "button";
-    reset.textContent = "Reset tuning";
-    reset.addEventListener("click", function () {
-      setKhz(config.startKhz || 120000, false);
-    });
-    root.appendChild(reset);
-
-    region.addEventListener("input", function () {
-      setKhz(Number(region.value) * 1000 + (khz % 1000), true);
-    });
-    fine.addEventListener("input", function () {
-      setKhz(Math.floor(khz / 1000) * 1000 + Number(fine.value), true);
-    });
+    receiver.appendChild(live);
 
     function mapPercent(value) {
       return ((value - sim.MIN_KHZ) / (sim.MAX_KHZ - sim.MIN_KHZ)) * 100;
@@ -421,46 +1261,23 @@
       var state = sim.tuneState(khz, signals);
       readout.textContent = sim.formatMhz(khz) + " MHz";
       units.textContent = sim.formatKhz(khz) + " kHz · " + sim.formatHz(khz) + " Hz";
-      region.value = String(Math.floor(khz / 1000));
-      fine.value = String(Math.min(995, khz % 1000));
       typeInput.value = sim.formatMhz(khz);
       marker.style.left = mapPercent(khz) + "%";
-      fill.style.width = (state.strength / 9) * 100 + "%";
       drawSpectrum(svg, khz, signals);
-      var heard = "No signal in this window. Background noise. Strength 0 of 9.";
+      var heard = "No signal in this window. The signals in the list above stay on their own frequencies.";
       if (state.centered) {
-        heard =
-          "Centered on " +
-          state.signal.name +
-          " (" +
-          state.signal.range +
-          "). Strength 9 of 9. " +
-          state.signal.blurb;
+        heard = "This receiver is centered on " + state.signal.name + " at " + sim.formatMhz(state.signal.khz) + " MHz. " + state.signal.blurb;
       } else if (state.nearby) {
-        heard =
-          "A signal is nearby: " +
-          state.signal.name +
-          ". Not centered yet. Strength " +
-          state.strength +
-          " of 9.";
-      }
-      if (config.showWavelength) {
-        heard += " Approximate wavelength " + sim.formatWavelength(khz) + " m.";
+        heard = "A signal is nearby: " + state.signal.name + " at " + sim.formatMhz(state.signal.khz) + " MHz. Not centered yet.";
       }
       live.textContent = heard;
       if (onTune) {
-        onTune(!!fromUser, state, khz);
+        onTune(!!fromUser, khz);
       }
     }
 
     draw(false);
-    return {
-      root: root,
-      getKhz: function () {
-        return khz;
-      },
-      setKhz: setKhz,
-    };
+    return { root: receiver, getKhz: function () { return khz; }, setKhz: setKhz };
   }
 
   function drawSpectrum(svg, tunedKhz, signals) {
@@ -479,7 +1296,6 @@
     noise.setAttribute("stroke", "#31403a");
     noise.setAttribute("stroke-width", "2");
     svg.appendChild(noise);
-
     signals.forEach(function (signal) {
       var delta = signal.khz - tunedKhz;
       if (Math.abs(delta) > WINDOW_KHZ / 2) {
@@ -488,15 +1304,11 @@
       var cx = 320 + (delta / WINDOW_KHZ) * 640;
       var half = Math.max(10, (signal.halfKhz / WINDOW_KHZ) * 640);
       var hump = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-      hump.setAttribute(
-        "points",
-        cx - half + ",124 " + cx + ",46 " + (cx + half) + ",124"
-      );
+      hump.setAttribute("points", cx - half + ",124 " + cx + ",46 " + (cx + half) + ",124");
       hump.setAttribute("fill", "rgba(143, 208, 198, 0.45)");
       hump.setAttribute("stroke", "#8fd0c6");
       svg.appendChild(hump);
     });
-
     var marker = document.createElementNS("http://www.w3.org/2000/svg", "line");
     marker.setAttribute("x1", "320");
     marker.setAttribute("x2", "320");
@@ -507,591 +1319,20 @@
     svg.appendChild(marker);
   }
 
-  function challenges(book, config) {
-    if (!simulationAllowed()) {
-      return heldNotice();
-    }
-    var wrap = document.createElement("div");
-    wrap.appendChild(paragraph("Use the receiver. Each challenge is finished by tuning, not by a multiple-choice guess."));
-    var list = config.challenges || [];
-    var index = 0;
-    var left = false;
-    var passed = [];
-    var advancing = false;
-    var prompt = document.createElement("p");
-    prompt.className = "challenge-prompt";
-    var feedback = document.createElement("p");
-    feedback.className = "feedback";
-    feedback.setAttribute("aria-live", "polite");
-    var again = document.createElement("button");
-    again.type = "button";
-    again.textContent = "Practice these challenges again";
-    again.hidden = true;
-
-    function current() {
-      return list[index];
-    }
-
-    function showPrompt() {
-      var item = current();
-      if (!item) {
-        prompt.textContent = "Those four tuning challenges are done. The wave experiment is next.";
-        feedback.textContent = "";
-        again.hidden = false;
-        book.tuneChallengesDone = true;
-        maybeFinishDo(book);
-        return;
-      }
-      prompt.textContent = "Challenge " + (index + 1) + " of " + list.length + ". " + item.prompt;
-      if (!book.saved.stages.do) {
-        feedback.textContent = "Tune the receiver. Feedback will show up here.";
-      }
-    }
-
-    var receiver = createReceiver(book.signals, { startKhz: config.startKhz, showWavelength: true }, function (fromUser, state, khz) {
-      var item = current();
-      if (!item || !fromUser || advancing) {
-        return;
-      }
-      var code = item.kind === "target-khz"
-        ? RadioLabSim.judgeTarget(khz, item.targetKhz, item.toleranceKhz)
-        : RadioLabSim.judgeSignal(khz, signalById(book, item.signalId), book.signals);
-      if (item.requireLeaveKhz && item.kind === "center-signal") {
-        var target = signalById(book, item.signalId);
-        if (Math.abs(khz - target.khz) >= item.requireLeaveKhz) {
-          left = true;
-        }
-        if (code === "centered" && !left) {
-          code = "leave";
-        }
-      }
-      var message = (item.feedback && item.feedback[code]) || "";
-      if (code === "wrong-signal" && state.signal) {
-        message = message.replace("{name}", state.signal.name);
-      }
-      feedback.textContent = message;
-      if (code === "centered" && passed.indexOf(item.id) === -1) {
-        passed.push(item.id);
-        advancing = true;
-        window.setTimeout(function () {
-          left = false;
-          advancing = false;
-          index += 1;
-          showPrompt();
-        }, 700);
-      }
-    });
-
-    again.addEventListener("click", function () {
-      index = 0;
-      left = false;
-      passed = [];
-      advancing = false;
-      again.hidden = true;
-      receiver.setKhz(config.startKhz, false);
-      showPrompt();
-    });
-
-    wrap.appendChild(prompt);
-    wrap.appendChild(receiver.root);
-    wrap.appendChild(feedback);
-    wrap.appendChild(again);
-    if (book.saved.stages && book.saved.stages.do) {
-      book.tuneChallengesDone = true;
-      index = list.length;
-      prompt.textContent = "You already finished the tuning challenges. You can practice them again without losing that.";
-      again.hidden = false;
-    } else {
-      showPrompt();
-    }
-    return wrap;
-  }
-
-  function signalById(book, id) {
-    for (var i = 0; i < book.signals.length; i += 1) {
-      if (book.signals[i].id === id) {
-        return book.signals[i];
-      }
-    }
-    return book.signals[0];
-  }
-
-  function wavelengthLab(book, config) {
-    var wrap = document.createElement("div");
-    wrap.className = "instrument";
-    wrap.appendChild(paragraph("Drag the frequency and watch the wave. Do not start with a formula. See what the picture does, then open the shortcut if you want it."));
-    var khz = config.startKhz || 146000;
-    var movedDown = false;
-    var label = document.createElement("p");
-    label.className = "freq-readout";
-    var waveText = document.createElement("p");
-    waveText.setAttribute("aria-live", "polite");
-    var sliderLabel = document.createElement("label");
-    sliderLabel.textContent = "Wave frequency";
-    var slider = document.createElement("input");
-    slider.type = "range";
-    slider.min = String(RadioLabSim.MIN_KHZ);
-    slider.max = String(RadioLabSim.MAX_KHZ);
-    slider.step = "1000";
-    slider.value = String(khz);
-    sliderLabel.appendChild(slider);
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 640 160");
-    svg.setAttribute("class", "spectrum-svg");
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", "A simplified radio wave. Higher frequency draws the cycles closer together.");
-    var examples = document.createElement("div");
-    examples.className = "tune-pad";
-    (config.examples || []).forEach(function (example) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.textContent = example.label;
-      button.addEventListener("click", function () {
-        apply(example.khz, true);
-      });
-      examples.appendChild(button);
-    });
-    var reveal = document.createElement("button");
-    reveal.type = "button";
-    reveal.textContent = "Show the shortcut";
-    reveal.disabled = true;
-    var shortcut = paragraph("");
-    shortcut.hidden = true;
-    var feedback = document.createElement("p");
-    feedback.className = "feedback";
-    feedback.setAttribute("aria-live", "polite");
-    var reset = document.createElement("button");
-    reset.type = "button";
-    reset.textContent = "Reset the wave";
-
-    function drawWave() {
-      while (svg.firstChild) {
-        svg.removeChild(svg.firstChild);
-      }
-      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      var cycles = Math.max(1, Math.min(18, (khz / 1000) / 40));
-      var d = "";
-      var steps = 120;
-      for (var i = 0; i <= steps; i += 1) {
-        var x = (i / steps) * 640;
-        var y = 80 - Math.sin((i / steps) * cycles * Math.PI * 2) * 48;
-        d += (i === 0 ? "M" : "L") + x.toFixed(1) + " " + y.toFixed(1) + " ";
-      }
-      path.setAttribute("d", d);
-      path.setAttribute("fill", "none");
-      path.setAttribute("stroke", "#8fd0c6");
-      path.setAttribute("stroke-width", "3");
-      svg.appendChild(path);
-    }
-
-    function apply(next, fromUser) {
-      var previous = khz;
-      khz = RadioLabSim.clampKhz(next) || khz;
-      slider.value = String(Math.round(khz / 1000) * 1000);
-      label.textContent = RadioLabSim.formatMhz(khz) + " MHz";
-      var meters = RadioLabSim.formatWavelength(khz);
-      waveText.textContent = "Approximate wavelength " + meters + " m. The picture is a teaching sketch of how tightly the wave repeats, not a photo of a radio wave.";
-      drawWave();
-      svg.setAttribute("aria-label", "Simplified wave at " + RadioLabSim.formatMhz(khz) + " MHz, wavelength about " + meters + " meters.");
-      if (!fromUser) {
-        return;
-      }
-      reveal.disabled = false;
-      if (khz < previous) {
-        movedDown = true;
-      }
-      var length = RadioLabSim.wavelengthMeters(khz);
-      if (length < config.goalMeters) {
-        feedback.textContent = config.success;
-        book.waveDone = true;
-        maybeFinishDo(book);
-      } else if (movedDown && khz < (config.startKhz || 146000)) {
-        feedback.textContent = config.longer;
-      } else {
-        feedback.textContent = config.stillLong;
-      }
-    }
-
-    slider.addEventListener("input", function () {
-      apply(Number(slider.value), true);
-    });
-    reveal.addEventListener("click", function () {
-      shortcut.hidden = false;
-      shortcut.textContent = config.shortcut;
-    });
-    reset.addEventListener("click", function () {
-      movedDown = false;
-      feedback.textContent = "";
-      shortcut.hidden = true;
-      apply(config.startKhz || 146000, false);
-    });
-
-    wrap.appendChild(label);
-    wrap.appendChild(sliderLabel);
-    wrap.appendChild(svg);
-    wrap.appendChild(waveText);
-    wrap.appendChild(examples);
-    wrap.appendChild(feedback);
-    wrap.appendChild(reveal);
-    wrap.appendChild(shortcut);
-    wrap.appendChild(reset);
-    apply(khz, false);
-    if (book.saved.stages && book.saved.stages.do) {
-      book.waveDone = true;
-    }
-    return wrap;
-  }
-
-  function maybeFinishDo(book) {
-    if (book.tuneChallengesDone && book.waveDone) {
-      completeStage(book, "do");
-    }
-  }
-
-  function explainPanel(book, block) {
-    var wrap = document.createElement("div");
-    wrap.appendChild(paragraph(block.prompt));
-    var form = document.createElement("form");
-    var area = document.createElement("textarea");
-    area.rows = 5;
-    area.required = true;
-    area.setAttribute("aria-label", block.prompt);
-    var submit = document.createElement("button");
-    submit.type = "submit";
-    submit.textContent = "Compare with the lab's explanation";
-    form.appendChild(area);
-    form.appendChild(submit);
-    var reference = paragraph("");
-    reference.hidden = true;
-    var choice = document.createElement("div");
-    choice.className = "tune-pad";
-    choice.hidden = true;
-    var sure = document.createElement("button");
-    sure.type = "button";
-    sure.textContent = "I GET IT";
-    var unsure = document.createElement("button");
-    unsure.type = "button";
-    unsure.textContent = "I'M NOT SURE YET";
-    choice.appendChild(sure);
-    choice.appendChild(unsure);
-    var follow = document.createElement("p");
-    follow.className = "feedback";
-    follow.setAttribute("aria-live", "polite");
-    var back = document.createElement("a");
-    back.href = "#stage-see";
-    back.textContent = "Return to the receiver";
-    back.hidden = true;
-
-    function showReference() {
-      reference.hidden = false;
-      reference.textContent = block.reference;
-      choice.hidden = false;
-    }
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      if (area.value.trim().length < 8) {
-        follow.textContent = "Write a sentence or two in your own words. This is not graded.";
-        return;
-      }
-      showReference();
-      follow.textContent = "Compare your note with the explanation, then choose one.";
-      noteActivity(book);
-    });
-    sure.addEventListener("click", function () {
-      setConcept(book, block.conceptId, "complete").then(function () {
-        completeStage(book, "explain");
-        follow.textContent = "Recorded. You can still reread the receiver.";
-        back.hidden = true;
-      });
-    });
-    unsure.addEventListener("click", function () {
-      setConcept(book, block.conceptId, "in_progress").then(function () {
-        follow.textContent = block.unsure;
-        back.hidden = false;
-      });
-    });
-
-    wrap.appendChild(form);
-    wrap.appendChild(reference);
-    wrap.appendChild(choice);
-    wrap.appendChild(follow);
-    wrap.appendChild(back);
-    if (book.saved.concepts && book.saved.concepts[block.conceptId] === "complete") {
-      showReference();
-      follow.textContent = "You already marked this as understood.";
-    } else if (book.saved.concepts && book.saved.concepts[block.conceptId] === "in_progress") {
-      showReference();
-      follow.textContent = block.unsure;
-      back.hidden = false;
-    }
-    return wrap;
-  }
-
-  function examPanel(book, block) {
-    var wrap = document.createElement("div");
-    var banner = document.createElement("p");
-    banner.className = "sim-flag";
-    banner.textContent = block.label || "RADIO LAB PRACTICE";
-    wrap.appendChild(banner);
-    wrap.appendChild(paragraph(block.notice || ""));
-    var answered = {};
-    (book.saved.exams || []).forEach(function (row) {
-      if (!answered[row.questionId]) {
-        answered[row.questionId] = { attempts: 0, correct: false };
-      }
-      answered[row.questionId].attempts += 1;
-      if (row.correct) {
-        answered[row.questionId].correct = true;
-      }
-    });
-    (block.questions || []).forEach(function (question) {
-      wrap.appendChild(questionCard(book, block, question, answered));
-    });
-    if (allAttempted(block, answered)) {
-      completeStage(book, "exam");
-    }
-    return wrap;
-  }
-
-  function questionCard(book, block, question, answered) {
-    var card = document.createElement("fieldset");
-    card.className = "practice-question";
-    var legend = document.createElement("legend");
-    legend.textContent = question.stem;
-    card.appendChild(legend);
-    var prior = answered[question.id];
-    question.choices.forEach(function (choice, index) {
-      var label = document.createElement("label");
-      label.className = "choice";
-      var input = document.createElement("input");
-      input.type = "radio";
-      input.name = question.id;
-      input.value = String(index);
-      label.appendChild(input);
-      label.appendChild(document.createTextNode(" " + choice));
-      card.appendChild(label);
-    });
-    var check = document.createElement("button");
-    check.type = "button";
-    check.textContent = "Check";
-    var why = document.createElement("p");
-    why.className = "feedback";
-    why.setAttribute("aria-live", "polite");
-    var retry = document.createElement("button");
-    retry.type = "button";
-    retry.textContent = "Try again";
-    retry.hidden = true;
-
-    function lockCorrect() {
-      check.disabled = true;
-      card.querySelectorAll("input").forEach(function (input) {
-        input.disabled = true;
-      });
-      retry.hidden = true;
-    }
-
-    check.addEventListener("click", function () {
-      var selected = card.querySelector("input:checked");
-      if (!selected) {
-        why.textContent = "Choose one answer first.";
-        return;
-      }
-      var correct = Number(selected.value) === question.correctIndex;
-      recordExam(book, block, question, correct).then(function () {
-        if (!answered[question.id]) {
-          answered[question.id] = { attempts: 0, correct: false };
-        }
-        answered[question.id].attempts += 1;
-        if (correct) {
-          answered[question.id].correct = true;
-        }
-        why.textContent = (correct ? "Yes. " : "Not quite. ") + question.why;
-        if (correct) {
-          lockCorrect();
-        } else {
-          retry.hidden = false;
-        }
-        if (allAttempted(block, answered)) {
-          completeStage(book, "exam");
-        }
-      });
-    });
-    retry.addEventListener("click", function () {
-      card.querySelectorAll("input").forEach(function (input) {
-        input.checked = false;
-        input.disabled = false;
-      });
-      why.textContent = "Try the question again. A miss stays in the record, and a later correct answer counts too.";
-      retry.hidden = true;
-    });
-
-    card.appendChild(check);
-    card.appendChild(why);
-    card.appendChild(retry);
-    if (prior && prior.correct) {
-      why.textContent = "You already answered this correctly. " + question.why;
-      lockCorrect();
-    }
-    return card;
-  }
-
-  function allAttempted(block, answered) {
-    return (block.questions || []).every(function (question) {
-      return answered[question.id] && answered[question.id].attempts > 0;
-    });
-  }
-
-  function fieldPanel(book, block) {
-    if (!simulationAllowed()) {
-      return heldNotice();
-    }
-    var wrap = document.createElement("div");
-    wrap.appendChild(paragraph(block.prompt));
-    var config = block.config || {};
-    var steps = { target: false, tuned: false, range: false, meaning: false };
-    var feedback = document.createElement("p");
-    feedback.className = "feedback";
-    feedback.setAttribute("aria-live", "polite");
-
-    wrap.appendChild(paragraph("Which frequency should this receiver listen on for the group?"));
-    wrap.appendChild(choiceRow([
-      ["146.520 MHz", true],
-      ["162.550 MHz", false],
-    ], function (ok) {
-      if (ok) {
-        steps.target = true;
-        feedback.textContent = "146.520 MHz is the frequency your friend named. 162.550 MHz is only where the radio is listening now.";
-      } else {
-        feedback.textContent = "162.550 MHz is the weather-radio example already on the display. The group named a different frequency.";
-      }
-      maybeField(book, block, steps, feedback);
-    }));
-
-    var receiver = createReceiver(book.signals, {
-      startKhz: config.startKhz,
-      showWavelength: true,
-      caption: "",
-    }, function (fromUser, state, khz) {
-      if (!fromUser) {
-        return;
-      }
-      var code = RadioLabSim.judgeTarget(khz, config.targetKhz, config.toleranceKhz);
-      if (code === "centered") {
-        steps.tuned = true;
-        feedback.textContent = "The receiver is on 146.520 MHz. Approximate wavelength " + RadioLabSim.formatWavelength(khz) + " m. That is the 2-meter amateur example, in the VHF range.";
-        maybeField(book, block, steps, feedback);
-        return;
-      }
-      if (state.centered && state.signal && state.signal.id === "weather") {
-        feedback.textContent = "This is still the weather-radio example. The group is lower, at 146.520 MHz.";
-      } else if (code === "high") {
-        feedback.textContent = "The display is still higher than 146.520 MHz. Move down.";
-      } else if (code === "low") {
-        feedback.textContent = "That went below 146.520 MHz. Come back up.";
-      } else {
-        feedback.textContent = "Close. Center the receiver on 146.520 MHz.";
-      }
-    });
-    wrap.appendChild(paragraph("Tune this simulated radio from 162.550 MHz to the group's frequency."));
-    wrap.appendChild(receiver.root);
-
-    wrap.appendChild(paragraph("Once you are on 146.520 MHz, which range is that frequency in?"));
-    wrap.appendChild(choiceRow([
-      ["VHF", true],
-      ["UHF", false],
-    ], function (ok) {
-      if (!steps.tuned) {
-        feedback.textContent = "Tune to 146.520 MHz first, then use the wavelength number on the receiver.";
-        return;
-      }
-      if (ok) {
-        steps.range = true;
-        feedback.textContent = "146 MHz is below 300 MHz, so this lab calls it VHF. The wavelength on the receiver is about 2 meters.";
-      } else {
-        feedback.textContent = "UHF was the 446 MHz example. 146 MHz is below 300 MHz, which this lab called VHF.";
-      }
-      maybeField(book, block, steps, feedback);
-    }));
-
-    wrap.appendChild(paragraph("The wavelength shown for 146.520 MHz is closest to which of these?"));
-    wrap.appendChild(choiceRow([
-      ["About 2 meters", true],
-      ["About 70 centimeters", false],
-      ["About 3 meters", false],
-    ], function (ok) {
-      if (!steps.tuned) {
-        feedback.textContent = "Land on 146.520 MHz and read the wavelength line before answering.";
-        return;
-      }
-      if (ok) {
-        steps.wave = true;
-        feedback.textContent = "About 2 meters. The higher 446 MHz example was the short one, near 70 centimeters.";
-      } else {
-        feedback.textContent = "Read the wavelength line on the receiver. 70 centimeters belonged to the 446 MHz example. About 3 meters belonged to the FM example.";
-      }
-      maybeField(book, block, steps, feedback);
-    }));
-
-    wrap.appendChild(paragraph("What did you just do with the tuning control?"));
-    wrap.appendChild(choiceRow([
-      ["Selected the frequency this receiver listens to", true],
-      ["Started the friend's transmitter", false],
-      ["Changed the wavelength of the weather broadcast", false],
-    ], function (ok) {
-      if (ok) {
-        steps.meaning = true;
-        feedback.textContent = "You selected where this receiver listens. Your friend's radio was not started by your dial, and the weather broadcast's wavelength did not change.";
-      } else {
-        feedback.textContent = "The dial selects a listening frequency. It does not start someone else's radio, and it does not retune the other signals.";
-      }
-      maybeField(book, block, steps, feedback);
-    }));
-
-    wrap.appendChild(feedback);
-    if (book.saved.fieldTasks && book.saved.fieldTasks[block.taskId] === "complete") {
-      feedback.textContent = "This field task is already recorded. You can tune the receiver again.";
-    }
-    return wrap;
-  }
-
-  function choiceRow(pairs, onPick) {
-    var row = document.createElement("div");
-    row.className = "tune-pad";
-    pairs.forEach(function (pair) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.textContent = pair[0];
-      button.addEventListener("click", function () {
-        onPick(pair[1], button);
-      });
-      row.appendChild(button);
-    });
-    return row;
-  }
-
-  function maybeField(book, block, steps, feedback) {
-    if (steps.recorded || !(steps.target && steps.tuned && steps.range && steps.wave && steps.meaning)) {
-      return;
-    }
-    steps.recorded = true;
-    setField(book, block.taskId, "complete").then(function () {
-      completeStage(book, "field");
-      feedback.textContent += " Field task recorded.";
-    });
-  }
-
   function progressApi() {
-    return RadioLab.progress;
+    return root.RadioLab.progress;
   }
 
   function noteActivity(book) {
     var progress = progressApi();
-    if (!progress) {
+    if (!progress || book.noted) {
       return Promise.resolve();
     }
+    book.noted = true;
     if (typeof progress.noteActivity === "function") {
-      return progress.noteActivity(book.lesson.labId, book.lesson.curriculumId).then(applySnapshot);
+      return Promise.resolve(progress.noteActivity(book.lesson.labId, book.lesson.curriculumId, book.lesson.revision)).then(function (snapshot) {
+        applySnapshot(book, snapshot);
+      });
     }
     if (progress.getLabStatus(book.lesson.labId, book.lesson.curriculumId) === "not_started") {
       progress.setLabStatus(book.lesson.labId, "in_progress", book.lesson.curriculumId);
@@ -1113,9 +1354,13 @@
       return Promise.resolve();
     }
     if (typeof progress.load === "function") {
-      return progress.setStageCompleted(book.lesson.labId, stageId, true, book.lesson.curriculumId).then(applySnapshot);
+      return Promise.resolve(
+        progress.setStageCompleted(book.lesson.labId, stageId, true, book.lesson.curriculumId, book.lesson.revision)
+      ).then(function (snapshot) {
+        applySnapshot(book, snapshot);
+      });
     }
-    progress.setStageCompleted(book.lesson.labId, stageId, true, book.lesson.curriculumId);
+    progress.setStageCompleted(book.lesson.labId, stageId, true, book.lesson.curriculumId, book.lesson.revision);
     rollupLocal(book);
     return Promise.resolve();
   }
@@ -1129,6 +1374,7 @@
       return book.saved.stages[stageId];
     });
     var status = done ? "complete" : any ? "in_progress" : "not_started";
+    book.saved.status = status;
     if (progress && typeof progress.setLabStatus === "function" && typeof progress.load !== "function") {
       progress.setLabStatus(book.lesson.labId, status, book.lesson.curriculumId);
     }
@@ -1146,13 +1392,16 @@
       licenseLevel: block.licenseLevel,
       poolId: block.practicePoolId,
       kind: "pool",
+      revision: book.lesson.revision,
     };
     if (!progress) {
       return Promise.resolve();
     }
     var result = progress.recordExam(entry);
     if (result && typeof result.then === "function") {
-      return result.then(applySnapshot);
+      return result.then(function (snapshot) {
+        applySnapshot(book, snapshot);
+      });
     }
     if (progress.getLabStatus(book.lesson.labId, book.lesson.curriculumId) === "not_started") {
       progress.setLabStatus(book.lesson.labId, "in_progress", book.lesson.curriculumId);
@@ -1172,12 +1421,13 @@
       status,
       book.lesson.curriculumId,
       book.lesson.licenseLevel,
-      book.lesson.labId
+      book.lesson.labId,
+      book.lesson.revision
     );
     if (result && typeof result.then === "function") {
       return result.then(function (snapshot) {
         book.saved.concepts[conceptId] = status;
-        return applySnapshot(snapshot);
+        applySnapshot(book, snapshot);
       });
     }
     book.saved.concepts[conceptId] = status;
@@ -1185,28 +1435,38 @@
   }
 
   function setField(book, taskId, status) {
-    var progress = progressApi();
+    if (book.saved.fieldTasks[taskId] === status) {
+      return Promise.resolve();
+    }
     book.saved.fieldTasks[taskId] = status;
+    var progress = progressApi();
     if (!progress || typeof progress.setFieldTask !== "function") {
       return Promise.resolve();
     }
-    var result = progress.setFieldTask(taskId, status, book.lesson.labId, book.lesson.curriculumId);
+    var result = progress.setFieldTask(taskId, status, book.lesson.labId, book.lesson.curriculumId, book.lesson.revision);
     if (result && typeof result.then === "function") {
-      return result.then(applySnapshot);
+      return result.then(function (snapshot) {
+        applySnapshot(book, snapshot);
+      });
     }
     return Promise.resolve();
   }
 
-  function applySnapshot(snapshot) {
-    if (!snapshot) {
+  function applySnapshot(book, snapshot) {
+    if (!snapshot || !book) {
       return snapshot;
     }
-    if (snapshot.status) {
+    var rank = { not_started: 0, in_progress: 1, complete: 2 };
+    if (snapshot.status && rank[snapshot.status] >= rank[book.saved.status || "not_started"]) {
+      book.saved.status = snapshot.status;
       paintLabStatus(snapshot.status);
     }
     if (snapshot.stages) {
       Object.keys(snapshot.stages).forEach(function (stageId) {
-        paintStage(stageId, !!snapshot.stages[stageId]);
+        if (snapshot.stages[stageId]) {
+          book.saved.stages[stageId] = true;
+          paintStage(stageId, true);
+        }
       });
     }
     return snapshot;
@@ -1245,4 +1505,4 @@
   } else {
     boot();
   }
-})();
+})(typeof window !== "undefined" ? window : globalThis);

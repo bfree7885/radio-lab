@@ -23,6 +23,13 @@
       return response.json();
     }
 
+    function withRevision(body, revision) {
+      if (revision != null) {
+        body.revision = revision;
+      }
+      return body;
+    }
+
     function post(labId, body) {
       return fetch(urlFor(labId), {
         method: "POST",
@@ -33,19 +40,23 @@
 
     return {
       id: "local-sqlite",
-      load: function (labId, curriculumId) {
-        return fetch(urlFor(labId, curriculumId)).then(readJson);
+      load: function (labId, curriculumId, revision) {
+        var path = urlFor(labId, curriculumId);
+        if (revision != null) {
+          path += (path.indexOf("?") === -1 ? "?" : "&") + "revision=" + encodeURIComponent(revision);
+        }
+        return fetch(path).then(readJson);
       },
-      setStageCompleted: function (labId, stageId, completed, curriculumId) {
-        return post(labId, {
+      setStageCompleted: function (labId, stageId, completed, curriculumId, revision) {
+        return post(labId, withRevision({
           op: "stage",
           stageId: stageId,
           completed: !!completed,
           curriculumId: curriculumId,
-        });
+        }, revision));
       },
       recordExam: function (entry) {
-        return post(entry.labId, {
+        return post(entry.labId, withRevision({
           op: "exam",
           curriculumId: entry.curriculumId,
           questionId: entry.questionId,
@@ -54,27 +65,27 @@
           licenseLevel: entry.licenseLevel,
           poolId: entry.poolId,
           kind: entry.kind === "concept" ? "concept" : "pool",
-        });
+        }, entry.revision));
       },
-      setConceptStatus: function (conceptId, status, curriculumId, licenseLevel, labId) {
-        return post(labId, {
+      setConceptStatus: function (conceptId, status, curriculumId, licenseLevel, labId, revision) {
+        return post(labId, withRevision({
           op: "concept",
           conceptId: conceptId,
           status: status,
           curriculumId: curriculumId,
           licenseLevel: licenseLevel,
-        });
+        }, revision));
       },
-      setFieldTask: function (taskId, status, labId, curriculumId) {
-        return post(labId, {
+      setFieldTask: function (taskId, status, labId, curriculumId, revision) {
+        return post(labId, withRevision({
           op: "field",
           taskId: taskId,
           status: status,
           curriculumId: curriculumId,
-        });
+        }, revision));
       },
-      noteActivity: function (labId, curriculumId) {
-        return post(labId, { op: "activity", curriculumId: curriculumId });
+      noteActivity: function (labId, curriculumId, revision) {
+        return post(labId, withRevision({ op: "activity", curriculumId: curriculumId }, revision));
       },
     };
   }

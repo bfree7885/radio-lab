@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import tempfile
 import unittest
@@ -50,6 +51,12 @@ class HostedBuildTests(unittest.TestCase):
         self.assertIn("boot-hosted.js", index)
         self.assertNotIn("progress-local.js", index)
         self.assertNotIn("capabilities-local.js", index)
+        lab01 = (out / "labs" / "01" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("lab01.js", lab01)
+        self.assertIn('data-delivery="hosted"', lab01)
+        rebuilt = json.loads((out / "content" / "labs" / "01" / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual(rebuilt["revision"], 2)
+        self.assertIn("signal-bench", json.dumps(rebuilt))
         lab = (out / "labs" / "tr-08" / "index.html").read_text(encoding="utf-8")
         self.assertIn("lesson-kit.js", lab)
         self.assertNotIn("progress-local.js", lab)

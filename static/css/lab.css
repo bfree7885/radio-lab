@@ -852,6 +852,47 @@ section > h2 {
   border-top: 1px solid var(--line);
 }
 
+.present-split {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+@media (min-width: 720px) {
+  .present-split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.task-check {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.task-check li {
+  padding: 0.35rem 0;
+}
+
+.task-check li.done {
+  color: var(--accent, #8fd0c6);
+}
+
+.choice-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.choice-stack button {
+  text-align: left;
+}
+
+.wave-board {
+  margin: 1rem 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

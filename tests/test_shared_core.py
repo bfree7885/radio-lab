@@ -57,8 +57,9 @@ class SharedCoreTests(unittest.TestCase):
             [stage["id"] for stage in lesson["stages"]],
             ["learn", "see", "do", "explain", "exam", "field"],
         )
+        self.assertEqual(lesson["revision"], 2)
         self.assertEqual(lesson["stages"][1]["blocks"][0]["type"], "simulation")
-        self.assertEqual(lesson["stages"][1]["blocks"][0]["component"], "spectrum-receiver")
+        self.assertEqual(lesson["stages"][1]["blocks"][0]["component"], "cycle-bench")
         self.assertIn("simulation", display_text("see", lesson).lower())
         self.assertIn("tuning control", display_text("explain", lesson).lower())
         self.assertEqual(
@@ -81,6 +82,52 @@ class SharedCoreTests(unittest.TestCase):
             self.assertGreaterEqual(len(question["choices"]), 2)
         ids = [signal["id"] for signal in lesson["signals"]]
         self.assertEqual(ids, ["fm-broadcast", "two-meter", "weather", "seventy-cm"])
+
+    def test_lab01_revision_ignores_an_older_completion(self) -> None:
+        from progress.store import (
+            get_lab_status,
+            init_db,
+            record_exam,
+            set_lab_status,
+            set_stage_completed,
+            stage_completed,
+        )
+
+        init_db()
+        stages = ["learn", "see", "do", "explain", "exam", "field"]
+        set_lab_status("01", "complete")
+        for stage_id in stages:
+            set_stage_completed("01", stage_id, True)
+        set_lab_status("02", "complete")
+        for stage_id in stages:
+            set_stage_completed("02", stage_id, True)
+        record_exam("lab01-frequency", True, lab_id="01", topic_id="frequency")
+        self.assertTrue(stage_completed("01", "learn"))
+        self.assertFalse(stage_completed("01", "learn", revision=2))
+
+        opened = self.client.get("/api/progress/01?revision=2")
+        body = opened.get_json()
+        self.assertEqual(body["status"], "not_started")
+        self.assertFalse(any(body["stages"].values()))
+        self.assertTrue(any(row["questionId"] == "lab01-frequency" for row in body["exams"]))
+        opened.close()
+
+        other = self.client.get("/api/progress/02")
+        self.assertEqual(other.get_json()["status"], "complete")
+        other.close()
+
+        saved = self.client.post(
+            "/api/progress/01",
+            json={"op": "stage", "stageId": "learn", "completed": True, "revision": 2},
+        )
+        again = saved.get_json()
+        self.assertEqual(saved.status_code, 200)
+        self.assertTrue(again["stages"]["learn"])
+        self.assertFalse(again["stages"]["see"])
+        self.assertEqual(again["status"], "in_progress")
+        saved.close()
+        self.assertEqual(get_lab_status("02"), "complete")
+        self.assertTrue(stage_completed("02", "field"))
 
     def test_flask_serves_the_shared_files(self) -> None:
         curriculum = self.client.get("/content/curriculum.json")
